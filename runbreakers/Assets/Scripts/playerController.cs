@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerControl : MonoBehaviour
@@ -29,6 +30,7 @@ public class playerControl : MonoBehaviour
     {
         // Keep track of orginal hp
         hpOriginal = hp;
+        updatePlayerUI();
     }
 
     // Update is called once per frame
@@ -61,5 +63,10 @@ public class playerControl : MonoBehaviour
         {
             speed /= sprintMod;
         }
+    }
+
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)hp / hpOriginal;
     }
 }

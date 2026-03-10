@@ -7,17 +7,29 @@ public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
+    [Header("----- Menus ------")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] TMP_Text AmmoCur;
-    [SerializeField] TMP_Text AmmoMax;
+
     [SerializeField] TMP_Text gameGoalCountText;
+
+    [Header("----- Ammo ------")]
+    [SerializeField] int ammoCur;
+    [SerializeField] int ammoMax;
+
+    [Header("----- Buffs ------")]
+    [SerializeField] int healthBuffTimer;
+    [SerializeField] int healthBuffAmount;
+    [SerializeField] int speedBuffAmount;
+    [SerializeField] int speedBuffTimer;
+    [SerializeField] int attackBuffTimer;
+    [SerializeField] int attackBuffAmount;
 
     public Image playerHPBar;
     public GameObject player;
-    //public playerController playerScript;
+    public playerControl playerScript;
     public bool isPaused;
 
     private float timeScaleOrig;
@@ -30,10 +42,8 @@ public class gamemanager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
 
-        /*
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
-        */
+        playerScript = player.GetComponent<playerControl>();
     }
 
     // Update is called once per frame
