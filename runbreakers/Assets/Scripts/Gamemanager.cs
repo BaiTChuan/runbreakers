@@ -27,6 +27,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] int attackBuffTimer;
     [SerializeField] int attackBuffAmount;
 
+    [Header("----- Player ------")]
     public Image playerHPBar;
     public GameObject player;
     public playerControl playerScript;
