@@ -65,6 +65,17 @@ public class playerControl : MonoBehaviour
         }
     }
 
+    public void takeDamage(int amount)
+    {
+        hp -= amount;
+        updatePlayerUI();
+
+        if (hp <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
+    }
+
     public void updatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)hp / hpOriginal;
