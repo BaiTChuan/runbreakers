@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerControl : MonoBehaviour
+public class playerControl : MonoBehaviour, IDamage
 {
     // Serialized Fields, displayed in Unity explorer, easy to change the attributes
     [Header("----- Components ------")]
