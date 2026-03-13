@@ -14,18 +14,20 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
     [SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] TMP_Text ammoCurText;
+    [SerializeField] TMP_Text ammoMaxText;
 
     [Header("----- Ammo ------")]
     [SerializeField] int ammoCur;
     [SerializeField] int ammoMax;
 
     [Header("----- Buffs ------")]
-    [SerializeField] int healthBuffTimer;
-    [SerializeField] int healthBuffAmount;
-    [SerializeField] int speedBuffAmount;
-    [SerializeField] int speedBuffTimer;
-    [SerializeField] int attackBuffTimer;
-    [SerializeField] int attackBuffAmount;
+    [SerializeField] public int healthBuffTimer;
+    [SerializeField] public int healthBuffAmount;
+    [SerializeField] public int speedBuffAmount;
+    [SerializeField] public int speedBuffTimer;
+    [SerializeField] public int attackBuffTimer;
+    [SerializeField] public int attackBuffAmount;
 
     [Header("----- Player ------")]
     public Image playerHPBar;
@@ -45,6 +47,9 @@ public class gamemanager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
+
+        updateAmmoCurCount(ammoCur);
+        updateAmmoMaxCount(ammoMax);
     }
 
     // Update is called once per frame
@@ -94,6 +99,15 @@ public class gamemanager : MonoBehaviour
             menuActive = menuWin;
             menuActive.SetActive(true);
         }
+    }
+
+    public void updateAmmoCurCount(int amount)
+    {
+        ammoCurText.text = ammoCur.ToString("F0");
+    }
+    public void updateAmmoMaxCount(int amount)
+    {
+        ammoMaxText.text = ammoMax.ToString("F0");
     }
 
     public void youLose()
