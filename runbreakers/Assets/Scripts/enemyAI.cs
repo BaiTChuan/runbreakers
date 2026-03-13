@@ -23,13 +23,16 @@ public class enemyAI : MonoBehaviour
             MoveTowardsPlayer();
     }
 
-    void MoveTowardsPlayer()
+void MoveTowardsPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+    Vector3 direction = player.position - transform.position;
+    direction.y = 0;
 
-        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+    transform.position += direction.normalized * moveSpeed * Time.deltaTime;
 
-        transform.LookAt(player);
+     if (direction != Vector3.zero)
+       {
+        transform.rotation = Quaternion.LookRotation(direction);
+       }
     }
 }
