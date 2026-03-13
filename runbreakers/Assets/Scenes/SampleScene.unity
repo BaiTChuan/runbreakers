@@ -913,7 +913,7 @@ MonoBehaviour:
   strongCost: 2
   eliteCost: 3
   spawnRadius: 15
-  spawnRate: 1.5
+  spawnRate: 1
   waveBudget: 25
   basicChance: 85
   strongChance: 10
