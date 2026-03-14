@@ -30,6 +30,8 @@ public class enemySpawner : MonoBehaviour
     {
         currentBudget = waveBudget;
 
+        gamemanager.instance.updateGameGoal(currentBudget);
+
         if (gamemanager.instance != null)
         {
             player = gamemanager.instance.player.transform;
@@ -130,14 +132,17 @@ public class enemySpawner : MonoBehaviour
         if (spawnedEnemy == basicType)
         {
             currentBudget -= basicCost;
+            gamemanager.instance.updateGameGoal(-basicCost);
         }
         else if (spawnedEnemy == strongType)
         {
             currentBudget -= strongCost;
+            gamemanager.instance.updateGameGoal(-strongCost);
         }
         else if (spawnedEnemy == eliteType)
         {
             currentBudget -= eliteCost;
+            gamemanager.instance.updateGameGoal(-eliteCost);
         }
     }
 }

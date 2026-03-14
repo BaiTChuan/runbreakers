@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class damage : MonoBehaviour
 {
     enum damagetype { bullet, stationary, DOT }
+
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
@@ -11,6 +13,7 @@ public class damage : MonoBehaviour
     [SerializeField] float damageRate;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+
     [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
@@ -65,4 +68,5 @@ public class damage : MonoBehaviour
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
+
 }
