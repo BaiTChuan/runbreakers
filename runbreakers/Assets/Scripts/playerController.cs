@@ -18,6 +18,7 @@ public class playerControl : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
+    [SerializeField] ParticleSystem muzzleFlashEffect;
 
     int hpOriginal;
 
@@ -46,11 +47,16 @@ public class playerControl : MonoBehaviour, IDamage
 
     void shoot()
     {
+        if (muzzleFlashEffect != null)
+        {
+            muzzleFlashEffect.Play();
+        }
+
         shootTimer = 0f;
 
         GameObject spawnedBullet = Instantiate(bullet, shootPos.position, shootPos.rotation);
 
-        bulletScript bulletScript = spawnedBullet.GetComponent<bulletScript>();
+        damage bulletScript = spawnedBullet.GetComponent<damage>();
 
         if (bulletScript != null)
         {

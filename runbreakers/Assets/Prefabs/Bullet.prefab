@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8862457577963422105}
-  - component: {fileID: 2397194337587096448}
   - component: {fileID: 1705034434805957933}
   - component: {fileID: 8985704215056384550}
   - component: {fileID: 5702094467311586832}
@@ -36,21 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2397194337587096448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543385253515881813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a254781db878ae848b94a40ec4bd4435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bulletScript
-  speed: 15
-  lifeTime: 3
-  damageAmount: 1
 --- !u!135 &1705034434805957933
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -66,7 +50,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -87,9 +71,9 @@ MonoBehaviour:
   type: 0
   rb: {fileID: 5702094467311586832}
   damageAmount: 2
-  damageRate: 0
+  damageRate: 1
   speed: 25
-  destroyTime: 5
+  destroyTime: 3
   hitEffect: {fileID: 0}
 --- !u!54 &5702094467311586832
 Rigidbody:
