@@ -82,6 +82,8 @@ public class playerControl : MonoBehaviour, IDamage
     {
         shootTimer += Time.deltaTime;
 
+        playerVel.y = -10;
+
         float h = -Input.GetAxis("Horizontal");
         float v = -Input.GetAxis("Vertical");
 

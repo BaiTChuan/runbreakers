@@ -699,6 +699,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 552590475}
     m_Modifications:
+    - target: {fileID: 580340524848653738, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 580340524848653738, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 580340524848653738, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2975706173280489843, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
       propertyPath: m_Name
       value: Wall
@@ -709,7 +721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7748286994696221079, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4999878
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 7748286994696221079, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1184,6 +1196,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69811293}
     m_Modifications:
+    - target: {fileID: 511710116996057274, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 511710116996057274, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
+      propertyPath: damageRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5126499337545940192, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.44
