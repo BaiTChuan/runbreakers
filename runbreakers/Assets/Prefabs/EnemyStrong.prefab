@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6318765885516107274}
   - component: {fileID: 2739554276646145431}
   - component: {fileID: 6891853540218418855}
+  - component: {fileID: 4900276511775427842}
+  - component: {fileID: 6809436569697429497}
   m_Layer: 0
   m_Name: EnemyStrong
   m_TagString: Enemy
@@ -141,3 +143,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyHealth
   maxHP: 5
   xpValue: 2
+--- !u!65 &4900276511775427842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185062257495450817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6809436569697429497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185062257495450817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damage
+  type: 1
+  rb: {fileID: 0}
+  damageAmount: 2
+  damageRate: 1
+  speed: 0
+  destroyTime: 0
+  hitEffect: {fileID: 0}
