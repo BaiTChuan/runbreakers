@@ -20,6 +20,9 @@ public class playerControl : MonoBehaviour, IDamage
     [SerializeField] Transform gunPivot;
     [SerializeField] ParticleSystem muzzleFlashEffect;
 
+    [Header("---- Hit Effect ----")]
+    [SerializeField] ParticleSystem beingHitEffect;
+
     int hpOriginal;
 
     float shootTimer;
@@ -120,6 +123,11 @@ public class playerControl : MonoBehaviour, IDamage
     {
         hp -= amount;
         updatePlayerUI();
+
+        if (beingHitEffect != null)
+        {
+            beingHitEffect.Play();
+        }
 
         if (hp <= 0)
         {
