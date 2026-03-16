@@ -17,6 +17,11 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text ammoCurText;
     [SerializeField] TMP_Text ammoMaxText;
 
+    [Header("----- Cursor ------")]
+    public Texture2D cursorTexture;
+    public Vector2 hotSpot = Vector2.zero;
+    public CursorMode cursorMode = CursorMode.Auto;
+
     [Header("----- Ammo ------")]
     [SerializeField] int ammoCur;
     [SerializeField] int ammoMax;
@@ -50,6 +55,7 @@ public class gamemanager : MonoBehaviour
 
         updateAmmoCurCount(ammoCur);
         updateAmmoMaxCount(ammoMax);
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     // Update is called once per frame
