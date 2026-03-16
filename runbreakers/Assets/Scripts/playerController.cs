@@ -14,22 +14,29 @@ public class playerControl : MonoBehaviour, IDamage
     [Range(2, 6)][SerializeField] int sprintMod;
 
     [Header("----- Weapons ------")]
-    [SerializeField] int shootDamage;
-    [SerializeField] int shootDist;
+    [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform gunPivot;
+    [SerializeField] ParticleSystem muzzleFlashEffect;
+
+    [Header("---- Hit Effect ----")]
+    [SerializeField] ParticleSystem beingHitEffect;
 
     int hpOriginal;
 
     float shootTimer;
 
-    Vector3 moveDir;
     Vector3 playerVel;
+
+    private Camera cam;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Keep track of orginal hp
         hpOriginal = hp;
+        cam = Camera.main;
         updatePlayerUI();
     }
 
@@ -38,11 +45,53 @@ public class playerControl : MonoBehaviour, IDamage
     {
         movement();
         sprint();
+        AimGunToMouse();
+    }
+
+    void shoot()
+    {
+        if (muzzleFlashEffect != null)
+        {
+            muzzleFlashEffect.Play();
+        }
+
+        shootTimer = 0f;
+
+        GameObject spawnedBullet = Instantiate(bullet, shootPos.position, shootPos.rotation);
+
+        damage bulletScript = spawnedBullet.GetComponent<damage>();
+
+        if (bulletScript != null)
+        {
+            Vector3 bulletDir = gunPivot.right;
+            bulletScript.SetDirection(bulletDir);
+        }
+    }
+
+    void AimGunToMouse()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Plane plane = new Plane(Vector3.up, gunPivot.position);
+
+        float distance;
+        if (plane.Raycast(ray, out distance))
+        {
+            Vector3 mouseWorldPos = ray.GetPoint(distance);
+            Vector3 dir = mouseWorldPos - gunPivot.position;
+            dir.y = 0f;
+
+            if (dir.sqrMagnitude > 0.001f)
+            {
+                gunPivot.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
+            }
+        }
     }
 
     void movement()
     {
         shootTimer += Time.deltaTime;
+
+        playerVel.y = -10;
 
         float h = -Input.GetAxis("Horizontal");
         float v = -Input.GetAxis("Vertical");
@@ -51,6 +100,11 @@ public class playerControl : MonoBehaviour, IDamage
 
         controller.Move(moveDir * speed * Time.deltaTime);
         controller.Move(playerVel * Time.deltaTime);
+
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            shoot();
+        }
     }
 
     void sprint()
@@ -70,6 +124,11 @@ public class playerControl : MonoBehaviour, IDamage
         hp -= amount;
         updatePlayerUI();
 
+        if (beingHitEffect != null)
+        {
+            beingHitEffect.Play();
+        }
+
         if (hp <= 0)
         {
             gamemanager.instance.youLose();
@@ -78,6 +137,6 @@ public class playerControl : MonoBehaviour, IDamage
 
     public void updatePlayerUI()
     {
-        gamemanager.instance.playerHPBar.fillAmount = (float)hp / hpOriginal;
+        gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
     }
 }

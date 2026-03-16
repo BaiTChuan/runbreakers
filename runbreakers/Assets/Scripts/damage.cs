@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class damage : MonoBehaviour
 {
     enum damagetype { bullet, stationary, DOT }
+
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
@@ -11,9 +13,12 @@ public class damage : MonoBehaviour
     [SerializeField] float damageRate;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+
     [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
+
+    private Vector3 moveDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +30,11 @@ public class damage : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        transform.position += moveDirection * speed * Time.deltaTime;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
@@ -32,17 +42,19 @@ public class damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (dmg != null && type != damagetype.DOT)
+        if (type == damagetype.stationary)
         {
             dmg.takeDamage(damageAmount);
         }
 
-        if (type == damagetype.bullet)
+        else if (type == damagetype.bullet)
         {
             if (hitEffect != null)
             {
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
             }
+
+            dmg.takeDamage(damageAmount);
             Destroy(gameObject);
         }
     }
@@ -65,4 +77,11 @@ public class damage : MonoBehaviour
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
+
+    public void SetDirection(Vector3 dir)
+    {
+        moveDirection = dir.normalized;
+        transform.rotation = Quaternion.LookRotation(moveDirection);
+    }
+
 }
