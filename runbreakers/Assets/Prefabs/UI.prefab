@@ -270,57 +270,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &837836022431680569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4260376020667505819}
-  - component: {fileID: 1652384761128677643}
-  m_Layer: 5
-  m_Name: CursorHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &4260376020667505819
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837836022431680569}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1720998766129239079}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1652384761128677643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837836022431680569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12eb53d72837303419382aac9caf1677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CursorManager
-  cursorTexture: {fileID: 2800000, guid: 1db3280586420294791da57a3cbeb1f4, type: 3}
-  hotSpot: {x: 512, y: 512}
-  cursorMode: 0
 --- !u!1 &849382701428114739
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2196,6 @@ RectTransform:
   - {fileID: 5335633258216434767}
   - {fileID: 389969557343135972}
   - {fileID: 2800214792348388339}
-  - {fileID: 4260376020667505819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4429,6 +4377,9 @@ MonoBehaviour:
   gameGoalCountText: {fileID: 5452139163548197600}
   ammoCurText: {fileID: 9220916687221522447}
   ammoMaxText: {fileID: 3400519963807222657}
+  cursorTexture: {fileID: 2800000, guid: dbc653bd245478a4982fbc3dca332b17, type: 3}
+  hotSpot: {x: 513, y: 513}
+  cursorMode: 0
   ammoCur: 4
   ammoMax: 20
   healthBuffTimer: 0
