@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerControl : MonoBehaviour, IDamage
+public class playerControl : MonoBehaviour, IDamage, IBuff
 {
     // Serialized Fields, displayed in Unity explorer, easy to change the attributes
     [Header("----- Components ------")]
@@ -138,5 +138,13 @@ public class playerControl : MonoBehaviour, IDamage
     public void updatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
+    }
+
+    public void getBuff(buffStats buff)
+    {
+        if (buff.id == 0)
+        {
+            hp += buff.healAmount;
+        }
     }
 }
