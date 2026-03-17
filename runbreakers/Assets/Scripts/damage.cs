@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class damage : MonoBehaviour
 {
     enum damagetype { bullet, stationary, DOT }
+    enum projectileOwner { player, enemy }
 
     [SerializeField] damagetype type;
-    [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
@@ -15,20 +15,21 @@ public class damage : MonoBehaviour
     [SerializeField] int destroyTime;
 
     [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] projectileOwner owner;
 
     bool isDamaging;
 
     private Vector3 moveDirection;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created.
+    // (From Corey) I changed the bullets from working with Rigidbody body to use SetDirection() and moveDirection instead so the bullets weren't being moved twice.
+void Start()
+{
+    if (type == damagetype.bullet)
     {
-        if (type == damagetype.bullet)
-        {
-            rb.linearVelocity = transform.forward * speed;
-            Destroy(gameObject, destroyTime);
-        }
+        Destroy(gameObject, destroyTime);
     }
+}
 
     private void Update()
     {
@@ -44,18 +45,22 @@ public class damage : MonoBehaviour
 
         if (type == damagetype.stationary)
         {
+            if (dmg != null)
             dmg.takeDamage(damageAmount);
         }
 
         else if (type == damagetype.bullet)
         {
-            if (hitEffect != null)
+            if (ShouldDamageTarget(other, dmg))
             {
-                Instantiate(hitEffect, transform.position, Quaternion.identity);
-            }
-
-            dmg.takeDamage(damageAmount);
+            if (hitEffect != null)
+                {
+                    Instantiate(hitEffect, transform.position, Quaternion.identity);
+                }
+            
+                dmg.takeDamage(damageAmount);
             Destroy(gameObject);
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -83,5 +88,18 @@ public class damage : MonoBehaviour
         moveDirection = dir.normalized;
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
+    
+     bool ShouldDamageTarget(Collider other, IDamage dmg)
+    {
+        if (dmg == null)
+            return false;
 
+        if (owner == projectileOwner.player && other.CompareTag("Enemy"))
+            return true;
+
+        if (owner == projectileOwner.enemy && other.CompareTag("Player"))
+            return true;
+
+        return false;
+    }
 }
