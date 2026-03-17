@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 public class damage : MonoBehaviour
 {
     enum damagetype { bullet, stationary, DOT }
-    enum projectileOwner { player, enemy }
 
     [SerializeField] damagetype type;
+    [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
@@ -15,25 +14,22 @@ public class damage : MonoBehaviour
     [SerializeField] int destroyTime;
 
     [SerializeField] ParticleSystem hitEffect;
-    [SerializeField] projectileOwner owner;
 
     bool isDamaging;
 
-    private Vector3 moveDirection;
+    Vector3 direction;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created.
-    // (From Corey) I changed the bullets from working with Rigidbody body to use SetDirection() and moveDirection instead so the bullets weren't being moved twice.
-void Start()
-{
-    if (type == damagetype.bullet)
+    void Start()
     {
-        Destroy(gameObject, destroyTime);
-    }
-}
+        if (type == damagetype.bullet)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = direction * speed;
+            }
 
-    private void Update()
-    {
-        transform.position += moveDirection * speed * Time.deltaTime;
+            Destroy(gameObject, destroyTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,29 +42,32 @@ void Start()
         if (type == damagetype.stationary)
         {
             if (dmg != null)
-            dmg.takeDamage(damageAmount);
+            {
+                dmg.takeDamage(damageAmount);
+            }
         }
-
         else if (type == damagetype.bullet)
         {
             if (ShouldDamageTarget(other, dmg))
             {
-            if (hitEffect != null)
+                if (hitEffect != null)
                 {
                     Instantiate(hitEffect, transform.position, Quaternion.identity);
                 }
-            
+
                 dmg.takeDamage(damageAmount);
-            Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.isTrigger)
             return;
 
         IDamage dmg = other.GetComponent<IDamage>();
+
         if (dmg != null && type == damagetype.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));
@@ -85,19 +84,25 @@ void Start()
 
     public void SetDirection(Vector3 dir)
     {
-        moveDirection = dir.normalized;
-        transform.rotation = Quaternion.LookRotation(moveDirection);
+        direction = dir.normalized;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = direction * speed;
+        }
+
+        transform.rotation = Quaternion.LookRotation(direction);
     }
-    
-     bool ShouldDamageTarget(Collider other, IDamage dmg)
+
+    bool ShouldDamageTarget(Collider other, IDamage dmg)
     {
         if (dmg == null)
             return false;
 
-        if (owner == projectileOwner.player && other.CompareTag("Enemy"))
+        if (CompareTag("PlayerProjectile") && other.CompareTag("Enemy"))
             return true;
 
-        if (owner == projectileOwner.enemy && other.CompareTag("Player"))
+        if (CompareTag("EnemyProjectile") && other.CompareTag("Player"))
             return true;
 
         return false;
