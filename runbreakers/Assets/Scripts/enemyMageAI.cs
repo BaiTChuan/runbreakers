@@ -16,7 +16,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [SerializeField] int maxHP = 4;
     [SerializeField] int xpValue = 2;
 
-    [Header ("---- Hit Effect ----")]
+    [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
     int currentHP;
@@ -30,11 +30,11 @@ public class enemyMageAI : MonoBehaviour, IDamage
     void Update()
     {
         if (gamemanager.instance == null || gamemanager.instance.player == null)
-        return;
+            return;
 
         shootTimer += Time.deltaTime;
 
-        Vector3 SetDirection = gamemanager.instance.player.transform.position - transform.position;
+        Vector3 direction = gamemanager.instance.player.transform.position - transform.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
@@ -48,10 +48,13 @@ public class enemyMageAI : MonoBehaviour, IDamage
         {
             transform.position += direction.normalized * moveSpeed * Time.deltaTime;
         }
-
         else if (distance < retreatDistance)
         {
             transform.position -= direction.normalized * moveSpeed * Time.deltaTime;
+            TryShoot(direction);
+        }
+        else
+        {
             TryShoot(direction);
         }
     }
@@ -59,10 +62,10 @@ public class enemyMageAI : MonoBehaviour, IDamage
     void TryShoot(Vector3 direction)
     {
         if (projectilePrefab == null || shootPoint == null)
-        return;
+            return;
 
         if (shootTimer < shootRate)
-        return;
+            return;
 
         shootTimer = 0f;
 
@@ -94,15 +97,15 @@ public class enemyMageAI : MonoBehaviour, IDamage
     void Die()
     {
         if (gamemanager.instance == null || gamemanager.instance.player == null)
-        return;
+            return;
 
-        playerXp xp = gamemanager.instance.player.GerComponent<playerXP>();
+        playerXP xp = gamemanager.instance.player.GetComponent<playerXP>();
 
         if (xp != null)
         {
             xp.AddXP(xpValue);
         }
 
-        Destory(gameObject);
+        Destroy(gameObject);
     }
 }
