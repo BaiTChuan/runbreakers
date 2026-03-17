@@ -4378,7 +4378,7 @@ MonoBehaviour:
   ammoCurText: {fileID: 9220916687221522447}
   ammoMaxText: {fileID: 3400519963807222657}
   cursorTexture: {fileID: 2800000, guid: dbc653bd245478a4982fbc3dca332b17, type: 3}
-  hotSpot: {x: 513, y: 513}
+  hotSpot: {x: 0, y: 0}
   cursorMode: 0
   ammoCur: 4
   ammoMax: 20
