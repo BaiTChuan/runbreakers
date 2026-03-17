@@ -4997,12 +4997,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 1
+  rb: {fileID: 0}
   damageAmount: 1
   damageRate: 1
   speed: 0
   destroyTime: 0
   hitEffect: {fileID: 0}
-  owner: 0
 --- !u!65 &1444838326417513520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5036,10 +5036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592431026ef4764b9c037035376f21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyMageAI
-  moveSpeed: 2
+  moveSpeed: 4
   stopDistance: 8
   retreatDistance: 4
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 0}
   shootRate: 2
   maxHP: 4

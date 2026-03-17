@@ -6,21 +6,25 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] GameObject basicType;
     [SerializeField] GameObject strongType;
     [SerializeField] GameObject eliteType;
+    [SerializeField] GameObject mageType;
+
 
     [Header("---- Enemy Costs ----")]
     [SerializeField] int basicCost = 1;
     [SerializeField] int strongCost = 2;
     [SerializeField] int eliteCost = 3;
+    [SerializeField] int mageCost = 3;
 
     [Header("---- Spawn Settings ----")]
     [SerializeField] float spawnRadius = 15f;
-    [SerializeField] float spawnRate = 2f;
+    [SerializeField] float spawnRate = 1f;
     [SerializeField] int waveBudget = 25;
 
     [Header("---- Spawn Chances ----")]
-    [SerializeField] int basicChance = 70;
+    [SerializeField] int basicChance = 78;
     [SerializeField] int strongChance = 20;
-    [SerializeField] int eliteChance = 10;
+    [SerializeField] int eliteChance = 1;
+    [SerializeField] int mageChance = 1;
 
     Transform player;
     float spawnTimer;
@@ -85,6 +89,7 @@ public class enemySpawner : MonoBehaviour
         bool canSpawnBasic = currentBudget >= basicCost && basicType != null;
         bool canSpawnStrong = currentBudget >= strongCost && strongType != null;
         bool canSpawnElite = currentBudget >= eliteCost && eliteType != null;
+        bool canSpawnMage = currentBudget >= mageCost && MageType != null;
 
         int totalChance = 0;
 
@@ -96,6 +101,9 @@ public class enemySpawner : MonoBehaviour
 
         if (canSpawnElite)
             totalChance += eliteChance;
+
+            if (canSpawnMage)
+            totalChance += mageChance;
 
         if (totalChance == 0)
             return null;
@@ -124,6 +132,12 @@ public class enemySpawner : MonoBehaviour
                 return eliteType;
         }
 
+        if (canSpawnMage)
+        {
+            if (roll < mageChance)
+                return mageType;
+        }
+
         return null;
     }
 
@@ -143,6 +157,12 @@ public class enemySpawner : MonoBehaviour
         {
             currentBudget -= eliteCost;
             gamemanager.instance.updateGameGoal(-eliteCost);
+        }
+
+        else if (spawnedEnemy == mageType)
+        {
+            currentBudget -= mageCost;
+            gamemanager.instance.updateGameGoal(-mageCost);
         }
     }
 }
