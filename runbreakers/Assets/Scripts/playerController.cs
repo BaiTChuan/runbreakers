@@ -145,6 +145,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         if (buff.id == 0)
         {
             hp += buff.healAmount;
+            updatePlayerUI();
         }
     }
 }

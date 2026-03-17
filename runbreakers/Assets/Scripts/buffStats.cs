@@ -7,7 +7,7 @@ public class buffStats : ScriptableObject
     public GameObject buffModel;
     [Header("----- BuffType ------")]
     [Header(" 0 = Health | 1 = Speed | 2 = Damage ")]
-    [Range (0 , 2)] public int id;
+    public int id;
 
     [Header("----- HealthBuff ------")]
     public int healAmount;

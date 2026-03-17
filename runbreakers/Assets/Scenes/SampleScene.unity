@@ -1185,6 +1185,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+--- !u!1 &2006862587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3017933265808484500, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
+  m_PrefabInstance: {fileID: 8407619214432162428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2006862591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006862587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b9334205458694a9ca08711ac5548e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::buffPickup
+  buff: {fileID: 11400000, guid: 1be5218ba720b51408a0a03a80299637, type: 2}
 --- !u!4 &2075532279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4309358208112768853, guid: 30ef46e9b14d77547852843229dab987, type: 3}
@@ -1237,10 +1255,6 @@ PrefabInstance:
     - target: {fileID: 4309358208112768853, guid: 30ef46e9b14d77547852843229dab987, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876147071109956874, guid: 30ef46e9b14d77547852843229dab987, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6441126455722894553, guid: 30ef46e9b14d77547852843229dab987, type: 3}
       propertyPath: m_Name
@@ -1356,10 +1370,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4246280999519005861, guid: ce0d8a6a088600445a62f6ecf36943be, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5668216550190869089, guid: ce0d8a6a088600445a62f6ecf36943be, type: 3}
       propertyPath: m_Name
       value: DmgOrb
@@ -1434,10 +1444,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 348031120}
     m_Modifications:
-    - target: {fileID: 542509177792878089, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3017933265808484500, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
       propertyPath: m_Name
       value: HealthOrb
@@ -1485,7 +1491,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3017933265808484500, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2006862591}
   m_SourcePrefab: {fileID: 100100000, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
