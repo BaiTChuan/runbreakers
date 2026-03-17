@@ -23,11 +23,6 @@ public class damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damagetype.bullet)
-        {
-            rb.linearVelocity = transform.forward * speed;
-            Destroy(gameObject, destroyTime);
-        }
     }
 
     private void Update()
