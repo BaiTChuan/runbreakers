@@ -6,7 +6,7 @@ public class buffStats : ScriptableObject
 {
     public GameObject buffModel;
     [Header("----- BuffType ------")]
-    [Header(" 0 = Health | 1 = Speed | 2 = Damage ")]
+    [Header(" 0 = Health | 1 = Speed | 2 = Damage | 3 = Speed Debuff")]
     public int id;
 
     [Header("----- HealthBuff ------")]
@@ -19,4 +19,8 @@ public class buffStats : ScriptableObject
     [Header("----- DamageBuff ------")]
     public float damageMultiplier;
     public int damageDuration;
+
+    [Header("----- SpeedDebuff ------")]
+    public float speedDownMultiplier;
+    public int speedDownDuration;
 }
