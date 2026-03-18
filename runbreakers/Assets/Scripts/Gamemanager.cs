@@ -26,14 +26,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] int ammoCur;
     [SerializeField] int ammoMax;
 
-    [Header("----- Buffs ------")]
-    [SerializeField] public int healthBuffTimer;
-    [SerializeField] public int healthBuffAmount;
-    [SerializeField] public int speedBuffAmount;
-    [SerializeField] public int speedBuffTimer;
-    [SerializeField] public int attackBuffTimer;
-    [SerializeField] public int attackBuffAmount;
-
     [Header("----- Player ------")]
     public Image playerHPBar;
     public GameObject player;
