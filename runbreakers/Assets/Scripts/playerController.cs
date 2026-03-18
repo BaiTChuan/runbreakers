@@ -29,6 +29,10 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     float shootTimer;
     float speedTimer;
     float speedDuration;
+    float speedDownTimer;
+    float speedDownDuration;
+    bool speedBuffed;
+    bool speedDebuffed;
 
     Vector3 playerVel;
 
@@ -40,6 +44,8 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         // Keep track of orginal hp
         hpOriginal = hp;
         speedOriginal = speed;
+        speedBuffed = false;
+        speedDebuffed = false;
         cam = Camera.main;
         updatePlayerUI();
     }
@@ -94,7 +100,14 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     void movement()
     {
         shootTimer += Time.deltaTime;
-        speedTimer += Time.deltaTime;
+        if (speedBuffed == true)
+        {
+            speedTimer += Time.deltaTime;
+        }
+        if (speedDebuffed == true)
+        {
+            speedDownTimer += Time.deltaTime;
+        }
 
         playerVel.y = -10;
 
@@ -111,9 +124,16 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             shoot();
         }
 
-        if (speedTimer >= speedDuration)
+        if (speedTimer >= speedDuration && speedBuffed == true)
         {
             speed = speedOriginal;
+            speedBuffed = false;
+        }
+
+        if (speedDownTimer >= speedDownDuration && speedDebuffed == true)
+        {
+            speed = speedOriginal;
+            speedDebuffed = false;
         }
     }
 
@@ -161,8 +181,15 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             speed *= buff.speedMultiplier;
             speedDuration = buff.speedDuration;
             speedTimer = 0f;
+            speedBuffed = true;
         }
-        
+        if (buff.id == 3)
+        {
+            speed *= buff.speedDownMultiplier;
+            speedDownDuration = buff.speedDownDuration;
+            speedDownTimer = 0f;
+            speedDebuffed = true;
+        }
         updatePlayerUI();
     }
 }
