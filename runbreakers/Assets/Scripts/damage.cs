@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 public class damage : MonoBehaviour
 {
@@ -18,16 +17,10 @@ public class damage : MonoBehaviour
 
     bool isDamaging;
 
-    private Vector3 moveDirection;
+    Vector3 direction;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-    }
-
-    private void Update()
-    {
-        transform.position += moveDirection * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,26 +32,33 @@ public class damage : MonoBehaviour
 
         if (type == damagetype.stationary)
         {
-            dmg.takeDamage(damageAmount);
+            if (dmg != null)
+            {
+                dmg.takeDamage(damageAmount);
+            }
         }
-
         else if (type == damagetype.bullet)
         {
-            if (hitEffect != null)
+            if (ShouldDamageTarget(other, dmg))
             {
-                Instantiate(hitEffect, transform.position, Quaternion.identity);
-            }
+                if (hitEffect != null)
+                {
+                    Instantiate(hitEffect, transform.position, Quaternion.identity);
+                }
 
-            dmg.takeDamage(damageAmount);
-            Destroy(gameObject);
+                dmg.takeDamage(damageAmount);
+                Destroy(gameObject);
+            }
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.isTrigger)
             return;
 
         IDamage dmg = other.GetComponent<IDamage>();
+
         if (dmg != null && type == damagetype.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));
@@ -75,8 +75,27 @@ public class damage : MonoBehaviour
 
     public void SetDirection(Vector3 dir)
     {
-        moveDirection = dir.normalized;
-        transform.rotation = Quaternion.LookRotation(moveDirection);
+        direction = dir.normalized;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = direction * speed;
+        }
+
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
+    bool ShouldDamageTarget(Collider other, IDamage dmg)
+    {
+        if (dmg == null)
+            return false;
+
+        if (CompareTag("PlayerProjectile") && other.CompareTag("Enemy"))
+            return true;
+
+        if (CompareTag("EnemyProjectile") && other.CompareTag("Player"))
+            return true;
+
+        return false;
+    }
 }
