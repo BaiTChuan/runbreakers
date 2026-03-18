@@ -10,7 +10,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
     [Header("----- Stats ------")]
     [Range(1, 10)][SerializeField] int hp;
-    [Range(1, 10)][SerializeField] int speed;
+    [Range(1, 10)][SerializeField] float speed;
     [Range(2, 6)][SerializeField] int sprintMod;
 
     [Header("----- Weapons ------")]
@@ -24,8 +24,11 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [SerializeField] ParticleSystem beingHitEffect;
 
     int hpOriginal;
+    float speedOriginal;
 
     float shootTimer;
+    float speedTimer;
+    float speedDuration;
 
     Vector3 playerVel;
 
@@ -36,6 +39,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     {
         // Keep track of orginal hp
         hpOriginal = hp;
+        speedOriginal = speed;
         cam = Camera.main;
         updatePlayerUI();
     }
@@ -90,6 +94,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     void movement()
     {
         shootTimer += Time.deltaTime;
+        speedTimer += Time.deltaTime;
 
         playerVel.y = -10;
 
@@ -104,6 +109,11 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
             shoot();
+        }
+
+        if (speedTimer >= speedDuration)
+        {
+            speed = speedOriginal;
         }
     }
 
@@ -145,7 +155,14 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         if (buff.id == 0)
         {
             hp += buff.healAmount;
-            updatePlayerUI();
         }
+        if (buff.id == 1)
+        {
+            speed *= buff.speedMultiplier;
+            speedDuration = buff.speedDuration;
+            speedTimer = 0f;
+        }
+        
+        updatePlayerUI();
     }
 }

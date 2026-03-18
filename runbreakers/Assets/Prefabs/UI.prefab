@@ -4377,7 +4377,7 @@ MonoBehaviour:
   gameGoalCountText: {fileID: 5452139163548197600}
   ammoCurText: {fileID: 9220916687221522447}
   ammoMaxText: {fileID: 3400519963807222657}
-  cursorTexture: {fileID: 2800000, guid: dbc653bd245478a4982fbc3dca332b17, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 79c310d9df8c8c94cbb612f6b2e0ebc0, type: 3}
   hotSpot: {x: 0, y: 0}
   cursorMode: 0
   ammoCur: 4
