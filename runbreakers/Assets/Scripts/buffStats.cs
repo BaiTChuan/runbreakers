@@ -17,6 +17,7 @@ public class buffStats : ScriptableObject
     public int speedDuration;
 
     [Header("----- DamageBuff ------")]
+    [Header("(Keep fireRateMultiplier at 1 if you want no changes to fire rate)")]
     public int damageBuff;
     public float fireRateMultiplier;
     public int damageBuffDuration;

@@ -61,8 +61,10 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         shootRateOriginal = shootRate;
         speedBuffed = false;
         speedDebuffed = false;
+        damageBuffed = false;
         cam = Camera.main;
         updatePlayerUI();
+        updateBuffUI();
     }
 
     // Update is called once per frame
@@ -118,14 +120,17 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         if (speedBuffed == true)
         {
             speedTimer += Time.deltaTime;
+            updateBuffUI();
         }
         if (speedDebuffed == true)
         {
             speedDownTimer += Time.deltaTime;
+            updateBuffUI();
         }
         if (damageBuffed == true)
         {
             damageBuffTimer += Time.deltaTime;
+            updateBuffUI();
         }
 
         playerVel.y = -10;
@@ -196,6 +201,36 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
     }
 
+    public void updateBuffUI()
+    {
+        if (speedBuffed == false)
+        {
+            gamemanager.instance.speedBuffBar.fillAmount = 0;
+        }
+        else
+        {
+            gamemanager.instance.speedBuffBar.fillAmount = (speedDuration - speedTimer) / speedDuration;
+        }
+
+        if (speedDebuffed == false)
+        {
+            gamemanager.instance.speedDebuffBar.fillAmount = 0;
+        }
+        else
+        {
+            gamemanager.instance.speedDebuffBar.fillAmount = (speedDownDuration - speedDownTimer) / speedDownDuration;
+        }
+
+        if (damageBuffed == false)
+        {
+            gamemanager.instance.damageBuffBar.fillAmount = 0;
+        }
+        else
+        {
+            gamemanager.instance.damageBuffBar.fillAmount = (damageBuffDuration - damageBuffTimer) / damageBuffDuration;
+        }
+    }
+
     public void getBuff(buffStats buff)
     {
         if (buff.id == 0)
@@ -214,6 +249,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             damageBuff = buff.damageBuff;
             shootRate *= buff.fireRateMultiplier;
             damageBuffDuration = buff.damageBuffDuration;
+            damageBuffTimer = 0f;
             damageBuffed = true;
         }
         if (buff.id == 3)

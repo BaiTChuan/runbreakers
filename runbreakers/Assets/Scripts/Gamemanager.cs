@@ -28,6 +28,9 @@ public class gamemanager : MonoBehaviour
 
     [Header("----- Player ------")]
     public Image playerHPBar;
+    public Image speedBuffBar;
+    public Image speedDebuffBar;
+    public Image damageBuffBar;
     public GameObject player;
     public playerControl playerScript;
     public bool isPaused;
