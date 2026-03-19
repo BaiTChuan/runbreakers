@@ -99,7 +99,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
         if (gamemanager.instance == null || gamemanager.instance.player == null)
             return;
 
-        playerXP xp = gamemanager.instance.player.GetComponent<playerXP>();
+        playerControl xp = gamemanager.instance.player.GetComponent<playerControl>();
 
         if (xp != null)
         {

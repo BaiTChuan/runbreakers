@@ -215,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::playerXP
   currentXP: 0
   currentLevel: 1
+  maxXP: 100
 --- !u!1 &3470754225315570057
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +397,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.3
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

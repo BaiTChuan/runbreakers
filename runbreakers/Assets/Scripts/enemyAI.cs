@@ -71,7 +71,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
 
         //Give XP to player
-        playerXP xp = gamemanager.instance.player.GetComponent<playerXP>();
+        playerControl xp = gamemanager.instance.player.GetComponent<playerControl>();
 
         if (xp != null)
         {
