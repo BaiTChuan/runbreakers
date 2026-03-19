@@ -30,14 +30,23 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
     int hpOriginal;
     float speedOriginal;
+    float shootRateOriginal;
 
     float shootTimer;
+
     float speedTimer;
     float speedDuration;
+
     float speedDownTimer;
     float speedDownDuration;
+
     bool speedBuffed;
     bool speedDebuffed;
+    bool damageBuffed;
+
+    public int damageBuff;
+    float damageBuffTimer;
+    float damageBuffDuration;
 
     Vector3 playerVel;
 
@@ -49,6 +58,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         // Keep track of orginal hp
         hpOriginal = hp;
         speedOriginal = speed;
+        shootRateOriginal = shootRate;
         speedBuffed = false;
         speedDebuffed = false;
         cam = Camera.main;
@@ -113,6 +123,10 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         {
             speedDownTimer += Time.deltaTime;
         }
+        if (damageBuffed == true)
+        {
+            damageBuffTimer += Time.deltaTime;
+        }
 
         playerVel.y = -10;
 
@@ -139,6 +153,13 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         {
             speed = speedOriginal;
             speedDebuffed = false;
+        }
+
+        if (damageBuffTimer >= damageBuffDuration && damageBuffed == true)
+        {
+            damageBuff = 0;
+            shootRate = shootRateOriginal;
+            damageBuffed = false;
         }
     }
 
@@ -188,6 +209,13 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             speedTimer = 0f;
             speedBuffed = true;
         }
+        if (buff.id == 2)
+        {
+            damageBuff = buff.damageBuff;
+            shootRate *= buff.fireRateMultiplier;
+            damageBuffDuration = buff.damageBuffDuration;
+            damageBuffed = true;
+        }
         if (buff.id == 3)
         {
             speed *= buff.speedDownMultiplier;
@@ -197,7 +225,6 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         }
         updatePlayerUI();
     }
-
 
     public int GetCurrentXP()
     {

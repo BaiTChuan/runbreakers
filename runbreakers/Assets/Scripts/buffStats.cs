@@ -17,8 +17,9 @@ public class buffStats : ScriptableObject
     public int speedDuration;
 
     [Header("----- DamageBuff ------")]
-    public float damageMultiplier;
-    public int damageDuration;
+    public int damageBuff;
+    public float fireRateMultiplier;
+    public int damageBuffDuration;
 
     [Header("----- SpeedDebuff ------")]
     public float speedDownMultiplier;

@@ -50,7 +50,7 @@ public class enemyAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount;
+        currentHP -= amount + (gamemanager.instance.playerScript.damageBuff);
 
         if (currentHP <= 0)
         {
