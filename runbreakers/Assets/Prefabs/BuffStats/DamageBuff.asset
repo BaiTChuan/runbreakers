@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: DamageBuff
   m_EditorClassIdentifier: Assembly-CSharp::buffStats
   buffModel: {fileID: 0}
-  id: 0
+  id: 2
   healAmount: 0
   speedMultiplier: 0
   speedDuration: 0
-  damageMultiplier: 0
-  damageDuration: 0
+  damageBuff: 2
+  fireRateMultiplier: 0.1
+  damageBuffDuration: 4
+  speedDownMultiplier: 0
+  speedDownDuration: 0
