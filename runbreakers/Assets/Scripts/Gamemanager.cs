@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine.UI;
 using System.ComponentModel;
 
-public class gamemanager : MonoBehaviour
+public class Gamemanager : MonoBehaviour
 {
-    public static gamemanager instance;
+    public static Gamemanager instance;
 
     [Header("----- Menus ------")]
     [SerializeField] GameObject menuActive;
@@ -16,6 +16,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text ammoCurText;
     [SerializeField] TMP_Text ammoMaxText;
+    [SerializeField] TMP_Text waveCountText;
 
     [Header("----- Cursor ------")]
     public Texture2D cursorTexture;
@@ -35,11 +36,9 @@ public class gamemanager : MonoBehaviour
     public playerControl playerScript;
     public bool isPaused;
 
-    private float timeScaleOrig;
+    float timeScaleOrig;
+    int gameGoalCount;
 
-    private int gameGoalCount;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         instance = this;
@@ -55,7 +54,6 @@ public class gamemanager : MonoBehaviour
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -94,20 +92,55 @@ public class gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
-        gameGoalCountText.text = gameGoalCount.ToString("F0");
 
-        if (gameGoalCount <= 0)
+        if (gameGoalCount < 0)
         {
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            gameGoalCount = 0;
         }
+
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
+    }
+
+    public void setGameGoal(int amount)
+    {
+        gameGoalCount = amount;
+
+        if (gameGoalCount < 0)
+        {
+            gameGoalCount = 0;
+        }
+
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
+    }
+
+    public void setWaveCount(int currentWave, int totalWaves)
+    {
+        if (waveCountText != null)
+        {
+            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
+        }
+    }
+
+    public void setBossText()
+    {
+        if (waveCountText != null)
+        {
+            waveCountText.text = "BOSS WAVE";
+        }
+    }
+
+    public void showWin()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
     }
 
     public void updateAmmoCurCount(int amount)
     {
         ammoCurText.text = ammoCur.ToString("F0");
     }
+
     public void updateAmmoMaxCount(int amount)
     {
         ammoMaxText.text = ammoMax.ToString("F0");

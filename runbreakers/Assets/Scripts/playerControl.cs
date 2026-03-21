@@ -192,42 +192,42 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
         if (hp <= 0)
         {
-            gamemanager.instance.youLose();
+            Gamemanager.instance.youLose();
         }
     }
 
     public void updatePlayerUI()
     {
-        gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
+        Gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
     }
 
     public void updateBuffUI()
     {
         if (speedBuffed == false)
         {
-            gamemanager.instance.speedBuffBar.fillAmount = 0;
+            Gamemanager.instance.speedBuffBar.fillAmount = 0;
         }
         else
         {
-            gamemanager.instance.speedBuffBar.fillAmount = (speedDuration - speedTimer) / speedDuration;
+            Gamemanager.instance.speedBuffBar.fillAmount = (speedDuration - speedTimer) / speedDuration;
         }
 
         if (speedDebuffed == false)
         {
-            gamemanager.instance.speedDebuffBar.fillAmount = 0;
+            Gamemanager.instance.speedDebuffBar.fillAmount = 0;
         }
         else
         {
-            gamemanager.instance.speedDebuffBar.fillAmount = (speedDownDuration - speedDownTimer) / speedDownDuration;
+            Gamemanager.instance.speedDebuffBar.fillAmount = (speedDownDuration - speedDownTimer) / speedDownDuration;
         }
 
         if (damageBuffed == false)
         {
-            gamemanager.instance.damageBuffBar.fillAmount = 0;
+            Gamemanager.instance.damageBuffBar.fillAmount = 0;
         }
         else
         {
-            gamemanager.instance.damageBuffBar.fillAmount = (damageBuffDuration - damageBuffTimer) / damageBuffDuration;
+            Gamemanager.instance.damageBuffBar.fillAmount = (damageBuffDuration - damageBuffTimer) / damageBuffDuration;
         }
     }
 

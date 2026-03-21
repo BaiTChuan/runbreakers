@@ -4967,6 +4967,7 @@ MonoBehaviour:
   moveSpeed: 2.25
   maxHP: 5
   xpValue: 1
+  goalValue: 2
   beingHitEffect: {fileID: 8207674451798993904}
 --- !u!65 &4900276511775427842
 BoxCollider:

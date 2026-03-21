@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &69811293
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,17 +1569,17 @@ MonoBehaviour:
   strongType: {fileID: 517811424}
   eliteType: {fileID: 823407906}
   mageType: {fileID: 43252579418672672}
+  bossType: {fileID: 0}
   basicCost: 1
   strongCost: 2
   eliteCost: 3
   mageCost: 2
-  spawnRadius: 15
   spawnRate: 1
-  waveBudget: 25
-  basicChance: 60
-  strongChance: 20
-  eliteChance: 10
-  mageChance: 10
+  spawnDistance: 15
+  startDelay: 3
+  waveMax: 5
+  startingBudget: 12
+  budgetIncrease: 6
 --- !u!4 &1463789900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7748286994696221079, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}

@@ -5039,9 +5039,11 @@ MonoBehaviour:
   moveSpeed: 4
   stopDistance: 8
   retreatDistance: 4
+  retreatDistanceAmount: 3
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 6188351913714510705}
   shootRate: 2
   maxHP: 4
   xpValue: 2
+  goalValue: 2
   beingHitEffect: {fileID: 0}

@@ -17,6 +17,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [Header("---- Enemy Stats ----")]
     [SerializeField] int maxHP = 4;
     [SerializeField] int xpValue = 2;
+    [SerializeField] int goalValue = 2;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -34,19 +35,19 @@ public class enemyMageAI : MonoBehaviour, IDamage
         {
             agent.speed = moveSpeed;
             agent.stoppingDistance = stopDistance;
-            agent.updateRotation = true;
+            agent.updateRotation = false;
             agent.updateUpAxis = true;
         }
     }
 
     void Update()
     {
-        if (gamemanager.instance == null || gamemanager.instance.player == null || agent == null)
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
         shootTimer += Time.deltaTime;
 
-        Vector3 direction = gamemanager.instance.player.transform.position - transform.position;
+        Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
@@ -54,11 +55,11 @@ public class enemyMageAI : MonoBehaviour, IDamage
         if (distance > stopDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(gamemanager.instance.player.transform.position);
+            agent.SetDestination(Gamemanager.instance.player.transform.position);
         }
         else if (distance < retreatDistance)
         {
-            Vector3 retreatDir = (transform.position - gamemanager.instance.player.transform.position).normalized;
+            Vector3 retreatDir = (transform.position - Gamemanager.instance.player.transform.position).normalized;
             Vector3 retreatTarget = transform.position + retreatDir * retreatDistanceAmount;
 
             NavMeshHit hit;
@@ -69,12 +70,12 @@ public class enemyMageAI : MonoBehaviour, IDamage
                 agent.SetDestination(hit.position);
             }
 
-            TryShoot(direction);
+            tryShoot(direction);
         }
         else
         {
             agent.isStopped = true;
-            TryShoot(direction);
+            tryShoot(direction);
         }
 
         if (direction != Vector3.zero)
@@ -83,7 +84,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
         }
     }
 
-    void TryShoot(Vector3 direction)
+    void tryShoot(Vector3 direction)
     {
         if (projectilePrefab == null || shootPoint == null)
             return;
@@ -94,7 +95,6 @@ public class enemyMageAI : MonoBehaviour, IDamage
         shootTimer = 0f;
 
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-
         damage dmgScript = projectile.GetComponent<damage>();
 
         if (dmgScript != null)
@@ -114,20 +114,25 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         if (currentHP <= 0)
         {
-            Die();
+            die();
         }
     }
 
-    void Die()
+    void die()
     {
-        if (gamemanager.instance == null || gamemanager.instance.player == null)
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
 
-        playerControl xp = gamemanager.instance.player.GetComponent<playerControl>();
+        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
 
         if (xp != null)
         {
             xp.AddXP(xpValue);
+        }
+
+        if (enemySpawner.instance != null)
+        {
+            enemySpawner.instance.enemyDefeated(goalValue);
         }
 
         Destroy(gameObject);

@@ -9,6 +9,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("---- Enemy Stats ----")]
     [SerializeField] int maxHP = 5;
     [SerializeField] int xpValue = 1;
+    [SerializeField] int goalValue = 1;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -27,30 +28,15 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0f;
             agent.updateRotation = true;
             agent.updateUpAxis = true;
-            agent.isStopped = false;
-
-            if (!agent.isOnNavMesh)
-            {
-                NavMeshHit hit;
-
-                if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
-                {
-                    agent.Warp(hit.position);
-                }
-            }
         }
     }
 
     void Update()
     {
-        if (gamemanager.instance == null || gamemanager.instance.player == null || agent == null)
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
-        if (!agent.isOnNavMesh)
-            return;
-
-        agent.isStopped = false;
-        agent.SetDestination(gamemanager.instance.player.transform.position);
+        agent.SetDestination(Gamemanager.instance.player.transform.position);
     }
 
     public void takeDamage(int amount)
@@ -60,27 +46,29 @@ public class enemyAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount + gamemanager.instance.playerScript.damageBuff;
+        currentHP -= amount + Gamemanager.instance.playerScript.damageBuff;
 
         if (currentHP <= 0)
         {
-            Die();
+            die();
         }
     }
 
-    void Die()
+    void die()
     {
-        if (gamemanager.instance == null)
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
 
-        if (gamemanager.instance.player == null)
-            return;
-
-        playerControl xp = gamemanager.instance.player.GetComponent<playerControl>();
+        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
 
         if (xp != null)
         {
             xp.AddXP(xpValue);
+        }
+
+        if (enemySpawner.instance != null)
+        {
+            enemySpawner.instance.enemyDefeated(goalValue);
         }
 
         Destroy(gameObject);
