@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemyMageAI : MonoBehaviour, IDamage
 {
@@ -6,6 +7,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [SerializeField] float moveSpeed = 2f;
     [SerializeField] float stopDistance = 8f;
     [SerializeField] float retreatDistance = 4f;
+    [SerializeField] float retreatDistanceAmount = 3f;
 
     [Header("---- Attack ----")]
     [SerializeField] GameObject projectilePrefab;
@@ -21,15 +23,25 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
     int currentHP;
     float shootTimer;
+    NavMeshAgent agent;
 
     void Start()
     {
         currentHP = maxHP;
+        agent = GetComponent<NavMeshAgent>();
+
+        if (agent != null)
+        {
+            agent.speed = moveSpeed;
+            agent.stoppingDistance = stopDistance;
+            agent.updateRotation = true;
+            agent.updateUpAxis = true;
+        }
     }
 
     void Update()
     {
-        if (gamemanager.instance == null || gamemanager.instance.player == null)
+        if (gamemanager.instance == null || gamemanager.instance.player == null || agent == null)
             return;
 
         shootTimer += Time.deltaTime;
@@ -39,23 +51,35 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         float distance = direction.magnitude;
 
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-
         if (distance > stopDistance)
         {
-            transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+            agent.isStopped = false;
+            agent.SetDestination(gamemanager.instance.player.transform.position);
         }
         else if (distance < retreatDistance)
         {
-            transform.position -= direction.normalized * moveSpeed * Time.deltaTime;
+            Vector3 retreatDir = (transform.position - gamemanager.instance.player.transform.position).normalized;
+            Vector3 retreatTarget = transform.position + retreatDir * retreatDistanceAmount;
+
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(retreatTarget, out hit, retreatDistanceAmount, NavMesh.AllAreas))
+            {
+                agent.isStopped = false;
+                agent.SetDestination(hit.position);
+            }
+
             TryShoot(direction);
         }
         else
         {
+            agent.isStopped = true;
             TryShoot(direction);
+        }
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
         }
     }
 

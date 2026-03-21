@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -12,35 +13,44 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
-    private Transform player;
+    NavMeshAgent agent;
     int currentHP;
 
     void Start()
     {
-        player = gamemanager.instance.player.transform;
-
+        agent = GetComponent<NavMeshAgent>();
         currentHP = maxHP;
+
+        if (agent != null)
+        {
+            agent.speed = moveSpeed;
+            agent.stoppingDistance = 0f;
+            agent.updateRotation = true;
+            agent.updateUpAxis = true;
+            agent.isStopped = false;
+
+            if (!agent.isOnNavMesh)
+            {
+                NavMeshHit hit;
+
+                if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
+                {
+                    agent.Warp(hit.position);
+                }
+            }
+        }
     }
 
     void Update()
     {
-        if (player == null)
+        if (gamemanager.instance == null || gamemanager.instance.player == null || agent == null)
             return;
-        
-        MoveTowardsPlayer();
-    }
 
-    void MoveTowardsPlayer()
-    {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+        if (!agent.isOnNavMesh)
+            return;
 
-        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
+        agent.isStopped = false;
+        agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
     public void takeDamage(int amount)
@@ -50,7 +60,7 @@ public class enemyAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount + (gamemanager.instance.playerScript.damageBuff);
+        currentHP -= amount + gamemanager.instance.playerScript.damageBuff;
 
         if (currentHP <= 0)
         {
@@ -61,16 +71,11 @@ public class enemyAI : MonoBehaviour, IDamage
     void Die()
     {
         if (gamemanager.instance == null)
-        {
             return;
-        }
 
         if (gamemanager.instance.player == null)
-        {
             return;
-        }
 
-        //Give XP to player
         playerControl xp = gamemanager.instance.player.GetComponent<playerControl>();
 
         if (xp != null)
@@ -78,7 +83,6 @@ public class enemyAI : MonoBehaviour, IDamage
             xp.AddXP(xpValue);
         }
 
-        // enemy destoryed
         Destroy(gameObject);
     }
 }

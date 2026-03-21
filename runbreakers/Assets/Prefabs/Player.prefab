@@ -40,12 +40,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3304841413680316636}
-  - component: {fileID: -2023937355640192502}
   - component: {fileID: 5360468614609636613}
   - component: {fileID: 7363514762619532747}
   - component: {fileID: 8678417432417938909}
   - component: {fileID: 5344814753274858064}
-  - component: {fileID: 2514374839121207128}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -71,31 +69,6 @@ Transform:
   - {fileID: 3678133820879839460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2023937355640192502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936333181587599066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e0a93df0e92544a99dc4b7caa0cd5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerControl
-  controller: {fileID: 5360468614609636613}
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  hp: 10
-  speed: 6
-  sprintMod: 2
-  bullet: {fileID: 6543385253515881813, guid: db31c27b6f1216543ad18c52ab8341c7, type: 3}
-  shootRate: 0.5
-  shootPos: {fileID: 7057992571251399988}
-  gunPivot: {fileID: 3678133820879839460}
-  muzzleFlashEffect: {fileID: 6232681836144869290}
-  beingHitEffect: {fileID: 8567528641623525608}
 --- !u!143 &5360468614609636613
 CharacterController:
   m_ObjectHideFlags: 0
@@ -201,21 +174,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2514374839121207128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936333181587599066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771ce245c7d6b8444ab7a0e67e11a5ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerXP
-  currentXP: 0
-  currentLevel: 1
-  maxXP: 100
 --- !u!1 &3470754225315570057
 GameObject:
   m_ObjectHideFlags: 0

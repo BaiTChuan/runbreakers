@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemySpawner : MonoBehaviour
 {
@@ -25,25 +26,18 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] int eliteChance = 10;
     [SerializeField] int mageChance = 15;
 
-    Transform player;
     float spawnTimer;
     int currentBudget;
 
     void Start()
     {
         currentBudget = waveBudget;
-
         gamemanager.instance.updateGameGoal(currentBudget);
-
-        if (gamemanager.instance != null)
-        {
-            player = gamemanager.instance.player.transform;
-        }
     }
 
     void Update()
     {
-        if (player == null)
+        if (gamemanager.instance == null || gamemanager.instance.player == null)
             return;
 
         if (currentBudget <= 0)
@@ -59,28 +53,23 @@ public class enemySpawner : MonoBehaviour
     }
 
     void SpawnEnemy()
+{
+    GameObject enemyToSpawn = GetRandomEnemyType();
+
+    if (enemyToSpawn == null)
+        return;
+
+    Vector3 randomDirection = Random.insideUnitSphere * spawnRadius;
+    randomDirection += gamemanager.instance.player.transform.position;
+
+    NavMeshHit hit;
+
+    if (NavMesh.SamplePosition(randomDirection, out hit, spawnRadius, NavMesh.AllAreas))
     {
-        GameObject enemyToSpawn = GetRandomEnemyType();
-
-        if (enemyToSpawn == null)
-            return;
-
-        Vector3 spawnPos = player.position + Random.insideUnitSphere * spawnRadius;
-        spawnPos.y = 0f;
-
-        GameObject newEnemy = Instantiate(enemyToSpawn, spawnPos, Quaternion.identity);
-
-        Collider enemyCollider = newEnemy.GetComponent<Collider>();
-
-        if (enemyCollider != null)
-        {
-            Vector3 adjustedPos = newEnemy.transform.position;
-            adjustedPos.y = enemyCollider.bounds.extents.y;
-            newEnemy.transform.position = adjustedPos;
-        }
-
+        Instantiate(enemyToSpawn, hit.position, Quaternion.identity);
         SubtractEnemyCost(enemyToSpawn);
     }
+}
 
     GameObject GetRandomEnemyType()
     {
