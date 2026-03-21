@@ -16,6 +16,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [Header("----- Weapons ------")]
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [SerializeField] float bulletLifetime;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
     [SerializeField] ParticleSystem muzzleFlashEffect;
@@ -88,6 +89,8 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
         damage bulletScript = spawnedBullet.GetComponent<damage>();
 
+        Destroy(spawnedBullet, bulletLifetime);
+
         if (bulletScript != null)
         {
             Vector3 bulletDir = gunPivot.right;
@@ -117,6 +120,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     void movement()
     {
         shootTimer += Time.deltaTime;
+
         if (speedBuffed == true)
         {
             speedTimer += Time.deltaTime;
