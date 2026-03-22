@@ -99,7 +99,6 @@ public class enemySpawner : MonoBehaviour
             }
         }
     }
-
     void startWave()
     {
         waveNum++;

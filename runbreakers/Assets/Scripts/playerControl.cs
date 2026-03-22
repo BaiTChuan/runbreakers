@@ -28,6 +28,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [Header("---- XP ----")]
     [SerializeField] int currentXP;
     [SerializeField] int currentLevel = 1;
+    [SerializeField] float levelUpXPRequirementIncrease;
     [SerializeField] int maxXP = 100;
 
     int hpOriginal;
@@ -216,6 +217,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     public void updatePlayerUI()
     {
         Gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
+        Gamemanager.instance.playerXPBar.fillAmount = (float) currentXP / maxXP;
     }
 
     public void updateBuffUI()
@@ -295,6 +297,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         Debug.Log("Player gained " + amount + " XP. Total XP: " + currentXP);
 
         CheckLevelUp();
+        updatePlayerUI();
     }
 
     void CheckLevelUp()
@@ -312,7 +315,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
     void IncreaseXPThreshold()
     {
-        maxXP = Mathf.RoundToInt(maxXP * 1.2f);
+        maxXP = Mathf.RoundToInt(maxXP * levelUpXPRequirementIncrease);
 
         Debug.Log("Next level requires " + maxXP + " XP");
     }
