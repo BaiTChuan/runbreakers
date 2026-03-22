@@ -538,6 +538,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2329284432552356750, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_text
+      value: 'Wave Count:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362483156773344648, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -266.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2477520815608237184, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: damagePlayerFlash
       value: 
@@ -1672,11 +1680,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7748286994696221079, guid: e7a1e9ece203083418a853b89159c7a5, type: 3}
   m_PrefabInstance: {fileID: 1281425556}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1498776215 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1720998766129239079, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 200226453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1515857909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5183418198123823205, guid: 20a3e0f83fd8cb7438a28d9857d7864e, type: 3}
@@ -1712,7 +1715,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1498776215}
+  m_Father: {fileID: 1377095863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2173,7 +2176,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1498776215}
+  m_Father: {fileID: 1377095863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2471,7 +2474,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1857741470}
-  m_Father: {fileID: 1377095863}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3114,3 +3117,4 @@ SceneRoots:
   - {fileID: 69811293}
   - {fileID: 348031120}
   - {fileID: 291323813744924708}
+  - {fileID: 2053053176}
