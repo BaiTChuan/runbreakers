@@ -1978,6 +1978,7 @@ MonoBehaviour:
   beingHitEffect: {fileID: 830949762}
   currentXP: 0
   currentLevel: 1
+  levelUpXPRequirementIncrease: 1.2
   maxXP: 100
   damageBuff: 0
 --- !u!1 &1963638633 stripped

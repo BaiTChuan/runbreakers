@@ -27,6 +27,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [Header("---- XP ----")]
     [SerializeField] int currentXP;
     [SerializeField] int currentLevel = 1;
+    [SerializeField] float levelUpXPRequirementIncrease;
     [SerializeField] int maxXP = 100;
 
     int hpOriginal;
@@ -301,7 +302,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
 
     void IncreaseXPThreshold()
     {
-        maxXP = Mathf.RoundToInt(maxXP * 1.2f);
+        maxXP = Mathf.RoundToInt(maxXP * levelUpXPRequirementIncrease);
 
         Debug.Log("Next level requires " + maxXP + " XP");
     }
