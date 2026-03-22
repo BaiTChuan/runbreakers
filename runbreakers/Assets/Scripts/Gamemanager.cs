@@ -29,6 +29,7 @@ public class Gamemanager : MonoBehaviour
 
     [Header("----- Player ------")]
     public Image playerHPBar;
+    public Image playerXPBar;
     public Image speedBuffBar;
     public Image speedDebuffBar;
     public Image damageBuffBar;

@@ -203,6 +203,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     public void updatePlayerUI()
     {
         Gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
+        Gamemanager.instance.playerXPBar.fillAmount = (float) currentXP / maxXP;
     }
 
     public void updateBuffUI()
@@ -282,6 +283,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         Debug.Log("Player gained " + amount + " XP. Total XP: " + currentXP);
 
         CheckLevelUp();
+        updatePlayerUI();
     }
 
     void CheckLevelUp()
