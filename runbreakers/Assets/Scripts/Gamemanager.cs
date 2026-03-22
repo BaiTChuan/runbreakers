@@ -33,6 +33,7 @@ public class Gamemanager : MonoBehaviour
     public Image speedDebuffBar;
     public Image damageBuffBar;
     public GameObject player;
+    public GameObject damagePlayerFlash;
     public playerControl playerScript;
     public bool isPaused;
 

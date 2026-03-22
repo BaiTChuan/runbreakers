@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class playerControl : MonoBehaviour, IDamage, IBuff
 {
@@ -194,10 +195,22 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             beingHitEffect.Play();
         }
 
+        StartCoroutine(flashDamage());
+
         if (hp <= 0)
         {
             Gamemanager.instance.youLose();
         }
+    }
+
+    IEnumerator flashDamage()
+    {
+        if (Gamemanager.instance == null || Gamemanager.instance.damagePlayerFlash == null)
+            yield break;
+
+        Gamemanager.instance.damagePlayerFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        Gamemanager.instance.damagePlayerFlash.SetActive(false);
     }
 
     public void updatePlayerUI()
