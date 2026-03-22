@@ -34,6 +34,7 @@ public class Gamemanager : MonoBehaviour
 
     [Header("----- Player ------")]
     public Image playerHPBar;
+    public Image playerXPBar;
     public Image speedBuffBar;
     public Image speedDebuffBar;
     public Image damageBuffBar;
@@ -128,7 +129,7 @@ public class Gamemanager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
+            waveCountText.text = currentWave + "/" + totalWaves;
         }
     }
 
