@@ -118,7 +118,7 @@ public class Gamemanager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
+            waveCountText.text = currentWave + "/" + totalWaves;
         }
     }
 
