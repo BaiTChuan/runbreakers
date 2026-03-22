@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 using System.ComponentModel;
 
 public class Gamemanager : MonoBehaviour
@@ -17,6 +18,10 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text ammoCurText;
     [SerializeField] TMP_Text ammoMaxText;
     [SerializeField] TMP_Text waveCountText;
+    [SerializeField] TMP_Text waveTransitionText;
+
+    [Header("----- Wave Transition ------")]
+    [SerializeField] float waveTransitionTime = 2f;
 
     [Header("----- Cursor ------")]
     public Texture2D cursorTexture;
@@ -32,8 +37,8 @@ public class Gamemanager : MonoBehaviour
     public Image speedBuffBar;
     public Image speedDebuffBar;
     public Image damageBuffBar;
-    public GameObject player;
     public GameObject damagePlayerFlash;
+    public GameObject player;
     public playerControl playerScript;
     public bool isPaused;
 
@@ -53,6 +58,11 @@ public class Gamemanager : MonoBehaviour
         hotSpot.x = 64;
         hotSpot.y = 64;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+        if (waveTransitionText != null)
+        {
+            waveTransitionText.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -120,6 +130,22 @@ public class Gamemanager : MonoBehaviour
         {
             waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
         }
+    }
+
+    public void showWaveTransition(int waveNum)
+    {
+        StartCoroutine(waveTransition(waveNum));
+    }
+
+    IEnumerator waveTransition(int waveNum)
+    {
+        if (waveTransitionText == null)
+            yield break;
+
+        waveTransitionText.gameObject.SetActive(true);
+        waveTransitionText.text = "Wave " + waveNum;
+        yield return new WaitForSeconds(waveTransitionTime);
+        waveTransitionText.gameObject.SetActive(false);
     }
 
     public void setBossText()

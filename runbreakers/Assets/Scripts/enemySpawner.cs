@@ -119,6 +119,7 @@ public class enemySpawner : MonoBehaviour
         {
             Gamemanager.instance.setGameGoal(spawnAmount);
             Gamemanager.instance.setWaveCount(waveNum, waveMax);
+            Gamemanager.instance.showWaveTransition(waveNum);
         }
 
         Debug.Log("Starting Wave " + waveNum);
