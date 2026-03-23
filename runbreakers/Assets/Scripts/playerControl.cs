@@ -288,29 +288,96 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     {
         if (buff.id == 0)
         {
-            hp += buff.healAmount;
+            if (hp < hpOriginal)
+            {
+                if ((hp + buff.healAmount) > hpOriginal)
+                {
+                    hp = hpOriginal;
+                }
+                else
+                {
+                    hp += buff.healAmount;
+                }
+            }
         }
         if (buff.id == 1)
         {
-            speed *= buff.speedMultiplier;
-            speedDuration = buff.speedDuration;
-            speedTimer = 0f;
-            speedBuffed = true;
+            if (!speedDebuffed)
+            {
+                if (speedBuffed)
+                {
+                    speed = speedOriginal;
+                    speed *= buff.speedMultiplier;
+                    speedDuration = buff.speedDuration;
+                    speedTimer = 0f;
+                }
+                else
+                {
+                    speed *= buff.speedMultiplier;
+                    speedDuration = buff.speedDuration;
+                    speedTimer = 0f;
+                    speedBuffed = true;
+                }
+            }
+            else
+            {
+                speed = speedOriginal;
+                speedDebuffed = false;
+                speed *= buff.speedMultiplier;
+                speedDuration = buff.speedDuration;
+                speedTimer = 0f;
+                speedBuffed = true;
+
+            }
         }
         if (buff.id == 2)
         {
-            damageBuff = buff.damageBuff;
-            shootRate *= buff.fireRateMultiplier;
-            damageBuffDuration = buff.damageBuffDuration;
-            damageBuffTimer = 0f;
-            damageBuffed = true;
+            if (!damageBuffed)
+            {
+                damageBuff = buff.damageBuff;
+                shootRate *= buff.fireRateMultiplier;
+                damageBuffDuration = buff.damageBuffDuration;
+                damageBuffTimer = 0f;
+                damageBuffed = true;
+            }
+            else
+            {
+                damageBuff = 0;
+                shootRate = shootRateOriginal;
+                damageBuff = buff.damageBuff;
+                shootRate *= buff.fireRateMultiplier;
+                damageBuffDuration = buff.damageBuffDuration;
+                damageBuffTimer = 0f;
+            }
         }
         if (buff.id == 3)
         {
-            speed *= buff.speedDownMultiplier;
-            speedDownDuration = buff.speedDownDuration;
-            speedDownTimer = 0f;
-            speedDebuffed = true;
+            if (!speedBuffed)
+            {
+                if (speedDebuffed)
+                {
+                    speed = speedOriginal;
+                    speed *= buff.speedDownMultiplier;
+                    speedDownDuration = buff.speedDownDuration;
+                    speedDownTimer = 0f;
+                }
+                else
+                {
+                    speed *= buff.speedDownMultiplier;
+                    speedDownDuration = buff.speedDownDuration;
+                    speedDownTimer = 0f;
+                    speedDebuffed = true;
+                }
+            }
+            else
+            {
+                speed = speedOriginal;
+                speedBuffed = false;
+                speed *= buff.speedDownMultiplier;
+                speedDownDuration = buff.speedDownDuration;
+                speedDownTimer = 0f;
+                speedDebuffed = true;
+            }
         }
         updatePlayerUI();
     }
