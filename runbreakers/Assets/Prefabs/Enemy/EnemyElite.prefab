@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.6
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4851,6 +4851,7 @@ GameObject:
   - component: {fileID: 7363936397628425285}
   - component: {fileID: 8937460957245870742}
   - component: {fileID: 511710116996057274}
+  - component: {fileID: 865687718244793600}
   m_Layer: 0
   m_Name: EnemyElite
   m_TagString: Enemy
@@ -5010,3 +5011,25 @@ MonoBehaviour:
   speed: 0
   destroyTime: 0
   hitEffect: {fileID: 0}
+--- !u!195 &865687718244793600
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051116923258012265}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1.5
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 720
+  m_StoppingDistance: 8
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
