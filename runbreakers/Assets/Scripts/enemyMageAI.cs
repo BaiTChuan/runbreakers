@@ -34,7 +34,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
         if (agent != null)
         {
             agent.speed = moveSpeed;
-            agent.stoppingDistance = stopDistance;
+            agent.stoppingDistance = 0f;
             agent.updateRotation = false;
             agent.updateUpAxis = true;
         }
@@ -64,10 +64,15 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(retreatTarget, out hit, retreatDistanceAmount, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(retreatTarget, out hit, 6f, NavMesh.AllAreas))
             {
                 agent.isStopped = false;
                 agent.SetDestination(hit.position);
+            }
+            else
+            {
+                agent.ResetPath();
+                agent.isStopped = true;
             }
 
             tryShoot(direction);
