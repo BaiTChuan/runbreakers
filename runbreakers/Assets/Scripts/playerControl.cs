@@ -35,8 +35,8 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] float stepVol;
-    [SerializeField] AudioClip[] audHit;
-    [SerializeField] float hitVol;
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField] float hurtVol;
 
 
     int hpOriginal;
@@ -58,6 +58,9 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     public int damageBuff;
     float damageBuffTimer;
     float damageBuffDuration;
+
+    bool isPlayingStep;
+    bool isSprinting;
 
     Vector3 playerVel;
 
@@ -84,6 +87,23 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         movement();
         sprint();
         AimGunToMouse();
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], stepVol);
+
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        isPlayingStep = false;
     }
 
     void shoot()
@@ -180,6 +200,9 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
             shootRate = shootRateOriginal;
             damageBuffed = false;
         }
+
+        if (moveDir.normalized.magnitude > 0.3f && !isPlayingStep)
+            StartCoroutine(playStep());
     }
 
     void sprint()
@@ -187,10 +210,12 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
+            isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
+            isSprinting = false;
         }
     }
 
@@ -205,6 +230,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         }
 
         StartCoroutine(flashDamage());
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], hurtVol);
 
         if (hp <= 0)
         {
