@@ -33,6 +33,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] int ammoMax;
 
     [Header("----- Player ------")]
+    [SerializeField] TMP_Text levels;
     public Image playerHPBar;
     public Image playerXPBar;
     public Image speedBuffBar;
@@ -45,6 +46,7 @@ public class Gamemanager : MonoBehaviour
 
     float timeScaleOrig;
     int gameGoalCount;
+    int levelCur;
 
     void Awake()
     {
@@ -175,7 +177,13 @@ public class Gamemanager : MonoBehaviour
 
     public void LevelUp()
     {
-        Debug.Log("Level Up!");
+        levelCur += 1;
+        setLevelText();
+    }
+
+    public void setLevelText()
+    {
+       levels.text = levelCur.ToString("F0");
     }
 
     public void showWin()
