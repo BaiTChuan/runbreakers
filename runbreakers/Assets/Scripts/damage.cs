@@ -49,6 +49,11 @@ public class damage : MonoBehaviour
                 dmg.takeDamage(damageAmount);
                 Destroy(gameObject);
             }
+
+            if (other.CompareTag("Wall"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
