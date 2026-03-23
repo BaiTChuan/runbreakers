@@ -5,6 +5,7 @@ public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("---- AI Settings ----")]
     [SerializeField] float moveSpeed = 2f;
+    [SerializeField] Vector3 shortestDist = Vector3.zero;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int maxHP = 5;
@@ -36,7 +37,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
-        agent.SetDestination(Gamemanager.instance.player.transform.position);
+        agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
     }
 
     public void takeDamage(int amount)

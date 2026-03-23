@@ -49,7 +49,7 @@ public class Gamemanager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        timeScaleOrig = Time.timeScale;
+        timeScaleOrig = 1f;
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
@@ -59,6 +59,22 @@ public class Gamemanager : MonoBehaviour
         hotSpot.x = 64;
         hotSpot.y = 64;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+        isPaused = false;
+        Time.timeScale = 1f;
+        menuActive = null;
+
+        if (menuPause != null)
+            menuPause.SetActive(false);
+
+        if (menuWin != null)
+            menuWin.SetActive(false);
+
+        if (menuLose != null)
+            menuLose.SetActive(false);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         if (waveTransitionText != null)
         {
@@ -129,7 +145,7 @@ public class Gamemanager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = currentWave + "/" + totalWaves;
+            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
         }
     }
 
@@ -155,6 +171,11 @@ public class Gamemanager : MonoBehaviour
         {
             waveCountText.text = "BOSS WAVE";
         }
+    }
+
+    public void LevelUp()
+    {
+        Debug.Log("Level Up!");
     }
 
     public void showWin()

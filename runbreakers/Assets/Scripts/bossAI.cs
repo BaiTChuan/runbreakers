@@ -1,23 +1,22 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyMageAI : MonoBehaviour, IDamage
+public class bossAI : MonoBehaviour, IDamage
 {
     [Header("---- Movement ----")]
     [SerializeField] float moveSpeed = 2f;
-    [SerializeField] float stopDistance = 8f;
-    [SerializeField] float retreatDistance = 4f;
-    [SerializeField] float retreatDistanceAmount = 3f;
+    [SerializeField] float stopDistance = 10f;
+
+    [Header("---- Boss Stats ----")]
+    [SerializeField] int maxHP = 100;
+    [SerializeField] int xpValue = 10;
 
     [Header("---- Attack ----")]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootRate = 2f;
-
-    [Header("---- Enemy Stats ----")]
-    [SerializeField] int maxHP = 4;
-    [SerializeField] int xpValue = 2;
-    [SerializeField] int goalValue = 2;
+    [SerializeField] int projectileCount = 5;
+    [SerializeField] float spreadAngle = 30f;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -29,6 +28,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     void Start()
     {
         currentHP = maxHP;
+        shootTimer = 0f;
         agent = GetComponent<NavMeshAgent>();
 
         if (agent != null)
@@ -57,26 +57,6 @@ public class enemyMageAI : MonoBehaviour, IDamage
             agent.isStopped = false;
             agent.SetDestination(Gamemanager.instance.player.transform.position);
         }
-        else if (distance < retreatDistance)
-        {
-            Vector3 retreatDir = (transform.position - Gamemanager.instance.player.transform.position).normalized;
-            Vector3 retreatTarget = transform.position + retreatDir * retreatDistanceAmount;
-
-            NavMeshHit hit;
-
-            if (NavMesh.SamplePosition(retreatTarget, out hit, 6f, NavMesh.AllAreas))
-            {
-                agent.isStopped = false;
-                agent.SetDestination(hit.position);
-            }
-            else
-            {
-                agent.ResetPath();
-                agent.isStopped = true;
-            }
-
-            tryShoot(direction);
-        }
         else
         {
             agent.isStopped = true;
@@ -99,12 +79,34 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         shootTimer = 0f;
 
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-        damage dmgScript = projectile.GetComponent<damage>();
-
-        if (dmgScript != null)
+        if (projectileCount <= 1)
         {
-            dmgScript.SetDirection(direction);
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            damage dmgScript = projectile.GetComponent<damage>();
+
+            if (dmgScript != null)
+            {
+                dmgScript.SetDirection(direction);
+            }
+
+            return;
+        }
+
+        float angleStep = spreadAngle / (projectileCount - 1);
+        float startAngle = -spreadAngle / 2f;
+
+        for (int i = 0; i < projectileCount; i++)
+        {
+            float currentAngle = startAngle + (angleStep * i);
+            Vector3 shootDirection = Quaternion.Euler(0f, currentAngle, 0f) * direction.normalized;
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            damage dmgScript = projectile.GetComponent<damage>();
+
+            if (dmgScript != null)
+            {
+                dmgScript.SetDirection(shootDirection);
+            }
         }
     }
 
@@ -115,7 +117,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount;
+        currentHP -= amount + Gamemanager.instance.playerScript.damageBuff;
 
         if (currentHP <= 0)
         {
@@ -125,19 +127,19 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
     void die()
     {
-        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
-            return;
-
-        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
-
-        if (xp != null)
+        if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
-            xp.AddXP(xpValue);
+            playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+
+            if (xp != null)
+            {
+                xp.AddXP(xpValue);
+            }
         }
 
         if (enemySpawner.instance != null)
         {
-            enemySpawner.instance.enemyDefeated(goalValue);
+            enemySpawner.instance.setBossDefeated();
         }
 
         Destroy(gameObject);

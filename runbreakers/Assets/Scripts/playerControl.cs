@@ -31,6 +31,14 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
     [SerializeField] float levelUpXPRequirementIncrease;
     [SerializeField] int maxXP = 100;
 
+    [Header("---- Audios ----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] float stepVol;
+    [SerializeField] AudioClip[] audHit;
+    [SerializeField] float hitVol;
+
+
     int hpOriginal;
     float speedOriginal;
     float shootRateOriginal;
@@ -306,6 +314,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         {
             currentXP -= maxXP; // carry over extra XP
             currentLevel++;
+            Gamemanager.instance.LevelUp();
 
             Debug.Log("Player Leveled up! New Level: " + currentLevel);
 

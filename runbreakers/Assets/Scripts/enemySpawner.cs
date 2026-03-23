@@ -21,7 +21,9 @@ public class enemySpawner : MonoBehaviour
     [Header("---- Spawn Settings ----")]
     [SerializeField] float spawnRate = 2f;
     [SerializeField] int spawnDistance = 15;
+    [SerializeField] int minSpawnDistance = 8;
     [SerializeField] float startDelay = 3f;
+    [SerializeField] float waveDelay = 3f;
 
     [Header("---- Wave Settings ----")]
     [SerializeField] int waveMax = 5;
@@ -36,10 +38,12 @@ public class enemySpawner : MonoBehaviour
     float spawnTimer;
     float currentSpawnRate;
     float startTimer;
+    float waveDelayTimer;
 
     bool canSpawn;
     bool bossSpawned;
     bool isBossDefeated;
+    bool waitingForNextWave;
 
     void Awake()
     {
@@ -51,6 +55,8 @@ public class enemySpawner : MonoBehaviour
         startWave();
         canSpawn = false;
         startTimer = 0f;
+        waveDelayTimer = 0f;
+        waitingForNextWave = false;
     }
 
     void Update()
@@ -80,11 +86,14 @@ public class enemySpawner : MonoBehaviour
             return;
         }
 
-        spawnTimer += Time.deltaTime;
-
-        if (spawnCount < spawnAmount && spawnTimer >= currentSpawnRate)
+        if (spawnCount < spawnAmount)
         {
-            spawn();
+            spawnTimer += Time.deltaTime;
+
+            if (spawnTimer >= currentSpawnRate)
+            {
+                spawn();
+            }
         }
 
         if (spawnCount >= spawnAmount && enemiesAlive <= 0)
@@ -95,10 +104,23 @@ public class enemySpawner : MonoBehaviour
             }
             else
             {
-                startWave();
+                if (!waitingForNextWave)
+                {
+                    waitingForNextWave = true;
+                    waveDelayTimer = 0f;
+                }
+
+                waveDelayTimer += Time.deltaTime;
+
+                if (waveDelayTimer >= waveDelay)
+                {
+                    waitingForNextWave = false;
+                    startWave();
+                }
             }
         }
     }
+
     void startWave()
     {
         waveNum++;
@@ -139,15 +161,37 @@ public class enemySpawner : MonoBehaviour
         spawnTimer = 0f;
         spawnCount += enemyCost;
 
-        Vector3 ranPos = Random.insideUnitSphere * spawnDistance;
-        ranPos += transform.position;
+        Vector3 ranPos = Vector3.zero;
+        bool validSpawnFound = false;
 
-        NavMeshHit hit;
-
-        if (NavMesh.SamplePosition(ranPos, out hit, spawnDistance, NavMesh.AllAreas))
+        for (int i = 0; i < 10; i++)
         {
-            Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
-            enemiesAlive++;
+            Vector3 randomDir = Random.insideUnitSphere;
+            randomDir.y = 0f;
+            randomDir.Normalize();
+
+            float randomDistance = Random.Range(minSpawnDistance, spawnDistance);
+            ranPos = transform.position + (randomDir * randomDistance);
+
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(ranPos, out hit, 2f, NavMesh.AllAreas))
+            {
+                float distanceFromPlayer = Vector3.Distance(hit.position, transform.position);
+
+                if (distanceFromPlayer >= minSpawnDistance)
+                {
+                    Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                    enemiesAlive++;
+                    validSpawnFound = true;
+                    break;
+                }
+            }
+        }
+
+        if (!validSpawnFound)
+        {
+            spawnCount -= enemyCost;
         }
     }
 
