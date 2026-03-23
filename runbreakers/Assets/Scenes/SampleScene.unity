@@ -2071,6 +2071,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6615499659052850098, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: bossType
+      value: 
+      objectReference: {fileID: 8505746971462412327}
+    - target: {fileID: 6615499659052850098, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: mageType
       value: 
       objectReference: {fileID: 43252579418672672}
@@ -2950,6 +2954,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27680334b517be744bc857835d274333, type: 3}
+--- !u!1 &8505746971462412327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5807235371305061013, guid: 27680334b517be744bc857835d274333, type: 3}
+  m_PrefabInstance: {fileID: 8505746971462412326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8707059681231335572
 PrefabInstance:
   m_ObjectHideFlags: 0
