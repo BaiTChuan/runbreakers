@@ -314,6 +314,7 @@ public class playerControl : MonoBehaviour, IDamage, IBuff
         {
             currentXP -= maxXP; // carry over extra XP
             currentLevel++;
+            Gamemanager.instance.LevelUp();
 
             Debug.Log("Player Leveled up! New Level: " + currentLevel);
 

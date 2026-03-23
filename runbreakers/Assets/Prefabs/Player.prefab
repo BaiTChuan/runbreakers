@@ -31,6 +31,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7837510435056586955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1880292618244440545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192240543599465630}
+  - component: {fileID: 6615499659052850098}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &192240543599465630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880292618244440545}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3304841413680316636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6615499659052850098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880292618244440545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebe323fb54d10a49856862364712353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemySpawner
+  basicType: {fileID: 6963791380911406370, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
+  strongType: {fileID: 0}
+  eliteType: {fileID: 0}
+  mageType: {fileID: 0}
+  bossType: {fileID: 0}
+  basicCost: 1
+  strongCost: 2
+  eliteCost: 3
+  mageCost: 2
+  spawnRate: 1
+  spawnDistance: 15
+  startDelay: 3
+  waveMax: 5
+  startingBudget: 12
+  budgetIncrease: 6
 --- !u!1 &1936333181587599066
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 192240543599465630}
   - {fileID: 1328238178834731681}
   - {fileID: 1214019068478353960}
   - {fileID: 3678133820879839460}
@@ -99,7 +159,7 @@ MonoBehaviour:
   currentXP: 0
   currentLevel: 1
   levelUpXPRequirementIncrease: 1.2
-  maxXP: 100
+  maxXP: 10
   aud: {fileID: 0}
   audSteps: []
   stepVol: 0
