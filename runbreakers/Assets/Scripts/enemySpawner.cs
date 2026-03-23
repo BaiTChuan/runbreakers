@@ -21,9 +21,9 @@ public class enemySpawner : MonoBehaviour
     [Header("---- Spawn Settings ----")]
     [SerializeField] float spawnRate = 2f;
     [SerializeField] int spawnDistance = 15;
+    [SerializeField] int minSpawnDistance = 8;
     [SerializeField] float startDelay = 3f;
     [SerializeField] float waveDelay = 3f;
-    [SerializeField] int minSpawnDistance = 8;
 
     [Header("---- Wave Settings ----")]
     [SerializeField] int waveMax = 5;

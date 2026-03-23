@@ -33,7 +33,6 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] int ammoMax;
 
     [Header("----- Player ------")]
-    public TMP_Text curLevel;
     public Image playerHPBar;
     public Image playerXPBar;
     public Image speedBuffBar;
@@ -46,7 +45,6 @@ public class Gamemanager : MonoBehaviour
 
     float timeScaleOrig;
     int gameGoalCount;
-    int level;
 
     void Awake()
     {
@@ -147,7 +145,7 @@ public class Gamemanager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = currentWave + "/" + totalWaves;
+            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
         }
     }
 
@@ -175,6 +173,11 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    public void LevelUp()
+    {
+        Debug.Log("Level Up!");
+    }
+
     public void showWin()
     {
         statePause();
@@ -197,19 +200,5 @@ public class Gamemanager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
-    }
-
-    public void LevelUpText()
-    {
-        if (curLevel != null)
-        {
-            curLevel.text = level.ToString("F0");
-        }
-    }
-
-    public void LevelUp()
-    {
-        level += 1;
-        LevelUpText();
     }
 }
