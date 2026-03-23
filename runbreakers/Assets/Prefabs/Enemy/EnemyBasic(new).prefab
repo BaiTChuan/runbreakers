@@ -4966,8 +4966,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   moveSpeed: 2.25
+  shortestDist: {x: 1, y: 1, z: 1}
   maxHP: 5
   xpValue: 1
+  goalValue: 1
   beingHitEffect: {fileID: 1110224512855222056}
 --- !u!65 &2462896266060299432
 BoxCollider:
