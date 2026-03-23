@@ -128,6 +128,7 @@ Transform:
   - {fileID: 1328238178834731681}
   - {fileID: 1214019068478353960}
   - {fileID: 3678133820879839460}
+  - {fileID: 5344899795209019736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5673501338943175816
@@ -5245,6 +5246,55 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &6334193933761500937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5344899795209019736}
+  - component: {fileID: 9146680166946236525}
+  m_Layer: 6
+  m_Name: BuffSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5344899795209019736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334193933761500937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3304841413680316636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9146680166946236525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334193933761500937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5a868dc9ce0364c92d157dfa27cd33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::spawner
+  attackBuff: {fileID: 5668216550190869089, guid: ce0d8a6a088600445a62f6ecf36943be, type: 3}
+  speedBuff: {fileID: 6441126455722894553, guid: 30ef46e9b14d77547852843229dab987, type: 3}
+  healthBuff: {fileID: 3017933265808484500, guid: cac9932c9967c0c4689ec4c5146c6cd1, type: 3}
+  spawnRate: 5
+  spawnDist: 5
 --- !u!1 &7474939498908288475
 GameObject:
   m_ObjectHideFlags: 0
