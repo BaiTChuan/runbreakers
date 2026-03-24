@@ -4934,6 +4934,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1880292618244440545, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1936333181587599066, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4990,6 +4994,10 @@ PrefabInstance:
       propertyPath: eliteType
       value: 
       objectReference: {fileID: 823407906}
+    - target: {fileID: 6615499659052850098, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: waveDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6615499659052850098, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: strongType
       value: 
@@ -6755,9 +6763,17 @@ PrefabInstance:
       propertyPath: beingHitEffect
       value: 
       objectReference: {fileID: 1757797669}
+    - target: {fileID: 5170602130275074700, guid: 27680334b517be744bc857835d274333, type: 3}
+      propertyPath: transitionLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5807235371305061013, guid: 27680334b517be744bc857835d274333, type: 3}
       propertyPath: m_Name
       value: EnemyBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807235371305061013, guid: 27680334b517be744bc857835d274333, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
       propertyPath: m_LocalPosition.x
