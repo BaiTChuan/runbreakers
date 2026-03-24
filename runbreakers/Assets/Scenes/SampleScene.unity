@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -1272,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -5926,14 +5926,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 552590475}
     m_Modifications:
     - target: {fileID: 3307213941736254114, guid: 1084a1f0c63563343b82e69912990629, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307213941736254114, guid: 1084a1f0c63563343b82e69912990629, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307213941736254114, guid: 1084a1f0c63563343b82e69912990629, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.91
       objectReference: {fileID: 0}
@@ -5972,10 +5964,6 @@ PrefabInstance:
     - target: {fileID: 3307213941736254114, guid: 1084a1f0c63563343b82e69912990629, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5231415437492163508, guid: 1084a1f0c63563343b82e69912990629, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8796767322477885437, guid: 1084a1f0c63563343b82e69912990629, type: 3}
       propertyPath: m_Name
@@ -6889,5 +6877,5 @@ SceneRoots:
   - {fileID: 210424440}
   - {fileID: 906204922}
   - {fileID: 605885481}
-  - {fileID: 2053053176}
   - {fileID: 592825889}
+  - {fileID: 2053053176}
