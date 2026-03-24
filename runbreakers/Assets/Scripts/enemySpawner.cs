@@ -161,8 +161,19 @@ public class enemySpawner : MonoBehaviour
         spawnTimer = 0f;
         spawnCount += enemyCost;
 
+        if (trySpawnEnemy(objectToSpawn, transform.position))
+        {
+            enemiesAlive++;
+        }
+        else
+        {
+            spawnCount -= enemyCost;
+        }
+    }
+
+    bool trySpawnEnemy(GameObject objectToSpawn, Vector3 centerPos)
+    {
         Vector3 ranPos = Vector3.zero;
-        bool validSpawnFound = false;
 
         for (int i = 0; i < 10; i++)
         {
@@ -171,28 +182,23 @@ public class enemySpawner : MonoBehaviour
             randomDir.Normalize();
 
             float randomDistance = Random.Range(minSpawnDistance, spawnDistance);
-            ranPos = transform.position + (randomDir * randomDistance);
+            ranPos = centerPos + (randomDir * randomDistance);
 
             NavMeshHit hit;
 
             if (NavMesh.SamplePosition(ranPos, out hit, 2f, NavMesh.AllAreas))
             {
-                float distanceFromPlayer = Vector3.Distance(hit.position, transform.position);
+                float distanceFromCenter = Vector3.Distance(hit.position, centerPos);
 
-                if (distanceFromPlayer >= minSpawnDistance)
+                if (distanceFromCenter >= minSpawnDistance)
                 {
                     Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
-                    enemiesAlive++;
-                    validSpawnFound = true;
-                    break;
+                    return true;
                 }
             }
         }
 
-        if (!validSpawnFound)
-        {
-            spawnCount -= enemyCost;
-        }
+        return false;
     }
 
     GameObject getEnemyType()
@@ -324,6 +330,47 @@ public class enemySpawner : MonoBehaviour
             return mageCost;
 
         return 1;
+    }
+
+    GameObject getBossAddType()
+    {
+        int roll = Random.Range(0, 100);
+
+        if (roll < 40 && basicType != null)
+            return basicType;
+
+        if (roll < 70 && strongType != null)
+            return strongType;
+
+        if (roll < 90 && mageType != null)
+            return mageType;
+
+        if (eliteType != null)
+            return eliteType;
+
+        if (basicType != null)
+            return basicType;
+
+        if (strongType != null)
+            return strongType;
+
+        if (mageType != null)
+            return mageType;
+
+        return null;
+    }
+
+    public void spawnBossAdds(int spawnTotal, Vector3 centerPos)
+    {
+        for (int i = 0; i < spawnTotal; i++)
+        {
+            GameObject addToSpawn = getBossAddType();
+
+            if (addToSpawn != null)
+            {
+                trySpawnEnemy(addToSpawn, centerPos);
+            }
+        }
     }
 
     void spawnBoss()
