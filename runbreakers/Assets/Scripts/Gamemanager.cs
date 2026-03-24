@@ -58,8 +58,8 @@ public class Gamemanager : MonoBehaviour
 
         updateAmmoCurCount(ammoCur);
         updateAmmoMaxCount(ammoMax);
-        hotSpot.x = 64;
-        hotSpot.y = 64;
+        hotSpot.x = 32;
+        hotSpot.y = 32;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
         isPaused = false;
