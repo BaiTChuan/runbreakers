@@ -136,7 +136,7 @@ MonoBehaviour:
   damageRate: 1
   speed: 0
   destroyTime: 0
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 5778069205827782323}
 --- !u!65 &5704183447748070016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194,14 +194,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 2
   stopDistance: 10
-  maxHP: 100
+  maxHP: 150
   xpValue: 10
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 5831215383274805143}
-  shootRate: 2
-  projectileCount: 5
-  spreadAngle: 30
-  beingHitEffect: {fileID: 5778069205827782323}
+  shootRateStage1: 2
+  projectileCountStage1: 5
+  spreadAngleStage1: 30
+  shootRateStage2: 1.5
+  projectileCountStage2: 7
+  spreadAngleStage2: 40
+  shootRateStage3: 1.2
+  projectileCountStage3: 9
+  spreadAngleStage3: 50
+  transitionLength: 25
+  healRate: 10
+  transitionSpawnRate: 1.5
+  addsPerTransitionSpawn: 2
+  stage2HealPercent: 0.85
+  stage3HealPercent: 0.55
+  novaAttackRate: 4
+  novaProjectileCount: 12
+  stage3SpawnRate: 6
+  stage3SpawnCount: 2
+  beingHitEffect: {fileID: 0}
 --- !u!1 &6060774235767947771
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +230,7 @@ GameObject:
   - component: {fileID: 5778069205827782323}
   - component: {fileID: 891970949739323709}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: BossPatical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 6060774235767947771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.449}
+  m_LocalPosition: {x: 0, y: 0, z: 0.435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -245,7 +261,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.3
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
