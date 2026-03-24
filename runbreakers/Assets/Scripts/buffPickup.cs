@@ -6,7 +6,7 @@ public class buffPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IBuff pick = other.GetComponent<IBuff>();
+        IPickup pick = other.GetComponent<IPickup>();
 
         if (pick != null)
         {
