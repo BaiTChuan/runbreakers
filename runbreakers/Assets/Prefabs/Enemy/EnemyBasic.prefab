@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1110224512855222056}
   - component: {fileID: 560154894159861404}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: BasicPartical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4952,7 +4952,7 @@ MonoBehaviour:
   damageRate: 1
   speed: 0
   destroyTime: 0
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1110224512855222056}
 --- !u!195 &4374312365510876009
 NavMeshAgent:
   m_ObjectHideFlags: 0

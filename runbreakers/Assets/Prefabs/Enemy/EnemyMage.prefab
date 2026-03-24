@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1490122675583405785}
   - component: {fileID: 6146516153149016994}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: MagePartical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5003,7 +5003,7 @@ MonoBehaviour:
   damageRate: 1
   speed: 0
   destroyTime: 0
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1490122675583405785}
 --- !u!65 &1444838326417513520
 BoxCollider:
   m_ObjectHideFlags: 0
