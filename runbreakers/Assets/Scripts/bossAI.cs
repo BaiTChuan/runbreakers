@@ -32,7 +32,7 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float spreadAngleStage3 = 50f;
 
     [Header("---- Stage Transition ----")]
-    [SerializeField] float transitionLength = 5f;
+    [SerializeField] float transitionLength = 40f;
     [SerializeField] float healRate = 10f;
     [SerializeField] float transitionSpawnRate = 1.5f;
     [SerializeField] int addsPerTransitionSpawn = 2;
