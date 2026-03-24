@@ -7341,6 +7341,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 69811293}
     m_Modifications:
     - target: {fileID: 5170602130275074700, guid: 27680334b517be744bc857835d274333, type: 3}
+      propertyPath: maxHP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170602130275074700, guid: 27680334b517be744bc857835d274333, type: 3}
       propertyPath: beingHitEffect
       value: 
       objectReference: {fileID: 1757797669}
