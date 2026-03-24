@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IBuff
+public interface IPickup
 {
     public void getBuff(buffStats buff);
 }

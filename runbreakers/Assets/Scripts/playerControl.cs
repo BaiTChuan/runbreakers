@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 
-public class playerControl : MonoBehaviour, IDamage, IBuff
+public class playerControl : MonoBehaviour, IDamage, IPickup
 {
     // Serialized Fields, displayed in Unity explorer, easy to change the attributes
     [Header("----- Components ------")]
