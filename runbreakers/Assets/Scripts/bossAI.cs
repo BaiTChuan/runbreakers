@@ -39,7 +39,7 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float stage2HealPercent = 0.85f;
     [SerializeField] float stage3HealPercent = 0.55f;
 
-    [Header("---- Stage 3 Extra Attack ----")]
+    [Header("---- Stage 3 Nova Attack ----")]
     [SerializeField] float novaAttackRate = 4f;
     [SerializeField] int novaProjectileCount = 12;
 
