@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 2
   stopDistance: 10
-  maxHP: 150
+  maxHP: 250
   xpValue: 10
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 5831215383274805143}
