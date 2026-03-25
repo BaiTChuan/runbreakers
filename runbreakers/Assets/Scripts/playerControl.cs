@@ -10,9 +10,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats ------")]
-    [Range(1, 10)][SerializeField] int hp;
+    [Range(1, 30)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] float speed;
     [Range(2, 6)][SerializeField] int sprintMod;
+
+    [Header("----- LevelUp Stats ------")]
+    [Range(1, 10)][SerializeField] int hpStatIncrease;
+    [Range(1, 10)][SerializeField] float speedStatIncrease;
+    [Range(1, 10)][SerializeField] int damageStatIncrease;
 
     [Header("----- Weapons ------")]
     [SerializeField] GameObject bullet;
@@ -56,6 +61,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     bool damageBuffed;
 
     public int damageBuff;
+    public int damageOriginal;
     float damageBuffTimer;
     float damageBuffDuration;
 
@@ -73,6 +79,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         hpOriginal = hp;
         speedOriginal = speed;
         shootRateOriginal = shootRate;
+        damageOriginal = 0;
         speedBuffed = false;
         speedDebuffed = false;
         damageBuffed = false;
@@ -252,6 +259,24 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     {
         Gamemanager.instance.playerHPBar.fillAmount = (float) hp / hpOriginal;
         Gamemanager.instance.playerXPBar.fillAmount = (float) currentXP / maxXP;
+        Gamemanager.instance.updateHpText(hp);
+    }
+
+    public void hpLevelUp()
+    {
+        hpOriginal += hpStatIncrease;
+        hp = hpOriginal;
+    }
+
+    public void damageLevelUp()
+    {
+        damageOriginal += damageStatIncrease;
+    }
+
+    public void speedLevelUp()
+    {
+        speedOriginal += speedStatIncrease;
+        speed = speedOriginal;
     }
 
     public void updateBuffUI()

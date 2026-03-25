@@ -13,8 +13,10 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject levelUpMenu;
 
     [SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] TMP_Text hpText;
     [SerializeField] TMP_Text ammoCurText;
     [SerializeField] TMP_Text ammoMaxText;
     [SerializeField] TMP_Text waveCountText;
@@ -101,6 +103,11 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    public void updateHpText(int hp)
+    {
+        hpText.text = hp.ToString("F0");
+    }
+
     public void statePause()
     {
         isPaused = true;
@@ -147,7 +154,7 @@ public class Gamemanager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = "Wave " + currentWave + "/" + totalWaves;
+            waveCountText.text = currentWave + "/" + totalWaves;
         }
     }
 
@@ -178,6 +185,9 @@ public class Gamemanager : MonoBehaviour
     public void LevelUp()
     {
         levelCur += 1;
+        menuActive = levelUpMenu;
+        menuActive.SetActive(true);
+        statePause();
         setLevelText();
     }
 

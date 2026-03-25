@@ -14,6 +14,25 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void healthUp()
+    {
+        Gamemanager.instance.playerScript.hpLevelUp();
+        Gamemanager.instance.playerScript.updatePlayerUI();
+        Gamemanager.instance.stateUnpause();
+    }
+
+    public void damageUp()
+    {
+        Gamemanager.instance.playerScript.damageLevelUp();
+        Gamemanager.instance.stateUnpause();
+    }
+
+    public void speedUp()
+    {
+        Gamemanager.instance.playerScript.speedLevelUp();
+        Gamemanager.instance.stateUnpause();
+    }
+
     public void quit()
     {
 #if UNITY_EDITOR
