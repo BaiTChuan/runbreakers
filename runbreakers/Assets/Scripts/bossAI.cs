@@ -33,19 +33,23 @@ public class bossAI : MonoBehaviour, IDamage
 
     [Header("---- Stage Transition ----")]
     [SerializeField] float transitionLength = 25f;
-    [SerializeField] float healRate = 10f;
-    [SerializeField] float transitionSpawnRate = 1.5f;
-    [SerializeField] int addsPerTransitionSpawn = 2;
+    [SerializeField] float healRate = 15f;
+    [SerializeField] float transitionSpawnRate = 2f;
+    [SerializeField] int stage2TransitionSpawnCount = 1;
+    [SerializeField] int stage3TransitionSpawnCount = 2;
     [SerializeField] float stage2HealPercent = 0.85f;
     [SerializeField] float stage3HealPercent = 0.55f;
 
-    [Header("---- Stage 3 Nova Attack ----")]
+    [Header("---- Stage 3 Extra Attack ----")]
     [SerializeField] float novaAttackRate = 4f;
     [SerializeField] int novaProjectileCount = 12;
 
     [Header("---- Stage 3 Add Spawns ----")]
     [SerializeField] float stage3SpawnRate = 6f;
     [SerializeField] int stage3SpawnCount = 2;
+
+    [Header("---- Transition Visuals ----")]
+    [SerializeField] GameObject forceField;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -87,6 +91,11 @@ public class bossAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0f;
             agent.updateRotation = false;
             agent.updateUpAxis = true;
+        }
+
+        if (forceField != null)
+        {
+            forceField.SetActive(false);
         }
     }
 
@@ -256,14 +265,14 @@ public class bossAI : MonoBehaviour, IDamage
         if (currentStage == 1 && currentHP <= stage2TriggerHP)
         {
             currentHP = stage2TriggerHP;
-            StartCoroutine(stageTransition(2, Mathf.RoundToInt(maxHP * stage2HealPercent)));
+            StartCoroutine(stageTransition(2, Mathf.RoundToInt(maxHP * stage2HealPercent), stage2TransitionSpawnCount));
             return;
         }
 
         if (currentStage == 2 && currentHP <= stage3TriggerHP)
         {
             currentHP = stage3TriggerHP;
-            StartCoroutine(stageTransition(3, Mathf.RoundToInt(maxHP * stage3HealPercent)));
+            StartCoroutine(stageTransition(3, Mathf.RoundToInt(maxHP * stage3HealPercent), stage3TransitionSpawnCount));
             return;
         }
 
@@ -273,10 +282,15 @@ public class bossAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator stageTransition(int nextStage, int healTargetHP)
+    IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
     {
         isTransitioning = true;
         isInvulnerable = true;
+
+        if (forceField != null)
+        {
+            forceField.SetActive(true);
+        }
 
         shootTimer = 0f;
         novaTimer = 0f;
@@ -306,11 +320,16 @@ public class bossAI : MonoBehaviour, IDamage
 
                 if (enemySpawner.instance != null)
                 {
-                    enemySpawner.instance.spawnBossAdds(addsPerTransitionSpawn, transform.position);
+                    enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
                 }
             }
 
             yield return null;
+        }
+
+        if (forceField != null)
+        {
+            forceField.SetActive(false);
         }
 
         currentStage = nextStage;
@@ -320,6 +339,11 @@ public class bossAI : MonoBehaviour, IDamage
 
     void die()
     {
+        if (forceField != null)
+        {
+            forceField.SetActive(false);
+        }
+
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
