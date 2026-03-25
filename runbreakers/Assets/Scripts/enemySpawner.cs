@@ -29,21 +29,26 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] int waveMax = 5;
     [SerializeField] int startingBudget = 12;
     [SerializeField] int budgetIncrease = 6;
+    [SerializeField] float waveDuration = 25f;
+    [SerializeField] float waveDurationIncrease = 5f;
 
-    int spawnCount;
-    int spawnAmount;
     int waveNum;
     int enemiesAlive;
+    int currentWaveBudget;
+    int currentAliveBudget;
 
     float spawnTimer;
     float currentSpawnRate;
     float startTimer;
     float waveDelayTimer;
+    float waveTimer;
+    float currentWaveDuration;
 
     bool canSpawn;
     bool bossSpawned;
     bool isBossDefeated;
     bool waitingForNextWave;
+    bool waveActive;
 
     void Awake()
     {
@@ -52,11 +57,21 @@ public class enemySpawner : MonoBehaviour
 
     void Start()
     {
-        startWave();
         canSpawn = false;
+        bossSpawned = false;
+        isBossDefeated = false;
+        waitingForNextWave = false;
+        waveActive = false;
+
         startTimer = 0f;
         waveDelayTimer = 0f;
-        waitingForNextWave = false;
+        spawnTimer = 0f;
+
+        waveNum = 0;
+        enemiesAlive = 0;
+        currentAliveBudget = 0;
+
+        startWave();
     }
 
     void Update()
@@ -86,37 +101,69 @@ public class enemySpawner : MonoBehaviour
             return;
         }
 
-        if (spawnCount < spawnAmount)
+        if (waveActive)
         {
-            spawnTimer += Time.deltaTime;
-
-            if (spawnTimer >= currentSpawnRate)
-            {
-                spawn();
-            }
+            updateWaveTimer();
+            handleWaveSpawning();
         }
-
-        if (spawnCount >= spawnAmount && enemiesAlive <= 0)
+        else
         {
-            if (waveNum >= waveMax)
+            handleWaveEnd();
+        }
+    }
+
+    void updateWaveTimer()
+    {
+        waveTimer -= Time.deltaTime;
+
+        if (waveTimer <= 0f)
+        {
+            waveTimer = 0f;
+            waveActive = false;
+            Gamemanager.instance.setWaveTimerInactive();
+        }
+        else
+        {
+            Gamemanager.instance.updateWaveTimer(waveTimer);
+        }
+    }
+
+    void handleWaveSpawning()
+    {
+        if (currentAliveBudget >= currentWaveBudget)
+            return;
+
+        spawnTimer += Time.deltaTime;
+
+        if (spawnTimer >= currentSpawnRate)
+        {
+            spawn();
+        }
+    }
+
+    void handleWaveEnd()
+    {
+        if (enemiesAlive > 0)
+            return;
+
+        if (waveNum >= waveMax)
+        {
+            spawnBoss();
+        }
+        else
+        {
+            if (!waitingForNextWave)
             {
-                spawnBoss();
+                waitingForNextWave = true;
+                waveDelayTimer = 0f;
             }
-            else
+
+            waveDelayTimer += Time.deltaTime;
+
+            if (waveDelayTimer >= waveDelay)
             {
-                if (!waitingForNextWave)
-                {
-                    waitingForNextWave = true;
-                    waveDelayTimer = 0f;
-                }
-
-                waveDelayTimer += Time.deltaTime;
-
-                if (waveDelayTimer >= waveDelay)
-                {
-                    waitingForNextWave = false;
-                    startWave();
-                }
+                waitingForNextWave = false;
+                startWave();
             }
         }
     }
@@ -124,12 +171,14 @@ public class enemySpawner : MonoBehaviour
     void startWave()
     {
         waveNum++;
-        spawnCount = 0;
         spawnTimer = 0f;
-        enemiesAlive = 0;
+        currentAliveBudget = 0;
 
-        spawnAmount = startingBudget + ((waveNum - 1) * budgetIncrease);
+        currentWaveBudget = startingBudget + ((waveNum - 1) * budgetIncrease);
         currentSpawnRate = spawnRate - ((waveNum - 1) * 0.2f);
+        currentWaveDuration = waveDuration + ((waveNum - 1) * waveDurationIncrease);
+        waveTimer = currentWaveDuration;
+        waveActive = true;
 
         if (currentSpawnRate < 0.6f)
         {
@@ -138,9 +187,10 @@ public class enemySpawner : MonoBehaviour
 
         if (Gamemanager.instance != null)
         {
-            Gamemanager.instance.setGameGoal(spawnAmount);
+            Gamemanager.instance.setGameGoal(enemiesAlive);
             Gamemanager.instance.setWaveCount(waveNum, waveMax);
             Gamemanager.instance.showWaveTransition(waveNum);
+            Gamemanager.instance.updateWaveTimer(waveTimer);
         }
 
         Debug.Log("Starting Wave " + waveNum);
@@ -155,19 +205,20 @@ public class enemySpawner : MonoBehaviour
 
         int enemyCost = getEnemyCost(objectToSpawn);
 
-        if (spawnCount + enemyCost > spawnAmount)
+        if (currentAliveBudget + enemyCost > currentWaveBudget)
             return;
 
         spawnTimer = 0f;
-        spawnCount += enemyCost;
 
         if (trySpawnEnemy(objectToSpawn, transform.position))
         {
             enemiesAlive++;
-        }
-        else
-        {
-            spawnCount -= enemyCost;
+            currentAliveBudget += enemyCost;
+
+            if (Gamemanager.instance != null)
+            {
+                Gamemanager.instance.setGameGoal(enemiesAlive);
+            }
         }
     }
 
@@ -203,10 +254,10 @@ public class enemySpawner : MonoBehaviour
 
     GameObject getEnemyType()
     {
-        bool canSpawnBasic = basicType != null && spawnCount + basicCost <= spawnAmount;
-        bool canSpawnStrong = strongType != null && spawnCount + strongCost <= spawnAmount;
-        bool canSpawnElite = eliteType != null && spawnCount + eliteCost <= spawnAmount;
-        bool canSpawnMage = mageType != null && spawnCount + mageCost <= spawnAmount;
+        bool canSpawnBasic = basicType != null && currentAliveBudget + basicCost <= currentWaveBudget;
+        bool canSpawnStrong = strongType != null && currentAliveBudget + strongCost <= currentWaveBudget;
+        bool canSpawnElite = eliteType != null && currentAliveBudget + eliteCost <= currentWaveBudget;
+        bool canSpawnMage = mageType != null && currentAliveBudget + mageCost <= currentWaveBudget;
 
         int basicChanceTemp = 0;
         int strongChanceTemp = 0;
@@ -407,9 +458,16 @@ public class enemySpawner : MonoBehaviour
             enemiesAlive = 0;
         }
 
+        currentAliveBudget -= goalValue;
+
+        if (currentAliveBudget < 0)
+        {
+            currentAliveBudget = 0;
+        }
+
         if (Gamemanager.instance != null)
         {
-            Gamemanager.instance.updateGameGoal(-goalValue);
+            Gamemanager.instance.setGameGoal(enemiesAlive);
         }
     }
 
