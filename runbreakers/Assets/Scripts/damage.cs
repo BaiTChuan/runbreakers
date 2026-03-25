@@ -46,7 +46,7 @@ public class damage : MonoBehaviour
                     Instantiate(hitEffect, transform.position, Quaternion.identity);
                 }
 
-                dmg.takeDamage(damageAmount);
+                dmg.takeDamage(damageAmount + Gamemanager.instance.playerScript.damageOriginal);
                 Destroy(gameObject);
             }
 

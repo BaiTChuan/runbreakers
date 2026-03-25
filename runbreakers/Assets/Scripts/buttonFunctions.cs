@@ -23,6 +23,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void damageUp()
     {
+        Gamemanager.instance.playerScript.damageLevelUp();
         Gamemanager.instance.stateUnpause();
     }
 
