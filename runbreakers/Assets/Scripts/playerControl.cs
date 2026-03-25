@@ -61,7 +61,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     bool damageBuffed;
 
     public int damageBuff;
-    int damageOriginal;
+    public int damageOriginal;
     float damageBuffTimer;
     float damageBuffDuration;
 
