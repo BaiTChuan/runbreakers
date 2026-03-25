@@ -5047,7 +5047,7 @@ MonoBehaviour:
   maxHP: 4
   xpValue: 2
   goalValue: 2
-  beingHitEffect: {fileID: 0}
+  beingHitEffect: {fileID: 1490122675583405785}
 --- !u!195 &4524018242997470731
 NavMeshAgent:
   m_ObjectHideFlags: 0
