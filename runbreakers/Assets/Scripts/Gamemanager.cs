@@ -30,10 +30,6 @@ public class Gamemanager : MonoBehaviour
     public Vector2 hotSpot = Vector2.zero;
     public CursorMode cursorMode = CursorMode.Auto;
 
-    [Header("----- Ammo ------")]
-    [SerializeField] int ammoCur;
-    [SerializeField] int ammoMax;
-
     [Header("----- Player ------")]
     [SerializeField] TMP_Text levels;
     public Image playerHPBar;
@@ -58,8 +54,8 @@ public class Gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
 
-        updateAmmoCurCount(ammoCur);
-        updateAmmoMaxCount(ammoMax);
+        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
+        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
         hotSpot.x = 32;
         hotSpot.y = 32;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -101,6 +97,8 @@ public class Gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
+        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
     }
 
     public void updateHpText(int hp)
@@ -205,12 +203,12 @@ public class Gamemanager : MonoBehaviour
 
     public void updateAmmoCurCount(int amount)
     {
-        ammoCurText.text = ammoCur.ToString("F0");
+        ammoCurText.text = Gamemanager.instance.playerScript.ammoCur.ToString("F0");
     }
 
     public void updateAmmoMaxCount(int amount)
     {
-        ammoMaxText.text = ammoMax.ToString("F0");
+        ammoMaxText.text = Gamemanager.instance.playerScript.ammoMax.ToString("F0");
     }
 
     public void youLose()

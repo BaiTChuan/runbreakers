@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0417cea140f5734fb91fc890d6498b5, type: 3}
-  m_Name: Default Weapon
+  m_Name: Gun - Sniper
   m_EditorClassIdentifier: Assembly-CSharp::gunStats
-  gunModel: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
-  bullet: {fileID: 6543385253515881813, guid: db31c27b6f1216543ad18c52ab8341c7, type: 3}
-  shootDamage: 2
-  shootRate: 0.5
-  ammoCur: 9999
-  ammoMax: 9999
-  shootEffect: {fileID: 2415504171528219187, guid: 120d378235b6d814c917e7b1e68185ba, type: 3}
+  gunModel: {fileID: 5571641588984482722, guid: c303a18f1cbdd4156b139b9e5b35d6a9, type: 3}
+  bullet: {fileID: 0}
+  shootDamage: 0
+  shootRate: 0
+  bulletLifeTime: 0
+  ammoCur: 0
+  ammoMax: 0
+  shootEffect: {fileID: 0}
   shootSound: []
-  shootSoundVol: 0.5
+  shootSoundVol: 0

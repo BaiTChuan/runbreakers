@@ -11,6 +11,7 @@ public class gunStats : ScriptableObject
     [Header("---- Gun Stats ----")]
     public int shootDamage;
     public float shootRate;
+    public int bulletLifeTime;
 
     [Header("---- Gun Ammo ----")]
     public int ammoCur;

@@ -11,7 +11,7 @@ public class damage : MonoBehaviour
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int speed;
-    [SerializeField] int destroyTime;
+    [SerializeField] public int destroyTime;
 
     [SerializeField] ParticleSystem hitEffect;
 

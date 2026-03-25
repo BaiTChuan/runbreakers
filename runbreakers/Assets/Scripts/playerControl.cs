@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class playerControl : MonoBehaviour, IDamage, IPickup
 {
@@ -20,9 +21,12 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] int damageStatIncrease;
 
     [Header("----- Weapons ------")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    List<int> gunAmmoList = new List<int>();
+    [SerializeField] GameObject gunModel;
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
-    [SerializeField] float bulletLifetime;
+    [SerializeField] float bulletLifetime; 
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
     [SerializeField] ParticleSystem muzzleFlashEffect;
@@ -43,6 +47,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] float hurtVol;
 
+
+    public int ammoCur;
+    public int ammoMax;
+    int gunListPos;
 
     int hpOriginal;
     float speedOriginal;
@@ -94,6 +102,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         movement();
         sprint();
         AimGunToMouse();
+        removeWeapon();
     }
 
     IEnumerator playStep()
@@ -127,6 +136,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         damage bulletScript = spawnedBullet.GetComponent<damage>();
 
         Destroy(spawnedBullet, bulletLifetime);
+
+        ammoCur--;
 
         if (bulletScript != null)
         {
@@ -186,8 +197,13 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
-            shoot();
+            if (ammoCur > 0)
+            {
+                shoot();
+            }
         }
+
+        selectGun();
 
         if (speedTimer >= speedDuration && speedBuffed == true)
         {
@@ -445,5 +461,81 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         maxXP = Mathf.RoundToInt(maxXP * levelUpXPRequirementIncrease);
 
         Debug.Log("Next level requires " + maxXP + " XP");
+    }
+
+    public void getGun(gunStats gun)
+    {
+        if (gunList.Count < 3)
+        {
+            gunList.Add(gun);
+            gunAmmoList.Add(gun.ammoMax);
+            gunListPos = gunList.Count - 1;
+            changeGun();
+        }
+        else if (gunList.Count >= 3)
+        {
+            if (gunListPos == 0)
+            {
+                gunList.RemoveAt(1);
+                gunAmmoList.RemoveAt(1);
+                gunList.Add(gun);
+                gunAmmoList.Add(gun.ammoMax);
+                gunListPos = gunList.Count - 1;
+                changeGun();
+            }
+            else
+            {
+                gunList.RemoveAt(gunListPos);
+                gunAmmoList.RemoveAt(gunListPos);
+                gunList.Add(gun);
+                gunAmmoList.Add(gun.ammoMax);
+                gunListPos = gunList.Count - 1;
+                changeGun();
+            }
+        }
+    }
+
+    void changeGun()
+    {
+        bullet = gunList[gunListPos].bullet;
+        shootRate = gunList[gunListPos].shootRate;
+        bulletLifetime = gunList[gunListPos].bulletLifeTime;
+        ammoCur = gunAmmoList[gunListPos];
+        ammoMax = gunList[gunListPos].ammoMax;
+
+        shootRateOriginal = gunList[gunListPos].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        {
+            gunAmmoList[gunListPos] = ammoCur;
+            gunListPos++;
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        {
+            gunAmmoList[gunListPos] = ammoCur;
+            gunListPos--;
+            changeGun();
+        }
+    }
+
+    void removeWeapon() {
+        if (gunList.Count > 1 && ammoCur <= 0)
+        {
+            gunList.RemoveAt(gunListPos);
+            gunAmmoList.RemoveAt(gunListPos);
+
+            if (gunListPos >= gunList.Count)
+            {
+                gunListPos = gunList.Count - 1;
+            }
+            changeGun();
+        }
     }
 }
