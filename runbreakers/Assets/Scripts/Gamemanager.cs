@@ -32,6 +32,7 @@ public class Gamemanager : MonoBehaviour
 
     [Header("----- Player ------")]
     [SerializeField] TMP_Text levels;
+    [SerializeField] TMP_Text sprintMsg;
     public Image playerHPBar;
     public Image playerXPBar;
     public Image speedBuffBar;
@@ -122,6 +123,7 @@ public class Gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         menuActive.SetActive(false);
         menuActive = null;
+        sprintMsg.gameObject.SetActive(false);
     }
 
     public void updateGameGoal(int amount)
@@ -185,6 +187,10 @@ public class Gamemanager : MonoBehaviour
         levelCur += 1;
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
+        if (Gamemanager.instance.playerScript.GetCurrentLevel() == 3)
+        {
+            sprintMsg.gameObject.SetActive(true);
+        }
         statePause();
         setLevelText();
     }

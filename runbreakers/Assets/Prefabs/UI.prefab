@@ -1140,6 +1140,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5702491977079883651}
   - {fileID: 2935581749137760403}
   - {fileID: 3616594427506109340}
   - {fileID: 4773396762081858250}
@@ -1147,7 +1148,6 @@ RectTransform:
   - {fileID: 1830007962019995403}
   - {fileID: 512259324193191941}
   - {fileID: 2931635653958155278}
-  - {fileID: 5702491977079883651}
   - {fileID: 1383554030582239177}
   - {fileID: 1752642479899102684}
   - {fileID: 6550120746003027795}
@@ -2938,8 +2938,6 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: 79c310d9df8c8c94cbb612f6b2e0ebc0, type: 3}
   hotSpot: {x: 0, y: 0}
   cursorMode: 1
-  ammoCur: 4
-  ammoMax: 20
   levels: {fileID: 6653180366511182841}
   playerHPBar: {fileID: 7340865688850735541}
   playerXPBar: {fileID: 9017270357173752099}

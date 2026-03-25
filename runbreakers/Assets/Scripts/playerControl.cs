@@ -230,15 +230,18 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (currentLevel >= 3)
         {
-            speed *= sprintMod;
-            isSprinting = true;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            speed /= sprintMod;
-            isSprinting = false;
+            if (Input.GetButtonDown("Sprint"))
+            {
+                speed *= sprintMod;
+                isSprinting = true;
+            }
+            else if (Input.GetButtonUp("Sprint"))
+            {
+                speed /= sprintMod;
+                isSprinting = false;
+            }
         }
     }
 
