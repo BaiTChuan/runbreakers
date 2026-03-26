@@ -46,6 +46,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float stepVol;
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] float hurtVol;
+    [SerializeField] AudioClip[] audSwap;
+    [SerializeField] float swapVol;
 
 
     public int ammoCur;
@@ -520,12 +522,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             gunAmmoList[gunListPos] = ammoCur;
             gunListPos++;
             changeGun();
+            aud.PlayOneShot(audSwap[Random.Range(0, audSwap.Length)], swapVol);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
         {
             gunAmmoList[gunListPos] = ammoCur;
             gunListPos--;
             changeGun();
+            aud.PlayOneShot(audSwap[Random.Range(0, audSwap.Length)], swapVol);
         }
     }
 

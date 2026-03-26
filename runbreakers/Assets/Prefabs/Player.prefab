@@ -283,6 +283,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aeb9c9e281692cf49b69e48e2e978562, type: 3}
   - {fileID: 8300000, guid: 0cfbd2638acef53489c627ef2d68bd1c, type: 3}
   hurtVol: 0.1
+  audSwap:
+  - {fileID: 8300000, guid: a518de7a8a2e2f84b84b586026b79e17, type: 3}
+  swapVol: 0.1
   ammoCur: 0
   ammoMax: 0
   damageBuff: 0
