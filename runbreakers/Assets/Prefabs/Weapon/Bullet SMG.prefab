@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5801022580563265801}
   - component: {fileID: -8627842994833104492}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet SMG
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 0
   rb: {fileID: 5702094467311586832}
-  damageAmount: 2
+  damageAmount: 1
   damageRate: 1
   speed: 25
   destroyTime: 2
@@ -184,7 +184,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.05299682, g: 0.0047169924, b: 1, a: 1}
+      key0: {r: 1, g: 0.81050366, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -233,7 +233,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.44713417, g: 0.56918645, b: 0.9056604, a: 1}
+  m_Color: {r: 1, g: 0.9800464, b: 0, a: 1}
   m_Intensity: 15
   m_Range: 10
   m_SpotAngle: 30

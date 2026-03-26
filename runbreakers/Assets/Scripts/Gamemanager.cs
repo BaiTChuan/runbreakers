@@ -21,6 +21,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text ammoMaxText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
+    [SerializeField] TMP_Text waveTimerText;
 
     [Header("----- Wave Transition ------")]
     [SerializeField] float waveTransitionTime = 2f;
@@ -30,12 +31,9 @@ public class Gamemanager : MonoBehaviour
     public Vector2 hotSpot = Vector2.zero;
     public CursorMode cursorMode = CursorMode.Auto;
 
-    [Header("----- Ammo ------")]
-    [SerializeField] int ammoCur;
-    [SerializeField] int ammoMax;
-
     [Header("----- Player ------")]
     [SerializeField] TMP_Text levels;
+    [SerializeField] TMP_Text sprintMsg;
     public Image playerHPBar;
     public Image playerXPBar;
     public Image speedBuffBar;
@@ -58,8 +56,8 @@ public class Gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
 
-        updateAmmoCurCount(ammoCur);
-        updateAmmoMaxCount(ammoMax);
+        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
+        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
         hotSpot.x = 32;
         hotSpot.y = 32;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -77,12 +75,20 @@ public class Gamemanager : MonoBehaviour
         if (menuLose != null)
             menuLose.SetActive(false);
 
+        if (levelUpMenu != null)
+            levelUpMenu.SetActive(false);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         if (waveTransitionText != null)
         {
             waveTransitionText.gameObject.SetActive(false);
+        }
+
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "";
         }
     }
 
@@ -101,6 +107,8 @@ public class Gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
+        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
     }
 
     public void updateHpText(int hp)
@@ -124,6 +132,7 @@ public class Gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         menuActive.SetActive(false);
         menuActive = null;
+        sprintMsg.gameObject.SetActive(false);
     }
 
     public void updateGameGoal(int amount)
@@ -158,6 +167,29 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    public void updateWaveTimer(float timeLeft)
+    {
+        if (waveTimerText == null)
+            return;
+
+        int secondsLeft = Mathf.CeilToInt(timeLeft);
+
+        if (secondsLeft < 0)
+        {
+            secondsLeft = 0;
+        }
+
+        waveTimerText.text = "Time: " + secondsLeft;
+    }
+
+    public void setWaveTimerInactive()
+    {
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "Clear Remaining Enemies";
+        }
+    }
+
     public void showWaveTransition(int waveNum)
     {
         StartCoroutine(waveTransition(waveNum));
@@ -180,6 +212,11 @@ public class Gamemanager : MonoBehaviour
         {
             waveCountText.text = "BOSS WAVE";
         }
+
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "";
+        }
     }
 
     public void LevelUp()
@@ -187,13 +224,17 @@ public class Gamemanager : MonoBehaviour
         levelCur += 1;
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
+        if (Gamemanager.instance.playerScript.GetCurrentLevel() == 3)
+        {
+            sprintMsg.gameObject.SetActive(true);
+        }
         statePause();
         setLevelText();
     }
 
     public void setLevelText()
     {
-       levels.text = levelCur.ToString("F0");
+        levels.text = levelCur.ToString("F0");
     }
 
     public void showWin()
@@ -205,12 +246,12 @@ public class Gamemanager : MonoBehaviour
 
     public void updateAmmoCurCount(int amount)
     {
-        ammoCurText.text = ammoCur.ToString("F0");
+        ammoCurText.text = Gamemanager.instance.playerScript.ammoCur.ToString("F0");
     }
 
     public void updateAmmoMaxCount(int amount)
     {
-        ammoMaxText.text = ammoMax.ToString("F0");
+        ammoMaxText.text = Gamemanager.instance.playerScript.ammoMax.ToString("F0");
     }
 
     public void youLose()
