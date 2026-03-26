@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 2
   stopDistance: 10
-  maxHP: 250
+  maxHP: 500
   xpValue: 10
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 5831215383274805143}
@@ -435,7 +435,7 @@ MonoBehaviour:
   projectileCountStage3: 9
   spreadAngleStage3: 50
   transitionLength: 25
-  healRate: 10
+  healRate: 15
   transitionSpawnRate: 1.5
   stage2TransitionSpawnCount: 1
   stage3TransitionSpawnCount: 2
@@ -447,6 +447,9 @@ MonoBehaviour:
   stage3SpawnCount: 2
   forceField: {fileID: 5802767613907804867}
   beingHitEffect: {fileID: 5778069205827782323}
+  bossHPBar: {fileID: 0}
+  bossCurrentHP: {fileID: 0}
+  bossCurrentHPText: {fileID: 0}
 --- !u!1 &6060774235767947771
 GameObject:
   m_ObjectHideFlags: 0
