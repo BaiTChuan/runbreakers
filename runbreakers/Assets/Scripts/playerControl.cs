@@ -132,6 +132,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         shootTimer = 0f;
 
         GameObject spawnedBullet = Instantiate(bullet, shootPos.position, shootPos.rotation);
+        aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
 
         damage bulletScript = spawnedBullet.GetComponent<damage>();
 

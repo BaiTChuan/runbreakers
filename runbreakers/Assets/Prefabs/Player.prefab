@@ -182,6 +182,8 @@ MonoBehaviour:
   waveMax: 5
   startingBudget: 12
   budgetIncrease: 6
+  waveDuration: 25
+  waveDurationIncrease: 5
 --- !u!1 &1936333181587599066
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +274,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bdd2531e2e6a23f4c8b51e68b592d9e0, type: 3}
   - {fileID: 8300000, guid: 5164853dec9a68142b53855525991e4b, type: 3}
   - {fileID: 8300000, guid: efac89a96ba7abe458dab76c9ce28bba, type: 3}
-  stepVol: 0.1
+  stepVol: 0.05
   audHurt:
   - {fileID: 8300000, guid: 7988ae63f1fb71244a1cab0bdc68fca7, type: 3}
   - {fileID: 8300000, guid: 75d0c7ff8049a254e9c17b7971f350f3, type: 3}
