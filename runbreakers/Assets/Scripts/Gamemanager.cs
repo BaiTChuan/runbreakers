@@ -14,6 +14,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject levelUpMenu;
+    [SerializeField] GameObject bossChallenge;
 
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text hpText;
@@ -43,6 +44,8 @@ public class Gamemanager : MonoBehaviour
     public GameObject player;
     public playerControl playerScript;
     public bool isPaused;
+    public bool canSummonBoss;
+    public bool bossSummoned;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -52,6 +55,9 @@ public class Gamemanager : MonoBehaviour
     {
         instance = this;
         timeScaleOrig = 1f;
+
+        canSummonBoss = true;
+        bossSummoned = false;
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
@@ -218,6 +224,25 @@ public class Gamemanager : MonoBehaviour
         if (waveTimerText != null)
         {
             waveTimerText.text = "";
+        }
+    }
+
+    public void showBossChallenge()
+    {
+        bossChallenge.SetActive(true);
+    }
+    public void hideBossChallenge()
+    {
+        bossChallenge.SetActive(true);
+    }
+
+    public void destroyAllEnemies()
+    {
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            Destroy(obj);
         }
     }
 

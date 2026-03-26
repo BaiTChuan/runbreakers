@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class bossAI : MonoBehaviour, IDamage
 {
@@ -54,10 +56,16 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
+    [Header("---- Boss HP Bar ----")]
+    [SerializeField] GameObject bossHPBar;
+    public Image bossCurrentHP;
+    [SerializeField] TMP_Text bossCurrentHPText;
+
     int currentHP;
     int currentStage;
     int stage2TriggerHP;
     int stage3TriggerHP;
+    bool bossHpBarActive = false;
 
     float shootTimer;
     float novaTimer;
@@ -103,6 +111,13 @@ public class bossAI : MonoBehaviour, IDamage
     {
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
+
+        if (bossHpBarActive == false)
+        {
+            bossHPBar.SetActive(true);
+            bossHpBarActive = true;
+        }
+        updateBossBar();
 
         Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
         direction.y = 0f;
@@ -360,5 +375,11 @@ public class bossAI : MonoBehaviour, IDamage
         }
 
         Destroy(gameObject);
+    }
+
+    void updateBossBar()
+    {
+        bossCurrentHP.fillAmount = (float)currentHP / maxHP;
+        bossCurrentHPText.SetText(currentHP.ToString("F0"));
     }
 }
