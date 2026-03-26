@@ -213,6 +213,8 @@ public class Gamemanager : MonoBehaviour
             waveCountText.text = "BOSS WAVE";
         }
 
+        backgroundMusic.instance.PlayBossMusic();
+
         if (waveTimerText != null)
         {
             waveTimerText.text = "";

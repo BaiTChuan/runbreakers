@@ -284,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &69811293
 Transform:
   m_ObjectHideFlags: 0
@@ -3929,6 +3929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da7f0c4347e3154a8b69764819b658b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::backgroundMusic
+  normalMusic: {fileID: 8300000, guid: 7ce02e6a352f3c342b5e12e3cc291f48, type: 3}
+  bossMusic: {fileID: 8300000, guid: 6183bdf5f16bfec4bb1cd579829fa9e6, type: 3}
 --- !u!82 &1221288709
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3940,7 +3942,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 7ce02e6a352f3c342b5e12e3cc291f48, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.112
   m_Pitch: 1
