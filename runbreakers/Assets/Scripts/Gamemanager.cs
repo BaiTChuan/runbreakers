@@ -21,6 +21,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text ammoMaxText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
+    [SerializeField] TMP_Text waveTimerText;
 
     [Header("----- Wave Transition ------")]
     [SerializeField] float waveTransitionTime = 2f;
@@ -74,12 +75,20 @@ public class Gamemanager : MonoBehaviour
         if (menuLose != null)
             menuLose.SetActive(false);
 
+        if (levelUpMenu != null)
+            levelUpMenu.SetActive(false);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         if (waveTransitionText != null)
         {
             waveTransitionText.gameObject.SetActive(false);
+        }
+
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "";
         }
     }
 
@@ -158,6 +167,29 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    public void updateWaveTimer(float timeLeft)
+    {
+        if (waveTimerText == null)
+            return;
+
+        int secondsLeft = Mathf.CeilToInt(timeLeft);
+
+        if (secondsLeft < 0)
+        {
+            secondsLeft = 0;
+        }
+
+        waveTimerText.text = "Time: " + secondsLeft;
+    }
+
+    public void setWaveTimerInactive()
+    {
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "Clear Remaining Enemies";
+        }
+    }
+
     public void showWaveTransition(int waveNum)
     {
         StartCoroutine(waveTransition(waveNum));
@@ -180,6 +212,11 @@ public class Gamemanager : MonoBehaviour
         {
             waveCountText.text = "BOSS WAVE";
         }
+
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = "";
+        }
     }
 
     public void LevelUp()
@@ -197,7 +234,7 @@ public class Gamemanager : MonoBehaviour
 
     public void setLevelText()
     {
-       levels.text = levelCur.ToString("F0");
+        levels.text = levelCur.ToString("F0");
     }
 
     public void showWin()
