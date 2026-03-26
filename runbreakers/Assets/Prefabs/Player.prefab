@@ -245,7 +245,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   hp: 10
-  speed: 6
+  speed: 10
   sprintMod: 2
   hpStatIncrease: 3
   speedStatIncrease: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bdd2531e2e6a23f4c8b51e68b592d9e0, type: 3}
   - {fileID: 8300000, guid: 5164853dec9a68142b53855525991e4b, type: 3}
   - {fileID: 8300000, guid: efac89a96ba7abe458dab76c9ce28bba, type: 3}
-  stepVol: 0.05
+  stepVol: 0.03
   audHurt:
   - {fileID: 8300000, guid: 7988ae63f1fb71244a1cab0bdc68fca7, type: 3}
   - {fileID: 8300000, guid: 75d0c7ff8049a254e9c17b7971f350f3, type: 3}

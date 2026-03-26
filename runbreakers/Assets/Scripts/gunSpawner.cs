@@ -54,7 +54,7 @@ public class gunSpawner : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPos, out hit, spawnDist, 1);
 
-        Instantiate(SMG, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        Instantiate(SMG, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 90));
     }
 
     void spawnSniper()
@@ -67,6 +67,6 @@ public class gunSpawner : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPos, out hit, spawnDist, 1);
 
-        Instantiate(sniper, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        Instantiate(sniper, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 90));
     }
 }
