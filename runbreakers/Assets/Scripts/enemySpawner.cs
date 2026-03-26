@@ -1,3 +1,5 @@
+using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -76,6 +78,14 @@ public class enemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (Gamemanager.instance.bossSummoned == true)
+        {
+            waveNum = waveMax;
+            waveTimer = 0;
+            Gamemanager.instance.updateGameGoal(-(enemiesAlive));
+            enemiesAlive = 0;
+        }
+
         if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
 
@@ -426,6 +436,7 @@ public class enemySpawner : MonoBehaviour
 
     void spawnBoss()
     {
+
         if (bossType == null)
         {
             Gamemanager.instance.showWin();
