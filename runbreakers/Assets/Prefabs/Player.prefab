@@ -245,7 +245,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   hp: 10
-  speed: 6
+  speed: 10
   sprintMod: 2
   hpStatIncrease: 3
   speedStatIncrease: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bdd2531e2e6a23f4c8b51e68b592d9e0, type: 3}
   - {fileID: 8300000, guid: 5164853dec9a68142b53855525991e4b, type: 3}
   - {fileID: 8300000, guid: efac89a96ba7abe458dab76c9ce28bba, type: 3}
-  stepVol: 0.05
+  stepVol: 0.03
   audHurt:
   - {fileID: 8300000, guid: 7988ae63f1fb71244a1cab0bdc68fca7, type: 3}
   - {fileID: 8300000, guid: 75d0c7ff8049a254e9c17b7971f350f3, type: 3}
@@ -536,8 +536,8 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 28.09
-  m_Range: 16.8
+  m_Intensity: 51.1
+  m_Range: 21.94
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -578,7 +578,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 2.39
+  m_BounceIntensity: 13.5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
