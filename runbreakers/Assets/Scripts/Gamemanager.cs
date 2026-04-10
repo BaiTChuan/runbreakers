@@ -188,14 +188,6 @@ public class Gamemanager : MonoBehaviour
         waveTimerText.text = "Time: " + secondsLeft;
     }
 
-    public void setWaveTimerInactive()
-    {
-        if (waveTimerText != null)
-        {
-            waveTimerText.text = "Clear Remaining Enemies";
-        }
-    }
-
     public void showWaveTransition(int waveNum)
     {
         StartCoroutine(waveTransition(waveNum));
