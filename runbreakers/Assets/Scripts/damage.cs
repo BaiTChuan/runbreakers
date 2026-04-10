@@ -3,9 +3,9 @@ using System.Collections;
 
 public class damage : MonoBehaviour
 {
-    enum damagetype { bullet, stationary, DOT }
+    enum Damagetype { bullet, stationary, DOT }
 
-    [SerializeField] damagetype type;
+    [SerializeField] Damagetype type;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
@@ -30,14 +30,14 @@ public class damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (type == damagetype.stationary)
+        if (type == Damagetype.stationary)
         {
             if (dmg != null)
             {
                 dmg.takeDamage(damageAmount);
             }
         }
-        else if (type == damagetype.bullet)
+        else if (type == Damagetype.bullet)
         {
             if (ShouldDamageTarget(other, dmg))
             {
@@ -64,7 +64,7 @@ public class damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (dmg != null && type == damagetype.DOT && !isDamaging)
+        if (dmg != null && type == Damagetype.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));
         }

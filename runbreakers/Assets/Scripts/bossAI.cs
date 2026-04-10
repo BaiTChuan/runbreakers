@@ -7,11 +7,11 @@ using TMPro;
 public class bossAI : MonoBehaviour, IDamage
 {
     [Header("---- Movement ----")]
-    [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float moveSpeed = 5f;
     [SerializeField] float stopDistance = 10f;
 
     [Header("---- Boss Stats ----")]
-    [SerializeField] int maxHP = 150;
+    [SerializeField] int maxHP = 1000;
     [SerializeField] int xpValue = 10;
 
     [Header("---- Main Attack ----")]
@@ -105,6 +105,18 @@ public class bossAI : MonoBehaviour, IDamage
         {
             forceField.SetActive(false);
         }
+
+        if (Gamemanager.instance != null)
+        {
+            bossHPBar = Gamemanager.instance.GetBossHPBar();
+            bossCurrentHP = Gamemanager.instance.GetBossCurrentHPBar();
+            bossCurrentHPText = Gamemanager.instance.GetBossHPText();
+
+            if (bossHPBar != null)
+            {
+                bossHPBar.SetActive(false);
+            }
+        }
     }
 
     void Update()
@@ -112,11 +124,12 @@ public class bossAI : MonoBehaviour, IDamage
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
-        if (bossHpBarActive == false)
+        if (!bossHpBarActive && bossHPBar != null)
         {
             bossHPBar.SetActive(true);
             bossHpBarActive = true;
         }
+
         updateBossBar();
 
         Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
@@ -359,6 +372,11 @@ public class bossAI : MonoBehaviour, IDamage
             forceField.SetActive(false);
         }
 
+        if (bossHPBar != null)
+        {
+            bossHPBar.SetActive(false);
+        }
+
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
@@ -379,7 +397,14 @@ public class bossAI : MonoBehaviour, IDamage
 
     void updateBossBar()
     {
-        bossCurrentHP.fillAmount = (float)currentHP / maxHP;
-        bossCurrentHPText.SetText(currentHP.ToString("F0"));
+        if (bossCurrentHP != null)
+        {
+            bossCurrentHP.fillAmount = (float)currentHP / maxHP;
+        }
+
+        if (bossCurrentHPText != null)
+        {
+            bossCurrentHPText.SetText(currentHP.ToString("F0"));
+        }
     }
 }

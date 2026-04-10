@@ -4836,6 +4836,79 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &6998987580063446515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1942719840996517408}
+  - component: {fileID: 7982886762822282224}
+  - component: {fileID: 115939947575640753}
+  m_Layer: 8
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1942719840996517408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6998987580063446515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5126499337545940192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7982886762822282224
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6998987580063446515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9363184, y: 1, z: 0.5738499}
+  m_Center: {x: -0.0318408, y: 0, z: -0.034716725}
+--- !u!114 &115939947575640753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6998987580063446515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damage
+  type: 1
+  rb: {fileID: 0}
+  damageAmount: 3
+  damageRate: 1
+  speed: 0
+  destroyTime: 0
+  hitEffect: {fileID: 0}
 --- !u!1 &7051116923258012265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4849,10 +4922,8 @@ GameObject:
   - component: {fileID: 5655690339923606837}
   - component: {fileID: 6466316957351796600}
   - component: {fileID: 7363936397628425285}
-  - component: {fileID: 8937460957245870742}
-  - component: {fileID: 511710116996057274}
   - component: {fileID: 865687718244793600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyElite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4873,6 +4944,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3427038179731383706}
+  - {fileID: 1942719840996517408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5086572429202356573
@@ -4951,8 +5023,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8846369, y: 1, z: 0.6956532}
+  m_Center: {x: -0.017506123, y: 0, z: 0.013893962}
 --- !u!114 &7363936397628425285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,52 +5037,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 1.5
+  moveSpeed: 4
   shortestDist: {x: 1, y: 1, z: 1}
   maxHP: 10
   xpValue: 1
   goalValue: 3
   beingHitEffect: {fileID: 5679083077336342553}
---- !u!65 &8937460957245870742
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051116923258012265}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &511710116996057274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051116923258012265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 1
-  rb: {fileID: 0}
-  damageAmount: 3
-  damageRate: 1
-  speed: 0
-  destroyTime: 0
-  hitEffect: {fileID: 0}
 --- !u!195 &865687718244793600
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5020,7 +5052,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7051116923258012265}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Speed: 2
   m_Acceleration: 20
   avoidancePriority: 50
