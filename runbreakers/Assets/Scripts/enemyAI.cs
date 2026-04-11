@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int maxHP = 5;
     [SerializeField] int xpValue = 1;
     [SerializeField] int goalValue = 1;
+    [SerializeField] float armorPercent = 0f;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -47,7 +48,10 @@ public class enemyAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount + Gamemanager.instance.playerScript.damageBuff;
+        int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
+        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
+
+        currentHP -= finalDamage;
 
         if (currentHP <= 0)
         {

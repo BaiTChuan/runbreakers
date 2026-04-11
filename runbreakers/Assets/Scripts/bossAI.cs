@@ -13,6 +13,7 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("---- Boss Stats ----")]
     [SerializeField] int maxHP = 1000;
     [SerializeField] int xpValue = 10;
+    [SerializeField] float armorPercent = 0.5f;
 
     [Header("---- Main Attack ----")]
     [SerializeField] GameObject projectilePrefab;
@@ -288,7 +289,10 @@ public class bossAI : MonoBehaviour, IDamage
             beingHitEffect.Play();
         }
 
-        currentHP -= amount + Gamemanager.instance.playerScript.damageBuff;
+        int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
+        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
+
+        currentHP -= finalDamage;
 
         if (currentStage == 1 && currentHP <= stage2TriggerHP)
         {

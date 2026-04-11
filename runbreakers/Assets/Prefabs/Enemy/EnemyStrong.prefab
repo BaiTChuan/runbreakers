@@ -5053,6 +5053,7 @@ MonoBehaviour:
   maxHP: 5
   xpValue: 1
   goalValue: 2
+  armorPercent: 0.2
   beingHitEffect: {fileID: 8207674451798993904}
 --- !u!195 &4248606909035124958
 NavMeshAgent:
