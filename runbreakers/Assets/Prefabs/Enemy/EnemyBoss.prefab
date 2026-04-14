@@ -1,5 +1,122 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2515961826130438992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5227985582154765746}
+  - component: {fileID: 7657868425877371121}
+  - component: {fileID: 4141453945118374835}
+  - component: {fileID: 8052572313181128931}
+  - component: {fileID: 5617936381208262513}
+  m_Layer: 8
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5227985582154765746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515961826130438992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8955722764328703952}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7657868425877371121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515961826130438992}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.96472645, y: 1, z: 2.9325585}
+  m_Center: {x: 2.0743604, y: 0, z: -1.0657883}
+--- !u!114 &4141453945118374835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515961826130438992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damage
+  type: 1
+  rb: {fileID: 0}
+  damageAmount: 5
+  damageRate: 1
+  speed: 0
+  destroyTime: 0
+  hitEffect: {fileID: 0}
+--- !u!65 &8052572313181128931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515961826130438992}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.160532, y: 3.5066147, z: 4.510316}
+  m_Center: {x: 0.005458832, y: 1.2533071, z: 0.48335004}
+--- !u!65 &5617936381208262513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515961826130438992}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.83354, y: 14.482971, z: 1.4784169}
+  m_Center: {x: -3.022007, y: -6.7414856, z: 1.1874063}
 --- !u!1 &3923315089039337768
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,11 +354,9 @@ GameObject:
   - component: {fileID: 8161371703955457165}
   - component: {fileID: 6538669252862510618}
   - component: {fileID: 2426150234914915996}
-  - component: {fileID: 7019243444764575192}
-  - component: {fileID: 5704183447748070016}
   - component: {fileID: 254672973154845268}
   - component: {fileID: 5170602130275074700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -265,6 +380,7 @@ Transform:
   - {fileID: 5831215383274805143}
   - {fileID: 8357026820025002989}
   - {fileID: 3148831493691514319}
+  - {fileID: 5227985582154765746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8161371703955457165
@@ -345,46 +461,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 2, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7019243444764575192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5807235371305061013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 1
-  rb: {fileID: 0}
-  damageAmount: 1
-  damageRate: 1
-  speed: 0
-  destroyTime: 0
-  hitEffect: {fileID: 5778069205827782323}
---- !u!65 &5704183447748070016
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5807235371305061013}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 6, y: 7, z: 6}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &254672973154845268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -394,7 +470,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5807235371305061013}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 3
   m_Speed: 4
   m_Acceleration: 20
   avoidancePriority: 50
@@ -419,20 +495,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d27288730373dc4ca0e29d692a7fd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
-  moveSpeed: 2
+  moveSpeed: 5
   stopDistance: 10
-  maxHP: 500
+  maxHP: 1000
   xpValue: 10
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 5831215383274805143}
   shootRateStage1: 2
-  projectileCountStage1: 5
+  projectileCountStage1: 6
   spreadAngleStage1: 30
   shootRateStage2: 1.5
-  projectileCountStage2: 7
+  projectileCountStage2: 8
   spreadAngleStage2: 40
-  shootRateStage3: 1.2
-  projectileCountStage3: 9
+  shootRateStage3: 1
+  projectileCountStage3: 10
   spreadAngleStage3: 50
   transitionLength: 25
   healRate: 15

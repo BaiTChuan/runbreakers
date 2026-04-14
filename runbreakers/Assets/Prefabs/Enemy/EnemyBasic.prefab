@@ -4836,6 +4836,79 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &5812322126758562350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8788438846836694233}
+  - component: {fileID: 8639510912563500686}
+  - component: {fileID: 8050332042317699181}
+  m_Layer: 8
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8788438846836694233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812322126758562350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8660659994417668182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8639510912563500686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812322126758562350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damage
+  type: 1
+  rb: {fileID: 0}
+  damageAmount: 1
+  damageRate: 1
+  speed: 0
+  destroyTime: 0
+  hitEffect: {fileID: 0}
+--- !u!65 &8050332042317699181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812322126758562350}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.51155466, y: 1, z: 0.45785436}
+  m_Center: {x: 0.0014975469, y: 0, z: -0.0048196716}
 --- !u!1 &6963791380911406370
 GameObject:
   m_ObjectHideFlags: 0
@@ -4847,10 +4920,8 @@ GameObject:
   - component: {fileID: 8660659994417668182}
   - component: {fileID: 2811663683217467822}
   - component: {fileID: 3512754922815647567}
-  - component: {fileID: 2462896266060299432}
-  - component: {fileID: 3397411043199943147}
   - component: {fileID: 4374312365510876009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBasic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4872,6 +4943,7 @@ Transform:
   m_Children:
   - {fileID: 1003437783127976735}
   - {fileID: 5609113546880805914}
+  - {fileID: 8788438846836694233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2811663683217467822
@@ -4893,8 +4965,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5122111, y: 0.997558, z: 0.46533903}
+  m_Center: {x: 0.00228258, y: -0.0012224516, z: -0.0048590503}
 --- !u!114 &3512754922815647567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4913,46 +4985,6 @@ MonoBehaviour:
   xpValue: 1
   goalValue: 1
   beingHitEffect: {fileID: 1110224512855222056}
---- !u!65 &2462896266060299432
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6963791380911406370}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3397411043199943147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6963791380911406370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 1
-  rb: {fileID: 0}
-  damageAmount: 2
-  damageRate: 1
-  speed: 0
-  destroyTime: 0
-  hitEffect: {fileID: 1110224512855222056}
 --- !u!195 &4374312365510876009
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4962,7 +4994,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6963791380911406370}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 3
   m_Acceleration: 20
   avoidancePriority: 50

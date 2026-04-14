@@ -24,6 +24,11 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
 
+    [Header("----- Boss UI ------")]
+    [SerializeField] GameObject bossHPBar;
+    [SerializeField] Image bossCurrentHPBar;
+    [SerializeField] TMP_Text bossHPText;
+
     [Header("----- Wave Transition ------")]
     [SerializeField] float waveTransitionTime = 2f;
 
@@ -84,6 +89,9 @@ public class Gamemanager : MonoBehaviour
         if (levelUpMenu != null)
             levelUpMenu.SetActive(false);
 
+        if (bossHPBar != null)
+            bossHPBar.SetActive(false);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -113,6 +121,7 @@ public class Gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+
         updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
         updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
     }
@@ -188,14 +197,6 @@ public class Gamemanager : MonoBehaviour
         waveTimerText.text = "Time: " + secondsLeft;
     }
 
-    public void setWaveTimerInactive()
-    {
-        if (waveTimerText != null)
-        {
-            waveTimerText.text = "Clear Remaining Enemies";
-        }
-    }
-
     public void showWaveTransition(int waveNum)
     {
         StartCoroutine(waveTransition(waveNum));
@@ -231,6 +232,7 @@ public class Gamemanager : MonoBehaviour
     {
         bossChallenge.SetActive(true);
     }
+
     public void hideBossChallenge()
     {
         bossChallenge.SetActive(true);
@@ -251,10 +253,12 @@ public class Gamemanager : MonoBehaviour
         levelCur += 1;
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
+
         if (Gamemanager.instance.playerScript.GetCurrentLevel() == 3)
         {
             sprintMsg.gameObject.SetActive(true);
         }
+
         statePause();
         setLevelText();
     }
@@ -286,5 +290,20 @@ public class Gamemanager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
+    }
+
+    public GameObject GetBossHPBar()
+    {
+        return bossHPBar;
+    }
+
+    public Image GetBossCurrentHPBar()
+    {
+        return bossCurrentHPBar;
+    }
+
+    public TMP_Text GetBossHPText()
+    {
+        return bossHPText;
     }
 }

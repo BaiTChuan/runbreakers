@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyDeathBurstAI : MonoBehaviour, IDamage
 {
     [Header("---- AI Settings ----")]
     [SerializeField] float moveSpeed = 2f;
@@ -12,6 +12,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int xpValue = 1;
     [SerializeField] int goalValue = 1;
     [SerializeField] float armorPercent = 0f;
+
+    [Header("---- Death Burst ----")]
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Transform shootPoint;
+    [SerializeField] int deathProjectileCount = 8;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -61,14 +66,16 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void die()
     {
-        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
-            return;
+        spawnDeathProjectiles();
 
-        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
-
-        if (xp != null)
+        if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
-            xp.AddXP(xpValue);
+            playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+
+            if (xp != null)
+            {
+                xp.AddXP(xpValue);
+            }
         }
 
         if (enemySpawner.instance != null)
@@ -77,5 +84,32 @@ public class enemyAI : MonoBehaviour, IDamage
         }
 
         Destroy(gameObject);
+    }
+
+    void spawnDeathProjectiles()
+    {
+        if (projectilePrefab == null)
+            return;
+
+        Transform spawnTransform = shootPoint != null ? shootPoint : transform;
+
+        if (deathProjectileCount <= 0)
+            return;
+
+        float angleStep = 360f / deathProjectileCount;
+
+        for (int i = 0; i < deathProjectileCount; i++)
+        {
+            float angle = angleStep * i;
+            Vector3 direction = Quaternion.Euler(0f, angle, 0f) * transform.forward;
+
+            GameObject projectile = Instantiate(projectilePrefab, spawnTransform.position, Quaternion.identity);
+            damage dmgScript = projectile.GetComponent<damage>();
+
+            if (dmgScript != null)
+            {
+                dmgScript.SetDirection(direction.normalized);
+            }
+        }
     }
 }

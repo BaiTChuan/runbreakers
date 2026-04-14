@@ -1,4 +1,3 @@
-using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,7 +24,6 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] int spawnDistance = 15;
     [SerializeField] int minSpawnDistance = 8;
     [SerializeField] float startDelay = 3f;
-    [SerializeField] float waveDelay = 3f;
 
     [Header("---- Wave Settings ----")]
     [SerializeField] int waveMax = 5;
@@ -42,14 +40,12 @@ public class enemySpawner : MonoBehaviour
     float spawnTimer;
     float currentSpawnRate;
     float startTimer;
-    float waveDelayTimer;
     float waveTimer;
     float currentWaveDuration;
 
     bool canSpawn;
     bool bossSpawned;
     bool isBossDefeated;
-    bool waitingForNextWave;
     bool waveActive;
 
     void Awake()
@@ -62,11 +58,9 @@ public class enemySpawner : MonoBehaviour
         canSpawn = false;
         bossSpawned = false;
         isBossDefeated = false;
-        waitingForNextWave = false;
         waveActive = false;
 
         startTimer = 0f;
-        waveDelayTimer = 0f;
         spawnTimer = 0f;
 
         waveNum = 0;
@@ -81,9 +75,9 @@ public class enemySpawner : MonoBehaviour
         if (Gamemanager.instance.bossSummoned == true)
         {
             waveNum = waveMax;
-            waveTimer = 0;
-            Gamemanager.instance.updateGameGoal(-(enemiesAlive));
-            enemiesAlive = 0;
+            waveTimer = 0f;
+            waveActive = false;
+            Gamemanager.instance.setGameGoal(enemiesAlive);
         }
 
         if (Gamemanager.instance == null || Gamemanager.instance.player == null)
@@ -130,7 +124,6 @@ public class enemySpawner : MonoBehaviour
         {
             waveTimer = 0f;
             waveActive = false;
-            Gamemanager.instance.setWaveTimerInactive();
         }
         else
         {
@@ -153,28 +146,13 @@ public class enemySpawner : MonoBehaviour
 
     void handleWaveEnd()
     {
-        if (enemiesAlive > 0)
-            return;
-
         if (waveNum >= waveMax)
         {
             spawnBoss();
         }
         else
         {
-            if (!waitingForNextWave)
-            {
-                waitingForNextWave = true;
-                waveDelayTimer = 0f;
-            }
-
-            waveDelayTimer += Time.deltaTime;
-
-            if (waveDelayTimer >= waveDelay)
-            {
-                waitingForNextWave = false;
-                startWave();
-            }
+            startWave();
         }
     }
 
@@ -436,7 +414,6 @@ public class enemySpawner : MonoBehaviour
 
     void spawnBoss()
     {
-
         if (bossType == null)
         {
             Gamemanager.instance.showWin();
