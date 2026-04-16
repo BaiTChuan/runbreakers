@@ -28,7 +28,11 @@ public class damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
+        
+
         IDamage dmg = other.GetComponent<IDamage>();
+
+        
 
         if (type == Damagetype.stationary)
         {
@@ -41,6 +45,8 @@ public class damage : MonoBehaviour
         {
             if (ShouldDamageTarget(other, dmg))
             {
+                
+
                 if (hitEffect != null)
                 {
                     Instantiate(hitEffect, transform.position, Quaternion.identity);
@@ -99,6 +105,9 @@ public class damage : MonoBehaviour
             return true;
 
         if (CompareTag("EnemyProjectile") && other.CompareTag("Player"))
+            return true;
+
+        if (other.CompareTag("Destructables"))
             return true;
 
         return false;

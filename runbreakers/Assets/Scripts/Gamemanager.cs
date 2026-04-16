@@ -51,6 +51,7 @@ public class Gamemanager : MonoBehaviour
     public bool isPaused;
     public bool canSummonBoss;
     public bool bossSummoned;
+    public int gold = 0;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -261,6 +262,11 @@ public class Gamemanager : MonoBehaviour
 
         statePause();
         setLevelText();
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
     }
 
     public void setLevelText()
