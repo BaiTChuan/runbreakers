@@ -497,7 +497,7 @@ MonoBehaviour:
   maxHP: 1000
   xpValue: 10
   armorPercent: 0.5
-  projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
+  spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 5831215383274805143}
   shootRateStage1: 2
   projectileCountStage1: 6
