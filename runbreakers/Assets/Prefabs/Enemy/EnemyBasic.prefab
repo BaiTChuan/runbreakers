@@ -4845,8 +4845,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8788438846836694233}
-  - component: {fileID: 8639510912563500686}
   - component: {fileID: 8050332042317699181}
+  - component: {fileID: 921628645503217147}
   m_Layer: 8
   m_Name: Damage
   m_TagString: Untagged
@@ -4869,25 +4869,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8660659994417668182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8639510912563500686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5812322126758562350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aead6e8616a1b4494271cd8de2479a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 1
-  rb: {fileID: 0}
-  damageAmount: 1
-  damageRate: 1
-  speed: 0
-  destroyTime: 0
-  hitEffect: {fileID: 0}
 --- !u!65 &8050332042317699181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4909,6 +4890,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.51155466, y: 1, z: 0.45785436}
   m_Center: {x: 0.0014975469, y: 0, z: -0.0048196716}
+--- !u!114 &921628645503217147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812322126758562350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81192a38d7b01345b59d8a9cb0f89b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::broodMinionContact
+  damageAmount: 1
 --- !u!1 &6963791380911406370
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,15 +4913,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8660659994417668182}
   - component: {fileID: 2811663683217467822}
-  - component: {fileID: 3512754922815647567}
   - component: {fileID: 4374312365510876009}
+  - component: {fileID: 3840992713219290679}
   m_Layer: 7
   m_Name: EnemyBasic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8660659994417668182
 Transform:
   m_ObjectHideFlags: 0
@@ -4967,24 +4961,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5122111, y: 0.997558, z: 0.46533903}
   m_Center: {x: 0.00228258, y: -0.0012224516, z: -0.0048590503}
---- !u!114 &3512754922815647567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6963791380911406370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 2.25
-  shortestDist: {x: 1, y: 1, z: 1}
-  maxHP: 5
-  xpValue: 1
-  goalValue: 1
-  beingHitEffect: {fileID: 1110224512855222056}
 --- !u!195 &4374312365510876009
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5007,6 +4983,25 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3840992713219290679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963791380911406370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e294d6a79da311468e6be4a3cd339cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::broodMinionAI
+  moveSpeed: 5
+  shortestDist: {x: 0, y: 0, z: 0}
+  maxHP: 1
+  xpValue: 1
+  goalValue: 1
+  armorPercent: 0
+  beingHitEffect: {fileID: 0}
 --- !u!1 &8500060639047666019
 GameObject:
   m_ObjectHideFlags: 0

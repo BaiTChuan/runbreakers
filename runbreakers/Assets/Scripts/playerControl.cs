@@ -20,16 +20,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] float speedStatIncrease;
     [Range(1, 10)][SerializeField] int damageStatIncrease;
 
-    [Header("----- Weapons ------")]
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
-    List<int> gunAmmoList = new List<int>();
-    [SerializeField] GameObject gunModel;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
-    [SerializeField] float bulletLifetime; 
-    [SerializeField] Transform shootPos;
-    [SerializeField] Transform gunPivot;
-    [SerializeField] ParticleSystem muzzleFlashEffect;
+    [Header("----- Spells ------")]
+    [SerializeField] private Spell spellToCast;
+    [SerializeField] private Transform castPivot;
+    [SerializeField] private Transform castPos;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -46,19 +40,11 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float stepVol;
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] float hurtVol;
-    [SerializeField] AudioClip[] audSwap;
-    [SerializeField] float swapVol;
 
-
-    public int ammoCur;
-    public int ammoMax;
-    int gunListPos;
+    float castTimer;
 
     int hpOriginal;
     float speedOriginal;
-    float shootRateOriginal;
-
-    float shootTimer;
 
     float speedTimer;
     float speedDuration;
@@ -88,7 +74,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         // Keep track of orginal hp
         hpOriginal = hp;
         speedOriginal = speed;
-        shootRateOriginal = shootRate;
         damageOriginal = 0;
         speedBuffed = false;
         speedDebuffed = false;
@@ -104,7 +89,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         movement();
         sprint();
         AimGunToMouse();
-        removeWeapon();
     }
 
     IEnumerator playStep()
@@ -124,53 +108,35 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         isPlayingStep = false;
     }
 
-    void shoot()
+    void CastSpell()
     {
-        if (muzzleFlashEffect != null)
-        {
-            muzzleFlashEffect.Play();
-        }
+        castTimer = 0f;
 
-        shootTimer = 0f;
-
-        GameObject spawnedBullet = Instantiate(bullet, shootPos.position, shootPos.rotation);
-        aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
-
-        damage bulletScript = spawnedBullet.GetComponent<damage>();
-
-        Destroy(spawnedBullet, bulletLifetime);
-
-        ammoCur--;
-
-        if (bulletScript != null)
-        {
-            Vector3 bulletDir = gunPivot.right;
-            bulletScript.SetDirection(bulletDir);
-        }
+        Instantiate(spellToCast, castPos.position, castPos.rotation);
     }
 
     void AimGunToMouse()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, gunPivot.position);
+        Plane plane = new Plane(Vector3.up, castPivot.position);
 
         float distance;
         if (plane.Raycast(ray, out distance))
         {
             Vector3 mouseWorldPos = ray.GetPoint(distance);
-            Vector3 dir = mouseWorldPos - gunPivot.position;
+            Vector3 dir = mouseWorldPos - castPivot.position;
             dir.y = 0f;
 
             if (dir.sqrMagnitude > 0.001f)
             {
-                gunPivot.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
+                castPivot.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
             }
         }
     }
 
     void movement()
     {
-        shootTimer += Time.deltaTime;
+        castTimer += Time.deltaTime;
 
         if (speedBuffed == true)
         {
@@ -198,15 +164,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        if (Input.GetButton("Fire1") && castTimer >= spellToCast.spellToCast.castSpeed)
         {
-            if (ammoCur > 0)
-            {
-                shoot();
-            }
+            CastSpell();
         }
-
-        selectGun();
 
         if (speedTimer >= speedDuration && speedBuffed == true)
         {
@@ -223,7 +184,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         if (damageBuffTimer >= damageBuffDuration && damageBuffed == true)
         {
             damageBuff = 0;
-            shootRate = shootRateOriginal;
             damageBuffed = false;
         }
 
@@ -382,7 +342,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             if (!damageBuffed)
             {
                 damageBuff = buff.damageBuff;
-                shootRate *= buff.fireRateMultiplier;
+
                 damageBuffDuration = buff.damageBuffDuration;
                 damageBuffTimer = 0f;
                 damageBuffed = true;
@@ -390,9 +350,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             else
             {
                 damageBuff = 0;
-                shootRate = shootRateOriginal;
+
                 damageBuff = buff.damageBuff;
-                shootRate *= buff.fireRateMultiplier;
+
                 damageBuffDuration = buff.damageBuffDuration;
                 damageBuffTimer = 0f;
             }
@@ -469,81 +429,4 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Debug.Log("Next level requires " + maxXP + " XP");
     }
 
-    public void getGun(gunStats gun)
-    {
-        if (gunList.Count < 3)
-        {
-            gunList.Add(gun);
-            gunAmmoList.Add(gun.ammoMax);
-            gunListPos = gunList.Count - 1;
-            changeGun();
-        }
-        else if (gunList.Count >= 3)
-        {
-            if (gunListPos == 0)
-            {
-                gunList.RemoveAt(1);
-                gunAmmoList.RemoveAt(1);
-                gunList.Add(gun);
-                gunAmmoList.Add(gun.ammoMax);
-                gunListPos = gunList.Count - 1;
-                changeGun();
-            }
-            else
-            {
-                gunList.RemoveAt(gunListPos);
-                gunAmmoList.RemoveAt(gunListPos);
-                gunList.Add(gun);
-                gunAmmoList.Add(gun.ammoMax);
-                gunListPos = gunList.Count - 1;
-                changeGun();
-            }
-        }
-    }
-
-    void changeGun()
-    {
-        bullet = gunList[gunListPos].bullet;
-        shootRate = gunList[gunListPos].shootRate;
-        bulletLifetime = gunList[gunListPos].bulletLifeTime;
-        ammoCur = gunAmmoList[gunListPos];
-        ammoMax = gunList[gunListPos].ammoMax;
-
-        shootRateOriginal = gunList[gunListPos].shootRate;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-    }
-
-    void selectGun()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
-        {
-            gunAmmoList[gunListPos] = ammoCur;
-            gunListPos++;
-            changeGun();
-            aud.PlayOneShot(audSwap[Random.Range(0, audSwap.Length)], swapVol);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-        {
-            gunAmmoList[gunListPos] = ammoCur;
-            gunListPos--;
-            changeGun();
-            aud.PlayOneShot(audSwap[Random.Range(0, audSwap.Length)], swapVol);
-        }
-    }
-
-    void removeWeapon() {
-        if (gunList.Count > 1 && ammoCur <= 0)
-        {
-            gunList.RemoveAt(gunListPos);
-            gunAmmoList.RemoveAt(gunListPos);
-
-            if (gunListPos >= gunList.Count)
-            {
-                gunListPos = gunList.Count - 1;
-            }
-            changeGun();
-        }
-    }
 }

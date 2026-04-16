@@ -67,8 +67,6 @@ public class Gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
 
-        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
-        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
         hotSpot.x = 32;
         hotSpot.y = 32;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -121,9 +119,6 @@ public class Gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
-
-        updateAmmoCurCount(Gamemanager.instance.playerScript.ammoCur);
-        updateAmmoMaxCount(Gamemanager.instance.playerScript.ammoMax);
     }
 
     public void updateHpText(int hp)
@@ -273,16 +268,6 @@ public class Gamemanager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
-    }
-
-    public void updateAmmoCurCount(int amount)
-    {
-        ammoCurText.text = Gamemanager.instance.playerScript.ammoCur.ToString("F0");
-    }
-
-    public void updateAmmoMaxCount(int amount)
-    {
-        ammoMaxText.text = Gamemanager.instance.playerScript.ammoMax.ToString("F0");
     }
 
     public void youLose()

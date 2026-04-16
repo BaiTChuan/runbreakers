@@ -10,10 +10,6 @@ public class damage : MonoBehaviour
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
-    [SerializeField] int speed;
-    [SerializeField] public int destroyTime;
-
-    [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
 
@@ -41,10 +37,6 @@ public class damage : MonoBehaviour
         {
             if (ShouldDamageTarget(other, dmg))
             {
-                if (hitEffect != null)
-                {
-                    Instantiate(hitEffect, transform.position, Quaternion.identity);
-                }
 
                 dmg.takeDamage(damageAmount + Gamemanager.instance.playerScript.damageOriginal);
                 Destroy(gameObject);
@@ -81,11 +73,6 @@ public class damage : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
-
-        if (rb != null)
-        {
-            rb.linearVelocity = direction * speed;
-        }
 
         transform.rotation = Quaternion.LookRotation(direction);
     }

@@ -72,9 +72,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   damageAmount: 5
   damageRate: 1
-  speed: 0
-  destroyTime: 0
-  hitEffect: {fileID: 0}
 --- !u!65 &8052572313181128931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -362,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8955722764328703952
 Transform:
   m_ObjectHideFlags: 0
@@ -499,6 +496,7 @@ MonoBehaviour:
   stopDistance: 10
   maxHP: 1000
   xpValue: 10
+  armorPercent: 0.5
   projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
   shootPoint: {fileID: 5831215383274805143}
   shootRateStage1: 2
