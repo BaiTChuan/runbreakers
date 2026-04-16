@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemySpawner
   basicType: {fileID: 6963791380911406370, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
-  strongType: {fileID: 0}
-  eliteType: {fileID: 0}
-  mageType: {fileID: 0}
-  bossType: {fileID: 0}
+  strongType: {fileID: 9185062257495450817, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
+  eliteType: {fileID: 7051116923258012265, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
+  mageType: {fileID: 7194024638860074197, guid: e02dd45b07edae64aa69af8150d18985, type: 3}
+  bossType: {fileID: 5807235371305061013, guid: 27680334b517be744bc857835d274333, type: 3}
   basicCost: 1
   strongCost: 2
   eliteCost: 3
@@ -178,7 +178,6 @@ MonoBehaviour:
   spawnDistance: 15
   minSpawnDistance: 8
   startDelay: 3
-  waveDelay: 2
   waveMax: 5
   startingBudget: 12
   budgetIncrease: 6
@@ -646,14 +645,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3470754225315570057}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000014751386, y: -0.7071072, z: 0.7071064, w: -0.00000014751406}
-  m_LocalPosition: {x: 0, y: 12.75, z: 0}
+  m_LocalRotation: {x: -0.000000093941175, y: -0.89287424, z: 0.45030612, w: -0.00000018626807}
+  m_LocalPosition: {x: 0.0000006556511, y: 12.05825, z: 7.3943253}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 618658871942308258}
   m_Father: {fileID: 3304841413680316636}
-  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 53.527, y: -180, z: 0}
 --- !u!20 &8915200242218046261
 Camera:
   m_ObjectHideFlags: 0
