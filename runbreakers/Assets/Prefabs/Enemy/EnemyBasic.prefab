@@ -4847,6 +4847,7 @@ GameObject:
   - component: {fileID: 8788438846836694233}
   - component: {fileID: 8050332042317699181}
   - component: {fileID: 921628645503217147}
+  - component: {fileID: 7379903381754554573}
   m_Layer: 8
   m_Name: Damage
   m_TagString: Untagged
@@ -4903,6 +4904,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::broodMinionContact
   damageAmount: 1
+--- !u!114 &7379903381754554573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812322126758562350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81192a38d7b01345b59d8a9cb0f89b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::broodMinionContact
+  damageAmount: 1
 --- !u!1 &6963791380911406370
 GameObject:
   m_ObjectHideFlags: 0
@@ -4921,7 +4935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8660659994417668182
 Transform:
   m_ObjectHideFlags: 0

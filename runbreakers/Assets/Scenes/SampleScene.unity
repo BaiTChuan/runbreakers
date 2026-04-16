@@ -249,7 +249,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4873680239988490323}
+  m_Father: {fileID: 1635419963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -431,25 +431,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8660659994417668182, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
   m_PrefabInstance: {fileID: 1755774279}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &675290653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675290651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e294d6a79da311468e6be4a3cd339cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::broodMinionAI
-  moveSpeed: 5
-  shortestDist: {x: 0, y: 0, z: 0}
-  maxHP: 1
-  xpValue: 1
-  goalValue: 1
-  armorPercent: 0
-  beingHitEffect: {fileID: 1115374238}
 --- !u!224 &724658861 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2141179273644729472, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -1113,7 +1094,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4873680239988490323}
+  m_Father: {fileID: 1635419963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1188,7 +1169,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4873680239988490323}
+  m_Father: {fileID: 1635419963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1233,24 +1214,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595279966}
   m_CullTransparentMesh: 1
---- !u!1 &1670457366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5812322126758562350, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
-  m_PrefabInstance: {fileID: 1755774279}
+--- !u!224 &1635419963 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4828504118988362678, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1670457368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670457366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81192a38d7b01345b59d8a9cb0f89b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::broodMinionContact
-  damageAmount: 1
 --- !u!1001 &1755774279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1320,38 +1288,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 17.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000018857851
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.000000089212634
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.90394926
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.42763987
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214019068478353960, guid: aa5226e0729747e4faa19be920a59757, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 50.636
-      objectReference: {fileID: 0}
     - target: {fileID: 1936333181587599066, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1431,7 +1367,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4873680239988490323}
+  m_Father: {fileID: 1635419963}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1969,13 +1905,7 @@ PrefabInstance:
       addedObject: {fileID: 1411543802}
     - targetCorrespondingSourceObject: {fileID: 4828504118988362678, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 430848854}
-    - targetCorrespondingSourceObject: {fileID: 4828504118988362678, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1595279967}
-    - targetCorrespondingSourceObject: {fileID: 4828504118988362678, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 625020871}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
 --- !u!114 &5699054118222682041 stripped
@@ -2259,7 +2189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443212450176823580, guid: e02dd45b07edae64aa69af8150d18985, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.839
+      value: -2.13
       objectReference: {fileID: 0}
     - target: {fileID: 8443212450176823580, guid: e02dd45b07edae64aa69af8150d18985, type: 3}
       propertyPath: m_LocalPosition.y
