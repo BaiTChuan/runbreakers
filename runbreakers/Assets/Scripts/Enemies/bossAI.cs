@@ -16,7 +16,7 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float armorPercent = 0.5f;
 
     [Header("---- Main Attack ----")]
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Spell spellToCast;
     [SerializeField] Transform shootPoint;
 
     [Header("---- Stage 1 ----")]
@@ -173,7 +173,7 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryShoot(Vector3 direction)
     {
-        if (projectilePrefab == null || shootPoint == null)
+        if (spellToCast == null || shootPoint == null)
             return;
 
         float currentShootRate = getShootRate();
@@ -205,7 +205,7 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryNovaAttack()
     {
-        if (projectilePrefab == null || shootPoint == null)
+        if (spellToCast == null || shootPoint == null)
             return;
 
         if (novaTimer < novaAttackRate)
@@ -237,12 +237,19 @@ public class bossAI : MonoBehaviour, IDamage
 
     void spawnProjectile(Vector3 direction)
     {
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-        damage dmgScript = projectile.GetComponent<damage>();
+        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(direction));
+        Rigidbody rb = spellInstance.GetComponent<Rigidbody>();
 
-        if (dmgScript != null)
+        Collider myCollider = GetComponent<Collider>();
+        Collider spellCollider = spellInstance.GetComponent<Collider>();
+        if (myCollider != null && spellCollider != null)
         {
-            dmgScript.SetDirection(direction);
+            Physics.IgnoreCollision(myCollider, spellCollider);
+        }
+
+        if (rb != null)
+        {
+            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
         }
     }
 

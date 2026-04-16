@@ -10,7 +10,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [SerializeField] float retreatDistanceAmount = 3f;
 
     [Header("---- Attack ----")]
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Spell spellToCast;
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootRate = 2f;
 
@@ -91,7 +91,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
     void tryShoot(Vector3 direction)
     {
-        if (projectilePrefab == null || shootPoint == null)
+        if (spellToCast == null || shootPoint == null)
             return;
 
         if (shootTimer < shootRate)
@@ -99,13 +99,18 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         shootTimer = 0f;
 
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-        damage dmgScript = projectile.GetComponent<damage>();
+        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, shootPoint.rotation);
+        Rigidbody rb = spellInstance.GetComponent<Rigidbody>();
 
-        if (dmgScript != null)
+        if (rb != null)
         {
-            dmgScript.SetDirection(direction);
+            direction = direction.normalized;
+
+
+            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
         }
+
+        transform.rotation = Quaternion.LookRotation(direction.normalized);
     }
 
     public void takeDamage(int amount)

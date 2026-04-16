@@ -18,9 +18,9 @@ TagManager:
   - Player
   - Enemy
   - EnemyDamage
-  - 
-  - 
-  - 
+  - Enemy Projectile
+  - Player Projectile
+  - Terrin
   - 
   - 
   - 

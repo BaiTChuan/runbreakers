@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 139596984538102815}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.644}
+  m_LocalPosition: {x: 0.045, y: -0.051, z: 0.871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5125,7 +5125,7 @@ MonoBehaviour:
   stopDistance: 8
   retreatDistance: 5
   retreatDistanceAmount: 4
-  projectilePrefab: {fileID: 7459091492849406748, guid: 49eda1706eddb724dbbdd0b55e524675, type: 3}
+  spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 6188351913714510705}
   shootRate: 2
   maxHP: 4

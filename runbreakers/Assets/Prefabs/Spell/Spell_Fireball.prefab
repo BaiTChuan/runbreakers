@@ -4962,7 +4962,7 @@ GameObject:
   - component: {fileID: 8891589676136271828}
   - component: {fileID: 6497777527385057993}
   - component: {fileID: 7803975533057428044}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spell_Fireball
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
@@ -5060,5 +5060,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 0
   rb: {fileID: 8891589676136271828}
-  damageAmount: 3
+  damageAmount: 5
   damageRate: 0

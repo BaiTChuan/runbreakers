@@ -104,12 +104,6 @@ public class enemyDeathBurstAI : MonoBehaviour, IDamage
             Vector3 direction = Quaternion.Euler(0f, angle, 0f) * transform.forward;
 
             GameObject projectile = Instantiate(projectilePrefab, spawnTransform.position, Quaternion.identity);
-            damage dmgScript = projectile.GetComponent<damage>();
-
-            if (dmgScript != null)
-            {
-                dmgScript.SetDirection(direction.normalized);
-            }
         }
     }
 }

@@ -29,7 +29,7 @@ public class Spell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.CompareTag("Lava")) return;
         Destroy(this.gameObject);
     }
 }
