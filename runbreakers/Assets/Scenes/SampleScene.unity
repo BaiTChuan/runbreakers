@@ -680,6 +680,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: spellToCast
+      value: 
+      objectReference: {fileID: 6497777527385057993, guid: d4c86dec8aa1ff44ca738df8c641e031, type: 3}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterLuck
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterArmor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterCastSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterAttackPower
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1250,10 +1270,6 @@ PrefabInstance:
       propertyPath: bossHPBar
       value: 
       objectReference: {fileID: 1013837186133934452}
-    - target: {fileID: 5170602130275074700, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: spellToCast
-      value: 
-      objectReference: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
     - target: {fileID: 5170602130275074700, guid: 27680334b517be744bc857835d274333, type: 3}
       propertyPath: bossCurrentHP
       value: 

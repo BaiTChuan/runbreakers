@@ -14,6 +14,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 30)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] float speed;
     [Range(2, 6)][SerializeField] int sprintMod;
+    [SerializeField] int characterAttackPower;
+    [SerializeField] int characterArmor;
+    [SerializeField] int characterLuck;
+    [SerializeField] float characterCastSpeed;
 
     [Header("----- LevelUp Stats ------")]
     [Range(1, 10)][SerializeField] int hpStatIncrease;
@@ -75,9 +79,11 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         hpOriginal = hp;
         speedOriginal = speed;
         damageOriginal = 0;
+
         speedBuffed = false;
         speedDebuffed = false;
         damageBuffed = false;
+
         cam = Camera.main;
         updatePlayerUI();
         updateBuffUI();
@@ -112,7 +118,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     {
         castTimer = 0f;
 
+        SpellDamageChangedBasedOnATK();
         Instantiate(spellToCast, castPos.position, castPos.rotation);
+    }
+
+    void SpellDamageChangedBasedOnATK()
+    {
+        damage dmgScript = spellToCast.GetComponent<damage>();
+        dmgScript.ChangeDmgBasedOnStats(characterAttackPower);
     }
 
     void AimGunToMouse()
@@ -164,7 +177,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && castTimer >= spellToCast.spellToCast.castSpeed)
+        if (Input.GetButton("Fire1") && castTimer >= (spellToCast.spellToCast.castSpeed * characterCastSpeed))
         {
             CastSpell();
         }
@@ -210,7 +223,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     public void takeDamage(int amount)
     {
-        hp -= amount;
+        hp -= (amount * (1-characterArmor/100));
         updatePlayerUI();
 
         if (beingHitEffect != null)
