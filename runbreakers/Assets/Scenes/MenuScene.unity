@@ -471,10 +471,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5812590887112041442, guid: b0ebe596272529041b10e13e1b9a848f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: startLevelScene
-      objectReference: {fileID: 0}
     - target: {fileID: 7099156499971134057, guid: b0ebe596272529041b10e13e1b9a848f, type: 3}
       propertyPath: m_Name
       value: MainMenuUI
