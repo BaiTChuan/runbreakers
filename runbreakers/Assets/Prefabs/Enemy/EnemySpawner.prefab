@@ -57,7 +57,8 @@ MonoBehaviour:
   spawnDistance: 15
   minSpawnDistance: 10
   startDelay: 3
-  waveDelay: 4
   waveMax: 5
   startingBudget: 12
   budgetIncrease: 6
+  waveDuration: 25
+  waveDurationIncrease: 5
