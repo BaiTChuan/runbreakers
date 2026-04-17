@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class buttonFunctions : MonoBehaviour
 {
     public string startButtonScene;
+    string menuScene = "MenuScene";
 
     public void resume()
     {
@@ -36,9 +37,14 @@ public class buttonFunctions : MonoBehaviour
         Gamemanager.instance.stateUnpause();
     }
 
-    public void enterSceneByName()
+    public void startLevelScene()
     {
         SceneManager.LoadScene(startButtonScene);
+    }
+
+    public void startMenuScene()
+    {
+        SceneManager.LoadScene(menuScene);
     }
 
     public void quit()
