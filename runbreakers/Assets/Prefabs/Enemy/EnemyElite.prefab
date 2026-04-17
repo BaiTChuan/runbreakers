@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &442923051845813926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3286925471456819315}
+  m_Layer: 7
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3286925471456819315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442923051845813926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5126499337545940192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5163345136135903849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,7 +4935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 1
   rb: {fileID: 0}
-  damageAmount: 3
+  damageAmount: 1
   damageRate: 1
 --- !u!1 &7051116923258012265
 GameObject:
@@ -4918,8 +4949,8 @@ GameObject:
   - component: {fileID: 5086572429202356573}
   - component: {fileID: 5655690339923606837}
   - component: {fileID: 6466316957351796600}
-  - component: {fileID: 7363936397628425285}
   - component: {fileID: 865687718244793600}
+  - component: {fileID: -8337532709096703963}
   m_Layer: 7
   m_Name: EnemyElite
   m_TagString: Enemy
@@ -4942,6 +4973,7 @@ Transform:
   m_Children:
   - {fileID: 3427038179731383706}
   - {fileID: 1942719840996517408}
+  - {fileID: 3286925471456819315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5086572429202356573
@@ -5022,25 +5054,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8846369, y: 1, z: 0.6956532}
   m_Center: {x: -0.017506123, y: 0, z: 0.013893962}
---- !u!114 &7363936397628425285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051116923258012265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 4
-  shortestDist: {x: 1, y: 1, z: 1}
-  maxHP: 10
-  xpValue: 1
-  goalValue: 3
-  armorPercent: 0.35
-  beingHitEffect: {fileID: 5679083077336342553}
 --- !u!195 &865687718244793600
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5063,3 +5076,22 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8337532709096703963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051116923258012265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemyAI
+  moveSpeed: 2
+  shortestDist: {x: 0, y: 0, z: 0}
+  maxHP: 5
+  xpValue: 1
+  goalValue: 1
+  armorPercent: 0
+  beingHitEffect: {fileID: 0}

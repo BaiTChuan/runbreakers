@@ -5,9 +5,9 @@ public class enemyMageAI : MonoBehaviour, IDamage
 {
     [Header("---- Movement ----")]
     [SerializeField] float moveSpeed = 2f;
-    [SerializeField] float stopDistance = 8f;
-    [SerializeField] float retreatDistance = 4f;
-    [SerializeField] float retreatDistanceAmount = 3f;
+    [SerializeField] float stopDistance = 11f;
+    [SerializeField] float retreatDistance = 6f;
+    [SerializeField] float retreatDistanceAmount = 4f;
 
     [Header("---- Attack ----")]
     [SerializeField] Spell spellToCast;

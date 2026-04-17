@@ -5122,9 +5122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyMageAI
   moveSpeed: 4
-  stopDistance: 8
-  retreatDistance: 5
-  retreatDistanceAmount: 4
+  stopDistance: 11
+  retreatDistance: 8
+  retreatDistanceAmount: 6
   spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 6188351913714510705}
   shootRate: 2
