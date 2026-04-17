@@ -38,7 +38,7 @@ public class damage : MonoBehaviour
             if (ShouldDamageTarget(other, dmg))
             {
 
-                dmg.takeDamage(damageAmount + Gamemanager.instance.playerScript.damageOriginal);
+                dmg.takeDamage(damageAmount);
                 Destroy(gameObject);
             }
 
@@ -70,13 +70,6 @@ public class damage : MonoBehaviour
         isDamaging = false;
     }
 
-    public void SetDirection(Vector3 dir)
-    {
-        direction = dir.normalized;
-
-        transform.rotation = Quaternion.LookRotation(direction);
-    }
-
     bool ShouldDamageTarget(Collider other, IDamage dmg)
     {
         if (dmg == null)
@@ -89,5 +82,10 @@ public class damage : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void ChangeDmgBasedOnStats (int amount)
+    {
+       damageAmount += amount;
     }
 }
