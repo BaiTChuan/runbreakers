@@ -257,22 +257,57 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.updateHpText(hp);
     }
 
-    public void hpLevelUp()
+    #region LevelUpFunctions
+    public void hpLevelUp0()
     {
         hpOriginal += hpStatIncrease;
         hp = hpOriginal;
     }
 
-    public void damageLevelUp()
+    public void hpLevelUp1()
+    {
+        hpOriginal += hpStatIncrease + 3;
+        hp = hpOriginal;
+    }
+
+    public void hpLevelUp2()
+    {
+        hpOriginal += hpStatIncrease + 5;
+        hp = hpOriginal;
+    }
+
+    public void damageLevelUp0()
     {
         damageOriginal += damageStatIncrease;
     }
 
-    public void speedLevelUp()
+    public void damageLevelUp1()
+    {
+        damageOriginal += damageStatIncrease + 1;
+    }
+
+    public void damageLevelUp2()
+    {
+        damageOriginal += damageStatIncrease + 2;
+    }
+    public void speedLevelUp0()
     {
         speedOriginal += speedStatIncrease;
         speed = speedOriginal;
     }
+
+    public void speedLevelUp1()
+    {
+        speedOriginal += speedStatIncrease + 1;
+        speed = speedOriginal;
+    }
+
+    public void speedLevelUp2()
+    {
+        speedOriginal += speedStatIncrease + 2;
+        speed = speedOriginal;
+    }
+    #endregion
 
     public void updateBuffUI()
     {
