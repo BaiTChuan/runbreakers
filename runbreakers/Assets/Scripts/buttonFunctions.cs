@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+    public string startButtonScene;
+
     public void resume()
     {
         Gamemanager.instance.stateUnpause();
@@ -31,6 +34,11 @@ public class buttonFunctions : MonoBehaviour
     {
         Gamemanager.instance.playerScript.speedLevelUp();
         Gamemanager.instance.stateUnpause();
+    }
+
+    public void enterSceneByName()
+    {
+        SceneManager.LoadScene(startButtonScene);
     }
 
     public void quit()
