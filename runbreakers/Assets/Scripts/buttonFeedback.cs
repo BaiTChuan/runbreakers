@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class buttonFeedback : MonoBehaviour
+public class buttonFeedback : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject buttonFrameOn;
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        buttonFrameOn.SetActive(!buttonFrameOn.activeSelf);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        
+        buttonFrameOn.SetActive(!buttonFrameOn.activeSelf);
     }
 }
