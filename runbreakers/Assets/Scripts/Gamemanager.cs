@@ -29,8 +29,10 @@ public class Gamemanager : MonoBehaviour
     public int rerollChance = 0;
     public int rerollLimit;
     public bool isRerolled = false;
+    public bool rolling = false;
     [SerializeField] TMP_Text rerollCurText;
     [SerializeField] TMP_Text rerollLimitText;
+    [SerializeField] TMP_Text rerollText;
 
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
@@ -258,7 +260,7 @@ public class Gamemanager : MonoBehaviour
         levelCur += 1;
         isLevelUp = true;
         rerollChance = 0;
-        updateRerollRemaining();
+        updateRerollButton();
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
 
@@ -277,10 +279,20 @@ public class Gamemanager : MonoBehaviour
         levels.text = levelCur.ToString("F0");
     }
 
-    public void updateRerollRemaining()
+    public void updateRerollButton()
     {
-        rerollCurText.text = rerollChance.ToString();
-        rerollLimitText.text = rerollLimit.ToString();
+        if (rolling == false)
+        {
+            rerollText.text = "Rerolls:";
+            rerollCurText.text = rerollChance.ToString();
+            rerollLimitText.text = rerollLimit.ToString();
+        }
+        else
+        {
+            rerollText.text = "Stop";
+            rerollCurText.text = "";
+            rerollLimitText.text = "Rolling";
+        }
     }
     #endregion
 

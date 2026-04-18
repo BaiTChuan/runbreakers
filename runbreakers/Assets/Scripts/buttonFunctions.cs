@@ -31,11 +31,24 @@ public class buttonFunctions : MonoBehaviour
 
     public void rerollUpgrade()
     {
-        if (Gamemanager.instance.isLevelUp == true && (Gamemanager.instance.rerollChance < Gamemanager.instance.rerollLimit))
+        if (Gamemanager.instance.isLevelUp == true)
         {
-            Gamemanager.instance.isRerolled = true;
-            Gamemanager.instance.rerollChance++;
-            Gamemanager.instance.updateRerollRemaining();
+            if (Gamemanager.instance.rolling == false)
+            {
+                if (Gamemanager.instance.rerollChance < Gamemanager.instance.rerollLimit)
+                {
+                    Gamemanager.instance.isRerolled = true;
+                    Gamemanager.instance.rerollChance++;
+                    Gamemanager.instance.rolling = true;
+                    Gamemanager.instance.updateRerollButton();
+                }
+            }
+            else
+            {
+                Gamemanager.instance.rolling = false;
+                Gamemanager.instance.updateRerollButton();
+                Gamemanager.instance.isRerolled = false;
+            }
         }
     }
 
