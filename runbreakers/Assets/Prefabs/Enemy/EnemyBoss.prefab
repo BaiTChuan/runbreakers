@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 6538669252862510618}
   - component: {fileID: 2426150234914915996}
   - component: {fileID: 254672973154845268}
-  - component: {fileID: 4041497205143528199}
+  - component: {fileID: 2282469307093085225}
   m_Layer: 7
   m_Name: EnemyBoss
   m_TagString: Enemy
@@ -367,7 +367,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4041497205143528199
+--- !u!114 &2282469307093085225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,38 +376,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 5807235371305061013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4d0936d665f745468e0627f83d87726, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d27288730373dc4ca0e29d692a7fd74, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::spiderMiniBossAI
-  moveSpeed: 5.25
-  stopDistance: 2.5
-  webAttackDistance: 15
-  maxHP: 700
-  xpValue: 8
-  goalValue: 5
-  armorPercent: 0.3
-  webProjectilePrefab: {fileID: 1669871955677014003, guid: b44e6b77d9ee3084eb69986605921f43, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::bossAI
+  moveSpeed: 5
+  stopDistance: 10
+  maxHP: 1000
+  xpValue: 10
+  armorPercent: 0.5
+  spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 5831215383274805143}
-  webShootRate: 4
-  webProjectileCount: 4
-  webSpreadAngle: 30
-  biteDamage: 5
-  biteRange: 1.75
-  biteRadius: 0.8
-  biteRate: 2
-  poisonTickDamage: 1
-  poisonDuration: 4
-  poisonTickRate: 1
-  sweepDamage: 1
-  sweepRange: 3
-  sweepRadius: 3
-  sweepAngle: 120
-  sweepRate: 1.25
-  broodEggPrefab: {fileID: 0}
-  eggSpawnPoint: {fileID: 0}
-  eggSpawnRate: 8
-  baseEggsPerSpawn: 1
+  shootRateStage1: 2
+  projectileCountStage1: 5
+  spreadAngleStage1: 30
+  shootRateStage2: 1.5
+  projectileCountStage2: 7
+  spreadAngleStage2: 40
+  shootRateStage3: 1.2
+  projectileCountStage3: 9
+  spreadAngleStage3: 50
+  transitionLength: 25
+  healRate: 15
+  transitionSpawnRate: 2
+  stage2TransitionSpawnCount: 1
+  stage3TransitionSpawnCount: 2
+  stage2HealPercent: 0.85
+  stage3HealPercent: 0.55
+  novaAttackRate: 4
+  novaProjectileCount: 12
+  stage3SpawnRate: 6
+  stage3SpawnCount: 2
+  forceField: {fileID: 0}
   beingHitEffect: {fileID: 5778069205827782323}
+  bossHPBar: {fileID: 0}
+  bossCurrentHP: {fileID: 0}
+  bossCurrentHPText: {fileID: 0}
 --- !u!1 &6060774235767947771
 GameObject:
   m_ObjectHideFlags: 0
