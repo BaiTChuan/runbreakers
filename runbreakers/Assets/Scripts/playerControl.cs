@@ -23,6 +23,12 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] int hpStatIncrease;
     [Range(1, 10)][SerializeField] float speedStatIncrease;
     [Range(1, 10)][SerializeField] int damageStatIncrease;
+    [Range(1, 10)][SerializeField] int hpTier2;
+    [Range(1, 10)][SerializeField] int hpTier3;
+    [Range(0, 10)][SerializeField] float speedTier2;
+    [Range(0, 10)][SerializeField] float speedTier3;
+    [Range(1, 10)][SerializeField] int damageTier2;
+    [Range(1, 10)][SerializeField] int damageTier3;
 
     [Header("----- Spells ------")]
     [SerializeField] private Spell spellToCast;
@@ -257,59 +263,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.updateHpText(hp);
     }
 
-    #region LevelUpFunctionss
-
-    public void hpLevelUp0()
-    {
-        hpOriginal += hpStatIncrease;
-        hp = hpOriginal;
-    }
-
-    public void hpLevelUp1()
-    {
-        hpOriginal += hpStatIncrease + 3;
-        hp = hpOriginal;
-    }
-
-    public void hpLevelUp2()
-    {
-        hpOriginal += hpStatIncrease + 5;
-        hp = hpOriginal;
-    }
-
-    public void damageLevelUp0()
-    {
-        damageOriginal += damageStatIncrease;
-    }
-
-    public void damageLevelUp1()
-    {
-        damageOriginal += damageStatIncrease + 1;
-    }
-
-    public void damageLevelUp2()
-    {
-        damageOriginal += damageStatIncrease + 2;
-    }
-    public void speedLevelUp0()
-    {
-        speedOriginal += speedStatIncrease;
-        speed = speedOriginal;
-    }
-
-    public void speedLevelUp1()
-    {
-        speedOriginal += speedStatIncrease + 1;
-        speed = speedOriginal;
-    }
-
-    public void speedLevelUp2()
-    {
-        speedOriginal += speedStatIncrease + 2;
-        speed = speedOriginal;
-    }
-    #endregion
-
     public void updateBuffUI()
     {
         if (speedBuffed == false)
@@ -478,4 +431,56 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Debug.Log("Next level requires " + maxXP + " XP");
     }
 
+    #region LevelUpFunctionss
+
+    public void hpLevelUp0()
+    {
+        hpOriginal += hpStatIncrease;
+        hp = hpOriginal;
+    }
+
+    public void hpLevelUp1()
+    {
+        hpOriginal += hpStatIncrease + hpTier2;
+        hp = hpOriginal;
+    }
+
+    public void hpLevelUp2()
+    {
+        hpOriginal += hpStatIncrease + hpTier3;
+        hp = hpOriginal;
+    }
+
+    public void damageLevelUp0()
+    {
+        damageOriginal += damageStatIncrease;
+    }
+
+    public void damageLevelUp1()
+    {
+        damageOriginal += damageStatIncrease + damageTier2;
+    }
+
+    public void damageLevelUp2()
+    {
+        damageOriginal += damageStatIncrease + damageTier3;
+    }
+    public void speedLevelUp0()
+    {
+        speedOriginal += speedStatIncrease;
+        speed = speedOriginal;
+    }
+
+    public void speedLevelUp1()
+    {
+        speedOriginal += speedStatIncrease + speedTier2;
+        speed = speedOriginal;
+    }
+
+    public void speedLevelUp2()
+    {
+        speedOriginal += speedStatIncrease + speedTier3;
+        speed = speedOriginal;
+    }
+    #endregion
 }
