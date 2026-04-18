@@ -156,58 +156,6 @@ Transform:
   - {fileID: 823407919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &192616726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 192616727}
-  - component: {fileID: 192616728}
-  m_Layer: 0
-  m_Name: levelUpButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &192616727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192616726}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 401.39856, y: 277.3306, z: 129.57999}
-  m_LocalScale: {x: 1.0204082, y: 1.0204082, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4873680239988490327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &192616728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192616726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bde71b553967a4693167d4467f8fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::levelUpButton
-  button: {fileID: 4873680239988490328}
-  image: {fileID: 2019148091}
-  text: {fileID: 579795347}
-  type: 0
-  tier: 0
-  healthImg: {fileID: 21300000, guid: b5f990199efa3494db6a6102fe7b6f6d, type: 3}
-  speedImg: {fileID: 21300000, guid: 0dcb2d5684e23e44c8eb6676526f3a56, type: 3}
-  damageImg: {fileID: 21300000, guid: 583f49286cbe77f4e8542db6ba77de10, type: 3}
 --- !u!1 &239096144
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,33 +351,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6828646014251631607, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
   m_PrefabInstance: {fileID: 6943124124185882697}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &579795347 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3824131841425510648, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &675290652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8660659994417668182, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
   m_PrefabInstance: {fileID: 1755774279}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &717830023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7788269085186600384, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &793108855 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2428749845921660187, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -495,58 +421,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &884392281
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 884392282}
-  - component: {fileID: 884392283}
-  m_Layer: 0
-  m_Name: levelUpButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &884392282
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884392281}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6985411, y: 277.3306, z: 129.57999}
-  m_LocalScale: {x: 1.0204082, y: 1.0204082, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4873680239988490325}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &884392283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884392281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bde71b553967a4693167d4467f8fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::levelUpButton
-  button: {fileID: 4873680239988490326}
-  image: {fileID: 717830023}
-  text: {fileID: 1055675834}
-  type: 0
-  tier: 0
-  healthImg: {fileID: 21300000, guid: b5f990199efa3494db6a6102fe7b6f6d, type: 3}
-  speedImg: {fileID: 21300000, guid: 0dcb2d5684e23e44c8eb6676526f3a56, type: 3}
-  damageImg: {fileID: 21300000, guid: 583f49286cbe77f4e8542db6ba77de10, type: 3}
 --- !u!1 &960150123
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,17 +488,6 @@ Transform:
 --- !u!114 &1019631840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1178440876083747240, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &1055675834 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2350144420008861908, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
   m_PrefabInstance: {fileID: 4873680239988490322}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -765,58 +628,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
---- !u!1 &1769437992
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1769437993}
-  - component: {fileID: 1769437994}
-  m_Layer: 0
-  m_Name: levelUpButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1769437993
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769437992}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -400.20145, y: 277.3306, z: 129.57999}
-  m_LocalScale: {x: 1.0204082, y: 1.0204082, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4873680239988490323}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1769437994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769437992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bde71b553967a4693167d4467f8fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::levelUpButton
-  button: {fileID: 4873680239988490324}
-  image: {fileID: 2145262496}
-  text: {fileID: 1846245042}
-  type: 0
-  tier: 0
-  healthImg: {fileID: 21300000, guid: b5f990199efa3494db6a6102fe7b6f6d, type: 3}
-  speedImg: {fileID: 21300000, guid: 0dcb2d5684e23e44c8eb6676526f3a56, type: 3}
-  damageImg: {fileID: 21300000, guid: 583f49286cbe77f4e8542db6ba77de10, type: 3}
 --- !u!1001 &1781857282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -894,28 +705,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5226e0729747e4faa19be920a59757, type: 3}
---- !u!114 &1846245042 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2460827708946172705, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &2019148091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2757632574615692656, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &2138498849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5013490916181218328, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -927,17 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &2145262496 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8778861551979301958, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &946660875935947278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6966845038810697763, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -1193,10 +971,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 520978089082242937, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: Image3
-      objectReference: {fileID: 0}
     - target: {fileID: 2141179273644729472, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1277,122 +1051,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2375161595662247293, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2733592173336911943, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: LevelUp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3202821558311238463, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1769437994}
-    - target: {fileID: 3202821558311238463, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: upgrade
-      objectReference: {fileID: 0}
-    - target: {fileID: 3202821558311238463, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: levelUpButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 4013818055121638511, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 4477801551720210740, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: Image2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047551944513549302, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 884392283}
-    - target: {fileID: 7047551944513549302, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: upgrade
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047551944513549302, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: levelUpButton, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7387575305059434762, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: LevelUp1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7941606406395437486, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: LevelUp2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8350718690962227797, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_Name
-      value: Image1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9057597889836899830, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9057597889836899830, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 192616728}
-    - target: {fileID: 9057597889836899830, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: upgrade
-      objectReference: {fileID: 0}
-    - target: {fileID: 9057597889836899830, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: levelUpButton, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9057597889836899830, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 647248301407227104, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 192616727}
-    - targetCorrespondingSourceObject: {fileID: 1927772461244906278, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 884392282}
-    - targetCorrespondingSourceObject: {fileID: 9205691309920176212, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 1769437993}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
---- !u!224 &4873680239988490323 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9205691309920176212, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4873680239988490324 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2733592173336911943, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4873680239988490325 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1927772461244906278, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4873680239988490326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7941606406395437486, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4873680239988490327 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 647248301407227104, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4873680239988490328 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7387575305059434762, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5699054118222682041 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6409344176945896791, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
