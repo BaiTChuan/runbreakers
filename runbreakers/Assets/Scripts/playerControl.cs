@@ -258,6 +258,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     }
 
     #region LevelUpFunctions
+
     public void hpLevelUp0()
     {
         hpOriginal += hpStatIncrease;

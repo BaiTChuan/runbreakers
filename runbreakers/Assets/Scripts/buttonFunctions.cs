@@ -6,13 +6,6 @@ public class buttonFunctions : MonoBehaviour
 {
     public string startButtonScene;
     string menuScene = "MenuScene";
-    [SerializeField] GameObject levelUpButton;
-
-    // Type 0 = health | 1 = speed | 2 = damage
-    int levelUpType;
-
-    // Tier 0 = common | Tier 1 = rare | Tier 2 = epic
-    int levelUpTier;
 
     public void resume()
     {
@@ -25,32 +18,27 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void healthUp()
-    {
-        Gamemanager.instance.playerScript.hpLevelUp();
-        Gamemanager.instance.playerScript.updatePlayerUI();
-        Gamemanager.instance.stateUnpause();
-    }
-
-    public void damageUp()
-    {
-        Gamemanager.instance.playerScript.damageLevelUp();
-        Gamemanager.instance.stateUnpause();
-    }
-
-    public void speedUp()
-    {
-        Gamemanager.instance.playerScript.speedLevelUp();
-        Gamemanager.instance.stateUnpause();
-    }
-
     public void levelUp()
     {
-        if (levelUpType == 0)
+        if (Gamemanager.instance.levelUpType1 == 0)
         {
             if (levelUpTier == 0)
             {
-                Gamemanager.instance.playerScript.hpLevelUp();
+                Gamemanager.instance.playerScript.hpLevelUp0();
+                Gamemanager.instance.playerScript.updatePlayerUI();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 1)
+            {
+                Gamemanager.instance.playerScript.hpLevelUp1();
+                Gamemanager.instance.playerScript.updatePlayerUI();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 2)
+            {
+                Gamemanager.instance.playerScript.hpLevelUp2();
                 Gamemanager.instance.playerScript.updatePlayerUI();
                 Gamemanager.instance.stateUnpause();
             }
@@ -58,14 +46,44 @@ public class buttonFunctions : MonoBehaviour
 
         if (levelUpType == 1)
         {
-            Gamemanager.instance.playerScript.speedLevelUp();
-            Gamemanager.instance.stateUnpause();
+            if (levelUpTier == 0)
+            {
+                Gamemanager.instance.playerScript.speedLevelUp0();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 1)
+            {
+                Gamemanager.instance.playerScript.speedLevelUp1();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 2)
+            {
+                Gamemanager.instance.playerScript.speedLevelUp2();
+                Gamemanager.instance.stateUnpause();
+            }
         }
 
         if (levelUpType == 2)
         {
-            Gamemanager.instance.playerScript.damageLevelUp();
-            Gamemanager.instance.stateUnpause();
+            if (levelUpTier == 0)
+            {
+                Gamemanager.instance.playerScript.damageLevelUp0();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 1)
+            {
+                Gamemanager.instance.playerScript.damageLevelUp1();
+                Gamemanager.instance.stateUnpause();
+            }
+
+            if (levelUpTier == 2)
+            {
+                Gamemanager.instance.playerScript.damageLevelUp2();
+                Gamemanager.instance.stateUnpause();
+            }
         }
     }
 
