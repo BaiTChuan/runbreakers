@@ -23,6 +23,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
+    public bool isLevelUp = false;
 
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
@@ -243,11 +244,15 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    #region LevelUpFunctions
+ 
     public void LevelUp()
     {
         levelCur += 1;
+        isLevelUp = true;
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
+
 
         if (Gamemanager.instance.playerScript.GetCurrentLevel() == 3)
         {
@@ -262,6 +267,7 @@ public class Gamemanager : MonoBehaviour
     {
         levels.text = levelCur.ToString("F0");
     }
+    #endregion
 
     public void showWin()
     {
