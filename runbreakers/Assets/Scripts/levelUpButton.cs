@@ -37,120 +37,128 @@ public class levelUpButton : MonoBehaviour
         {
             rollUpgrade();
             rolled = true;
+        }
 
-            if (type == 0)
-            {
-                image.sprite = healthImg;
-                if (tier == 0)
-                {
-                    text.text = health;
-                }
-                if (tier == 1)
-                {
-                    text.text = health2;
-                }
-                if (tier == 2)
-                {
-                    text.text = health3;
-                }
-            }
-
-            if (type == 1)
-            {
-                image.sprite = speedImg;
-                if (tier == 0)
-                {
-                    text.text = speed;
-                }
-                if (tier == 1)
-                {
-                    text.text = speed2;
-                }
-                if (tier == 2)
-                {
-                    text.text = speed3;
-                }
-            }
-
-            if (type == 2)
-            {
-                image.sprite = damageImg;
-                if (tier == 0)
-                {
-                    text.text = damage;
-                }
-                if (tier == 1)
-                {
-                    text.text = damage2;
-                }
-                if (tier == 2)
-                {
-                    text.text = damage3;
-                }
-            }
+        if (Gamemanager.instance.isRerolled == true)
+        {
+            rollUpgrade();
         }
     }
 
     public void upgrade()
     {
-        if (type == 0)
+        if (Gamemanager.instance.rolling == false)
         {
-            if (tier == 0)
+            if (type == 0)
             {
-                Gamemanager.instance.playerScript.hpLevelUp0();
-                Gamemanager.instance.playerScript.updatePlayerUI();
+                if (tier == 0)
+                {
+                    Gamemanager.instance.playerScript.hpLevelUp0();
+                    Gamemanager.instance.playerScript.updatePlayerUI();
+                }
+                if (tier == 1)
+                {
+                    Gamemanager.instance.playerScript.hpLevelUp1();
+                    Gamemanager.instance.playerScript.updatePlayerUI();
+                }
+                if (tier == 2)
+                {
+                    Gamemanager.instance.playerScript.hpLevelUp2();
+                    Gamemanager.instance.playerScript.updatePlayerUI();
+                }
             }
-            if (tier == 1)
-            {
-                Gamemanager.instance.playerScript.hpLevelUp1();
-                Gamemanager.instance.playerScript.updatePlayerUI();
-            }
-            if (tier == 2)
-            {
-                Gamemanager.instance.playerScript.hpLevelUp2();
-                Gamemanager.instance.playerScript.updatePlayerUI();
-            }
-        }
 
-        if (type == 1)
-        {
-            if (tier == 0)
+            if (type == 1)
             {
-                Gamemanager.instance.playerScript.speedLevelUp0();
+                if (tier == 0)
+                {
+                    Gamemanager.instance.playerScript.speedLevelUp0();
+                }
+                if (tier == 1)
+                {
+                    Gamemanager.instance.playerScript.speedLevelUp1();
+                }
+                if (tier == 2)
+                {
+                    Gamemanager.instance.playerScript.speedLevelUp2();
+                }
             }
-            if (tier == 1)
-            {
-                Gamemanager.instance.playerScript.speedLevelUp1();
-            }
-            if (tier == 2)
-            {
-                Gamemanager.instance.playerScript.speedLevelUp2();
-            }
-        }
 
-        if (type == 2)
-        {
-            if (tier == 0)
+            if (type == 2)
             {
-                Gamemanager.instance.playerScript.damageLevelUp0();
+                if (tier == 0)
+                {
+                    Gamemanager.instance.playerScript.damageLevelUp0();
+                }
+                if (tier == 1)
+                {
+                    Gamemanager.instance.playerScript.damageLevelUp1();
+                }
+                if (tier == 2)
+                {
+                    Gamemanager.instance.playerScript.damageLevelUp2();
+                }
             }
-            if (tier == 1)
-            {
-                Gamemanager.instance.playerScript.damageLevelUp1();
-            }
-            if (tier == 2)
-            {
-                Gamemanager.instance.playerScript.damageLevelUp2();
-            }
+            Gamemanager.instance.isLevelUp = false;
+            rolled = false;
+            Gamemanager.instance.stateUnpause();
         }
-        Gamemanager.instance.isLevelUp = false;
-        rolled = false;
-        Gamemanager.instance.stateUnpause();
     }
 
     void rollUpgrade()
     {
         type = Random.Range(0, 3);
         tier = Random.Range(0, 3);
+
+        if (type == 0)
+        {
+            image.sprite = healthImg;
+            if (tier == 0)
+            {
+                text.text = health;
+            }
+            if (tier == 1)
+            {
+                text.text = health2;
+            }
+            if (tier == 2)
+            {
+                text.text = health3;
+            }
+        }
+
+        if (type == 1)
+        {
+            image.sprite = speedImg;
+            if (tier == 0)
+            {
+                text.text = speed;
+            }
+            if (tier == 1)
+            {
+                text.text = speed2;
+            }
+            if (tier == 2)
+            {
+                text.text = speed3;
+            }
+        }
+
+        if (type == 2)
+        {
+            image.sprite = damageImg;
+            if (tier == 0)
+            {
+                text.text = damage;
+            }
+            if (tier == 1)
+            {
+                text.text = damage2;
+            }
+            if (tier == 2)
+            {
+                text.text = damage3;
+            }
+        }
     }
 }
