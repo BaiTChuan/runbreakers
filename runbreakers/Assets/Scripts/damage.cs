@@ -30,6 +30,7 @@ public class damage : MonoBehaviour
         {
             if (dmg != null)
             {
+                Debug.Log("Regular Contact Damage Hit");
                 dmg.takeDamage(damageAmount);
             }
         }
