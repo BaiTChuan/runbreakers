@@ -20,6 +20,14 @@ public class levelUpButton : MonoBehaviour
     string speed = "Speed Up";
     string damage = "Damage Up";
 
+    string health2 = "Health Up 2";
+    string speed2 = "Speed Up 2";
+    string damage2 = "Damage Up 2";
+
+    string health3 = "Health Up 3";
+    string speed3 = "Speed Up 3";
+    string damage3 = "Damage Up 3";
+
     bool rolled = false;
 
     // Update is called once per frame
@@ -33,19 +41,52 @@ public class levelUpButton : MonoBehaviour
             if (type == 0)
             {
                 image.sprite = healthImg;
-                text.text = health;
+                if (tier == 0)
+                {
+                    text.text = health;
+                }
+                if (tier == 1)
+                {
+                    text.text = health2;
+                }
+                if (tier == 2)
+                {
+                    text.text = health3;
+                }
             }
 
             if (type == 1)
             {
                 image.sprite = speedImg;
-                text.text = speed;
+                if (tier == 0)
+                {
+                    text.text = speed;
+                }
+                if (tier == 1)
+                {
+                    text.text = speed2;
+                }
+                if (tier == 2)
+                {
+                    text.text = speed3;
+                }
             }
 
             if (type == 2)
             {
                 image.sprite = damageImg;
-                text.text = damage;
+                if (tier == 0)
+                {
+                    text.text = damage;
+                }
+                if (tier == 1)
+                {
+                    text.text = damage2;
+                }
+                if (tier == 2)
+                {
+                    text.text = damage3;
+                }
             }
         }
     }
