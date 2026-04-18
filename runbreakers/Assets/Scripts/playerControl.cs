@@ -257,7 +257,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.updateHpText(hp);
     }
 
-    #region LevelUpFunctions
+    #region LevelUpFunctionss
 
     public void hpLevelUp0()
     {

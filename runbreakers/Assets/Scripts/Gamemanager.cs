@@ -23,21 +23,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
-
-    [Header("----- LevelUpMenu ------")]
-    [SerializeField] GameObject levelUpButton1;
-    [SerializeField] GameObject levelUpButton2;
-    [SerializeField] GameObject levelUpButton3;
-
-    // Type 0 = health | 1 = speed | 2 = damage
-    public int levelUpType1;
-    public int levelUpType2;
-    public int levelUpType3;
-
-    // Tier 0 = common | Tier 1 = rare | Tier 2 = epic
-    public int levelUpTier1;
-    public int levelUpTier2;
-    public int levelUpTier3;
+    public bool isLevelUp = false;
 
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
@@ -259,20 +245,11 @@ public class Gamemanager : MonoBehaviour
     }
 
     #region LevelUpFunctions
-
-    public void rollTypes()
-    {
-        levelUpType1 = Random.Range(0, 2);
-        levelUpTier1 = Random.Range(0, 2);
-        levelUpType2 = Random.Range(0, 2);
-        levelUpTier2 = Random.Range(0, 2);
-        levelUpType3 = Random.Range(0, 2);
-        levelUpTier3 = Random.Range(0, 2);
-    }
-
+ 
     public void LevelUp()
     {
         levelCur += 1;
+        isLevelUp = true;
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
 
