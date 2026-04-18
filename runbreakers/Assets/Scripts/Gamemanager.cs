@@ -23,7 +23,14 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
+
+    [Header("----- LevelUp ------")]
     public bool isLevelUp = false;
+    public int rerollChance = 0;
+    public int rerollLimit;
+    public bool isRerolled = false;
+    [SerializeField] TMP_Text rerollCurText;
+    [SerializeField] TMP_Text rerollLimitText;
 
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
@@ -250,6 +257,8 @@ public class Gamemanager : MonoBehaviour
     {
         levelCur += 1;
         isLevelUp = true;
+        rerollChance = 0;
+        updateRerollRemaining();
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
 
@@ -266,6 +275,12 @@ public class Gamemanager : MonoBehaviour
     public void setLevelText()
     {
         levels.text = levelCur.ToString("F0");
+    }
+
+    public void updateRerollRemaining()
+    {
+        rerollCurText.text = rerollChance.ToString();
+        rerollLimitText.text = rerollLimit.ToString();
     }
     #endregion
 

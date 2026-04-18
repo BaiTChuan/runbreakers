@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class buttonFunctions : MonoBehaviour
 {
@@ -26,6 +27,16 @@ public class buttonFunctions : MonoBehaviour
     public void startMenuScene()
     {
         SceneManager.LoadScene(menuScene);
+    }
+
+    public void rerollUpgrade()
+    {
+        if (Gamemanager.instance.isLevelUp == true && (Gamemanager.instance.rerollChance < Gamemanager.instance.rerollLimit))
+        {
+            Gamemanager.instance.isRerolled = true;
+            Gamemanager.instance.rerollChance++;
+            Gamemanager.instance.updateRerollRemaining();
+        }
     }
 
     public void quit()
