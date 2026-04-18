@@ -151,6 +151,7 @@ Transform:
   - {fileID: 9197000579577758907}
   - {fileID: 8288141879726935745}
   - {fileID: 517811437}
+  - {fileID: 1670455478}
   - {fileID: 706411162}
   - {fileID: 363463193}
   - {fileID: 1752800384795580025}
@@ -686,6 +687,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1001 &1670455477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 69811293}
+    m_Modifications:
+    - target: {fileID: 1190374263370342826, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: beingHitEffect
+      value: 
+      objectReference: {fileID: 6744986102225056732}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.01484
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.12757
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748283802342859834, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+      propertyPath: m_Name
+      value: EnemyBroodMother
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+--- !u!4 &1670455478 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7370307019625582198, guid: 1dd6073f4c18cef44b601b613ec5457a, type: 3}
+  m_PrefabInstance: {fileID: 1670455477}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781857282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,6 +1067,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69811293}
     m_Modifications:
+    - target: {fileID: -8337532709096703963, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
+      propertyPath: beingHitEffect
+      value: 
+      objectReference: {fileID: 6744986102225056732}
     - target: {fileID: 5126499337545940192, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.8
@@ -1180,6 +1251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69811293}
     m_Modifications:
+    - target: {fileID: -6063362336561844337, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
+      propertyPath: beingHitEffect
+      value: 
+      objectReference: {fileID: 6744986102225056732}
     - target: {fileID: 6963791380911406370, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
       propertyPath: m_Name
       value: EnemyBasic
@@ -1233,6 +1308,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
+--- !u!198 &6744986102225056732 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1110224512855222056, guid: b21fad981365cd642bac08c441c53ac7, type: 3}
+  m_PrefabInstance: {fileID: 6744986102225056731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6943124124185882697
 PrefabInstance:
   m_ObjectHideFlags: 0

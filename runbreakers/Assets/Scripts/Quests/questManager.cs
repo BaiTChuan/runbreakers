@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using TMPro;
 
 public class questManager : MonoBehaviour
@@ -28,6 +29,7 @@ public class questManager : MonoBehaviour
     questPoint currentQuestPoint;
     questData currentQuest;
     Transform currentTrackedTarget;
+    GameObject currentSpawnedQuestTarget;
 
     float currentQuestTimer;
     float nextQuestTimer;
@@ -48,6 +50,7 @@ public class questManager : MonoBehaviour
         currentQuest = null;
         currentQuestPoint = null;
         currentTrackedTarget = null;
+        currentSpawnedQuestTarget = null;
         currentQuestTimer = 0f;
         nextQuestTimer = timeBetweenQuests;
         completedQuestCount = 0;
@@ -147,6 +150,7 @@ public class questManager : MonoBehaviour
         currentQuestPoint = point;
         currentQuest = point.questData;
         currentTrackedTarget = point.transform;
+        currentSpawnedQuestTarget = null;
 
         applyQuestDifficultyScaling(currentQuest);
 
@@ -168,6 +172,7 @@ public class questManager : MonoBehaviour
         currentQuestPoint = null;
         currentQuest = quest;
         currentTrackedTarget = null;
+        currentSpawnedQuestTarget = null;
 
         applyQuestDifficultyScaling(currentQuest);
 
@@ -176,11 +181,37 @@ public class questManager : MonoBehaviour
         questActive = true;
         objectiveStarted = true;
 
+        spawnQuestTargetNearPlayer();
+
         updateQuestUI();
 
         Debug.Log("Started Spawned Quest: " + currentQuest.questName);
         Debug.Log("Scaled Extra Enemy Count: " + currentQuest.scaledExtraEnemyCount);
         Debug.Log("Scaled Target HP Multiplier: " + currentQuest.scaledTargetHealthMultiplier);
+    }
+
+    void spawnQuestTargetNearPlayer()
+    {
+        if (currentQuest == null || currentQuest.spawnedTargetPrefab == null)
+            return;
+
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
+            return;
+
+        Vector3 playerPosition = Gamemanager.instance.player.transform.position;
+        Vector2 randomCircle = Random.insideUnitCircle.normalized * currentQuest.spawnDistanceFromPlayer;
+        Vector3 spawnGuess = playerPosition + new Vector3(randomCircle.x, 0f, randomCircle.y);
+
+        NavMeshHit hit;
+        Vector3 spawnPosition = spawnGuess;
+
+        if (NavMesh.SamplePosition(spawnGuess, out hit, currentQuest.spawnDistanceFromPlayer + 5f, NavMesh.AllAreas))
+        {
+            spawnPosition = hit.position;
+        }
+
+        currentSpawnedQuestTarget = Instantiate(currentQuest.spawnedTargetPrefab, spawnPosition, Quaternion.identity);
+        currentTrackedTarget = currentSpawnedQuestTarget.transform;
     }
 
     public void BeginPointQuestObjective()
@@ -236,6 +267,11 @@ public class questManager : MonoBehaviour
             currentQuestPoint.DeactivateQuestPoint();
         }
 
+        if (currentSpawnedQuestTarget != null)
+        {
+            Destroy(currentSpawnedQuestTarget);
+        }
+
         Debug.Log("Quest Failed: " + currentQuest.questName);
 
         clearCurrentQuest();
@@ -246,6 +282,7 @@ public class questManager : MonoBehaviour
         currentQuest = null;
         currentQuestPoint = null;
         currentTrackedTarget = null;
+        currentSpawnedQuestTarget = null;
         nextQuestTimer = timeBetweenQuests;
 
         clearQuestUI();
@@ -323,6 +360,11 @@ public class questManager : MonoBehaviour
         if (currentTrackedTarget == targetTransform)
         {
             currentTrackedTarget = null;
+        }
+
+        if (currentSpawnedQuestTarget != null && currentSpawnedQuestTarget.transform == targetTransform)
+        {
+            currentSpawnedQuestTarget = null;
         }
     }
 

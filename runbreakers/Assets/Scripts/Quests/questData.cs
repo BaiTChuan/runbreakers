@@ -21,6 +21,10 @@ public class questData
     [Header("---- Target Info ----")]
     public string targetID;
 
+    [Header("---- Spawned Target Quest ----")]
+    public GameObject spawnedTargetPrefab;
+    public float spawnDistanceFromPlayer = 8f;
+
     [Header("---- Rewards ----")]
     public int rewardXP;
     public int rewardGold;
