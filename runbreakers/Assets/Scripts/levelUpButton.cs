@@ -1,12 +1,24 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class levelUpButton : MonoBehaviour
 {
     [SerializeField] GameObject button;
+    [SerializeField] Image image;
+    [SerializeField] TMP_Text text;
 
     // Type 0 = health | 1 = speed | 2 = damage
     public int type;
     public int tier;
+
+    public Sprite healthImg;
+    public Sprite speedImg;
+    public Sprite damageImg;
+
+    string health = "Health Up";
+    string speed = "Speed Up";
+    string damage = "Damage Up";
 
     bool rolled = false;
 
@@ -17,6 +29,24 @@ public class levelUpButton : MonoBehaviour
         {
             rollUpgrade();
             rolled = true;
+
+            if (type == 0)
+            {
+                image.sprite = healthImg;
+                text.text = health;
+            }
+
+            if (type == 1)
+            {
+                image.sprite = speedImg;
+                text.text = speed;
+            }
+
+            if (type == 2)
+            {
+                image.sprite = damageImg;
+                text.text = damage;
+            }
         }
     }
 
@@ -57,7 +87,7 @@ public class levelUpButton : MonoBehaviour
             }
         }
 
-        if (type == 3)
+        if (type == 2)
         {
             if (tier == 0)
             {
