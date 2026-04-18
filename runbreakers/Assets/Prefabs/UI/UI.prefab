@@ -2667,7 +2667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7299836298993783782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5213,8 +5213,10 @@ MonoBehaviour:
   rerollChance: 0
   rerollLimit: 4
   isRerolled: 0
-  rerollCurText: {fileID: 0}
-  rerollLimitText: {fileID: 0}
+  rolling: 0
+  rerollCurText: {fileID: 6723050684359251452}
+  rerollLimitText: {fileID: 1562358700680392019}
+  rerollText: {fileID: 6635387283608464817}
   bossHPBar: {fileID: 4469143809956545653}
   bossCurrentHPBar: {fileID: 6409344176945896791}
   bossHPText: {fileID: 1711031505691621237}

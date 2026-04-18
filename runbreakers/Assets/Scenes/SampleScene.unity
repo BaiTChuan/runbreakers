@@ -418,17 +418,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6828646014251631607, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
   m_PrefabInstance: {fileID: 6943124124185882697}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &635065422 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1562358700680392019, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &706411161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -701,17 +690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &1656890620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6635387283608464817, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1781857282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,17 +795,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5226e0729747e4faa19be920a59757, type: 3}
---- !u!114 &1946935709 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6723050684359251452, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &2138498849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5013490916181218328, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -1177,30 +1144,6 @@ PrefabInstance:
     - target: {fileID: 2141179273644729472, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2375161595662247293, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: rerollText
-      value: 
-      objectReference: {fileID: 1656890620}
-    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: rerollTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: rerollCurText
-      value: 
-      objectReference: {fileID: 1946935709}
-    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: rerollLimitText
-      value: 
-      objectReference: {fileID: 635065422}
-    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: rerollTimerTime
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4013818055121638511, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_Name
