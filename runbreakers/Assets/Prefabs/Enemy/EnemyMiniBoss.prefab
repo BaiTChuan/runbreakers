@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::spiderMiniBossAI
   moveSpeed: 5
   stopDistance: 2.5
-  webAttackDistance: 10
+  webAttackDistance: 20
   maxHP: 700
   xpValue: 8
   goalValue: 5
