@@ -262,7 +262,7 @@ public class Gamemanager : MonoBehaviour
     }
 
     #region LevelUpFunctions
- 
+
     public void LevelUp()
     {
         levelCur += 1;

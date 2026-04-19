@@ -5012,7 +5012,7 @@ MonoBehaviour:
   goalValue: 20
   lowHPPercent: 0.4
   targetID: LootGoblin
-  goldPiecePrefab: {fileID: 6477669263285977651, guid: 069c14962a408514da0006e25755e401, type: 3}
+  goldPiecePrefab: {fileID: 3637305740836842957, guid: c00df110b79f6e04ba9b61c522e4fe08, type: 3}
   goldDropRate: 1
   beingHitEffect: {fileID: 0}
 --- !u!1 &7454668937046631185
