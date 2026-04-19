@@ -36,7 +36,7 @@ public class ChainLightningSpell : Player_Spell
         Projectile projectile = bolt.GetComponent<Projectile>();
         if (projectile != null)
         {
-            projectile.SetDamage(Damage);
+            projectile.SetDamage(Damage + Gamemanager.instance.playerScript.characterAttackPower);
             projectile.SetChainLightningSource(this);
         }
     }

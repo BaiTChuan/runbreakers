@@ -14,7 +14,7 @@ public class FireballSpell : Player_Spell
         Projectile projectile = fireball.GetComponent<Projectile>();
         if (projectile != null)
         {
-            projectile.SetDamage(Damage);
+            projectile.SetDamage(Damage + Gamemanager.instance.playerScript.characterAttackPower);
         }
     }
 }

@@ -14,7 +14,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 30)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] float speed;
     [Range(2, 6)][SerializeField] int sprintMod;
-    [SerializeField] int characterAttackPower;
+    [SerializeField] public int characterAttackPower;
     [SerializeField] int characterArmor;
     [SerializeField] int characterLuck;
     [SerializeField] float characterCastSpeed;
@@ -57,6 +57,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     int hpOriginal;
     float speedOriginal;
+    float castSpeedOriginal;
 
     float speedTimer;
     float speedDuration;
@@ -99,8 +100,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         hp = hpOriginal;
         speedOriginal = speed + mainMenuManager.speedP;
         speed = speedOriginal;
-        damageOriginal = 0 + mainMenuManager.damageP;
+        damageOriginal = characterAttackPower + mainMenuManager.damageP;
         characterAttackPower = damageOriginal;
+        castSpeedOriginal = characterCastSpeed;
 
         speedBuffed = false;
         speedDebuffed = false;
@@ -246,7 +248,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
         if (damageBuffTimer >= damageBuffDuration && damageBuffed == true)
         {
-            damageBuff = 0;
+            characterAttackPower = damageOriginal;
+            characterCastSpeed = castSpeedOriginal;
             damageBuffed = false;
         }
 
@@ -387,21 +390,12 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         {
             if (!damageBuffed)
             {
-                damageBuff = buff.damageBuff;
-
-                damageBuffDuration = buff.damageBuffDuration;
-                damageBuffTimer = 0f;
-                damageBuffed = true;
+                characterAttackPower += 2;
+                characterCastSpeed -= 0.3f;
             }
-            else
-            {
-                damageBuff = 0;
-
-                damageBuff = buff.damageBuff;
-
-                damageBuffDuration = buff.damageBuffDuration;
-                damageBuffTimer = 0f;
-            }
+            damageBuffDuration = buff.damageBuffDuration;
+            damageBuffTimer = 0f;
+            damageBuffed = true;
         }
         if (buff.id == 3)
         {
