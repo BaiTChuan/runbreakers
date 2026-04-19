@@ -1145,6 +1145,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: luckStatTier3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: armorStatTier3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: castSpeedStatTier2
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: castSpeedStatTier3
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: characterCastSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -1152,6 +1172,10 @@ PrefabInstance:
       propertyPath: 'spells.Array.data[2]'
       value: 
       objectReference: {fileID: 1293907164}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: castSpeedStatIncrease
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: spellPrefabs.Array.size
       value: 3
@@ -1632,6 +1656,14 @@ PrefabInstance:
     - target: {fileID: 2141179273644729472, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375161595662247293, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806133649314314973, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: rerollLimit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3539811181527121004, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_AnchoredPosition.y

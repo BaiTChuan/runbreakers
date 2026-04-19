@@ -23,12 +23,24 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] int hpStatIncrease;
     [Range(1, 10)][SerializeField] float speedStatIncrease;
     [Range(1, 10)][SerializeField] int damageStatIncrease;
+    [Range(1, 10)][SerializeField] int armorStatIncrease;
+    [Range(0, 1)][SerializeField] float castSpeedStatIncrease;
+    [Range(1, 10)][SerializeField] int luckStatIncrease;
+
     [Range(1, 10)][SerializeField] int hpTier2;
-    [Range(1, 10)][SerializeField] int hpTier3;
     [Range(0, 10)][SerializeField] float speedTier2;
-    [Range(0, 10)][SerializeField] float speedTier3;
     [Range(1, 10)][SerializeField] int damageTier2;
+    [Range(1, 10)][SerializeField] int armorStatTier2;
+    [Range(0, 1)][SerializeField] float castSpeedStatTier2;
+    [Range(1, 10)][SerializeField] int luckStatTier2;
+
+    [Range(1, 10)][SerializeField] int hpTier3;
+    [Range(0, 10)][SerializeField] float speedTier3;
     [Range(1, 10)][SerializeField] int damageTier3;
+    [Range(1, 10)][SerializeField] int armorStatTier3;
+    [Range(0, 1)][SerializeField] float castSpeedStatTier3;
+    [Range(1, 10)][SerializeField] int luckStatTier3;
+
 
     [Header("----- Spells ------")]
     [SerializeField] private List<Player_Spell> spellPrefabs = new List<Player_Spell>();
@@ -56,8 +68,13 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     float castTimer;
 
     int hpOriginal;
+    int hpBase;
     float speedOriginal;
+    float speedBase;
+    public int damageOriginal;
+    int damageBase;
     float castSpeedOriginal;
+    float castSpeedBase;
 
     float speedTimer;
     float speedDuration;
@@ -70,7 +87,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     bool damageBuffed;
 
     public int damageBuff;
-    public int damageOriginal;
     float damageBuffTimer;
     float damageBuffDuration;
 
@@ -95,13 +111,16 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Keep track of orginal hp
+        hpBase = hp;
         hpOriginal = hp + mainMenuManager.healthP;
         hp = hpOriginal;
+        speedBase = speed;
         speedOriginal = speed + mainMenuManager.speedP;
         speed = speedOriginal;
+        damageBase = characterAttackPower;
         damageOriginal = characterAttackPower + mainMenuManager.damageP;
         characterAttackPower = damageOriginal;
+        castSpeedBase = characterCastSpeed;
         castSpeedOriginal = characterCastSpeed;
 
         speedBuffed = false;
@@ -119,6 +138,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         movement();
         sprint();
         AimGunToMouse();
+        dataDeletedCheck();
     }
 
     IEnumerator playStep()
@@ -476,6 +496,20 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Debug.Log("Next level requires " + maxXP + " XP");
     }
 
+    void dataDeletedCheck()
+    {
+        if (mainMenuManager.instance.dataDeleted == true)
+        {
+            hpOriginal = hpBase;
+            hp = hpOriginal;
+            speedOriginal = speedBase;
+            speed = speedOriginal;
+            damageOriginal = damageBase;
+            characterAttackPower = damageOriginal;
+            castSpeedOriginal = castSpeedBase;
+        }
+    }
+
     #region LevelUpFunctionss
 
     public void hpLevelUp0()
@@ -526,6 +560,54 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     {
         speedOriginal += speedStatIncrease + speedTier3;
         speed = speedOriginal;
+    }
+
+    public void armorLevelUp0()
+    {
+        characterArmor += armorStatIncrease;
+    }
+
+    public void armorLevelUp1()
+    {
+        characterArmor += armorStatIncrease + armorStatTier2;
+    }
+
+    public void armorLevelUp2()
+    {
+        characterArmor += armorStatIncrease + armorStatTier3;
+    }
+
+    public void castSpeedLevelUp0()
+    {
+        castSpeedOriginal -= castSpeedStatIncrease;
+        characterCastSpeed = castSpeedOriginal;
+    }
+
+    public void castSpeedLevelUp1()
+    {
+        castSpeedOriginal -= castSpeedStatIncrease + castSpeedStatTier2;
+        characterCastSpeed = castSpeedOriginal;
+    }
+
+    public void castSpeedLevelUp2()
+    {
+        castSpeedOriginal -= castSpeedStatIncrease + castSpeedStatTier3;
+        characterCastSpeed = castSpeedOriginal;
+    }
+
+    public void luckLevelUp0()
+    {
+        characterLuck += luckStatIncrease;
+    }
+
+    public void luckLevelUp1()
+    {
+        characterLuck += luckStatIncrease + luckStatTier2;
+    }
+
+    public void luckLevelUp2()
+    {
+        characterLuck += luckStatIncrease + luckStatTier3;
     }
     #endregion
 }
