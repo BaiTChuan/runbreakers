@@ -799,7 +799,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mission Completed!
 
-    
+
 
     You earned: 20 Gold, 10 XP'
   m_isRightToLeft: 0
@@ -1082,6 +1082,10 @@ PrefabInstance:
     - target: {fileID: 3304841413680316636, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: hpTier2
