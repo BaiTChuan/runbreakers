@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &69811293
 Transform:
   m_ObjectHideFlags: 0
@@ -702,6 +702,9 @@ MonoBehaviour:
   questObjectiveText: {fileID: 793108855}
   questTimerText: {fileID: 2138498849}
   questDistanceText: {fileID: 1216783893}
+  rewardPopupPanel: {fileID: 0}
+  rewardPopupText: {fileID: 0}
+  rewardPopupDuration: 3
   timeBetweenQuests: 20
   extraEnemiesPerCompletedQuest: 1
   targetHealthIncreasePerCompletedQuest: 0.1
