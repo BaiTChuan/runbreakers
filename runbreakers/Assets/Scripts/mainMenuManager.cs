@@ -21,18 +21,22 @@ public class mainMenuManager : MonoBehaviour
     [SerializeField] TMP_Text healthMax;
     static int pHealthLevel = 0;
     static int pHealthMax = 3;
+    [SerializeField] int healthLevelStat = 4;
 
     [Header("----- DamageP ------")]
     [SerializeField] TMP_Text damageCur;
     [SerializeField] TMP_Text damageMax;
     static int pDamageLevel = 0;
     static int pDamageMax = 3;
+    [SerializeField] int damageLevelStat = 2;
 
     [Header("----- SpeedP ------")]
     [SerializeField] TMP_Text speedCur;
     [SerializeField] TMP_Text speedMax;
     static int pSpeedLevel = 0;
     static int pSpeedMax = 3;
+    [SerializeField] float speedevelStat = 1;
+
     static bool firstTime = true;
 
     int pArmorLevel = 0;
@@ -100,7 +104,7 @@ public class mainMenuManager : MonoBehaviour
         if (pHealthLevel < pHealthMax)
         {
             pHealthLevel++;
-            healthP = healthP + 3;
+            healthP = healthP + healthLevelStat;
             healthCur.text = pHealthLevel.ToString();
         }
     }
@@ -109,7 +113,7 @@ public class mainMenuManager : MonoBehaviour
         if (pSpeedLevel < pSpeedMax)
         {
             pSpeedLevel++;
-            speedP = speedP + 0.5f;
+            speedP = speedP + speedevelStat;
             speedCur.text = pSpeedLevel.ToString();
         }
     }
@@ -119,7 +123,7 @@ public class mainMenuManager : MonoBehaviour
         if (pDamageLevel < pDamageMax)
         {
             pDamageLevel++;
-            damageP = damageP + 2;
+            damageP = damageP + damageLevelStat;
             damageCur.text = pDamageLevel.ToString();
         }
     }

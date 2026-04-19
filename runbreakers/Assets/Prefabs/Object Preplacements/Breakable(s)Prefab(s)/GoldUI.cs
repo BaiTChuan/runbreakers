@@ -20,7 +20,7 @@ public class GoldUI : MonoBehaviour
 
             if (Gamemanager.instance != null)
             {
-                startingGold = Gamemanager.instance.gold;
+                startingGold = Gamemanager.gold;
             }
 
             goldText.text = "Gold: " + startingGold;
