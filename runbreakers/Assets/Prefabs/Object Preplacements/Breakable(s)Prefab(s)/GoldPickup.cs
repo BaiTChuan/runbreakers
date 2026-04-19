@@ -5,7 +5,6 @@ public class GoldPickup : MonoBehaviour, IPickup
     [SerializeField] public int goldAmount = 5;
 
     public void getBuff(buffStats buff) { }
-    public void getGun(gunStats gun) { }
 
     public void getGold(int amount)
     {
