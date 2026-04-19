@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,6 +19,11 @@ public class questManager : MonoBehaviour
     [SerializeField] TMP_Text questObjectiveText;
     [SerializeField] TMP_Text questTimerText;
     [SerializeField] TMP_Text questDistanceText;
+    [SerializeField] GameObject rewardPopupPanel;
+    [SerializeField] TMP_Text rewardPopupText;
+    [SerializeField] float rewardPopupDuration = 3f;
+
+    Coroutine rewardPopupCoroutine;
 
     [Header("---- Quest Timing ----")]
     [SerializeField] float timeBetweenQuests = 10f;
@@ -61,6 +67,11 @@ public class questManager : MonoBehaviour
             {
                 point.DeactivateQuestPoint();
             }
+        }
+
+        if (rewardPopupPanel != null)
+        {
+            rewardPopupPanel.SetActive(false);
         }
 
         clearQuestUI();
@@ -110,7 +121,7 @@ public class questManager : MonoBehaviour
 
         foreach (questPoint point in pointQuests)
         {
-            if (point != null && point.questData != null && !point.questData.isCompleted)
+            if (isValidPointQuest(point))
             {
                 availablePointQuests.Add(point);
             }
@@ -118,7 +129,7 @@ public class questManager : MonoBehaviour
 
         foreach (questData quest in spawnedTargetQuests)
         {
-            if (quest != null && !quest.isCompleted)
+            if (isValidSpawnedQuest(quest))
             {
                 availableSpawnedQuests.Add(quest);
             }
@@ -128,7 +139,7 @@ public class questManager : MonoBehaviour
 
         if (totalAvailable <= 0)
         {
-            Debug.Log("No more available quests.");
+            Debug.Log("No more available valid quests.");
             return;
         }
 
@@ -143,6 +154,58 @@ public class questManager : MonoBehaviour
             int spawnedIndex = randomIndex - availablePointQuests.Count;
             StartSpawnedQuest(availableSpawnedQuests[spawnedIndex]);
         }
+    }
+
+    bool isValidPointQuest(questPoint point)
+    {
+        if (point == null || point.questData == null)
+            return false;
+
+        if (point.questData.isCompleted)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(point.questData.questName))
+            return false;
+
+        if (point.questData.travelTimeLimit <= 0f)
+            return false;
+
+        if (point.questData.objectiveTimeLimit <= 0f)
+            return false;
+
+        if (point.questData.baseTargetHealthMultiplier <= 0f)
+            point.questData.baseTargetHealthMultiplier = 1f;
+
+        return true;
+    }
+
+    bool isValidSpawnedQuest(questData quest)
+    {
+        if (quest == null)
+            return false;
+
+        if (quest.isCompleted)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(quest.questName))
+            return false;
+
+        if (quest.objectiveTimeLimit <= 0f)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(quest.targetID))
+            return false;
+
+        if (quest.spawnedTargetPrefab == null)
+            return false;
+
+        if (quest.baseTargetHealthMultiplier <= 0f)
+            quest.baseTargetHealthMultiplier = 1f;
+
+        if (quest.spawnDistanceFromPlayer <= 0f)
+            quest.spawnDistanceFromPlayer = 8f;
+
+        return true;
     }
 
     void StartPointQuest(questPoint point)
@@ -182,7 +245,6 @@ public class questManager : MonoBehaviour
         objectiveStarted = true;
 
         spawnQuestTargetNearPlayer();
-
         updateQuestUI();
 
         Debug.Log("Started Spawned Quest: " + currentQuest.questName);
@@ -370,8 +432,10 @@ public class questManager : MonoBehaviour
 
     void applyQuestDifficultyScaling(questData quest)
     {
+        float baseHealthMultiplier = quest.baseTargetHealthMultiplier <= 0f ? 1f : quest.baseTargetHealthMultiplier;
+
         quest.scaledExtraEnemyCount = quest.baseExtraEnemyCount + (completedQuestCount * extraEnemiesPerCompletedQuest);
-        quest.scaledTargetHealthMultiplier = quest.baseTargetHealthMultiplier + (completedQuestCount * targetHealthIncreasePerCompletedQuest);
+        quest.scaledTargetHealthMultiplier = baseHealthMultiplier + (completedQuestCount * targetHealthIncreasePerCompletedQuest);
     }
 
     void giveQuestRewards(questData quest)
@@ -384,9 +448,39 @@ public class questManager : MonoBehaviour
             {
                 player.AddXP(quest.rewardXP);
             }
+
+            Gamemanager.instance.AddGold(quest.rewardGold);
         }
 
+        showRewardPopup(quest.rewardGold, quest.rewardXP);
+
         Debug.Log("Reward Gold: " + quest.rewardGold);
+    }
+
+    void showRewardPopup(int goldEarned, int xpEarned)
+    {
+        if (rewardPopupPanel == null || rewardPopupText == null)
+            return;
+
+        rewardPopupText.text = "Mission Completed!\nYou earned: " + goldEarned + " Gold, " + xpEarned + " XP";
+        rewardPopupPanel.SetActive(true);
+
+        if (rewardPopupCoroutine != null)
+        {
+            StopCoroutine(rewardPopupCoroutine);
+        }
+
+        rewardPopupCoroutine = StartCoroutine(hideRewardPopupAfterDelay());
+    }
+
+    IEnumerator hideRewardPopupAfterDelay()
+    {
+        yield return new WaitForSeconds(rewardPopupDuration);
+
+        if (rewardPopupPanel != null)
+        {
+            rewardPopupPanel.SetActive(false);
+        }
     }
 
     void updateQuestUI()
