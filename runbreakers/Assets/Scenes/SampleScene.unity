@@ -1145,6 +1145,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterCastSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: 'spells.Array.data[2]'
       value: 
       objectReference: {fileID: 1293907164}

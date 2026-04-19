@@ -196,7 +196,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && castTimer >= (spells[currentSpellIndex].CastSpeed / characterCastSpeed))
+        if (Input.GetButton("Fire1") && castTimer >= (spells[currentSpellIndex].CastSpeed * characterCastSpeed))
         {
             CastSpell();
         }
