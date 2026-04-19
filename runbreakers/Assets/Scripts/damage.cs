@@ -31,7 +31,7 @@ public class damage : MonoBehaviour
         
 
         IDamage dmg = other.GetComponent<IDamage>();
-
+        
         
 
         if (type == Damagetype.stationary)

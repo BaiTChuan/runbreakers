@@ -429,6 +429,13 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         updatePlayerUI();
     }
 
+    public void getGold(int amount)
+    {
+        Gamemanager.instance.AddGold(amount);
+
+       // GoldUI.instance.UpdateGold(Gamemanager.instance.gold);
+    }
+
     public int GetCurrentXP()
     {
         return currentXP;

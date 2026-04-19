@@ -5,7 +5,8 @@ using UnityEngine;
 public class DestructableObjectsManager : MonoBehaviour
 {
     public static DestructableObjectsManager instance;
-
+    [SerializeField] GameObject floatingGoldPrefab;
+    //[SerializeField] GameObject goldCoinPrefab;
     [SerializeField] GameObject destructablePrefab;
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] int maxActive = 10;
@@ -45,7 +46,8 @@ public class DestructableObjectsManager : MonoBehaviour
 
     void SpawnAt(Transform point)
     {
-        Instantiate(destructablePrefab, point.position, point.rotation);
+        Vector3 spawnPos = new Vector3(point.position.x, 0.5f, point.position.z);
+        Instantiate(destructablePrefab,spawnPos, point.rotation);
         activeCount++;
     }
 
