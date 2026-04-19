@@ -14,7 +14,7 @@ public class LaserSpell : Player_Spell
         Projectile projectile = laserBullet.GetComponent<Projectile>();
         if (projectile != null)
         {
-            projectile.SetDamage(Damage);
+            projectile.SetDamage(Damage + Gamemanager.instance.playerScript.characterAttackPower);
             projectile.SetPiercing(true);
         }
     }
