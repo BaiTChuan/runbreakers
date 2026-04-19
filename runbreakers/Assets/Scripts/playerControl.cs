@@ -31,9 +31,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] int damageTier3;
 
     [Header("----- Spells ------")]
-    [SerializeField] private Spell spellToCast;
+    [SerializeField] private List<Player_Spell> spells = new List<Player_Spell>();
     [SerializeField] private Transform castPivot;
     [SerializeField] private Transform castPos;
+    private int currentSpellIndex = 0;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -122,16 +123,13 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void CastSpell()
     {
+        if (spells.Count == 0)
+        {
+            return;
+        }
+
         castTimer = 0f;
-
-        SpellDamageChangedBasedOnATK();
-        Instantiate(spellToCast, castPos.position, castPos.rotation);
-    }
-
-    void SpellDamageChangedBasedOnATK()
-    {
-        damage dmgScript = spellToCast.GetComponent<damage>();
-        dmgScript.ChangeDmgBasedOnStats(characterAttackPower);
+        spells[currentSpellIndex].Cast(castPos, castPivot.forward);
     }
 
     void AimGunToMouse()
@@ -148,7 +146,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
             if (dir.sqrMagnitude > 0.001f)
             {
-                castPivot.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
+                castPivot.rotation = Quaternion.LookRotation(dir);
             }
         }
     }
@@ -183,9 +181,30 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && castTimer >= (spellToCast.spellToCast.castSpeed * characterCastSpeed))
+        if (Input.GetButton("Fire1") && castTimer >= (spells[currentSpellIndex].CastSpeed / characterCastSpeed))
         {
             CastSpell();
+        }
+
+        float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollWheelInput != 0)
+        {
+            if (scrollWheelInput > 0)
+            {
+                currentSpellIndex++;
+                if (currentSpellIndex >= spells.Count)
+                {
+                    currentSpellIndex = 0;
+                }
+            }
+            else
+            {
+                currentSpellIndex--;
+                if (currentSpellIndex < 0)
+                {
+                    currentSpellIndex = spells.Count - 1;
+                }
+            }
         }
 
         if (speedTimer >= speedDuration && speedBuffed == true)
