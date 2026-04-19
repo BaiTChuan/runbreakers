@@ -29,6 +29,30 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(menuScene);
     }
 
+    public void startScreen()
+    {
+        mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+        mainMenuManager.instance.menuActive = null;
+    }
+
+    public void settings()
+    {
+        mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+        mainMenuManager.instance.menuActive = mainMenuManager.instance.settings;
+    }
+
+    public void credits()
+    {
+        mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+        mainMenuManager.instance.menuActive = mainMenuManager.instance.credits;
+    }
+
+    public void perShop()
+    {
+        mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+        mainMenuManager.instance.menuActive = mainMenuManager.instance.permanentShop;
+    }
+
     public void rerollUpgrade()
     {
         if (Gamemanager.instance.isLevelUp == true)
