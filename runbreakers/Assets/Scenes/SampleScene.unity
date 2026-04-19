@@ -1148,6 +1148,10 @@ PrefabInstance:
       propertyPath: 'spells.Array.data[2]'
       value: 
       objectReference: {fileID: 1293907164}
+    - target: {fileID: 6495072460119834831, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2302867234711416026, guid: 705b49fb0b1aadd49956ad0aa5db6759, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
