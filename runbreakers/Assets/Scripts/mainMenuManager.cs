@@ -38,6 +38,7 @@ public class mainMenuManager : MonoBehaviour
     [SerializeField] float speedevelStat = 1;
 
     static bool firstTime = true;
+    public bool dataDeleted = false;
 
     int pArmorLevel = 0;
     int pLuckLevel = 0;
@@ -74,12 +75,7 @@ public class mainMenuManager : MonoBehaviour
             menuActive = null;
         }
 
-        healthCur.text = pHealthLevel.ToString();
-        healthMax.text = pHealthMax.ToString();
-        damageCur.text = pDamageLevel.ToString();
-        damageMax.text = pDamageMax.ToString();
-        speedCur.text = pSpeedLevel.ToString();
-        speedMax.text = pSpeedMax.ToString();
+        updateShop();
     }
 
     // Update is called once per frame
@@ -103,6 +99,22 @@ public class mainMenuManager : MonoBehaviour
                 menuActive = null;
             }
         }
+
+        if (dataDeleted == true)
+        {
+            updateShop();
+            dataDeleted = false;
+        }
+    }
+
+    public void updateShop()
+    {
+        healthCur.text = pHealthLevel.ToString();
+        healthMax.text = pHealthMax.ToString();
+        damageCur.text = pDamageLevel.ToString();
+        damageMax.text = pDamageMax.ToString();
+        speedCur.text = pSpeedLevel.ToString();
+        speedMax.text = pSpeedMax.ToString();
     }
 
     public void pHealthUp()
@@ -133,5 +145,4 @@ public class mainMenuManager : MonoBehaviour
             damageCur.text = pDamageLevel.ToString();
         }
     }
-
 }

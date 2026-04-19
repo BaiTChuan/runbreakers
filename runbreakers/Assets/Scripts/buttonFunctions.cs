@@ -53,6 +53,21 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.instance.menuActive = mainMenuManager.instance.permanentShop;
     }
 
+    public void deleteData()
+    {
+        PlayerPrefs.DeleteAll();
+
+        mainMenuManager.healthP = 0;
+        mainMenuManager.speedP = 0;
+        mainMenuManager.damageP = 0;
+        mainMenuManager.instance.dataDeleted = true;
+
+        mainMenuManager.pHealthLevel = 0;
+        mainMenuManager.pSpeedLevel = 0;
+        mainMenuManager.pDamageLevel = 0;
+        mainMenuManager.instance.dataDeleted = true;
+    }
+
     public void rerollUpgrade()
     {
         if (Gamemanager.instance.isLevelUp == true)
