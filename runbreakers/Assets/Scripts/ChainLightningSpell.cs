@@ -24,6 +24,7 @@ public class ChainLightningSpell : Player_Spell
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 0;
         lineRenderer.enabled = false;
     }
 

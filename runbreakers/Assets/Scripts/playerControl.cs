@@ -31,7 +31,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)][SerializeField] int damageTier3;
 
     [Header("----- Spells ------")]
-    [SerializeField] private List<Player_Spell> spells = new List<Player_Spell>();
+    [SerializeField] private List<Player_Spell> spellPrefabs = new List<Player_Spell>();
+    private List<Player_Spell> spells = new List<Player_Spell>();
     [SerializeField] private Transform castPivot;
     [SerializeField] private Transform castPos;
     private int currentSpellIndex = 0;
@@ -78,6 +79,17 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     Vector3 playerVel;
 
     private Camera cam;
+
+    void Awake()
+    {
+        // Instantiate personal copies of spells for this gameplay session
+        spells = new List<Player_Spell>();
+        foreach (var spellPrefab in spellPrefabs)
+        {
+            Player_Spell newSpell = Instantiate(spellPrefab, transform);
+            spells.Add(newSpell);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -187,6 +199,16 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         if (Input.GetButton("Fire1") && castTimer >= (spells[currentSpellIndex].CastSpeed / characterCastSpeed))
         {
             CastSpell();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (spells.Count > 0 && spells[currentSpellIndex] != null)
+            {
+                spells[currentSpellIndex].AddXp(50);
+                Debug.Log("Added 50 XP to " + spells[currentSpellIndex].name);
+            }
         }
 
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
