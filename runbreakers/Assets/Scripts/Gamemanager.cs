@@ -61,6 +61,7 @@ public class Gamemanager : MonoBehaviour
     public bool isPaused;
     public bool canSummonBoss;
     public bool bossSummoned;
+    public int gold = 0;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -116,6 +117,13 @@ public class Gamemanager : MonoBehaviour
 
     void Update()
     {
+        foreach (GameObject obj in FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+        {
+            if (float.IsNaN(obj.transform.position.x) || float.IsInfinity(obj.transform.position.x))
+            {
+                Debug.LogError("BAD POSITION: " + obj.name);
+            }
+        }
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -272,6 +280,13 @@ public class Gamemanager : MonoBehaviour
 
         statePause();
         setLevelText();
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        if (GoldUI.instance != null)
+            GoldUI.instance.UpdateGold(gold);
     }
 
     public void setLevelText()
