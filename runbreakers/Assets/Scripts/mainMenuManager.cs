@@ -19,21 +19,21 @@ public class mainMenuManager : MonoBehaviour
     [Header("----- HealthP ------")]
     [SerializeField] TMP_Text healthCur;
     [SerializeField] TMP_Text healthMax;
-    static int pHealthLevel = 0;
+    public static int pHealthLevel = 0;
     static int pHealthMax = 3;
     [SerializeField] int healthLevelStat = 4;
 
     [Header("----- DamageP ------")]
     [SerializeField] TMP_Text damageCur;
     [SerializeField] TMP_Text damageMax;
-    static int pDamageLevel = 0;
+    public static int pDamageLevel = 0;
     static int pDamageMax = 3;
     [SerializeField] int damageLevelStat = 2;
 
     [Header("----- SpeedP ------")]
     [SerializeField] TMP_Text speedCur;
     [SerializeField] TMP_Text speedMax;
-    static int pSpeedLevel = 0;
+    public static int pSpeedLevel = 0;
     static int pSpeedMax = 3;
     [SerializeField] float speedevelStat = 1;
 
@@ -44,7 +44,6 @@ public class mainMenuManager : MonoBehaviour
     int pCastSpeedLevel = 0;
 
     public static int healthP = 0;
-    public float speedTest = speedP;
     public static float speedP = 0;
     public static int damageP = 0;
 
@@ -59,6 +58,14 @@ public class mainMenuManager : MonoBehaviour
     {
         if (firstTime == true)
         {
+            healthP = PlayerPrefs.GetInt("Health", 0);
+            speedP = PlayerPrefs.GetFloat("Speed", 0);
+            damageP = PlayerPrefs.GetInt("Damage", 0);
+
+            pHealthLevel = PlayerPrefs.GetInt("HealthL", 0);
+            pSpeedLevel = PlayerPrefs.GetInt("SpeedL", 0);
+            pDamageLevel = PlayerPrefs.GetInt("DamageL", 0);
+
             menuActive = startScreen;
             firstTime = false;
         }
@@ -78,7 +85,6 @@ public class mainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedTest = speedP;
 
         if (menuActive == null && prevMenu != null)
         {
