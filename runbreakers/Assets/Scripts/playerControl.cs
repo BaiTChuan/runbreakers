@@ -82,9 +82,12 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     void Start()
     {
         // Keep track of orginal hp
-        hpOriginal = hp;
-        speedOriginal = speed;
-        damageOriginal = 0;
+        hpOriginal = hp + mainMenuManager.healthP;
+        hp = hpOriginal;
+        speedOriginal = speed + mainMenuManager.speedP;
+        speed = speedOriginal;
+        damageOriginal = 0 + mainMenuManager.damageP;
+        characterAttackPower = damageOriginal;
 
         speedBuffed = false;
         speedDebuffed = false;
