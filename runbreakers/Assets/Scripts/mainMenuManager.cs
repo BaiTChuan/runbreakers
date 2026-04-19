@@ -13,21 +13,30 @@ public class mainMenuManager : MonoBehaviour
     public GameObject permanentShop;
     public GameObject settings;
     public GameObject startScreen;
-    List<GameObject> menus = new List<GameObject>();
     public GameObject prevMenu;
+    static bool firstTime = true;
     int pHealthLevel = 0;
     int pSpeedLevel = 0;
     int pDamageLevel = 0;
     
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         instance = this;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuActive = startScreen;
+        if (firstTime == true)
+        {
+            menuActive = startScreen;
+            firstTime = false;
+        }
+        else
+        {
+            menuActive = null;
+        }
     }
 
     // Update is called once per frame
@@ -37,7 +46,7 @@ public class mainMenuManager : MonoBehaviour
         {
             prevMenu.SetActive(false);
         }
-        else
+        else if (menuActive != null)
         {
             menuActive.SetActive(true);
         }
