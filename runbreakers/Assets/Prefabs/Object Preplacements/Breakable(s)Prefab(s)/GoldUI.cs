@@ -9,24 +9,29 @@ public class GoldUI : MonoBehaviour
 
     void Awake()
     {
-
         instance = this;
-
-
-        
     }
 
     void Start()
     {
-        goldText.text = "Gold: 0";
+        if (goldText != null)
+        {
+            int startingGold = 0;
 
+            if (Gamemanager.instance != null)
+            {
+                startingGold = Gamemanager.gold;
+            }
+
+            goldText.text = "Gold: " + startingGold;
+        }
     }
 
     public void UpdateGold(int amount)
     {
-        goldText.text = "Gold: " + amount;
+        if (goldText != null)
+        {
+            goldText.text = "Gold: " + amount;
+        }
     }
-
-   
-
 }

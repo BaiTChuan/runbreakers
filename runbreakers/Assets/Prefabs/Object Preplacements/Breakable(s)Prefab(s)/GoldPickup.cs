@@ -12,7 +12,7 @@ public class GoldPickup : MonoBehaviour, IPickup
             Gamemanager.instance.AddGold(amount);
 
         if (GoldUI.instance != null)
-            GoldUI.instance.UpdateGold(Gamemanager.instance.gold);
+            GoldUI.instance.UpdateGold(Gamemanager.gold);
 
         Destroy(gameObject);
     }
