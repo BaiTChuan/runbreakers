@@ -78,6 +78,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
+        PlayerPrefs.SetInt("Health", mainMenuManager.healthP);
+        PlayerPrefs.SetFloat("Speed", mainMenuManager.speedP);
+        PlayerPrefs.SetInt("Damage", mainMenuManager.damageP);
+
+        PlayerPrefs.SetInt("HealthL", mainMenuManager.pHealthLevel);
+        PlayerPrefs.SetInt("SpeedL", mainMenuManager.pSpeedLevel);
+        PlayerPrefs.SetInt("DamageL", mainMenuManager.pDamageLevel);
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
