@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44364cd61f9f4814eaa4c42b85544ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserSpell
-  CastSpeed: 0.5
-  Damage: 2
+  CastSpeed: 0.6
+  Damage: 3
   currentLevel: 1
   currentXp: 0
   xpToNextLevel: 100

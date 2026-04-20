@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84baf5943c52e3c4299f4643ee770b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireballSpell
-  CastSpeed: 0.5
-  Damage: 100
+  CastSpeed: 0.6
+  Damage: 10
   currentLevel: 1
   currentXp: 0
   xpToNextLevel: 100
