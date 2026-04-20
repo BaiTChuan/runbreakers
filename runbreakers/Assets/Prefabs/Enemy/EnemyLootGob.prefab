@@ -5007,7 +5007,7 @@ MonoBehaviour:
   wanderRadius: 4
   wanderUpdateRate: 1
   lowHPWanderUpdateRate: 0.35
-  maxHP: 12
+  maxHP: 50
   xpValue: 4
   goalValue: 20
   lowHPPercent: 0.4

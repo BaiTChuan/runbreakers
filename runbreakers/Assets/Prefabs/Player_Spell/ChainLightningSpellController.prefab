@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dedc1f44174a4444b6f3ecf60a68a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningSpell
-  CastSpeed: 0.5
-  Damage: 10
+  CastSpeed: 0.6
+  Damage: 5
   currentLevel: 1
   currentXp: 0
   xpToNextLevel: 100

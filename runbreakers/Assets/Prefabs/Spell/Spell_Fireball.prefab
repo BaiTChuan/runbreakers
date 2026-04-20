@@ -5062,7 +5062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 0
   rb: {fileID: 8891589676136271828}
-  damageAmount: 1492
+  damageAmount: 5
   damageRate: 0
 --- !u!108 &9098460194431365274
 Light:
