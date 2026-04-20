@@ -548,15 +548,18 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void dataDeletedCheck()
     {
-        if (mainMenuManager.instance.dataDeleted == true)
+        if (mainMenuManager.instance != null)
         {
-            hpOriginal = hpBase;
-            hp = hpOriginal;
-            speedOriginal = speedBase;
-            speed = speedOriginal;
-            damageOriginal = damageBase;
-            characterAttackPower = damageOriginal;
-            castSpeedOriginal = castSpeedBase;
+            if (mainMenuManager.instance.dataDeleted == true)
+            {
+                hpOriginal = hpBase;
+                hp = hpOriginal;
+                speedOriginal = speedBase;
+                speed = speedOriginal;
+                damageOriginal = damageBase;
+                characterAttackPower = damageOriginal;
+                castSpeedOriginal = castSpeedBase;
+            }
         }
     }
 
