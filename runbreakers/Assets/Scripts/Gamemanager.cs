@@ -28,8 +28,6 @@ public class Gamemanager : MonoBehaviour
     public bool isLevelUp = false;
     public int rerollChance = 0;
     public int rerollLimit;
-    public int rerollOriginal;
-    public int rerollBase;
     public bool isRerolled = false;
     public bool rolling = false;
     [SerializeField] TMP_Text rerollCurText;
@@ -63,7 +61,7 @@ public class Gamemanager : MonoBehaviour
     public bool isPaused;
     public bool canSummonBoss;
     public bool bossSummoned;
-    public static int gold = 100;
+    public static int gold = 0;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -76,9 +74,6 @@ public class Gamemanager : MonoBehaviour
 
         canSummonBoss = true;
         bossSummoned = false;
-        rerollBase = rerollLimit;
-        rerollOriginal = rerollLimit + mainMenuManager.rerollP;
-        rerollLimit = rerollOriginal;
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
