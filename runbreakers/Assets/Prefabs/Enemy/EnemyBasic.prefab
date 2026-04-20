@@ -5009,13 +5009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 3
+  moveSpeed: 3.5
   shortestDist: {x: 0, y: 0, z: 0}
   maxHP: 4
   xpValue: 1
   goalValue: 1
   armorPercent: 0
-  beingHitEffect: {fileID: 0}
+  beingHitEffect: {fileID: 1110224512855222056}
 --- !u!1 &8500060639047666019
 GameObject:
   m_ObjectHideFlags: 0
