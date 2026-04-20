@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningSpell
   CastSpeed: 0.5
-  Damage: 10
+  Damage: 5
   currentLevel: 1
   currentXp: 0
   xpToNextLevel: 100
