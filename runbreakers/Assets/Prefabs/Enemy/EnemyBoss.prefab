@@ -381,21 +381,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 5
   stopDistance: 10
-  maxHP: 1000
-  xpValue: 10
+  maxHP: 10000
+  xpValue: 20
   armorPercent: 0.5
   spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 5831215383274805143}
   shootRateStage1: 2
-  projectileCountStage1: 5
+  projectileCountStage1: 6
   spreadAngleStage1: 30
   shootRateStage2: 1.5
-  projectileCountStage2: 7
+  projectileCountStage2: 8
   spreadAngleStage2: 40
   shootRateStage3: 1.2
-  projectileCountStage3: 9
+  projectileCountStage3: 10
   spreadAngleStage3: 50
-  transitionLength: 25
+  transitionLength: 20
   healRate: 15
   transitionSpawnRate: 2
   stage2TransitionSpawnCount: 1
@@ -403,9 +403,9 @@ MonoBehaviour:
   stage2HealPercent: 0.85
   stage3HealPercent: 0.55
   novaAttackRate: 4
-  novaProjectileCount: 12
+  novaProjectileCount: 15
   stage3SpawnRate: 6
-  stage3SpawnCount: 2
+  stage3SpawnCount: 4
   forceField: {fileID: 0}
   beingHitEffect: {fileID: 5778069205827782323}
   bossHPBar: {fileID: 0}

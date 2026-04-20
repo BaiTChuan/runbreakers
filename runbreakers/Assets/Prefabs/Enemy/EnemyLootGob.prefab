@@ -5007,8 +5007,8 @@ MonoBehaviour:
   wanderRadius: 4
   wanderUpdateRate: 1
   lowHPWanderUpdateRate: 0.35
-  maxHP: 12
-  xpValue: 4
+  maxHP: 20
+  xpValue: 10
   goalValue: 20
   lowHPPercent: 0.4
   targetID: LootGoblin

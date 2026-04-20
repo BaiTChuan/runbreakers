@@ -5045,9 +5045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 2.25
+  moveSpeed: 2.5
   shortestDist: {x: 1.2, y: 1.2, z: 1.2}
-  maxHP: 5
+  maxHP: 15
   xpValue: 1
   goalValue: 2
   armorPercent: 0.2
@@ -5062,7 +5062,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.5
+  m_Speed: 3
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 720
