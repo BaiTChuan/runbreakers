@@ -9,6 +9,7 @@ TagManager:
   - EnemyProjectile
   - Wall
   - Lava
+  - Destructables
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy Projectile
   - Player Projectile
   - Terrin
-  - 
+  - QuestZone
   - 
   - 
   - 

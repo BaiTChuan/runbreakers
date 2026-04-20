@@ -117,13 +117,7 @@ public class Gamemanager : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject obj in FindObjectsByType<GameObject>(FindObjectsSortMode.None))
-        {
-            if (float.IsNaN(obj.transform.position.x) || float.IsInfinity(obj.transform.position.x))
-            {
-                Debug.LogError("BAD POSITION: " + obj.name);
-            }
-        }
+        
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)

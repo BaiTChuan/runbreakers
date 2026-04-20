@@ -250,6 +250,13 @@ public class questManager : MonoBehaviour
         Debug.Log("Started Spawned Quest: " + currentQuest.questName);
         Debug.Log("Scaled Extra Enemy Count: " + currentQuest.scaledExtraEnemyCount);
         Debug.Log("Scaled Target HP Multiplier: " + currentQuest.scaledTargetHealthMultiplier);
+
+        if (quest.questType == QuestType.CollectItems)
+            spawnCollectibleItemsNearPlayer();
+        else
+            spawnQuestTargetNearPlayer();
+
+        updateQuestUI();
     }
 
     void spawnQuestTargetNearPlayer()
@@ -274,6 +281,40 @@ public class questManager : MonoBehaviour
 
         currentSpawnedQuestTarget = Instantiate(currentQuest.spawnedTargetPrefab, spawnPosition, Quaternion.identity);
         currentTrackedTarget = currentSpawnedQuestTarget.transform;
+    }
+
+    void spawnCollectibleItemsNearPlayer()
+    {
+        if (currentQuest == null || currentQuest.spawnedTargetPrefab == null)
+            return;
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
+            return;
+
+        Vector3 playerPosition = Gamemanager.instance.player.transform.position;
+        int spawned = 0;
+        int attempts = 0;
+        
+        while(spawned < currentQuest.requiredCollectionCount && attempts < 30)
+        {
+            attempts++;
+
+            Vector2 randomCircle = Random.insideUnitCircle.normalized * currentQuest.spawnDistanceFromPlayer;
+            Vector3 spawnGuess = playerPosition + new Vector3(randomCircle.x, 0.5f, randomCircle.y);
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(spawnGuess, out hit, currentQuest.spawnDistanceFromPlayer + 5f, NavMesh.AllAreas))
+            {
+                Vector3 spawnPosition = new Vector3(hit.position.x, 0.5f, hit.position.z);
+                Instantiate(currentQuest.spawnedTargetPrefab, spawnPosition, Quaternion.identity);
+                spawned++;
+            }
+
+            Debug.Log("Spawned " + spawned + " collectibles out of" + currentQuest.requiredCollectionCount);
+
+         
+
+        }
+       
     }
 
     public void BeginPointQuestObjective()
@@ -379,6 +420,8 @@ public class questManager : MonoBehaviour
             return;
 
         currentQuest.currentCollectionCount++;
+
+       // Debug.Log("Collected: " + currentQuest.currentCollectionCount + "/" + currentQuest.requiredCollectionCount);
 
         if (currentQuest.currentCollectionCount >= currentQuest.requiredCollectionCount)
         {
@@ -512,6 +555,12 @@ public class questManager : MonoBehaviour
     {
         if (questDistanceText == null || currentTrackedTarget == null || Gamemanager.instance.player == null)
             return;
+
+        if (currentQuest != null && currentQuest.questType == QuestType.CollectItems)
+        {
+            questDistanceText.text = "Collected: " + currentQuest.currentCollectionCount;
+            return;
+        }
 
         float distance = Vector3.Distance(
             Gamemanager.instance.player.transform.position,
