@@ -269,8 +269,8 @@ MonoBehaviour:
   moveSpeed: 5
   stopDistance: 2.5
   webAttackDistance: 20
-  maxHP: 1000
-  xpValue: 10
+  maxHP: 700
+  xpValue: 8
   goalValue: 5
   armorPercent: 0.3
   webProjectilePrefab: {fileID: 1669871955677014003, guid: b44e6b77d9ee3084eb69986605921f43, type: 3}

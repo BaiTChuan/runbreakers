@@ -5128,7 +5128,7 @@ MonoBehaviour:
   spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 6188351913714510705}
   shootRate: 2
-  maxHP: 14
+  maxHP: 4
   xpValue: 2
   goalValue: 2
   beingHitEffect: {fileID: 1490122675583405785}

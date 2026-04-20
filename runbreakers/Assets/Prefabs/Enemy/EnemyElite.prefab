@@ -5088,10 +5088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602856346391e6a40b266192737a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  moveSpeed: 4
+  moveSpeed: 2
   shortestDist: {x: 0, y: 0, z: 0}
-  maxHP: 20
+  maxHP: 5
   xpValue: 1
   goalValue: 1
-  armorPercent: 0.3
+  armorPercent: 0
   beingHitEffect: {fileID: 0}
