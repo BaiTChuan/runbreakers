@@ -36,7 +36,7 @@ public class questData
     public float objectiveTimeLimit = 30f;
 
     [Header("---- Collection Quest ----")]
-    public int requiredCollectionCount = 1;
+    public int requiredCollectionCount = 12;
 
     [Header("---- Difficulty Scaling ----")]
     public int baseExtraEnemyCount = 0;

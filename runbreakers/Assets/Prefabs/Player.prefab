@@ -155,9 +155,19 @@ MonoBehaviour:
   hp: 10
   speed: 10
   sprintMod: 2
+  characterAttackPower: 0
+  characterArmor: 0
+  characterLuck: 0
+  characterCastSpeed: 0
   hpStatIncrease: 3
   speedStatIncrease: 1
   damageStatIncrease: 1
+  hpTier2: 1
+  hpTier3: 1
+  speedTier2: 0
+  speedTier3: 0
+  damageTier2: 1
+  damageTier3: 1
   spellToCast: {fileID: 6497777527385057993, guid: d4c86dec8aa1ff44ca738df8c641e031, type: 3}
   castPivot: {fileID: 3678133820879839460}
   castPos: {fileID: 7057992571251399988}

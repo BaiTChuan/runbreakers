@@ -15,6 +15,7 @@ public class mainMenuManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject prevMenu;
     static bool firstTime = true;
+
     int pHealthLevel = 0;
     int pSpeedLevel = 0;
     int pDamageLevel = 0;

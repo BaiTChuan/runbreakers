@@ -218,7 +218,7 @@ Transform:
   m_GameObject: {fileID: 239096144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.41, y: 0, z: 95.01}
+  m_LocalPosition: {x: 114.6, y: 0, z: 100.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -611,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 960150123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.89568, y: 1.23451, z: -2.54512}
+  m_LocalPosition: {x: -8.5, y: 1.23451, z: -2.54512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -664,6 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::questManager
   pointQuests:
   - {fileID: 239096145}
+  - {fileID: 1350310678}
   spawnedTargetQuests:
   - questID: 0
     questName: 
@@ -703,6 +704,27 @@ MonoBehaviour:
     currentCollectionCount: 0
     isCompleted: 0
     isFailed: 0
+  - questID: 3
+    questName: Collect the Items
+    objectiveText: 'Collect the pink items!
+
+'
+    questType: 4
+    targetID: CollectibleItem
+    spawnedTargetPrefab: {fileID: 3157768670338137110, guid: 46c5fbf0dba5cbf46b702f794851a897, type: 3}
+    spawnDistanceFromPlayer: 15
+    rewardXP: 5
+    rewardGold: 10
+    travelTimeLimit: 30
+    objectiveTimeLimit: 60
+    requiredCollectionCount: 12
+    baseExtraEnemyCount: 1
+    baseTargetHealthMultiplier: 1
+    scaledExtraEnemyCount: 0
+    scaledTargetHealthMultiplier: 0
+    currentCollectionCount: 0
+    isCompleted: 0
+    isFailed: 0
   questNameText: {fileID: 1019631840}
   questObjectiveText: {fileID: 793108855}
   questTimerText: {fileID: 2138498849}
@@ -727,6 +749,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 239096146}
+  - {fileID: 1856168052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216783893 stripped
@@ -799,7 +822,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mission Completed!
 
-    
+
 
     You earned: 20 Gold, 10 XP'
   m_isRightToLeft: 0
@@ -881,6 +904,146 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279466535}
   m_CullTransparentMesh: 1
+--- !u!1001 &1350310676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1392482887135833162, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Name
+      value: RingOfFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 119.6034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000020971042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -92.973045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527991106305454424, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: questData.questID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: questData.rewardXP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: questData.rewardGold
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: questData.spawnedTargetPrefab
+      value: 
+      objectReference: {fileID: 1350310677}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+--- !u!1 &1350310677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1392482887135833162, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+  m_PrefabInstance: {fileID: 1350310676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1350310678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+  m_PrefabInstance: {fileID: 1350310676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350310677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d732c964017b942bc841f590794efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::questPoint
+--- !u!1 &1450385015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450385016}
+  - component: {fileID: 1450385017}
+  m_Layer: 0
+  m_Name: DestructablesSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450385016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450385015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.52415, y: -0, z: 45.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450385017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450385015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ac14196b5337245a9ebe197db02f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestructableObjectsManager
+  destructableObject: {fileID: 1484591810506955851, guid: 83bc6224da38cb341a4691cd3dc820fb, type: 3}
+  hp: 1
+  maxActive: 10
+  minGold: 5
+  maxGold: 15
+  respawnDelay: 5
+  spawnDistanceFromWall: 3
 --- !u!1 &1585052630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1295,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+--- !u!1 &1856168051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856168052}
+  - component: {fileID: 1856168053}
+  m_Layer: 0
+  m_Name: QuestPointRingOfFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856168052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856168051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 109.67, y: 0, z: -91.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1178994842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856168053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856168051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d732c964017b942bc841f590794efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::questPoint
+  questData:
+    questID: 3
+    questName: 
+    objectiveText: 
+    questType: 0
+    targetID: 
+    spawnedTargetPrefab: {fileID: 0}
+    spawnDistanceFromPlayer: 8
+    rewardXP: 0
+    rewardGold: 0
+    travelTimeLimit: 30
+    objectiveTimeLimit: 30
+    requiredCollectionCount: 12
+    baseExtraEnemyCount: 0
+    baseTargetHealthMultiplier: 1
+    scaledExtraEnemyCount: 0
+    scaledTargetHealthMultiplier: 0
+    currentCollectionCount: 0
+    isCompleted: 0
+    isFailed: 0
+  startsQuestOnPlayerEnter: 1
 --- !u!114 &2138498849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5013490916181218328, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
@@ -2075,3 +2303,5 @@ SceneRoots:
   - {fileID: 2152117700734358808}
   - {fileID: 1994253122738660119}
   - {fileID: 1337943420793811375}
+  - {fileID: 1450385016}
+  - {fileID: 1350310676}

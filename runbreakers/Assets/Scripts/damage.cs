@@ -21,6 +21,9 @@ public class damage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        Debug.Log("Hit: " + other.gameObject.name + " | Tag: " + other.tag);
+
         if (other.isTrigger)
             return;
 
@@ -80,6 +83,9 @@ public class damage : MonoBehaviour
             return true;
 
         if (CompareTag("EnemyProjectile") && other.CompareTag("Player"))
+            return true;
+
+        if (other.CompareTag("Destructables"))
             return true;
 
         return false;
