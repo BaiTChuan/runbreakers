@@ -53,21 +53,6 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.instance.menuActive = mainMenuManager.instance.permanentShop;
     }
 
-    public void deleteData()
-    {
-        PlayerPrefs.DeleteAll();
-
-        mainMenuManager.healthP = 0;
-        mainMenuManager.speedP = 0;
-        mainMenuManager.damageP = 0;
-        mainMenuManager.instance.dataDeleted = true;
-
-        mainMenuManager.pHealthLevel = 0;
-        mainMenuManager.pSpeedLevel = 0;
-        mainMenuManager.pDamageLevel = 0;
-        mainMenuManager.instance.dataDeleted = true;
-    }
-
     public void rerollUpgrade()
     {
         if (Gamemanager.instance.isLevelUp == true)
@@ -91,15 +76,58 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    public void deleteData()
+    {
+        PlayerPrefs.DeleteAll();
+
+        mainMenuManager.healthP = 0;
+        mainMenuManager.speedP = 0;
+        mainMenuManager.damageP = 0;
+        mainMenuManager.armorP = 0;
+        mainMenuManager.luckP = 0;
+        mainMenuManager.castSpeedP = 0;
+        mainMenuManager.reviveP = 0;
+        mainMenuManager.rerollP = 0;
+
+        Gamemanager.gold = 100;
+
+        mainMenuManager.pHealthLevel = 0;
+        mainMenuManager.pSpeedLevel = 0;
+        mainMenuManager.pDamageLevel = 0;
+        mainMenuManager.pLuckLevel = 0;
+        mainMenuManager.pArmorLevel = 0;
+        mainMenuManager.pCastSpeedLevel = 0;
+        mainMenuManager.pReviveLevel = 0;
+        mainMenuManager.pRerollLevel = 0;
+
+        mainMenuManager.instance.dataDeleted = true;
+    }
+
     public void quit()
     {
         PlayerPrefs.SetInt("Health", mainMenuManager.healthP);
         PlayerPrefs.SetFloat("Speed", mainMenuManager.speedP);
         PlayerPrefs.SetInt("Damage", mainMenuManager.damageP);
+        PlayerPrefs.SetInt("Luck", mainMenuManager.luckP);
+        PlayerPrefs.SetFloat("CastSpeed", mainMenuManager.castSpeedP);
+        PlayerPrefs.SetInt("Armor", mainMenuManager.armorP);
+        PlayerPrefs.SetInt("Revive", mainMenuManager.reviveP);
+        PlayerPrefs.SetInt("Reroll", mainMenuManager.rerollP);
+
+        PlayerPrefs.SetInt("Gold", Gamemanager.gold);
 
         PlayerPrefs.SetInt("HealthL", mainMenuManager.pHealthLevel);
         PlayerPrefs.SetInt("SpeedL", mainMenuManager.pSpeedLevel);
         PlayerPrefs.SetInt("DamageL", mainMenuManager.pDamageLevel);
+        PlayerPrefs.SetInt("LuckL", mainMenuManager.pLuckLevel);
+        PlayerPrefs.SetInt("CastSpeedL", mainMenuManager.pCastSpeedLevel);
+        PlayerPrefs.SetInt("ArmorL", mainMenuManager.pArmorLevel);
+        PlayerPrefs.SetInt("ReviveL", mainMenuManager.pReviveLevel);
+        PlayerPrefs.SetInt("RerollL", mainMenuManager.pRerollLevel);
+
+        PlayerPrefs.SetFloat("MasterVolume", mainMenuManager.masterVol);
+        PlayerPrefs.SetFloat("SFX", mainMenuManager.sfxVol);
+        PlayerPrefs.SetFloat("MusicVolume", mainMenuManager.musicVol);
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

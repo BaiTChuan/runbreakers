@@ -14,20 +14,24 @@ public class settingsMenu : MonoBehaviour
 
     void Start()
     {
+
         if (masterSlider != null)
         {
+            masterSlider.value = mainMenuManager.masterVol;
             masterSlider.onValueChanged.AddListener(SetMasterVolume);
             SetMasterVolume(masterSlider.value);
         }
 
         if (musicSlider != null)
         {
+            musicSlider.value = mainMenuManager.musicVol;
             musicSlider.onValueChanged.AddListener(SetMusicVolume);
             SetMusicVolume(musicSlider.value);
         }
 
         if (sfxSlider != null)
         {
+            sfxSlider.value = mainMenuManager.sfxVol;
             sfxSlider.onValueChanged.AddListener(SetSFXVolume);
             SetSFXVolume(sfxSlider.value);
         }
@@ -38,6 +42,7 @@ public class settingsMenu : MonoBehaviour
         if (mainMixer != null)
         {
             mainMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20f);
+            mainMenuManager.masterVol = value;
         }
     }
 
@@ -46,6 +51,7 @@ public class settingsMenu : MonoBehaviour
         if (mainMixer != null)
         {
             mainMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20f);
+            mainMenuManager.musicVol = value;
         }
     }
 
@@ -54,6 +60,7 @@ public class settingsMenu : MonoBehaviour
         if (mainMixer != null)
         {
             mainMixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20f);
+            mainMenuManager.sfxVol = value;
         }
     }
 }

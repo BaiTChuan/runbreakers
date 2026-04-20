@@ -26,7 +26,11 @@ public class Gamemanager : MonoBehaviour
 
     [Header("----- LevelUp ------")]
     public bool isLevelUp = false;
+
     public int rerollChance = 0;
+    int rerollBase = 1;
+    int rerollOriginal;
+
     public int rerollLimit;
     public bool isRerolled = false;
     public bool rolling = false;
@@ -61,7 +65,7 @@ public class Gamemanager : MonoBehaviour
     public bool isPaused;
     public bool canSummonBoss;
     public bool bossSummoned;
-    public static int gold = 0;
+    public static int gold = 100;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -74,6 +78,10 @@ public class Gamemanager : MonoBehaviour
 
         canSummonBoss = true;
         bossSummoned = false;
+
+        rerollBase = rerollChance;
+        rerollOriginal = rerollChance + mainMenuManager.rerollP;
+        rerollChance = rerollOriginal;
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();
