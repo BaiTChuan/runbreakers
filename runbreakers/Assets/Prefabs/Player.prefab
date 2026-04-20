@@ -153,31 +153,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   hp: 10
-  speed: 10
+  speed: 8
   sprintMod: 2
   characterAttackPower: 1
-  characterArmor: 5
+  characterArmor: 10
   characterLuck: 1
-  characterCastSpeed: 0.5
+  characterCastSpeed: 1
   hpStatIncrease: 3
   speedStatIncrease: 1
   damageStatIncrease: 1
   armorStatIncrease: 1
-  castSpeedStatIncrease: 0
+  castSpeedStatIncrease: 0.05
   luckStatIncrease: 1
   hpTier2: 1
   speedTier2: 0.5
   damageTier2: 1
   armorStatTier2: 1
-  castSpeedStatTier2: 0
+  castSpeedStatTier2: 0.05
   luckStatTier2: 1
   hpTier3: 2
   speedTier3: 1
   damageTier3: 2
-  armorStatTier3: 1
-  castSpeedStatTier3: 0
-  luckStatTier3: 1
-  spellPrefabs: []
+  armorStatTier3: 2
+  castSpeedStatTier3: 0.1
+  luckStatTier3: 2
+  spellPrefabs:
+  - {fileID: 2792995171105596977, guid: 98a12bb7de4836e4eae7702426808691, type: 3}
+  - {fileID: 3798548851274251527, guid: e13e5e4bdabd37240bc46049b744ed8a, type: 3}
+  - {fileID: 0}
   castPivot: {fileID: 3678133820879839460}
   castPos: {fileID: 7057992571251399988}
   beingHitEffect: {fileID: 8567528641623525608}

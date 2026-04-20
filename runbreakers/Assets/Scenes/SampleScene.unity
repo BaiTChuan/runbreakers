@@ -1157,6 +1157,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: characterArmor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: castSpeedStatTier2
       value: 0.05
       objectReference: {fileID: 0}
