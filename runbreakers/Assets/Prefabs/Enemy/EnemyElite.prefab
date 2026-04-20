@@ -5090,8 +5090,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   moveSpeed: 2
   shortestDist: {x: 0, y: 0, z: 0}
-  maxHP: 5
-  xpValue: 1
+  maxHP: 25
+  xpValue: 3
   goalValue: 1
   armorPercent: 0
   beingHitEffect: {fileID: 0}
