@@ -18,6 +18,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] int characterArmor;
     [SerializeField] int characterLuck;
     [SerializeField] float characterCastSpeed;
+    [SerializeField] int revive;
 
     [Header("----- LevelUp Stats ------")]
     [Range(1, 10)][SerializeField] int hpStatIncrease;
@@ -67,14 +68,33 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     float castTimer;
 
+#region statTrackers
+
     int hpOriginal;
     int hpBase;
+
     float speedOriginal;
     float speedBase;
+
     public int damageOriginal;
     int damageBase;
+
     float castSpeedOriginal;
     float castSpeedBase;
+
+    int armorOriginal;
+    int armorBase;
+
+    int luckOriginal;
+    int luckBase;
+
+    int reviveOriginal;
+    int reviveBase;
+
+    int rerollOriginal;
+    int rerollBase;
+
+#endregion
 
     float speedTimer;
     float speedDuration;
@@ -111,17 +131,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hpBase = hp;
-        hpOriginal = hp + mainMenuManager.healthP;
-        hp = hpOriginal;
-        speedBase = speed;
-        speedOriginal = speed + mainMenuManager.speedP;
-        speed = speedOriginal;
-        damageBase = characterAttackPower;
-        damageOriginal = characterAttackPower + mainMenuManager.damageP;
-        characterAttackPower = damageOriginal;
-        castSpeedBase = characterCastSpeed;
-        castSpeedOriginal = characterCastSpeed;
+        statTrack();
 
         speedBuffed = false;
         speedDebuffed = false;
@@ -130,6 +140,37 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         cam = Camera.main;
         updatePlayerUI();
         updateBuffUI();
+    }
+
+    void statTrack()
+    {
+        hpBase = hp;
+        hpOriginal = hp + mainMenuManager.healthP;
+        hp = hpOriginal;
+
+        speedBase = speed;
+        speedOriginal = speed + mainMenuManager.speedP;
+        speed = speedOriginal;
+
+        damageBase = characterAttackPower;
+        damageOriginal = characterAttackPower + mainMenuManager.damageP;
+        characterAttackPower = damageOriginal;
+
+        castSpeedBase = characterCastSpeed;
+        castSpeedOriginal = characterCastSpeed - mainMenuManager.castSpeedP;
+        characterCastSpeed = castSpeedOriginal;
+
+        luckBase = characterLuck;
+        luckOriginal = characterLuck + mainMenuManager.luckP;
+        characterLuck = luckOriginal;
+
+        armorBase = armorOriginal;
+        armorOriginal = characterArmor + mainMenuManager.armorP;
+        characterArmor = armorOriginal;
+
+        reviveBase = revive;
+        reviveOriginal = revive + mainMenuManager.reviveP;
+        revive = reviveOriginal;
     }
 
     // Update is called once per frame
@@ -309,7 +350,16 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
         if (hp <= 0)
         {
-            Gamemanager.instance.youLose();
+            if (revive > 0)
+            {
+                revive--;
+                hp = hpOriginal;
+                updatePlayerUI();
+            }
+            else 
+            {
+                Gamemanager.instance.youLose();
+            }
         }
     }
 
