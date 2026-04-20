@@ -18,6 +18,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] int characterArmor;
     [SerializeField] int characterLuck;
     [SerializeField] float characterCastSpeed;
+    [SerializeField] int revives;
 
     [Header("----- LevelUp Stats ------")]
     [Range(1, 10)][SerializeField] int hpStatIncrease;
@@ -75,6 +76,12 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     int damageBase;
     float castSpeedOriginal;
     float castSpeedBase;
+    int armorOriginal;
+    int armorBase;
+    int luckOriginal;
+    int luckBase;
+    int revivesOriginal;
+    int revivesBase;
 
     float speedTimer;
     float speedDuration;
@@ -111,17 +118,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hpBase = hp;
-        hpOriginal = hp + mainMenuManager.healthP;
-        hp = hpOriginal;
-        speedBase = speed;
-        speedOriginal = speed + mainMenuManager.speedP;
-        speed = speedOriginal;
-        damageBase = characterAttackPower;
-        damageOriginal = characterAttackPower + mainMenuManager.damageP;
-        characterAttackPower = damageOriginal;
-        castSpeedBase = characterCastSpeed;
-        castSpeedOriginal = characterCastSpeed;
+        levelAllocation();
 
         speedBuffed = false;
         speedDebuffed = false;
@@ -309,7 +306,16 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
         if (hp <= 0)
         {
-            Gamemanager.instance.youLose();
+            if (revives > 0)
+            {
+                revives--;
+                hp = hpOriginal;
+                updatePlayerUI();
+            }
+            else
+            {
+                Gamemanager.instance.youLose();
+            }
         }
     }
 
@@ -502,11 +508,27 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         {
             hpOriginal = hpBase;
             hp = hpOriginal;
+
             speedOriginal = speedBase;
             speed = speedOriginal;
+
             damageOriginal = damageBase;
             characterAttackPower = damageOriginal;
+
+            luckOriginal = luckBase;
+            luckBase = luckOriginal;
+
+            armorOriginal = armorBase;
+            characterArmor = armorOriginal;
+
             castSpeedOriginal = castSpeedBase;
+            characterCastSpeed = castSpeedOriginal;
+
+            revivesOriginal = revivesBase;
+            revives = revivesOriginal;
+
+            Gamemanager.instance.rerollOriginal = Gamemanager.instance.rerollBase;
+            Gamemanager.instance.rerollLimit = Gamemanager.instance.rerollOriginal;
         }
     }
 
@@ -608,6 +630,37 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     public void luckLevelUp2()
     {
         characterLuck += luckStatIncrease + luckStatTier3;
+    }
+
+    void levelAllocation()
+    {
+        hpBase = hp;
+        hpOriginal = hp + mainMenuManager.healthP;
+        hp = hpOriginal;
+
+        speedBase = speed;
+        speedOriginal = speed + mainMenuManager.speedP;
+        speed = speedOriginal;
+
+        damageBase = characterAttackPower;
+        damageOriginal = characterAttackPower + mainMenuManager.damageP;
+        characterAttackPower = damageOriginal;
+
+        castSpeedBase = characterCastSpeed;
+        castSpeedOriginal = characterCastSpeed - mainMenuManager.castSpeedP;
+        characterCastSpeed = castSpeedOriginal;
+
+        armorBase = characterArmor;
+        armorOriginal = characterArmor + mainMenuManager.armorP;
+        characterArmor = armorOriginal;
+
+        luckBase = characterLuck;
+        luckOriginal = characterLuck + mainMenuManager.luckP;
+        characterLuck = luckOriginal;
+
+        revivesBase = revives;
+        revivesOriginal = revives + mainMenuManager.revivesP;
+        revives = revivesOriginal;
     }
     #endregion
 }
