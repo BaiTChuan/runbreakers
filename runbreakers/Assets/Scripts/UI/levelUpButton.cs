@@ -6,6 +6,7 @@ public class levelUpButton : MonoBehaviour
 {
     [SerializeField] GameObject button;
     [SerializeField] Image image;
+    [SerializeField] Image tierImage;
     [SerializeField] TMP_Text text;
 
     // Type 0 = health | 1 = speed | 2 = damage | 3 = armor | 4 = cast speed | 5 = luck
@@ -15,6 +16,10 @@ public class levelUpButton : MonoBehaviour
     public Sprite healthImg;
     public Sprite speedImg;
     public Sprite damageImg;
+
+    public Sprite tier1;
+    public Sprite tier2;
+    public Sprite tier3;
 
     string health = "Health Up";
     string speed = "Speed Up";
@@ -167,6 +172,19 @@ public class levelUpButton : MonoBehaviour
     {
         type = Random.Range(0, 6);
         tier = Random.Range(0, 3);
+
+        if (tier == 0)
+        {
+            tierImage.sprite = tier1;
+        }
+        if (tier == 1)
+        {
+            tierImage.sprite = tier2;
+        }
+        if (tier == 2)
+        {
+            tierImage.sprite = tier3;
+        }
 
         if (type == 0)
         {
