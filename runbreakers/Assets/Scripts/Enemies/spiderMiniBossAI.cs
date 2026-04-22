@@ -70,10 +70,12 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         if (questManager.instance != null && questManager.instance.IsCurrentQuestTarget("SpiderMiniBoss"))
         {
             float hpMultiplier = questManager.instance.GetScaledTargetHealthMultiplier();
-            int extraEnemies = questManager.instance.GetScaledExtraEnemyCount();
-
             startingHP = Mathf.RoundToInt(maxHP * hpMultiplier);
-            eggsPerSpawn = baseEggsPerSpawn + extraEnemies;
+            eggsPerSpawn = baseEggsPerSpawn;
+        }
+        else
+        {
+            eggsPerSpawn = baseEggsPerSpawn;
         }
 
         currentHP = startingHP;
