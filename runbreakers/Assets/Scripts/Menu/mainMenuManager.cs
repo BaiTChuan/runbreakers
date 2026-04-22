@@ -223,6 +223,8 @@ public class mainMenuManager : MonoBehaviour
         goldCur.text = Gamemanager.gold.ToString();
     }
 
+    #region PermanentUpgrades
+
     public void pHealthUp()
     {
         if (pHealthLevel < pHealthMax && (Gamemanager.gold >= healthCost))
@@ -309,3 +311,4 @@ public class mainMenuManager : MonoBehaviour
         }
     }
 }
+#endregion
