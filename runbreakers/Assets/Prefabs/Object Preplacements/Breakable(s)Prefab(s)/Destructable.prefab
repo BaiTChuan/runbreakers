@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8105583421933553540}
   m_Layer: 0
   m_Name: Destructable
-  m_TagString: Destructables
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestructableObject
   hp: 1
-  maxActive: 15
   minGold: 5
   maxGold: 10
   GoldCoin: {fileID: 3637305740836842957, guid: c00df110b79f6e04ba9b61c522e4fe08, type: 3}

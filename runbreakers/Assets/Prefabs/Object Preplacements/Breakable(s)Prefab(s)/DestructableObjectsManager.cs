@@ -9,11 +9,12 @@ public class DestructableObjectsManager : MonoBehaviour
     public static DestructableObjectsManager instance;
 
     [SerializeField] GameObject destructableObject;
-    [SerializeField] int maxActive = 15;
+    [SerializeField] int maxActive = 25;
     [SerializeField] float respawnDelay = 5f;
+    [SerializeField] float spawnRadius = 60f;
 
     List<Vector3> spawnPoints = new List<Vector3>();
-    int activeCount = 1;
+    int activeCount = 0;
 
     void Awake()
     {
@@ -31,12 +32,18 @@ public class DestructableObjectsManager : MonoBehaviour
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
             center = Gamemanager.instance.player.transform.position;
-        for (int i = 0; i < 3; i++)
+
+        int attempts = 0;
+
+        while (spawnPoints.Count < 100 && attempts < 500)
         {
-            Vector2 randomCircle = Random.insideUnitCircle * 40f;
+            attempts++;
+
+            Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
             Vector3 spawnGuess = center + new Vector3(randomCircle.x, 0f, randomCircle.y);
 
             NavMeshHit hit;
+
             if (NavMesh.SamplePosition(spawnGuess, out hit, 5f, NavMesh.AllAreas))
             {
                 spawnPoints.Add(hit.position);
@@ -88,6 +95,11 @@ public class DestructableObjectsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnDelay);
 
+        if (spawnPoints.Count == 0)
+            yield break;
+
+        Vector3 point = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        SpawnAt(point);
       
     }
 

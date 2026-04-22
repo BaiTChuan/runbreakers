@@ -159,6 +159,63 @@ Transform:
   - {fileID: 823407919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &127835705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 647865465016343646, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_Name
+      value: DestructablesManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000004457698
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287409599527525336, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c1229b1d0ddc0f4dabc661b3834a128, type: 3}
 --- !u!1 &144621110
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +622,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6828646014251631607, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
   m_PrefabInstance: {fileID: 6943124124185882697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &611791828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611791830}
+  - component: {fileID: 611791829}
+  m_Layer: 0
+  m_Name: QuestPoint_RingOfFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &611791829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611791828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d732c964017b942bc841f590794efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::questPoint
+  questData:
+    questID: 0
+    questName: 
+    objectiveText: 'Survive in the zone, leave the zone and fail!
+
+'
+    questType: 3
+    targetID: 
+    spawnedTargetPrefab: {fileID: 1392482887135833162, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+    spawnDistanceFromPlayer: 8
+    rewardXP: 0
+    rewardGold: 0
+    travelTimeLimit: 30
+    objectiveTimeLimit: 30
+    requiredCollectionCount: 12
+    baseExtraEnemyCount: 0
+    baseTargetHealthMultiplier: 1
+    scaledExtraEnemyCount: 0
+    scaledTargetHealthMultiplier: 0
+    currentCollectionCount: 0
+    isCompleted: 0
+    isFailed: 0
+  startsQuestOnPlayerEnter: 1
+--- !u!4 &611791830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611791828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1178994842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &706411161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,6 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::questManager
   pointQuests:
   - {fileID: 239096145}
+  - {fileID: 611791829}
   spawnedTargetQuests:
   - questID: 0
     questName: 
@@ -841,6 +966,27 @@ MonoBehaviour:
     currentCollectionCount: 0
     isCompleted: 0
     isFailed: 0
+  - questID: 3
+    questName: Collect Items!
+    objectiveText: 'Collect all the pink items!
+
+'
+    questType: 4
+    targetID: CollectibleItems
+    spawnedTargetPrefab: {fileID: 3157768670338137110, guid: 46c5fbf0dba5cbf46b702f794851a897, type: 3}
+    spawnDistanceFromPlayer: 10
+    rewardXP: 5
+    rewardGold: 10
+    travelTimeLimit: 45
+    objectiveTimeLimit: 30
+    requiredCollectionCount: 10
+    baseExtraEnemyCount: 1
+    baseTargetHealthMultiplier: 1
+    scaledExtraEnemyCount: 0
+    scaledTargetHealthMultiplier: 0
+    currentCollectionCount: 0
+    isCompleted: 0
+    isFailed: 0
   questNameText: {fileID: 1019631840}
   questObjectiveText: {fileID: 793108855}
   questTimerText: {fileID: 2138498849}
@@ -865,6 +1011,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 239096146}
+  - {fileID: 611791830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216783893 stripped
@@ -1922,8 +2069,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9075769468549833776, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6680386777753293033, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
@@ -2145,3 +2297,4 @@ SceneRoots:
   - {fileID: 1994253122738660119}
   - {fileID: 1337943420793811375}
   - {fileID: 1758824901}
+  - {fileID: 127835705}
