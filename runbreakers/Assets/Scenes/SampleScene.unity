@@ -169,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239096146}
   - component: {fileID: 239096145}
+  - component: {fileID: 239096147}
   m_Layer: 0
   m_Name: QuestPoint_MiniBoss
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
     objectiveText: Find and defeat the Mini Boss
     questType: 1
     targetID: SpiderMiniBoss
-    spawnedTargetPrefab: {fileID: 0}
+    spawnedTargetPrefab: {fileID: 1548694418549600729, guid: ea7d2065912ee5e488024a2a4942a512, type: 3}
     spawnDistanceFromPlayer: 8
     rewardXP: 10
     rewardGold: 10
@@ -218,12 +219,33 @@ Transform:
   m_GameObject: {fileID: 239096144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.41, y: 0, z: 95.01}
+  m_LocalPosition: {x: 120.2, y: 0, z: 89.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1178994842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &239096147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239096144}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 20, z: 90}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &363463192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,10 +563,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMiniBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 1548694418549600729, guid: ea7d2065912ee5e488024a2a4942a512, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -763,7 +781,7 @@ Transform:
   m_GameObject: {fileID: 1178994840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.028, y: -0, z: -3.01946}
+  m_LocalPosition: {x: 9.5, y: -0, z: -3.01946}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1929,4 +1947,3 @@ SceneRoots:
   - {fileID: 1994253122738660119}
   - {fileID: 1337943420793811375}
   - {fileID: 1758824901}
-  - {fileID: 127835705}
