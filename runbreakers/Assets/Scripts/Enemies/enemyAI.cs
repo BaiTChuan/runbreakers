@@ -13,16 +13,26 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 1;
     [SerializeField] float armorPercent = 0f;
 
+    [Header("---- Attack ----")]
+    [SerializeField] float attackRange = 1.5f;
+    [SerializeField] float attackRate = 1.5f;
+    [SerializeField] int attackDamage = 1;
+
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
     NavMeshAgent agent;
+    Animator anim;
     int currentHP;
+    float attackTimer;
+    bool isDead;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         currentHP = maxHP;
+        isDead = false;
 
         if (agent != null)
         {
@@ -35,47 +45,67 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        if (isDead) return;
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
-        agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
+        attackTimer += Time.deltaTime;
+
+        float distance = Vector3.Distance(transform.position, Gamemanager.instance.player.transform.position);
+
+        if (distance > attackRange)
+        {
+            agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
+            if (anim != null) anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            agent.ResetPath();
+            if (anim != null) anim.SetBool("IsWalking", false);
+            tryAttack();
+        }
+    }
+
+    void tryAttack()
+    {
+        if (attackTimer < attackRate) return;
+        attackTimer = 0f;
+
+        if (anim != null) anim.SetTrigger("Attack");
+
+        IDamage target = Gamemanager.instance.player.GetComponent<IDamage>();
+        if (target != null) target.takeDamage(attackDamage);
     }
 
     public void takeDamage(int amount)
     {
-        if (beingHitEffect != null)
-        {
-            beingHitEffect.Play();
-        }
+        if (isDead) return;
+
+        if (beingHitEffect != null) beingHitEffect.Play();
 
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
-
         currentHP -= finalDamage;
 
-        if (currentHP <= 0)
-        {
-            die();
-        }
+        if (currentHP <= 0) die();
     }
 
     void die()
     {
-        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
-            return;
+        isDead = true;
+        agent.isStopped = true;
 
-        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+        if (anim != null) anim.SetTrigger("Death");
 
-        if (xp != null)
+        if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
-            xp.AddXP(xpValue);
+            playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+            if (xp != null) xp.AddXP(xpValue);
         }
 
         if (enemySpawner.instance != null)
-        {
             enemySpawner.instance.enemyDefeated(goalValue);
-        }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 }
