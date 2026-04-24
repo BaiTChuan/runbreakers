@@ -61,6 +61,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 if (Gamemanager.instance.rerollChance < Gamemanager.instance.rerollLimit)
                 {
+                    rerollMusic.instance.playReroll();
                     Gamemanager.instance.isRerolled = true;
                     Gamemanager.instance.rerollChance++;
                     Gamemanager.instance.rolling = true;
@@ -71,6 +72,7 @@ public class buttonFunctions : MonoBehaviour
             }
             else
             {
+                rerollMusic.instance.stopReroll();
                 Gamemanager.instance.rolling = false;
                 Gamemanager.instance.rerollOn.SetActive(false);
                 Gamemanager.instance.rerollOff.SetActive(true);
