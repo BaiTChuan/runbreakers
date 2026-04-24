@@ -40,6 +40,13 @@ public class Gamemanager : MonoBehaviour
     public GameObject rerollOff;
     public GameObject rerollOn;
 
+    public int tier1Min = 0;
+    public int tier1Max = 75;
+    public int tier2Min = 76;
+    public int tier2Max = 95;
+    public int tier3Min = 96;
+    public int tier3Max = 100;
+
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
     [SerializeField] Image bossCurrentHPBar;

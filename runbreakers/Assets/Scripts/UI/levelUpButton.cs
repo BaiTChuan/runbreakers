@@ -171,17 +171,17 @@ public class levelUpButton : MonoBehaviour
     void rollUpgrade()
     {
         type = Random.Range(0, 6);
-        tier = Random.Range(0, 3);
+        tier = Random.Range(0, 100);
 
-        if (tier == 0)
+        if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
         {
             tierImage.sprite = tier1;
         }
-        if (tier == 1)
+        if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
         {
             tierImage.sprite = tier2;
         }
-        if (tier == 2)
+        if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
         {
             tierImage.sprite = tier3;
         }
@@ -189,15 +189,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 0)
         {
             image.sprite = healthImg;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = health;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = health2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = health3;
             }
@@ -206,15 +206,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 1)
         {
             image.sprite = speedImg;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = speed;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = speed2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = speed3;
             }
@@ -223,15 +223,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 2)
         {
             image.sprite = damageImg;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = damage;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = damage2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = damage3;
             }
@@ -240,15 +240,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 3)
         {
             image.sprite = null;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = armor;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = armor2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = armor3;
             }
@@ -257,15 +257,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 4)
         {
             image.sprite = null;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = castSpeed;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = castSpeed2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = castSpeed3;
             }
@@ -274,15 +274,15 @@ public class levelUpButton : MonoBehaviour
         if (type == 5)
         {
             image.sprite = null;
-            if (tier == 0)
+            if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = luck;
             }
-            if (tier == 1)
+            if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
             {
                 text.text = luck2;
             }
-            if (tier == 2)
+            if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
             {
                 text.text = luck3;
             }
