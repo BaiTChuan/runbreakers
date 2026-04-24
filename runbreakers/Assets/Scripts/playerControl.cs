@@ -565,6 +565,25 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     #region LevelUpFunctionss
 
+    public void calculateLuck()
+    {
+        Gamemanager.instance.tier3Max = 100;
+
+        Gamemanager.instance.tier3Min = 95 - characterLuck;
+        Gamemanager.instance.tier3Min = Mathf.Clamp(Gamemanager.instance.tier3Min, 4, 100);
+
+        Gamemanager.instance.tier2Max = Gamemanager.instance.tier3Min - 1;
+        Gamemanager.instance.tier2Max = Mathf.Clamp(Gamemanager.instance.tier2Max, 3, 100);
+
+        Gamemanager.instance.tier2Min = (Gamemanager.instance.tier2Max - 20) - (characterLuck * 2);
+        Gamemanager.instance.tier2Min = Mathf.Clamp(Gamemanager.instance.tier2Min, 2, 100);
+
+        Gamemanager.instance.tier1Max = Gamemanager.instance.tier2Min - 1;
+        Gamemanager.instance.tier1Max = Mathf.Clamp(Gamemanager.instance.tier1Max, 1, 100);
+
+        Gamemanager.instance.tier1Min = 0;
+    }
+
     public void hpLevelUp0()
     {
         hpOriginal += hpStatIncrease;
