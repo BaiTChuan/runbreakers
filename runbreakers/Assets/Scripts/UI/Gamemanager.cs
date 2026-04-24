@@ -37,6 +37,8 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text rerollCurText;
     [SerializeField] TMP_Text rerollLimitText;
     [SerializeField] TMP_Text rerollText;
+    public GameObject rerollOff;
+    public GameObject rerollOn;
 
     [Header("----- Boss UI ------")]
     [SerializeField] GameObject bossHPBar;
@@ -82,6 +84,8 @@ public class Gamemanager : MonoBehaviour
         rerollBase = rerollChance;
         rerollOriginal = rerollChance + mainMenuManager.rerollP;
         rerollChance = rerollOriginal;
+        rerollOn.SetActive(false);
+        rerollOff.SetActive(true);
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControl>();

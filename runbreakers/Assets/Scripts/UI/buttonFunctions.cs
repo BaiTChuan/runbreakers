@@ -64,12 +64,16 @@ public class buttonFunctions : MonoBehaviour
                     Gamemanager.instance.isRerolled = true;
                     Gamemanager.instance.rerollChance++;
                     Gamemanager.instance.rolling = true;
+                    Gamemanager.instance.rerollOn.SetActive(true);
+                    Gamemanager.instance.rerollOff.SetActive(false);
                     Gamemanager.instance.updateRerollButton();
                 }
             }
             else
             {
                 Gamemanager.instance.rolling = false;
+                Gamemanager.instance.rerollOn.SetActive(false);
+                Gamemanager.instance.rerollOff.SetActive(true);
                 Gamemanager.instance.updateRerollButton();
                 Gamemanager.instance.isRerolled = false;
             }
