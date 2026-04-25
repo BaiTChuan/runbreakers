@@ -95,6 +95,13 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.velocity = Vector3.zero;
         agent.enabled = false;
 
+        //disables all colliders on death
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
+
         if (anim != null)
         {
             anim.ResetTrigger("HitReact");
