@@ -33,6 +33,7 @@ public class rerollMusic : MonoBehaviour
 
     public void stopReroll()
     {
+        audioSource.clip = null;
         audioSource.Stop();
     }
 }
