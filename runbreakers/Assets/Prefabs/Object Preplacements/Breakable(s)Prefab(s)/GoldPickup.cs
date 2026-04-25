@@ -17,6 +17,10 @@ public class GoldPickup : MonoBehaviour, IPickup
         Destroy(gameObject);
     }
 
+    public void getSpellXP(int amount)
+    {
+    }
+
     void OnTriggerEnter(Collider other)
     {
         

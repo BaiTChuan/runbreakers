@@ -5094,4 +5094,8 @@ MonoBehaviour:
   xpValue: 3
   goalValue: 1
   armorPercent: 0
+  spellXPDropPrefab: {fileID: 4390914827366940311, guid: 5283a1fb25259b542b5dd407497c29b3, type: 3}
+  attackRange: 1.5
+  attackRate: 1.5
+  attackDamage: 1
   beingHitEffect: {fileID: 0}

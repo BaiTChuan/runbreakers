@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +5,13 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LineRenderer))]
 public class ChainLightningSpell : Player_Spell
 {
-    [Header("Initial Projectile")]
     [SerializeField] private GameObject lightningBoltPrefab;
     [SerializeField] private float projectileSpeed = 75f;
 
-    [Header("Chain Properties")]
     [SerializeField] private int maxBounces = 3;
     [SerializeField] private float bounceRange = 10f;
     [SerializeField] [Range(0f, 1f)] private float damageFalloff = 0.2f;
 
-    [Header("Visuals")]
     [SerializeField] private float lineDuration = 0.1f;
     [SerializeField] private LayerMask enemyLayer;
 
@@ -28,6 +24,15 @@ public class ChainLightningSpell : Player_Spell
         lineRenderer.enabled = false;
     }
 
+    protected override void OnLevelUp()
+    {
+        base.OnLevelUp();
+        if (currentLevel == 3 || currentLevel == 5)
+        {
+            maxBounces++;
+        }
+    }
+
     public override void Cast(Transform castPos, Vector3 direction)
     {
         GameObject bolt = Instantiate(lightningBoltPrefab, castPos.position, Quaternion.LookRotation(direction));
@@ -38,14 +43,15 @@ public class ChainLightningSpell : Player_Spell
         {
             projectile.SetDamage(Damage + Gamemanager.instance.playerScript.characterAttackPower);
             projectile.SetChainLightningSource(this);
+            projectile.SetSpeed(projectileSpeed);
         }
     }
 
-    public void InitiateBounces(Transform firstTarget, int initialDamage)
+    public void InitiateBounces(Vector3 hitPosition, Transform firstTarget, int initialDamage)
     {
         List<Transform> hitEnemies = new List<Transform>();
         hitEnemies.Add(firstTarget);
-        StartCoroutine(Bounce(firstTarget.position, firstTarget, hitEnemies, maxBounces, initialDamage));
+        StartCoroutine(Bounce(hitPosition, firstTarget, hitEnemies, maxBounces, initialDamage));
     }
 
     private IEnumerator Bounce(Vector3 fromPosition, Transform currentTarget, List<Transform> hitEnemies, int bouncesLeft, int currentDamage)
@@ -84,13 +90,19 @@ public class ChainLightningSpell : Player_Spell
             {
                 hitEnemies.Add(nextTarget);
                 damageable.takeDamage(nextDamage);
-                StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
+                yield return StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
             }
         }
     }
 
     private IEnumerator DrawLine(Vector3 start, Vector3 end)
     {
+        if (!float.IsFinite(start.x) || !float.IsFinite(start.y) || !float.IsFinite(start.z) ||
+            !float.IsFinite(end.x) || !float.IsFinite(end.y) || !float.IsFinite(end.z))
+        {
+            yield break;
+        }
+
         if (start == end) yield break;
 
         lineRenderer.positionCount = 2;

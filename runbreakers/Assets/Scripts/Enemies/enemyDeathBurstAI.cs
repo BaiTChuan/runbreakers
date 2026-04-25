@@ -13,6 +13,9 @@ public class enemyDeathBurstAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 1;
     [SerializeField] float armorPercent = 0f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Death Burst ----")]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform shootPoint;
@@ -66,6 +69,17 @@ public class enemyDeathBurstAI : MonoBehaviour, IDamage
 
     void die()
     {
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
+        }
+
         spawnDeathProjectiles();
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)

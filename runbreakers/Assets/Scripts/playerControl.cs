@@ -119,7 +119,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void Awake()
     {
-        // Instantiate personal copies of spells for this gameplay session
         spells = new List<Player_Spell>();
         foreach (var spellPrefab in spellPrefabs)
         {
@@ -262,16 +261,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         if (Input.GetButton("Fire1") && castTimer >= (spells[currentSpellIndex].CastSpeed * characterCastSpeed))
         {
             CastSpell();
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (spells.Count > 0 && spells[currentSpellIndex] != null)
-            {
-                spells[currentSpellIndex].AddXp(50);
-                Debug.Log("Added 50 XP to " + spells[currentSpellIndex].name);
-            }
         }
 
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
@@ -504,6 +493,19 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.AddGold(amount);
 
        // GoldUI.instance.UpdateGold(Gamemanager.instance.gold);
+    }
+
+    public void getSpellXP(int amount)
+    {
+        if (spells.Count > 0 && currentSpellIndex >= 0 && currentSpellIndex < spells.Count && spells[currentSpellIndex] != null)
+        {
+            Player_Spell currentSpell = spells[currentSpellIndex];
+            currentSpell.AddXp(amount);
+        }
+        else
+        {
+            Debug.LogWarning(string.Format("[XP Pickup] Failed to give XP. Index: {0}, Spell Count: {1}", currentSpellIndex, spells.Count));
+        }
     }
 
     public int GetCurrentXP()

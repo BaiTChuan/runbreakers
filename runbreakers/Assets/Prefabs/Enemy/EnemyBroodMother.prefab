@@ -5094,6 +5094,7 @@ MonoBehaviour:
   xpValue: 3
   goalValue: 3
   armorPercent: 0.2
+  spellXPDropPrefab: {fileID: 4390914827366940311, guid: 5283a1fb25259b542b5dd407497c29b3, type: 3}
   broodMinionPrefab: {fileID: 4983593914213471437, guid: 3b98a52ed3d7afc43ba1f7557e4cb96f, type: 3}
   spawnPoint: {fileID: 5764296366605923554}
   spawnRate: 4
