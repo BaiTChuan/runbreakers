@@ -16,6 +16,9 @@ public class levelUpButton : MonoBehaviour
     public Sprite healthImg;
     public Sprite speedImg;
     public Sprite damageImg;
+    public Sprite armorImg;
+    public Sprite luckImg;
+    public Sprite castSpeedImg;
 
     public Sprite tier1;
     public Sprite tier2;
@@ -239,7 +242,7 @@ public class levelUpButton : MonoBehaviour
 
         if (type == 3)
         {
-            image.sprite = null;
+            image.sprite = armorImg;
             if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = armor;
@@ -256,7 +259,7 @@ public class levelUpButton : MonoBehaviour
 
         if (type == 4)
         {
-            image.sprite = null;
+            image.sprite = castSpeedImg;
             if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = castSpeed;
@@ -273,7 +276,7 @@ public class levelUpButton : MonoBehaviour
 
         if (type == 5)
         {
-            image.sprite = null;
+            image.sprite = luckImg;
             if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
             {
                 text.text = luck;
