@@ -167,13 +167,13 @@ public class Gamemanager : MonoBehaviour
 
     public void stateUnpause()
     {
+        sprintMsg.gameObject.SetActive(false);
         isPaused = false;
         Time.timeScale = timeScaleOrig;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuActive.SetActive(false);
         menuActive = null;
-        sprintMsg.gameObject.SetActive(false);
     }
 
     public void updateGameGoal(int amount)
@@ -286,7 +286,7 @@ public class Gamemanager : MonoBehaviour
         menuActive.SetActive(true);
 
 
-        if (Gamemanager.instance.playerScript.GetCurrentLevel() == 3)
+        if (playerScript.GetCurrentLevel() == 3)
         {
             sprintMsg.gameObject.SetActive(true);
         }
