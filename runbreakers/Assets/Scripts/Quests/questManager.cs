@@ -351,12 +351,9 @@ public class questManager : MonoBehaviour
 
     public bool IsMiniBossQuestActive()
     {
-        if (!questActive)
-            return false;
-
-        if (currentQuest == null)
-            return false;
-
+        if (!questActive) return false;
+        if (currentQuest == null) return false;
+        if (!objectiveStarted) return false;
         return currentQuest.questType == QuestType.DefeatMiniBoss;
     }
 
