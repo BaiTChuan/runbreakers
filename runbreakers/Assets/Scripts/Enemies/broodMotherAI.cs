@@ -13,6 +13,9 @@ public class broodMotherAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 3;
     [SerializeField] float armorPercent = 0.2f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Summon Settings ----")]
     [SerializeField] GameObject broodMinionPrefab;
     [SerializeField] Transform spawnPoint;
@@ -117,6 +120,17 @@ public class broodMotherAI : MonoBehaviour, IDamage
 
     void die()
     {
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
+        }
+
         if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
 

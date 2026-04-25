@@ -13,6 +13,9 @@ public class broodMinionAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 1;
     [SerializeField] float armorPercent = 0f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
@@ -75,6 +78,17 @@ public class broodMinionAI : MonoBehaviour, IDamage
 
     void die()
     {
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
+        }
+
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();

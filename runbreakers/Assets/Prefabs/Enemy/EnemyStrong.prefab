@@ -5051,6 +5051,10 @@ MonoBehaviour:
   xpValue: 2
   goalValue: 2
   armorPercent: 0.2
+  spellXPDropPrefab: {fileID: 4390914827366940311, guid: 5283a1fb25259b542b5dd407497c29b3, type: 3}
+  attackRange: 1.5
+  attackRate: 1.5
+  attackDamage: 1
   beingHitEffect: {fileID: 8207674451798993904}
 --- !u!195 &4248606909035124958
 NavMeshAgent:

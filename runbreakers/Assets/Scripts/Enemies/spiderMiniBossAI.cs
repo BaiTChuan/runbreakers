@@ -15,6 +15,9 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 5;
     [SerializeField] float armorPercent = 0.3f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Web Attack ----")]
     [SerializeField] GameObject webProjectilePrefab;
     [SerializeField] Transform shootPoint;
@@ -359,6 +362,17 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
     void die()
     {
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
+        }
+
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();

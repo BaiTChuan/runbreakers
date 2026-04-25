@@ -19,6 +19,9 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [SerializeField] int xpValue = 2;
     [SerializeField] int goalValue = 2;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
@@ -107,7 +110,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
             direction = direction.normalized;
 
 
-            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
+            // rb.linearVelocity = direction * spellToCast.spellToCast.speed;
         }
 
         transform.rotation = Quaternion.LookRotation(direction.normalized);
@@ -132,6 +135,17 @@ public class enemyMageAI : MonoBehaviour, IDamage
     {
         if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
+
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
+        }
 
         playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
 

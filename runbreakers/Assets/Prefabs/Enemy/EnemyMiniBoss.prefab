@@ -273,6 +273,7 @@ MonoBehaviour:
   xpValue: 8
   goalValue: 5
   armorPercent: 0.3
+  spellXPDropPrefab: {fileID: 4390914827366940311, guid: 5283a1fb25259b542b5dd407497c29b3, type: 3}
   webProjectilePrefab: {fileID: 1669871955677014003, guid: b44e6b77d9ee3084eb69986605921f43, type: 3}
   shootPoint: {fileID: 7188892742678317890}
   webShootRate: 3

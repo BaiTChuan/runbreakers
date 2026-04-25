@@ -13,6 +13,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 1;
     [SerializeField] float armorPercent = 0f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Attack ----")]
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] float attackRate = 1.5f;
@@ -107,6 +110,17 @@ public class enemyAI : MonoBehaviour, IDamage
             anim.ResetTrigger("HitReact");
             anim.ResetTrigger("Attack");
             anim.SetTrigger("Death");
+        }
+
+        // Drop spell XP pickup
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+            {
+                spellXPPickup.xpAmount = xpValue;
+            }
         }
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)

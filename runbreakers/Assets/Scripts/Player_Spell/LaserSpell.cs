@@ -14,8 +14,25 @@ public class LaserSpell : Player_Spell
         Projectile projectile = laserBullet.GetComponent<Projectile>();
         if (projectile != null)
         {
-            projectile.SetDamage(Damage + Gamemanager.instance.playerScript.characterAttackPower);
-            projectile.SetPiercing(true);
+            int totalDamage = Damage + Gamemanager.instance.playerScript.characterAttackPower;
+            projectile.SetDamage(totalDamage);
+            projectile.SetSpeed(projectileSpeed);
+
+            if (currentLevel >= 6)
+            {
+                projectile.SetBehavior(Projectile.ProjectileBehavior.Return, 0.75f);
+            }
+            else
+            {
+                projectile.SetBehavior(Projectile.ProjectileBehavior.Pierce);
+            }
         }
+    }
+
+    protected override void OnLevelUp()
+    {
+        base.OnLevelUp();
+        Damage++;
+        Debug.Log(string.Format("{0} base damage increased to {1}!", this.name, Damage));
     }
 }
