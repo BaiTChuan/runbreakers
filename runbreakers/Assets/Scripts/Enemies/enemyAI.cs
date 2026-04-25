@@ -30,7 +30,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         currentHP = maxHP;
         isDead = false;
 
@@ -50,18 +50,15 @@ public class enemyAI : MonoBehaviour, IDamage
             return;
 
         attackTimer += Time.deltaTime;
-
         float distance = Vector3.Distance(transform.position, Gamemanager.instance.player.transform.position);
 
         if (distance > attackRange)
         {
             agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
-            if (anim != null) anim.SetBool("IsWalking", true);
         }
         else
         {
             agent.ResetPath();
-            if (anim != null) anim.SetBool("IsWalking", false);
             tryAttack();
         }
     }
@@ -80,8 +77,9 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         if (isDead) return;
-
         if (beingHitEffect != null) beingHitEffect.Play();
+
+        if (anim != null) anim.SetTrigger("HitReact");
 
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
@@ -94,8 +92,15 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isDead = true;
         agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+        agent.enabled = false;
 
-        if (anim != null) anim.SetTrigger("Death");
+        if (anim != null)
+        {
+            anim.ResetTrigger("HitReact");
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Death");
+        }
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
@@ -106,6 +111,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if (enemySpawner.instance != null)
             enemySpawner.instance.enemyDefeated(goalValue);
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3f);
     }
 }
