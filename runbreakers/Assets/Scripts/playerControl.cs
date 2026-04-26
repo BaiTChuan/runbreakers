@@ -500,7 +500,15 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         if (spells.Count > 0 && currentSpellIndex >= 0 && currentSpellIndex < spells.Count && spells[currentSpellIndex] != null)
         {
             Player_Spell currentSpell = spells[currentSpellIndex];
-            currentSpell.AddXp(amount);
+
+            if (currentSpell is ChainLightningSpell clSpell)
+            {
+                clSpell.ReceiveXpDirectly(amount);
+            }
+            else
+            {
+                currentSpell.AddXp(amount);
+            }
         }
         else
         {

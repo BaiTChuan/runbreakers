@@ -47,6 +47,11 @@ public class ChainLightningSpell : Player_Spell
         }
     }
 
+    public void ReceiveXpDirectly(int amount)
+    {
+        AddXp(amount);
+    }
+
     public void InitiateBounces(Vector3 hitPosition, Transform firstTarget, int initialDamage)
     {
         List<Transform> hitEnemies = new List<Transform>();
