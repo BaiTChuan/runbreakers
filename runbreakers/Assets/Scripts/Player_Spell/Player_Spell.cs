@@ -50,6 +50,12 @@ public abstract class Player_Spell : MonoBehaviour
         currentLevel++;
         Debug.Log(string.Format("{0} has leveled up to level {1}!", this.name, currentLevel));
         OnLevelUp();
+
+        // Notify playerControl to check for potential fusions
+        if (Gamemanager.instance != null && Gamemanager.instance.playerScript != null)
+        {
+            Gamemanager.instance.playerScript.CheckForSpellFusion();
+        }
     }
 
     protected virtual void OnLevelUp()

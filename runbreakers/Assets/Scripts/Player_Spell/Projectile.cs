@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private ProjectileBehavior behavior = ProjectileBehavior.StopOnHit;
 
     private ChainLightningSpell chainSource = null;
+    private ExplosiveChainSpell explosiveChainSource = null;
     private bool canExplode = false;
     private float explosionRadius;
     private int explosionDamage;
@@ -28,6 +29,12 @@ public class Projectile : MonoBehaviour
     public void SetChainLightningSource(ChainLightningSpell source)
     {
         chainSource = source;
+        behavior = ProjectileBehavior.StopOnHit;
+    }
+
+    public void SetExplosiveChainSource(ExplosiveChainSpell source)
+    {
+        explosiveChainSource = source;
         behavior = ProjectileBehavior.StopOnHit;
     }
 
@@ -128,6 +135,11 @@ public class Projectile : MonoBehaviour
             if (chainSource != null)
             {
                 chainSource.InitiateBounces(transform.position, targetCollider.transform, damage);
+                Destroy(gameObject);
+            }
+            else if (explosiveChainSource != null)
+            {
+                explosiveChainSource.InitiateBouncesAndExplosions(transform.position, targetCollider.transform, damage);
                 Destroy(gameObject);
             }
         }
