@@ -20,6 +20,8 @@ public class DestructableObject : MonoBehaviour, IDamage
     [SerializeField] float shakeTime = 0.5f;
     [SerializeField] float openTime = 1f;
 
+   // [SerializeField] bool isChest = false;
+
 
 
     public void takeDamage(int amount)
@@ -63,6 +65,7 @@ public class DestructableObject : MonoBehaviour, IDamage
 
         if (DestructableObjectsManager.instance != null)
             DestructableObjectsManager.instance.OnDestructableDestroyed();
+
 
         Destroy(gameObject);
 
