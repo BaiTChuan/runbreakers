@@ -68,17 +68,17 @@ public class levelUpButton : MonoBehaviour
         {
             if (type == 0)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.hpLevelUp0();
                     Gamemanager.instance.playerScript.updatePlayerUI();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.hpLevelUp1();
                     Gamemanager.instance.playerScript.updatePlayerUI();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.hpLevelUp2();
                     Gamemanager.instance.playerScript.updatePlayerUI();
@@ -87,15 +87,15 @@ public class levelUpButton : MonoBehaviour
 
             if (type == 1)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.speedLevelUp0();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.speedLevelUp1();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.speedLevelUp2();
                 }
@@ -103,15 +103,15 @@ public class levelUpButton : MonoBehaviour
 
             if (type == 2)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.damageLevelUp0();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.damageLevelUp1();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.damageLevelUp2();
                 }
@@ -119,15 +119,15 @@ public class levelUpButton : MonoBehaviour
 
             if (type == 3)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.armorLevelUp0();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.armorLevelUp1();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.armorLevelUp2();
                 }
@@ -135,15 +135,15 @@ public class levelUpButton : MonoBehaviour
 
             if (type == 4)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.castSpeedLevelUp0();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.castSpeedLevelUp1();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.castSpeedLevelUp2();
                 }
@@ -151,15 +151,15 @@ public class levelUpButton : MonoBehaviour
 
             if (type == 5)
             {
-                if (tier == 0)
+                if (tier >= Gamemanager.instance.tier1Min && tier <= Gamemanager.instance.tier1Max)
                 {
                     Gamemanager.instance.playerScript.luckLevelUp0();
                 }
-                if (tier == 1)
+                if (tier >= Gamemanager.instance.tier2Min && tier <= Gamemanager.instance.tier2Max)
                 {
                     Gamemanager.instance.playerScript.luckLevelUp1();
                 }
-                if (tier == 2)
+                if (tier >= Gamemanager.instance.tier3Min && tier <= Gamemanager.instance.tier3Max)
                 {
                     Gamemanager.instance.playerScript.luckLevelUp2();
                 }
