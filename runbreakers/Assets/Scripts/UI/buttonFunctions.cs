@@ -150,4 +150,9 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void onClickMainMenu()
+    {
+        mainMenuManager.instance.onClick();
+    }
 }

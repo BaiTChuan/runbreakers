@@ -18,6 +18,10 @@ public class mainMenuManager : MonoBehaviour
 
     [SerializeField] TMP_Text goldCur;
 
+    public AudioClip click;
+
+    public AudioSource audioSource;
+
     [Header("----- HealthP ------")]
     [SerializeField] TMP_Text healthCur;
     [SerializeField] TMP_Text healthMax;
@@ -417,6 +421,15 @@ public class mainMenuManager : MonoBehaviour
         goldCur.text = Gamemanager.gold.ToString();
     }
 
+    public void onClick()
+    {
+        if (click != null)
+        {
+            audioSource.clip = click;
+            audioSource.loop = false;
+            audioSource.Play();
+        }
+    }
     #region PermanentUpgrades
 
     public void pHealthUp()
