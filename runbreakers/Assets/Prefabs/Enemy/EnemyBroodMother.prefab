@@ -4947,7 +4947,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7370307019625582198}
   - component: {fileID: 8549948089983351910}
-  - component: {fileID: 6714793694379500260}
   - component: {fileID: 1714491897576032351}
   - component: {fileID: 3290786946469293273}
   - component: {fileID: 1190374263370342826}
@@ -4985,55 +4984,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8748283802342859834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6714793694379500260
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8748283802342859834}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 937c8ea4671e66641ac4b665190cc2cc, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1714491897576032351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5102,8 +5052,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 5764296366605923554}
   spawnRate: 4
   minionsPerSpawn: 2
-  damageCollider: {fileID: 0}
-  beingHitEffect: {fileID: 0}
+  damageCollider: {fileID: 7786265087972815886}
+  beingHitEffect: {fileID: 8784546273803440222}
 --- !u!1001 &2430616208146806290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5156,6 +5106,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: model
       objectReference: {fileID: 0}
+    - target: {fileID: 2410570265434229790, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410570265434229790, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2bcd1f48ccbfc14e8999e274233eae2, type: 2}
+    - target: {fileID: 2410570265434229790, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3032527368782228296, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
     - target: {fileID: 5866666021909216657, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
       propertyPath: m_Controller
       value: 

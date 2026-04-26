@@ -5102,6 +5102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: model
       objectReference: {fileID: 0}
+    - target: {fileID: 2410570265434229790, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2bcd1f48ccbfc14e8999e274233eae2, type: 2}
     - target: {fileID: 5866666021909216657, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
       propertyPath: m_Controller
       value: 
