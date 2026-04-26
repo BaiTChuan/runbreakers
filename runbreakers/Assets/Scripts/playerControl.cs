@@ -13,7 +13,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Header("----- Stats ------")]
     [Range(1, 30)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] float speed;
-    [Range(2, 6)][SerializeField] int sprintMod;
     [SerializeField] public int characterAttackPower;
     [SerializeField] int characterArmor;
     [SerializeField] int characterLuck;
