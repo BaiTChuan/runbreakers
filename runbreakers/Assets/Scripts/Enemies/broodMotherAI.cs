@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class broodMotherAI : MonoBehaviour, IDamage
 {
@@ -158,9 +159,6 @@ public class broodMotherAI : MonoBehaviour, IDamage
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
         currentHP -= finalDamage;
-
-        if (anim != null)
-            anim.SetTrigger("HitReact");
 
         if (currentHP <= 0)
             die();
