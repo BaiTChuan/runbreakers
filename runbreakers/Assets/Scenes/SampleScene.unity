@@ -1038,8 +1038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestructableObjectsManager
   destructableObject: {fileID: 1484591810506955851, guid: 83bc6224da38cb341a4691cd3dc820fb, type: 3}
-  maxActive: 10
-  respawnDelay: 5
+  maxActive: 12
+  respawnDelay: 4
 --- !u!1 &1585052630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,9 +2113,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2564948000133663410, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900055433601576553, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214476300400446408, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892266519281395747, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5747001204748143599, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
       propertyPath: m_Name
       value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750530754542824248, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910519181809315242, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292978092800843256, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443448313817478927, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8619778760788894904, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2156,6 +2188,10 @@ PrefabInstance:
     - target: {fileID: 8619778760788894904, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913028307399755967, guid: 4b5f28647056a6845ac93ebcf601d8ce, type: 3}
+      propertyPath: eerieAmbience.Array.size
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

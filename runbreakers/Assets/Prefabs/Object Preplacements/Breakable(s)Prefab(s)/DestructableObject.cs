@@ -43,10 +43,10 @@ public class DestructableObject : MonoBehaviour, IDamage
     void Die()
     {
 
-        if (destroySounds.Length > 0 && audioSource != null)
+        if (destroySounds.Length > 0)
         {
             AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
-            audioSource.PlayOneShot(clip);
+            AudioSource.PlayClipAtPoint(clip, transform.position, 1.8f);
         }
 
        

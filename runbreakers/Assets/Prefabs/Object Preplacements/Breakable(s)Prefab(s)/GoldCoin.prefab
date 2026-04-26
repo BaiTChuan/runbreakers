@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldPickup
   goldAmount: 5
+  pickupSound: {fileID: 8300000, guid: d71841170552be14db68d9d30eb3c685, type: 3}
 --- !u!135 &8908636428417289137
 SphereCollider:
   m_ObjectHideFlags: 0
