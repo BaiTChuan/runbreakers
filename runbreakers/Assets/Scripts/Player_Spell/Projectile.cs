@@ -76,9 +76,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        
         GameObject hitObject = other.gameObject;
 
         if (hitObject.CompareTag("Enemy"))
+        {
+            HandleDamage(other);
+        }
+
+        if (hitObject.CompareTag("Destructables"))
         {
             HandleDamage(other);
         }
