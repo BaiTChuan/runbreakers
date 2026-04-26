@@ -159,7 +159,7 @@ MonoBehaviour:
   characterAttackPower: 1
   characterArmor: 10
   characterLuck: 1
-  characterCastSpeed: 1
+  characterCastSpeed: 1.2
   revive: 0
   hpStatIncrease: 3
   speedStatIncrease: 1

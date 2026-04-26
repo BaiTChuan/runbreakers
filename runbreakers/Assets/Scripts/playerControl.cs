@@ -50,6 +50,17 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] private Transform castPos;
     private int currentSpellIndex = 0;
 
+    public int clLevel = 1;
+    private int clCurrentXp = 0;
+    private int[] clXpPerLevel = { 20, 30, 40, 60, 50 };
+    private int clMaxLevel = 6;
+
+    [Header("----- Dash Stats ------")]
+    [SerializeField] private float dashSpeed = 50f;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashCooldown = 3f;
+    private float dashTimer;
+
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
@@ -127,6 +138,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         }
     }
 
+    IEnumerator Dash()
+    {
+        float originalSpeed = speed;
+        speed = dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        speed = originalSpeed;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -176,7 +195,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     void Update()
     {
         movement();
-        sprint();
+        HandleDash();
         AimGunToMouse();
         dataDeletedCheck();
     }
@@ -307,20 +326,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             StartCoroutine(playStep());
     }
 
-    void sprint()
+    void HandleDash()
     {
-        if (currentLevel >= 3)
+        dashTimer += Time.deltaTime;
+
+        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer >= dashCooldown)
         {
-            if (Input.GetButtonDown("Sprint"))
-            {
-                speed *= sprintMod;
-                isSprinting = true;
-            }
-            else if (Input.GetButtonUp("Sprint"))
-            {
-                speed /= sprintMod;
-                isSprinting = false;
-            }
+            dashTimer = 0f;
+            StartCoroutine(Dash());
         }
     }
 
@@ -503,7 +516,31 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
             if (currentSpell is ChainLightningSpell clSpell)
             {
-                clSpell.ReceiveXpDirectly(amount);
+                if (clLevel >= clMaxLevel) return;
+
+                clCurrentXp += amount;
+
+                int xpToNextLevel = clXpPerLevel[clLevel - 1];
+                while (clCurrentXp >= xpToNextLevel)
+                {
+                    clCurrentXp -= xpToNextLevel;
+                    clLevel++;
+
+                    if (clLevel == 3 || clLevel == 5)
+                    {
+                        clSpell.IncreaseBounces();
+                    }
+
+                    if (clLevel >= clMaxLevel)
+                    {
+                        clCurrentXp = 0;
+                        break;
+                    }
+                    else
+                    {
+                        xpToNextLevel = clXpPerLevel[clLevel - 1];
+                    }
+                }
             }
             else
             {
