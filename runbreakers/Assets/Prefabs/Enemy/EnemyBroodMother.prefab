@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1865040238268182134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.482}
+  m_LocalPosition: {x: 0.568, y: 0.424, z: 0.482}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4861,7 +4861,7 @@ Transform:
   m_GameObject: {fileID: 5418626848932858948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.318, y: 0.021, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4894,7 +4894,7 @@ Transform:
   m_GameObject: {fileID: 5587794506912868208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.418, y: 0.074, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4919,8 +4919,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9363184, y: 1, z: 0.5738499}
-  m_Center: {x: -0.0318408, y: 0, z: -0.034716725}
+  m_Size: {x: 2.719562, y: 1, z: 2.616993}
+  m_Center: {x: -0.017947912, y: 0, z: -0.0059216022}
 --- !u!114 &4656522308743379076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5003,8 +5003,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8846369, y: 1, z: 0.6956532}
-  m_Center: {x: -0.017506123, y: 0, z: 0.013893962}
+  m_Size: {x: 2.9264987, y: 1.10598, z: 2.6160378}
+  m_Center: {x: 0.40297997, y: 0.05299008, z: 0.04808998}
 --- !u!195 &3290786946469293273
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5125,10 +5125,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4423967484356315520}
   m_SourcePrefab: {fileID: 100100000, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
 --- !u!4 &2752246848740184569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
   m_PrefabInstance: {fileID: 2430616208146806290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3276968245477280579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+  m_PrefabInstance: {fileID: 2430616208146806290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4423967484356315520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276968245477280579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3444c765109ad84cbccd78a2c9f285f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::broodMotherAnimEvents

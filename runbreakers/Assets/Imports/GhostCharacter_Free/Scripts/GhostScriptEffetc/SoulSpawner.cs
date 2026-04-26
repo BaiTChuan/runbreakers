@@ -27,8 +27,11 @@ public class SoulSpawner : MonoBehaviour
             if (eerieAmbience.Length > 0 && ambientSource != null)
             {
                 AudioClip clip = eerieAmbience[Random.Range(0, eerieAmbience.Length)];
-                ambientSource.PlayOneShot(clip);
-                yield return new WaitForSeconds(clip.length + Random.Range(spawnInterval, spawnRadius));
+                if (clip != null)
+                {
+                    ambientSource.PlayOneShot(clip);
+                    yield return new WaitForSeconds(clip.length + Random.Range(spawnInterval, spawnRadius));
+                }
 
             }
             else

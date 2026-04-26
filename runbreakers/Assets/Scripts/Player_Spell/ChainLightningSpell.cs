@@ -10,7 +10,7 @@ public class ChainLightningSpell : Player_Spell
 
     [SerializeField] private int maxBounces = 3;
     [SerializeField] private float bounceRange = 10f;
-    [SerializeField] [Range(0f, 1f)] private float damageFalloff = 0.2f;
+    [SerializeField] [Range(0f, 1f)] private float damageFalloff = 0.1f;
 
     [SerializeField] private float lineDuration = 0.1f;
     [SerializeField] private LayerMask enemyLayer;
@@ -22,15 +22,6 @@ public class ChainLightningSpell : Player_Spell
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 0;
         lineRenderer.enabled = false;
-    }
-
-    protected override void OnLevelUp()
-    {
-        base.OnLevelUp();
-        if (currentLevel == 3 || currentLevel == 5)
-        {
-            maxBounces++;
-        }
     }
 
     public override void Cast(Transform castPos, Vector3 direction)
@@ -45,6 +36,11 @@ public class ChainLightningSpell : Player_Spell
             projectile.SetChainLightningSource(this);
             projectile.SetSpeed(projectileSpeed);
         }
+    }
+
+    public void IncreaseBounces()
+    {
+        maxBounces++;
     }
 
     public void InitiateBounces(Vector3 hitPosition, Transform firstTarget, int initialDamage)
@@ -93,6 +89,24 @@ public class ChainLightningSpell : Player_Spell
                 yield return StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
             }
         }
+        else
+        {
+            if (Gamemanager.instance.playerScript.clLevel >= 6 && bouncesLeft > 0)
+            {
+                IDamage damageable = currentTarget.GetComponent<IDamage>();
+                if (damageable != null)
+                {
+                    int singleBounceDamage = nextDamage;
+                    for (int i = 0; i < bouncesLeft; i++)
+                    {
+                        damageable.takeDamage(singleBounceDamage);
+                        yield return StartCoroutine(DrawLine(currentTargetPosition, currentTargetPosition + Vector3.up * 1.5f));
+                        yield return new WaitForSeconds(0.1f);
+                        singleBounceDamage = Mathf.RoundToInt(singleBounceDamage * (1 - damageFalloff));
+                    }
+                }
+            }
+        }
     }
 
     private IEnumerator DrawLine(Vector3 start, Vector3 end)
@@ -100,7 +114,7 @@ public class ChainLightningSpell : Player_Spell
         if (!float.IsFinite(start.x) || !float.IsFinite(start.y) || !float.IsFinite(start.z) ||
             !float.IsFinite(end.x) || !float.IsFinite(end.y) || !float.IsFinite(end.z))
         {
-            yield break;
+            yield break; // Exit if any coordinate is not a finite number
         }
 
         if (start == end) yield break;
