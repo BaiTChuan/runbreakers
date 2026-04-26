@@ -44,6 +44,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     [Header("----- Spells ------")]
     [SerializeField] private List<Player_Spell> spellPrefabs = new List<Player_Spell>();
+    [SerializeField] private ExplosiveChainSpell fusedExplosiveChainPrefab; // Prefab for the fused spell
     private List<Player_Spell> spells = new List<Player_Spell>();
     [SerializeField] private Transform castPivot;
     [SerializeField] private Transform castPos;
@@ -530,6 +531,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
                         clSpell.IncreaseBounces();
                     }
 
+                    CheckForSpellFusion(); // Check for fusion after CL levels up
+
                     if (clLevel >= clMaxLevel)
                     {
                         clCurrentXp = 0;
@@ -556,6 +559,39 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     {
         return currentXP;
     }
+
+    public void CheckForSpellFusion()
+    {
+        Player_Spell fireball = null;
+        Player_Spell chainLightning = null;
+
+        foreach (var spell in spells)
+        {
+            if (spell is FireballSpell && spell.CurrentLevel >= 6)
+            {
+                fireball = spell;
+            }
+            else if (spell is ChainLightningSpell && clLevel >= 6)
+            {
+                chainLightning = spell;
+            }
+        }
+
+        if (fireball != null && chainLightning != null)
+        {
+            Debug.Log("<color=magenta>SPELL FUSION! Fireball and Chain Lightning have merged into Explosive Chain!</color>");
+
+            spells.Remove(fireball);
+            spells.Remove(chainLightning);
+            Destroy(fireball.gameObject);
+            Destroy(chainLightning.gameObject);
+
+            ExplosiveChainSpell fusedSpell = Instantiate(fusedExplosiveChainPrefab, transform);
+            spells.Add(fusedSpell);
+            currentSpellIndex = spells.IndexOf(fusedSpell);
+        }
+    }
+
 
     public int GetCurrentLevel()
     {
