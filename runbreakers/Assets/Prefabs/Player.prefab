@@ -128,6 +128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8087693119735934403}
   - {fileID: 192240543599465630}
   - {fileID: 1328238178834731681}
   - {fileID: 1214019068478353960}
@@ -156,9 +157,10 @@ MonoBehaviour:
   speed: 8
   sprintMod: 2
   characterAttackPower: 1
-  characterArmor: 10
+  characterArmor: 5
   characterLuck: 1
-  characterCastSpeed: 1
+  characterCastSpeed: 0.5
+  revive: 0
   hpStatIncrease: 3
   speedStatIncrease: 1
   damageStatIncrease: 1
@@ -180,7 +182,7 @@ MonoBehaviour:
   spellPrefabs:
   - {fileID: 2792995171105596977, guid: 98a12bb7de4836e4eae7702426808691, type: 3}
   - {fileID: 3798548851274251527, guid: e13e5e4bdabd37240bc46049b744ed8a, type: 3}
-  - {fileID: 0}
+  - {fileID: 8510506890432813599}
   castPivot: {fileID: 3678133820879839460}
   castPos: {fileID: 7057992571251399988}
   beingHitEffect: {fileID: 8567528641623525608}
@@ -5722,3 +5724,76 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &5656094859173838511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3304841413680316636}
+    m_Modifications:
+    - target: {fileID: 4114481723686675337, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_Name
+      value: ChainLightningSpellController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+--- !u!4 &8087693119735934403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4486498116085945196, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+  m_PrefabInstance: {fileID: 5656094859173838511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8510506890432813599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4063681330322023600, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+  m_PrefabInstance: {fileID: 5656094859173838511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dedc1f44174a4444b6f3ecf60a68a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChainLightningSpell
