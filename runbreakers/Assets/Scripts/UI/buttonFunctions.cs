@@ -95,7 +95,7 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.reviveP = 0;
         mainMenuManager.rerollP = 0;
 
-        Gamemanager.gold = 100;
+        Gamemanager.gold = 2000;
 
         mainMenuManager.pHealthLevel = 0;
         mainMenuManager.pSpeedLevel = 0;
@@ -107,6 +107,15 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.pRerollLevel = 0;
 
         mainMenuManager.instance.dataDeleted = true;
+    }
+
+    public void back()
+    {
+        if (mainMenuManager.instance.menuActive != null)
+        {
+            mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+            mainMenuManager.instance.menuActive = null;
+        }
     }
 
     public void quit()

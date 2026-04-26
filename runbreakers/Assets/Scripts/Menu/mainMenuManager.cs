@@ -90,6 +90,36 @@ public class mainMenuManager : MonoBehaviour
     [SerializeField] int rerollCost;
     [SerializeField] int rerollLevelStat = 1;
 
+    [Header("----- Levels ------")]
+    public GameObject healthUp;
+    public GameObject healthUp2;
+    public GameObject healthUp3;
+
+    public GameObject speedUp;
+    public GameObject speedUp2;
+    public GameObject speedUp3;
+
+    public GameObject damageUp;
+    public GameObject damageUp2;
+    public GameObject damageUp3;
+
+    public GameObject castSpeedUp;
+    public GameObject castSpeedUp2;
+    public GameObject castSpeedUp3;
+
+    public GameObject armorUp;
+    public GameObject armorUp2;
+    public GameObject armorUp3;
+
+    public GameObject reviveUp;
+
+    public GameObject rerollUp;
+    public GameObject rerollUp2;
+
+    public GameObject luckUp;
+    public GameObject luckUp2;
+    public GameObject luckUp3;
+
     static bool firstTime = true;
     public bool dataDeleted = false;
 
@@ -188,38 +218,202 @@ public class mainMenuManager : MonoBehaviour
 
     public void updateShop()
     {
-        healthCur.text = pHealthLevel.ToString();
-        healthMax.text = pHealthMax.ToString();
+        #region
         healthCostText.text = healthCost.ToString();
 
-        damageCur.text = pDamageLevel.ToString();
-        damageMax.text = pDamageMax.ToString();
         damageCostText.text = damageCost.ToString();
 
-        speedCur.text = pSpeedLevel.ToString();
-        speedMax.text = pSpeedMax.ToString();
         speedCostText.text = speedCost.ToString();
 
-        luckCur.text = pLuckLevel.ToString();
-        luckMax.text = pLuckMax.ToString();
         luckCostText.text = luckCost.ToString();
 
-        armorCur.text = pArmorLevel.ToString();
-        armorMax.text = pArmorMax.ToString();
         armorCostText.text = armorCost.ToString();
 
-        castSpeedCur.text = pCastSpeedLevel.ToString();
-        castSpeedMax.text = pCastSpeedMax.ToString();
         castSpeedCostText.text = castSpeedCost.ToString();
 
-        reviveCur.text = pReviveLevel.ToString();
-        reviveMax.text = pReviveMax.ToString();
         reviveCostText.text = reviveCost.ToString();
 
-        rerollCur.text = pRerollLevel.ToString();
-        rerollMax.text = pRerollMax.ToString();
         rerollCostText.text = rerollCost.ToString();
+        #endregion
 
+        #region
+
+        if (pHealthLevel == 0)
+        {
+            healthUp.gameObject.SetActive(false);
+            healthUp2.gameObject.SetActive(false);
+            healthUp3.gameObject.SetActive(false);
+        }
+        else if (pHealthLevel == 1)
+        {
+            healthUp.gameObject.SetActive(true);
+            healthUp2.gameObject.SetActive(false);
+            healthUp3.gameObject.SetActive(false);
+        }
+        else if (pHealthLevel == 2)
+        {
+            healthUp.gameObject.SetActive(true);
+            healthUp2.gameObject.SetActive(true);
+            healthUp3.gameObject.SetActive(false);
+        }
+        else if (pHealthLevel == 3)
+        {
+            healthUp.gameObject.SetActive(true);
+            healthUp2.gameObject.SetActive(true);
+            healthUp3.gameObject.SetActive(true);
+        }
+
+        if (pSpeedLevel == 0)
+        {
+            speedUp.gameObject.SetActive(false);
+            speedUp2.gameObject.SetActive(false);
+            speedUp3.gameObject.SetActive(false);
+        }
+        else if (pSpeedLevel == 1)
+        {
+            speedUp.gameObject.SetActive(true);
+            speedUp2.gameObject.SetActive(false);
+            speedUp3.gameObject.SetActive(false);
+        }
+        else if (pSpeedLevel == 2)
+        {
+            speedUp.gameObject.SetActive(true);
+            speedUp2.gameObject.SetActive(true);
+            speedUp3.gameObject.SetActive(false);
+        }
+        else if (pSpeedLevel == 3)
+        {
+            speedUp.gameObject.SetActive(true);
+            speedUp2.gameObject.SetActive(true);
+            speedUp3.gameObject.SetActive(true);
+        }
+
+        if (pArmorLevel == 0)
+        {
+            armorUp.gameObject.SetActive(false);
+            armorUp2.gameObject.SetActive(false);
+            armorUp3.gameObject.SetActive(false);
+        }
+        else if (pArmorLevel == 1)
+        {
+            armorUp.gameObject.SetActive(true);
+            armorUp2.gameObject.SetActive(false);
+            armorUp3.gameObject.SetActive(false);
+        }
+        else if (pArmorLevel == 2)
+        {
+            armorUp.gameObject.SetActive(true);
+            armorUp2.gameObject.SetActive(true);
+            armorUp3.gameObject.SetActive(false);
+        }
+        else if (pArmorLevel == 3)
+        {
+            armorUp.gameObject.SetActive(true);
+            armorUp2.gameObject.SetActive(true);
+            armorUp3.gameObject.SetActive(true);
+        }
+
+        if (pDamageLevel == 0)
+        {
+            damageUp.gameObject.SetActive(false);
+            damageUp2.gameObject.SetActive(false);
+            damageUp3.gameObject.SetActive(false);
+        }
+        else if (pDamageLevel == 1)
+        {
+            damageUp.gameObject.SetActive(true);
+            damageUp2.gameObject.SetActive(false);
+            damageUp3.gameObject.SetActive(false);
+        }
+        else if (pDamageLevel == 2)
+        {
+            damageUp.gameObject.SetActive(true);
+            damageUp2.gameObject.SetActive(true);
+            damageUp3.gameObject.SetActive(false);
+        }
+        else if (pDamageLevel == 3)
+        {
+            damageUp.gameObject.SetActive(true);
+            damageUp2.gameObject.SetActive(true);
+            damageUp3.gameObject.SetActive(true);
+        }
+
+        if (pLuckLevel == 0)
+        {
+            luckUp.gameObject.SetActive(false);
+            luckUp2.gameObject.SetActive(false);
+            luckUp3.gameObject.SetActive(false);
+        }
+        else if (pLuckLevel == 1)
+        {
+            luckUp.gameObject.SetActive(true);
+            luckUp2.gameObject.SetActive(false);
+            luckUp3.gameObject.SetActive(false);
+        }
+        else if (pLuckLevel == 2)
+        {
+            luckUp.gameObject.SetActive(true);
+            luckUp2.gameObject.SetActive(true);
+            luckUp3.gameObject.SetActive(false);
+        }
+        else if (pLuckLevel == 3)
+        {
+            luckUp.gameObject.SetActive(true);
+            luckUp2.gameObject.SetActive(true);
+            luckUp3.gameObject.SetActive(true);
+        }
+
+        if (pReviveLevel == 0)
+        {
+            reviveUp.gameObject.SetActive(false);
+        }
+        else if (pReviveLevel == 1)
+        {
+            reviveUp.gameObject.SetActive(true);
+        }
+
+        if (pRerollLevel == 0)
+        {
+            rerollUp.gameObject.SetActive(false);
+            rerollUp2.gameObject.SetActive(false);
+        }
+        else if (pRerollLevel == 1)
+        {
+            rerollUp.gameObject.SetActive(true);
+            rerollUp2.gameObject.SetActive(false);
+        }
+        else if (pRerollLevel == 2)
+        {
+            rerollUp.gameObject.SetActive(true);
+            rerollUp2.gameObject.SetActive(true);
+        }
+
+        if (pCastSpeedLevel == 0)
+        {
+            castSpeedUp.gameObject.SetActive(false);
+            castSpeedUp2.gameObject.SetActive(false);
+            castSpeedUp3.gameObject.SetActive(false);
+        }
+        else if (pCastSpeedLevel == 1)
+        {
+            castSpeedUp.gameObject.SetActive(true);
+            castSpeedUp2.gameObject.SetActive(false);
+            castSpeedUp3.gameObject.SetActive(false);
+        }
+        else if (pCastSpeedLevel == 2)
+        {
+            castSpeedUp.gameObject.SetActive(true);
+            castSpeedUp2.gameObject.SetActive(true);
+            castSpeedUp3.gameObject.SetActive(false);
+        }
+        else if (pCastSpeedLevel == 3)
+        {
+            castSpeedUp.gameObject.SetActive(true);
+            castSpeedUp2.gameObject.SetActive(true);
+            castSpeedUp3.gameObject.SetActive(true);
+        }
+
+        #endregion
         goldCur.text = Gamemanager.gold.ToString();
     }
 
