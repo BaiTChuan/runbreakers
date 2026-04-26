@@ -46,9 +46,6 @@ public class ChestDestructable : MonoBehaviour, IDamage
                 pickup.goldAmount = goldToDrop;
         }
 
-        if (DestructableObjectsManager.instance != null)
-            DestructableObjectsManager.instance.OnDestructableDestroyed();
-
         Destroy(gameObject, 3f);
     }
 

@@ -64,7 +64,7 @@ MonoBehaviour:
   gold: {fileID: 3637305740836842957, guid: c00df110b79f6e04ba9b61c522e4fe08, type: 3}
   openSounds:
   - {fileID: 8300000, guid: 3495f3e5223286a4c9cfaebb35763a6f, type: 3}
-  animator: {fileID: 1570117268122901363}
+  animator: {fileID: 6209856189571648306}
   shakeTime: 1.3
   openTime: 2.3
 --- !u!23 &1007706983066165317
@@ -264,6 +264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8953304334006982134}
     m_Modifications:
+    - target: {fileID: 6120947179211629477, guid: 3082097348be1d442841596a8a23e16a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f6fd1d9cf2853d549a19e3c5b4a4fac5, type: 2}
     - target: {fileID: 8846873542667611298, guid: 3082097348be1d442841596a8a23e16a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -325,6 +329,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3082097348be1d442841596a8a23e16a, type: 3}
+--- !u!95 &6209856189571648306 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6120947179211629477, guid: 3082097348be1d442841596a8a23e16a, type: 3}
+  m_PrefabInstance: {fileID: 206090578792507543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8654307524787979317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8846873542667611298, guid: 3082097348be1d442841596a8a23e16a, type: 3}
