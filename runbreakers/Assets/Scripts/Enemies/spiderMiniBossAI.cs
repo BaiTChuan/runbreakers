@@ -38,12 +38,12 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
     // Sweep attack disabled for initial release. no animation available.
     // Re-enable when sweep animation is added for full Steam release.
-    [Header("---- Sweep Attack (Disabled) ----")]
-    [SerializeField] int sweepDamage = 1;
-    [SerializeField] float sweepRange = 5f;
-    [SerializeField] float sweepRadius = 4f;
-    [SerializeField] float sweepAngle = 160f;
-    [SerializeField] float sweepRate = 1.25f;
+    //[Header("---- Sweep Attack (Disabled) ----")]
+    //[SerializeField] int sweepDamage = 1;
+    //[SerializeField] float sweepRange = 5f;
+    //[SerializeField] float sweepRadius = 4f;
+    //[SerializeField] float sweepAngle = 160f;
+    //[SerializeField] float sweepRate = 1.25f;
 
     [Header("---- Egg Summon ----")]
     [SerializeField] GameObject broodEggPrefab;
