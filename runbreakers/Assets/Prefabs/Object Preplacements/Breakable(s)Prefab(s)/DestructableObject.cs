@@ -14,19 +14,41 @@ public class DestructableObject : MonoBehaviour, IDamage
     [SerializeField] int minGold = 5;
     [SerializeField] int maxGold = 15;
     [SerializeField] GameObject GoldCoin;
-    
+    [SerializeField] AudioClip[] destroySounds;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] Animator animator;
+    [SerializeField] float shakeTime = 0.5f;
+    [SerializeField] float openTime = 1f;
 
-   
+
 
     public void takeDamage(int amount)
     {
         hp -= amount;
         if (hp <= 0)
-            Die();
+            StartCoroutine(DestroySequence());
+    }
+
+    IEnumerator DestroySequence()
+    {
+        if (animator != null)
+        {
+            animator.Play("Chest_Shake");
+            yield return new WaitForSeconds(shakeTime + openTime);
+        }
+
+        Die();
     }
 
     void Die()
     {
+
+        if (destroySounds.Length > 0 && audioSource != null)
+        {
+            AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
+            audioSource.PlayOneShot(clip);
+        }
+
        
         if (GoldCoin != null)
         {

@@ -5,6 +5,8 @@ public class CollectibleItems : MonoBehaviour
 
     [SerializeField] string targetID = "CollectibleItem";
     [SerializeField] float pickupRadius = 1.5f;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] AudioSource audioSource;
     Transform player;
 
     void Start()
@@ -26,6 +28,9 @@ public class CollectibleItems : MonoBehaviour
         {
             if (questManager.instance != null)
                 questManager.instance.ReportItemCollected(targetID);
+
+            if (pickupSound != null && audioSource != null)
+                audioSource.PlayOneShot(pickupSound);
 
             Destroy(gameObject);
         }
