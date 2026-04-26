@@ -49,7 +49,7 @@ public class broodMinionAI : MonoBehaviour, IDamage
         agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
 
         if (anim != null)
-            anim.SetBool("IsWalking", agent.velocity.magnitude > 0.1f);
+            anim.SetBool("IsRunning", agent.velocity.magnitude > 0.1f);
     }
 
     public void takeDamage(int amount)
