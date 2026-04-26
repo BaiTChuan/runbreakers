@@ -28,11 +28,15 @@ public class enemyMageAI : MonoBehaviour, IDamage
     int currentHP;
     float shootTimer;
     NavMeshAgent agent;
+    Animator anim;
+    bool isDead;
 
     void Start()
     {
         currentHP = maxHP;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
+        isDead = false;
 
         if (agent != null)
         {
@@ -45,6 +49,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        if (isDead) return;
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
@@ -59,6 +64,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
         {
             agent.isStopped = false;
             agent.SetDestination(Gamemanager.instance.player.transform.position);
+            if (anim != null) anim.SetBool("IsMoving", true);
         }
         else if (distance < retreatDistance)
         {
@@ -71,11 +77,13 @@ public class enemyMageAI : MonoBehaviour, IDamage
             {
                 agent.isStopped = false;
                 agent.SetDestination(hit.position);
+                if (anim != null) anim.SetBool("IsMoving", true);
             }
             else
             {
                 agent.ResetPath();
                 agent.isStopped = true;
+                if (anim != null) anim.SetBool("IsMoving", false);
             }
 
             tryShoot(direction);
@@ -83,6 +91,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
         else
         {
             agent.isStopped = true;
+            if (anim != null) anim.SetBool("IsMoving", false);
             tryShoot(direction);
         }
 
@@ -102,15 +111,15 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         shootTimer = 0f;
 
+        if (anim != null) anim.SetTrigger("Attack");
+
         GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, shootPoint.rotation);
         Rigidbody rb = spellInstance.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
             direction = direction.normalized;
-
-
-            // rb.linearVelocity = direction * spellToCast.spellToCast.speed;
+            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
         }
 
         transform.rotation = Quaternion.LookRotation(direction.normalized);
@@ -118,47 +127,58 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        if (beingHitEffect != null)
-        {
-            beingHitEffect.Play();
-        }
+        if (isDead) return;
+
+        if (beingHitEffect != null) beingHitEffect.Play();
+
+        if (anim != null) anim.SetTrigger("HitReact");
 
         currentHP -= amount;
 
-        if (currentHP <= 0)
-        {
-            die();
-        }
+        if (currentHP <= 0) die();
     }
 
     void die()
     {
-        if (Gamemanager.instance == null || Gamemanager.instance.player == null)
-            return;
+        if (isDead) return;
+        isDead = true;
 
-        // Drop spell XP pickup
-        if (spellXPDropPrefab != null)
+        if (agent != null)
         {
-            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
-            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
-            if (spellXPPickup != null)
-            {
-                spellXPPickup.xpAmount = xpValue;
-            }
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            agent.enabled = false;
         }
 
-        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+            col.enabled = false;
 
-        if (xp != null)
+        if (anim != null)
         {
-            xp.AddXP(xpValue);
+            anim.ResetTrigger("HitReact");
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Death");
+        }
+
+        if (Gamemanager.instance != null && Gamemanager.instance.player != null)
+        {
+            // Drop spell XP pickup
+            if (spellXPDropPrefab != null)
+            {
+                GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+                SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+                if (spellXPPickup != null)
+                    spellXPPickup.xpAmount = xpValue;
+            }
+
+            playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+            if (xp != null) xp.AddXP(xpValue);
         }
 
         if (enemySpawner.instance != null)
-        {
             enemySpawner.instance.enemyDefeated(goalValue);
-        }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 3f);
     }
 }
