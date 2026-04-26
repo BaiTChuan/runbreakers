@@ -12,6 +12,7 @@ public class DestructableObjectsManager : MonoBehaviour
     [SerializeField] int maxActive = 15;
     [SerializeField] float respawnDelay = 5f;
 
+
     List<Vector3> spawnPoints = new List<Vector3>();
     int activeCount = 1;
 
