@@ -376,8 +376,8 @@ public class bossAI : MonoBehaviour, IDamage
 
         if (enemySpawner.instance != null)
             enemySpawner.instance.setBossDefeated();
-        }
 
+    
         if (chestPrefab != null)
         {
             Instantiate(chestPrefab, transform.position, Quaternion.identity);
