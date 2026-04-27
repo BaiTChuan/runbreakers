@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LaserSpell : Player_Spell
 {
@@ -8,10 +9,12 @@ public class LaserSpell : Player_Spell
 
     public override void Cast(Transform castPos, Vector3 direction)
     {
-        GameObject laserBullet = Instantiate(laserBulletPrefab, castPos.position, Quaternion.LookRotation(direction));
-        laserBullet.GetComponent<Rigidbody>().linearVelocity = direction * projectileSpeed;
+        PlayCastSound();
 
-        Projectile projectile = laserBullet.GetComponent<Projectile>();
+        GameObject laser = Instantiate(laserBulletPrefab, castPos.position, Quaternion.LookRotation(direction));
+        laser.GetComponent<Rigidbody>().linearVelocity = direction * projectileSpeed;
+
+        Projectile projectile = laser.GetComponent<Projectile>();
         if (projectile != null)
         {
             int totalDamage = Damage + Gamemanager.instance.playerScript.characterAttackPower;

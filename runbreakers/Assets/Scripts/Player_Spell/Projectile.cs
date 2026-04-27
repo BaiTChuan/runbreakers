@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
     private float explosionRadius;
     private int explosionDamage;
     private float returnDelay;
+    private List<AudioClip> explosionSounds = new List<AudioClip>();
+    private float explosionVolume = 1.0f;
 
     private int damage;
     private List<Collider> hitTargets = new List<Collider>();
@@ -38,11 +40,13 @@ public class Projectile : MonoBehaviour
         behavior = ProjectileBehavior.StopOnHit;
     }
 
-    public void SetExplosion(float radius, int newExplosionDamage)
+    public void SetExplosion(float radius, int newExplosionDamage, List<AudioClip> sounds, float volume)
     {
         canExplode = true;
         explosionRadius = radius;
         explosionDamage = newExplosionDamage;
+        explosionSounds = sounds;
+        explosionVolume = volume;
     }
 
     public void SetBehavior(ProjectileBehavior newBehavior, float delay = 0)
@@ -158,6 +162,12 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(explosionVFX, transform.position, Quaternion.identity);
         }
+
+        if (explosionSounds.Count > 0)
+        {
+            AudioSource.PlayClipAtPoint(explosionSounds[Random.Range(0, explosionSounds.Count)], transform.position, explosionVolume);
+        }
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (var hitCollider in hitColliders)
         {

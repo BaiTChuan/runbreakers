@@ -46,9 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserSpell
   CastSpeed: 0.6
   Damage: 3
+  castSounds:
+  - {fileID: 8300000, guid: a759b777617505748b82eeb25e0c0503, type: 3}
+  - {fileID: 8300000, guid: 11580d9a10f10d848865a1c9055f6999, type: 3}
+  castVolume: 0.5
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000
-  maxLevel: 6
   laserBulletPrefab: {fileID: 6993960146132888396, guid: c49d60ed348243c4ea148f713a8415d6, type: 3}
   projectileSpeed: 100
