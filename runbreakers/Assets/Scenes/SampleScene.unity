@@ -444,6 +444,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &435313084 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6019354873768063797, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &706411161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,6 +525,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95378736248219004, guid: ea7d2065912ee5e488024a2a4942a512, type: 3}
   m_PrefabInstance: {fileID: 706411161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &788723524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1445820583919571420, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &823407919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5126499337545940192, guid: 13d8bf59acf7cc84081622341b3db3e1, type: 3}
@@ -721,7 +743,8 @@ MonoBehaviour:
     isFailed: 0
   - questID: 3
     questName: Collect the Items
-    objectiveText: 'Collect the pink items!
+    objectiveText: 'Collect the vases!
+
 
 '
     questType: 4
@@ -732,7 +755,7 @@ MonoBehaviour:
     rewardGold: 10
     travelTimeLimit: 30
     objectiveTimeLimit: 60
-    requiredCollectionCount: 12
+    requiredCollectionCount: 10
     baseExtraEnemyCount: 1
     baseTargetHealthMultiplier: 1
     scaledExtraEnemyCount: 0
@@ -740,10 +763,17 @@ MonoBehaviour:
     currentCollectionCount: 0
     isCompleted: 0
     isFailed: 0
+<<<<<<< Updated upstream
   questNameText: {fileID: 1623038930}
   questObjectiveText: {fileID: 890328661}
   questTimerText: {fileID: 1891135227}
   questDistanceText: {fileID: 1842348406}
+=======
+  questNameText: {fileID: 788723524}
+  questObjectiveText: {fileID: 435313084}
+  questTimerText: {fileID: 1654139379}
+  questDistanceText: {fileID: 1949805475}
+>>>>>>> Stashed changes
   rewardPopupPanel: {fileID: 1585052630}
   rewardPopupText: {fileID: 1279466537}
   rewardPopupDuration: 3
@@ -767,6 +797,7 @@ Transform:
   - {fileID: 1856168052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &1279466535
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,11 +842,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279466535}
+=======
+--- !u!114 &1279466537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3727472997810957109, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+>>>>>>> Stashed changes
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+<<<<<<< Updated upstream
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -929,6 +969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1350310676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,6 +979,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565336403438104123, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1392482887135833162, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
       propertyPath: m_Name
       value: RingOfFire
@@ -981,6 +1027,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7206272593258083186, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Size.x
+      value: 17.40302
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206272593258083186, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Size.z
+      value: 17.431011
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206272593258083186, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Center.x
+      value: 0.29848537
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206272593258083186, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Center.z
+      value: 0.28448406
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7809783957277458880, guid: 81502f60aa9babf429011b560e8bcd27, type: 3}
       propertyPath: questData.questID
       value: 1
@@ -1013,7 +1079,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1350310676}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350310677}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34d732c964017b942bc841f590794efb, type: 3}
   m_Name: 
@@ -1066,8 +1132,9 @@ MonoBehaviour:
   maxActive: 12
   respawnDelay: 4
   spawnRadius: 60
---- !u!1 &1585052630
+--- !u!1 &1585052630 stripped
 GameObject:
+<<<<<<< Updated upstream
   m_CorrespondingSourceObject: {fileID: 1019087098835964131, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
   m_PrefabInstance: {fileID: 4673445408936467826}
   m_PrefabAsset: {fileID: 0}
@@ -1104,16 +1171,22 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1585052632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+=======
+  m_CorrespondingSourceObject: {fileID: 7037978248618873744, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585052630}
+--- !u!114 &1654139379 stripped
+>>>>>>> Stashed changes
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3664712796900295790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
+<<<<<<< Updated upstream
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.5294118}
@@ -1151,6 +1224,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
+=======
+>>>>>>> Stashed changes
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1670455477
 PrefabInstance:
@@ -1384,17 +1459,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::questPoint
   questData:
     questID: 3
-    questName: 
-    objectiveText: 
-    questType: 0
+    questName: RingOfFire
+    objectiveText: 'Surive in the zone, and get a reward, leave and or die would
+      make you fail!
+
+'
+    questType: 3
     targetID: 
     spawnedTargetPrefab: {fileID: 0}
-    spawnDistanceFromPlayer: 8
-    rewardXP: 0
-    rewardGold: 0
+    spawnDistanceFromPlayer: 0
+    rewardXP: 10
+    rewardGold: 10
     travelTimeLimit: 30
     objectiveTimeLimit: 30
-    requiredCollectionCount: 12
+    requiredCollectionCount: 1
     baseExtraEnemyCount: 0
     baseTargetHealthMultiplier: 1
     scaledExtraEnemyCount: 0
@@ -1403,9 +1481,15 @@ MonoBehaviour:
     isCompleted: 0
     isFailed: 0
   startsQuestOnPlayerEnter: 1
+<<<<<<< Updated upstream
 --- !u!114 &1891135227 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3664712796900295790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+=======
+--- !u!114 &1949805475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1174048823174866570, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+>>>>>>> Stashed changes
   m_PrefabInstance: {fileID: 4873680239988490322}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1805,6 +1889,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< Updated upstream
     - target: {fileID: 574273225095228610, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2058,17 +2143,33 @@ PrefabInstance:
       value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 4013818055121638511, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+=======
+    - target: {fileID: 956102513496476888, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a38f4542f992a3469f309a1696357e0, type: 2}
+    - target: {fileID: 956102513496476888, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3851498945964074581, guid: 5a38f4542f992a3469f309a1696357e0, type: 2}
+    - target: {fileID: 956102513496476888, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637619180324766660, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+>>>>>>> Stashed changes
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5284678329219174513, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55.600098
+    - target: {fileID: 2168061419697396163, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5429830660919710316, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -102.3999
+    - target: {fileID: 3616797970588897191, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6019354873768063797, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_text
       value: 'Quest Objective:'
@@ -2094,23 +2195,125 @@ PrefabInstance:
       value: 45.5842
       objectReference: {fileID: 0}
     - target: {fileID: 8340214599647885485, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+=======
+    - target: {fileID: 3616797970588897191, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+>>>>>>> Stashed changes
       propertyPath: m_AnchoredPosition.x
-      value: 212.40857
+      value: 694.8
       objectReference: {fileID: 0}
-    - target: {fileID: 8340214599647885485, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+    - target: {fileID: 3616797970588897191, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185.41287
+      value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 8637049257838550050, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      propertyPath: m_text
-      value: '  0/00'
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438701008597359473, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235691642397417259, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a38f4542f992a3469f309a1696357e0, type: 2}
+    - target: {fileID: 7235691642397417259, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3851498945964074581, guid: 5a38f4542f992a3469f309a1696357e0, type: 2}
+    - target: {fileID: 7235691642397417259, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455768090272238416, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 689
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455768090272238416, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1585052631}
+    m_RemovedGameObjects:
+    - {fileID: 4438701008597359473, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+    - {fileID: 2168061419697396163, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
 --- !u!114 &4673445408936467827 stripped

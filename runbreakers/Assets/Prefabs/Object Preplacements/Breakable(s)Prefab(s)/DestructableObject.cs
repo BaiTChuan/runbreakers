@@ -17,8 +17,8 @@ public class DestructableObject : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] destroySounds;
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator animator;
-    [SerializeField] float shakeTime = 0.5f;
-    [SerializeField] float openTime = 1f;
+
+
 
    // [SerializeField] bool isChest = false;
 
@@ -28,19 +28,29 @@ public class DestructableObject : MonoBehaviour, IDamage
     {
         hp -= amount;
         if (hp <= 0)
-            StartCoroutine(DestroySequence());
+            StartCoroutine(ShakeAndDie());
     }
 
-    IEnumerator DestroySequence()
+    IEnumerator ShakeAndDie()
     {
-        if (animator != null)
+        Vector3 originalPos = transform.position;
+        float elapsed = 0f;
+        float duration = 0.5f;
+        float magnitude = 0.1f;
+
+        while (elapsed < duration)
         {
-            animator.Play("Chest_Shake");
-            yield return new WaitForSeconds(shakeTime + openTime);
+            float x = originalPos.x + Random.Range(-magnitude, magnitude);
+            float z = originalPos.z + Random.Range(-magnitude, magnitude);
+            transform.position = new Vector3(x, originalPos.y, z);
+            elapsed += Time.deltaTime;
+            yield return null;
         }
 
+        transform.position = originalPos;
         Die();
     }
+
 
     void Die()
     {

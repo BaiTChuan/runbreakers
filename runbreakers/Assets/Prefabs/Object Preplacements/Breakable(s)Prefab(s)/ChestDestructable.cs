@@ -40,10 +40,14 @@ public class ChestDestructable : MonoBehaviour, IDamage
         if (gold != null)
         {
             int goldToDrop = Random.Range(minGold, maxGold + 1);
-            GameObject coin = Instantiate(gold, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
+            GameObject coin = Instantiate(gold, new Vector3(transform.position.x, 2f, transform.position.z), Quaternion.identity);
             GoldPickup pickup = coin.GetComponentInChildren<GoldPickup>();
             if (pickup != null)
+            {
                 pickup.goldAmount = goldToDrop;
+                pickup.fromChest = true;
+            }
+              
         }
 
         Destroy(gameObject, 3f);
