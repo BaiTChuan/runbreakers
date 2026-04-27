@@ -15,6 +15,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject levelUpMenu;
     [SerializeField] GameObject bossChallenge;
+    [SerializeField] GameObject lowHealth;
 
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text hpText;
@@ -24,11 +25,24 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
 
+    public TMP_Text pauseHpText;
+    public TMP_Text pauseSpeedText;
+    public TMP_Text pauseDamageText;
+    public TMP_Text pauseCastSpeedText;
+    public TMP_Text pauseLuckText;
+    public TMP_Text pauseReviveText;
+    public TMP_Text pauseRerollText;
+    public TMP_Text pauseArmorText;
+
+    [Header("----- Audio ------")]
+    public AudioClip click;
+
+    public AudioSource audioSource;
+
     [Header("----- LevelUp ------")]
     public bool isLevelUp = false;
 
     public int rerollChance = 0;
-    int rerollBase = 1;
     int rerollOriginal;
 
     public int rerollLimit;
@@ -88,7 +102,6 @@ public class Gamemanager : MonoBehaviour
         canSummonBoss = true;
         bossSummoned = false;
 
-        rerollBase = rerollChance;
         rerollOriginal = rerollChance + mainMenuManager.rerollP;
         rerollChance = rerollOriginal;
         rerollOn.SetActive(false);
@@ -137,13 +150,14 @@ public class Gamemanager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause"))
         {
             if (menuActive == null)
             {
                 statePause();
                 menuActive = menuPause;
                 menuActive.SetActive(true);
+                playerScript.updateStatDisplay();
             }
             else if (menuActive == menuPause)
             {
@@ -324,6 +338,25 @@ public class Gamemanager : MonoBehaviour
     }
     #endregion
 
+    public void lowHealthOn()
+    {
+       lowHealth.gameObject.SetActive(true);
+    }
+
+    public void lowHealthOff()
+    {
+        lowHealth.gameObject.SetActive(false);
+    }
+
+    public void onClick()
+    {
+        if (click != null)
+        {
+            audioSource.clip = click;
+            audioSource.loop = false;
+            audioSource.Play();
+        }
+    }
     public void showWin()
     {
         statePause();

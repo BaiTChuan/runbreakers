@@ -204,7 +204,7 @@ public class mainMenuManager : MonoBehaviour
             menuActive.SetActive(true);
         }
 
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause")) 
         {
             if (menuActive != null)
             {
@@ -430,6 +430,7 @@ public class mainMenuManager : MonoBehaviour
             audioSource.Play();
         }
     }
+
     #region PermanentUpgrades
 
     public void pHealthUp()
