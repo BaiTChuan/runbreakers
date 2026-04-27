@@ -77,8 +77,10 @@ public class bossAI : MonoBehaviour, IDamage
 
     bool isInvulnerable;
     bool isTransitioning;
+    bool isAttacking;
 
     NavMeshAgent agent;
+    Animator anim;
 
     void Start()
     {
@@ -94,8 +96,10 @@ public class bossAI : MonoBehaviour, IDamage
 
         isInvulnerable = false;
         isTransitioning = false;
+        isAttacking = false;
 
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
 
         if (agent != null)
         {
@@ -106,9 +110,7 @@ public class bossAI : MonoBehaviour, IDamage
         }
 
         if (forceField != null)
-        {
             forceField.SetActive(false);
-        }
 
         if (Gamemanager.instance != null)
         {
@@ -117,9 +119,7 @@ public class bossAI : MonoBehaviour, IDamage
             bossCurrentHPText = Gamemanager.instance.GetBossHPText();
 
             if (bossHPBar != null)
-            {
                 bossHPBar.SetActive(false);
-            }
         }
     }
 
@@ -140,13 +140,15 @@ public class bossAI : MonoBehaviour, IDamage
         direction.y = 0f;
 
         if (direction != Vector3.zero)
-        {
             transform.rotation = Quaternion.LookRotation(direction);
-        }
 
         if (isTransitioning)
         {
             agent.isStopped = true;
+
+            if (anim != null)
+                anim.SetBool("IsWalking", false);
+
             return;
         }
 
@@ -160,10 +162,17 @@ public class bossAI : MonoBehaviour, IDamage
         {
             agent.isStopped = false;
             agent.SetDestination(Gamemanager.instance.player.transform.position);
+
+            if (anim != null)
+                anim.SetBool("IsWalking", agent.velocity.magnitude > 0.1f);
         }
         else
         {
             agent.isStopped = true;
+
+            if (anim != null)
+                anim.SetBool("IsWalking", false);
+
             tryShoot(direction);
         }
 
@@ -176,15 +185,15 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryShoot(Vector3 direction)
     {
-        if (spellToCast == null || shootPoint == null)
-            return;
+        if (spellToCast == null || shootPoint == null) return;
 
         float currentShootRate = getShootRate();
-
-        if (shootTimer < currentShootRate)
-            return;
+        if (shootTimer < currentShootRate) return;
 
         shootTimer = 0f;
+
+        if (anim != null)
+            anim.SetTrigger("Attack");
 
         int currentProjectileCount = getProjectileCount();
         float currentSpreadAngle = getSpreadAngle();
@@ -208,13 +217,13 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryNovaAttack()
     {
-        if (spellToCast == null || shootPoint == null)
-            return;
-
-        if (novaTimer < novaAttackRate)
-            return;
+        if (spellToCast == null || shootPoint == null) return;
+        if (novaTimer < novaAttackRate) return;
 
         novaTimer = 0f;
+
+        if (anim != null)
+            anim.SetTrigger("NovaAttack");
 
         float angleStep = 360f / novaProjectileCount;
 
@@ -228,11 +237,8 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryStage3SpawnAdds()
     {
-        if (enemySpawner.instance == null)
-            return;
-
-        if (addSpawnTimer < stage3SpawnRate)
-            return;
+        if (enemySpawner.instance == null) return;
+        if (addSpawnTimer < stage3SpawnRate) return;
 
         addSpawnTimer = 0f;
         enemySpawner.instance.spawnBossAdds(stage3SpawnCount, transform.position);
@@ -240,69 +246,49 @@ public class bossAI : MonoBehaviour, IDamage
 
     void spawnProjectile(Vector3 direction)
     {
-        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(direction));
-        Rigidbody rb = spellInstance.GetComponent<Rigidbody>();
+        Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z).normalized;
+        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(flatDirection));
 
         Collider myCollider = GetComponent<Collider>();
         Collider spellCollider = spellInstance.GetComponent<Collider>();
         if (myCollider != null && spellCollider != null)
-        {
             Physics.IgnoreCollision(myCollider, spellCollider);
-        }
-
-        if (rb != null)
-        {
-            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
-        }
     }
 
     float getShootRate()
     {
-        if (currentStage == 1)
-            return shootRateStage1;
-
-        if (currentStage == 2)
-            return shootRateStage2;
-
+        if (currentStage == 1) return shootRateStage1;
+        if (currentStage == 2) return shootRateStage2;
         return shootRateStage3;
     }
 
     int getProjectileCount()
     {
-        if (currentStage == 1)
-            return projectileCountStage1;
-
-        if (currentStage == 2)
-            return projectileCountStage2;
-
+        if (currentStage == 1) return projectileCountStage1;
+        if (currentStage == 2) return projectileCountStage2;
         return projectileCountStage3;
     }
 
     float getSpreadAngle()
     {
-        if (currentStage == 1)
-            return spreadAngleStage1;
-
-        if (currentStage == 2)
-            return spreadAngleStage2;
-
+        if (currentStage == 1) return spreadAngleStage1;
+        if (currentStage == 2) return spreadAngleStage2;
         return spreadAngleStage3;
     }
 
     public void takeDamage(int amount)
     {
-        if (isInvulnerable)
-            return;
+        if (isInvulnerable) return;
 
         if (beingHitEffect != null)
-        {
             beingHitEffect.Play();
-        }
 
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
-
         currentHP -= finalDamage;
+
+        if (anim != null)
+            anim.SetTrigger("HitReact");
 
         if (currentStage == 1 && currentHP <= stage2TriggerHP)
         {
@@ -319,9 +305,7 @@ public class bossAI : MonoBehaviour, IDamage
         }
 
         if (currentHP <= 0)
-        {
             die();
-        }
     }
 
     IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
@@ -330,9 +314,10 @@ public class bossAI : MonoBehaviour, IDamage
         isInvulnerable = true;
 
         if (forceField != null)
-        {
             forceField.SetActive(true);
-        }
+
+        if (anim != null)
+            anim.SetTrigger("Transition");
 
         shootTimer = 0f;
         novaTimer = 0f;
@@ -349,30 +334,22 @@ public class bossAI : MonoBehaviour, IDamage
             if (currentHP < healTargetHP)
             {
                 currentHP += Mathf.RoundToInt(healRate * Time.deltaTime);
-
                 if (currentHP > healTargetHP)
-                {
                     currentHP = healTargetHP;
-                }
             }
 
             if (spawnTimer >= transitionSpawnRate)
             {
                 spawnTimer = 0f;
-
                 if (enemySpawner.instance != null)
-                {
                     enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
-                }
             }
 
             yield return null;
         }
 
         if (forceField != null)
-        {
             forceField.SetActive(false);
-        }
 
         currentStage = nextStage;
         isInvulnerable = false;
@@ -382,27 +359,22 @@ public class bossAI : MonoBehaviour, IDamage
     void die()
     {
         if (forceField != null)
-        {
             forceField.SetActive(false);
-        }
 
         if (bossHPBar != null)
-        {
             bossHPBar.SetActive(false);
-        }
+
+        if (anim != null)
+            anim.SetTrigger("Death");
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
-
             if (xp != null)
-            {
                 xp.AddXP(xpValue);
-            }
         }
 
         if (enemySpawner.instance != null)
-        {
             enemySpawner.instance.setBossDefeated();
         }
 
@@ -413,19 +385,15 @@ public class bossAI : MonoBehaviour, IDamage
         }
         
 
-        Destroy(gameObject);
+        Destroy(gameObject, 3f);
     }
 
     void updateBossBar()
     {
         if (bossCurrentHP != null)
-        {
             bossCurrentHP.fillAmount = (float)currentHP / maxHP;
-        }
 
         if (bossCurrentHPText != null)
-        {
             bossCurrentHPText.SetText(currentHP.ToString("F0"));
-        }
     }
 }
