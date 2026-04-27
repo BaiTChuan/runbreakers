@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8485047275122481706}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6987205764267070106}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5279724005269722048}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6622541417679182856}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shoulder.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3980303217385262442}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4058220479306018093}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 32250757267016394}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2403081747713732372}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5092507136637976107}
   - component: {fileID: 1074898421943381204}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501908683380645887}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5884913210632355087}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Eye.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8832808726812093477}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Eye.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8422032515764020535}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GhostArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4324655844722130304}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8715271955090274647}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Upper.Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3486308388026983705}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Upper.Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4122238405716937018}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shoulder.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447027445849664549}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Lower.Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410391803654952646}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 9017117180083624316}
   - component: {fileID: 5728326569617604949}
   - component: {fileID: 1436195792692091578}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ghost 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,9 +760,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d124c39841d44483bab02b94acdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoulEffect
-  floatSpeed: 0.5
-  lifetime: 3
-  fadeDelay: 1.5
+  floatSpeed: 0.75
+  lifetime: 5
+  fadeDelay: 1
 --- !u!1 &8849337675197639021
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418982580221802754}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Lower.Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9207579008176882810}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6100771297055350857}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Upper.Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

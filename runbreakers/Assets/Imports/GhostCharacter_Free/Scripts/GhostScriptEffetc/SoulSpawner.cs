@@ -43,8 +43,7 @@ public class SoulSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return null;
-
+            yield return new WaitForSeconds(spawnInterval);
             if (activeSouls < maxSoulsAtOnce)
                 TrySpawnSoul();
         }
@@ -57,7 +56,7 @@ public class SoulSpawner : MonoBehaviour
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
             center = Gamemanager.instance.player.transform.position;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 30; i++)
         {
             Vector2 random = Random.insideUnitSphere * spawnRadius;
             Vector3 guess = center + new Vector3(random.x, 0f, random.y);
