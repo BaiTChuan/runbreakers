@@ -17,10 +17,11 @@ public class DestructableObject : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] destroySounds;
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator animator;
-
-
-
-   // [SerializeField] bool isChest = false;
+    
+    [SerializeField] float shakeTime = 0.5f;
+    [SerializeField] float openTime = 1f;
+    [SerializeField] float shakeMagnitude = 0.1f;
+    [SerializeField] float shakeSpeed = 25f;
 
    // [SerializeField] bool isChest = false;
 
@@ -30,29 +31,40 @@ public class DestructableObject : MonoBehaviour, IDamage
     {
         hp -= amount;
         if (hp <= 0)
-            StartCoroutine(ShakeAndDie());
+            StartCoroutine(DestroySequence());
     }
 
-    IEnumerator ShakeAndDie()
+    IEnumerator DestroySequence()
+    {
+        if (animator != null)
+        {
+            animator.Play("Chest_Shake");
+            yield return new WaitForSeconds(shakeTime + openTime);
+        }
+        else
+        {
+            yield return StartCoroutine(Shake());
+        }
+
+            Die();
+    }
+
+    IEnumerator Shake()
     {
         Vector3 originalPos = transform.position;
-        float elapsed = 0f;
-        float duration = 0.5f;
-        float magnitude = 0.1f;
+        float timer = 0f;
 
-        while (elapsed < duration)
+        while (timer < shakeTime)
         {
-            float x = originalPos.x + Random.Range(-magnitude, magnitude);
-            float z = originalPos.z + Random.Range(-magnitude, magnitude);
-            transform.position = new Vector3(x, originalPos.y, z);
-            elapsed += Time.deltaTime;
+            timer += Time.deltaTime;
+            float x = Mathf.Sin(timer * shakeSpeed) * shakeMagnitude;
+            float z = Mathf.Sin(timer * shakeSpeed * 0.7f) * shakeMagnitude;
+            transform.position = originalPos + new Vector3(x, 0f, z);
             yield return null;
         }
 
         transform.position = originalPos;
-        Die();
     }
-
 
     void Die()
     {

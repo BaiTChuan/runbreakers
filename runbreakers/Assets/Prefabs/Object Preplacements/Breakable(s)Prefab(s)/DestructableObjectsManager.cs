@@ -101,6 +101,7 @@ public class DestructableObjectsManager : MonoBehaviour
 
         Vector3 point = spawnPoints[Random.Range(0, spawnPoints.Count)];
         SpawnAt(point);
+
       
     }
 
