@@ -126,11 +126,4 @@ public class ChainLightningSpell : Player_Spell
         yield return new WaitForSeconds(lineDuration);
         lineRenderer.enabled = false;
     }
-
-    protected override void OnLevelUp()
-    {
-        base.OnLevelUp();
-        CastSpeed = Mathf.Max(0.1f, CastSpeed - 0.05f);
-        Debug.Log(string.Format("{0} cast speed improved to {1}!", this.name, CastSpeed));
-    }
 }

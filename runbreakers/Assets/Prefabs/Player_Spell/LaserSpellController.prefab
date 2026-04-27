@@ -49,5 +49,6 @@ MonoBehaviour:
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000
+  maxLevel: 6
   laserBulletPrefab: {fileID: 6993960146132888396, guid: c49d60ed348243c4ea148f713a8415d6, type: 3}
   projectileSpeed: 100
