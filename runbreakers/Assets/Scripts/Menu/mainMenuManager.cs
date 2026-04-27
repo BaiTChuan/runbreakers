@@ -14,6 +14,7 @@ public class mainMenuManager : MonoBehaviour
     public GameObject permanentShop;
     public GameObject settings;
     public GameObject startScreen;
+    public GameObject tutorialMenu;
     public GameObject prevMenu;
 
     [SerializeField] TMP_Text goldCur;
