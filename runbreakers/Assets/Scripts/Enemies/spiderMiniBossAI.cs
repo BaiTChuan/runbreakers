@@ -343,7 +343,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
         if (chestPrefab != null)
             Instantiate(chestPrefab, transform.position, Quaternion.identity);
-
         Destroy(gameObject);
 
         dropLoot();

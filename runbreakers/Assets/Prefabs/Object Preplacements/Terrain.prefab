@@ -4375,6 +4375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8410252960123104138}
   - component: {fileID: 8913028307399755967}
+  - component: {fileID: 3305644364840003181}
   - component: {fileID: 4921492263331941261}
   m_Layer: 0
   m_Name: SoulSpawner
@@ -4411,17 +4412,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoulSpawner
   soulPrefab: {fileID: 8410861126663285980, guid: a0b9f89079e01a447a8d1a244e2235f2, type: 3}
-  maxSoulsAtOnce: 8
-  spawnInterval: 2
+  maxSoulsAtOnce: 3
+  spawnInterval: 8
   spawnRadius: 50
   eerieAmbience:
-  - {fileID: 8300000, guid: 27a866ac0ea1fba47bc2b22142c06669, type: 3}
+  - {fileID: 8300000, guid: 3495f3e5223286a4c9cfaebb35763a6f, type: 3}
   - {fileID: 8300000, guid: 9b756243545ecec428731602dcbdc161, type: 3}
-  - {fileID: 8300000, guid: 253c218e16db53f4d8aec71340e81087, type: 3}
   - {fileID: 8300000, guid: c052d4a7e61379d4eb11d5516c77b4bd, type: 3}
-  - {fileID: 8300000, guid: 0f532ee8487f1304cbd3596559177325, type: 3}
-  - {fileID: 8300000, guid: 47f94f12ef8424c49a7ece13c248809b, type: 3}
   ambientSource: {fileID: 4921492263331941261}
+--- !u!114 &3305644364840003181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002415573983394438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d124c39841d44483bab02b94acdf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoulEffect
+  floatSpeed: 3
+  lifetime: 4
+  fadeDelay: 1.5
 --- !u!82 &4921492263331941261
 AudioSource:
   m_ObjectHideFlags: 0
