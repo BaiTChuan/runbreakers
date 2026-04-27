@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.96472645, y: 1, z: 2.9325585}
-  m_Center: {x: 2.0743604, y: 0, z: -1.0657883}
+  m_Size: {x: 2.719164, y: 7.152129, z: 4.0763016}
+  m_Center: {x: 0.3415928, y: 3.0760646, z: 2.4357224}
 --- !u!114 &4141453945118374835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +91,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.160532, y: 3.5066147, z: 4.510316}
-  m_Center: {x: 0.005458832, y: 1.2533071, z: 0.48335004}
+  m_Size: {x: 2.6094742, y: 7.0485835, z: 4.1270447}
+  m_Center: {x: 0.32112694, y: 3.0242918, z: 2.4049416}
 --- !u!65 &5617936381208262513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.83354, y: 14.482971, z: 1.4784169}
-  m_Center: {x: -3.022007, y: -6.7414856, z: 1.1874063}
+  m_Size: {x: 2.6403751, y: 7.1625843, z: 4.067444}
+  m_Center: {x: 0.35647964, y: 3.1304398, z: 2.4104042}
 --- !u!1 &5807235371305061013
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 5807235371305061013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: 0.74, z: -1.72}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -180,8 +180,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 2, z: 6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.607212, y: 7.4463778, z: 3.8754654}
+  m_Center: {x: 0.30024147, y: 3.0733056, z: 2.417904}
 --- !u!195 &254672973154845268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5109,7 +5109,7 @@ Transform:
   m_GameObject: {fileID: 8626060420313101540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5125,15 +5125,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5190,6 +5190,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081173295606037726, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
