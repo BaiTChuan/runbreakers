@@ -59,7 +59,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d3bbf94719b3e84f95c407cb3568c3a, type: 2}
+  - {fileID: 2100000, guid: 04891dacb7235fb4f81f34f34569db14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,13 +85,13 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.6
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.083171815
+        value: 0.29614258
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -99,8 +99,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.2808722
-        value: 0.22440088
+        time: 0.6866721
+        value: 0.7222214
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -167,7 +167,6 @@ MonoBehaviour:
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000
-  maxLevel: 6
   lightningBoltPrefab: {fileID: 8049927496035906746, guid: c41dc833ba273d54a9b7a0ba5f7eb8ee, type: 3}
   projectileSpeed: 75
   maxBounces: 3

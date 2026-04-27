@@ -62,7 +62,7 @@ public class ExplosiveChainSpell : Player_Spell
 
         if (bouncesLeft <= 0) yield break;
 
-        int nextDamage = currentDamage; // No damage falloff for main chain target
+        int nextDamage = currentDamage;
 
         Collider[] potentialTargets = Physics.OverlapSphere(currentTargetPosition, bounceRange, enemyLayer);
         Transform nextTarget = null;
