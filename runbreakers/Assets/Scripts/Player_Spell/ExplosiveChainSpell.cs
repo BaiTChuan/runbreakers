@@ -15,7 +15,7 @@ public class ExplosiveChainSpell : Player_Spell
 
     [Header("Explosion Settings")]
     [SerializeField] private float explosionRadius = 3f;
-    [SerializeField] [Range(0f, 1f)] private float explosionDamageFalloff = 0.5f; // How much damage the explosion deals compared to the main hit
+    [SerializeField] [Range(0f, 1f)] private float explosionDamageFalloff = 0.5f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject explosionVFX;
@@ -88,7 +88,7 @@ public class ExplosiveChainSpell : Player_Spell
             {
                 hitEnemies.Add(nextTarget);
                 damageable.takeDamage(nextDamage);
-                Explode(nextTarget.position, nextDamage); // Explode on each new target
+                Explode(nextTarget.position, nextDamage);
                 yield return StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
             }
         }
