@@ -113,16 +113,15 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         if (anim != null) anim.SetTrigger("Attack");
 
-        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, shootPoint.rotation);
-        Rigidbody rb = spellInstance.GetComponent<Rigidbody>();
+        direction = direction.normalized;
+        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(direction));
 
-        if (rb != null)
-        {
-            direction = direction.normalized;
-            rb.linearVelocity = direction * spellToCast.spellToCast.speed;
-        }
+        Collider myCollider = GetComponent<Collider>();
+        Collider spellCollider = spellInstance.GetComponent<Collider>();
+        if (myCollider != null && spellCollider != null)
+            Physics.IgnoreCollision(myCollider, spellCollider);
 
-        transform.rotation = Quaternion.LookRotation(direction.normalized);
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     public void takeDamage(int amount)
