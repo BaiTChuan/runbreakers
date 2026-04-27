@@ -198,6 +198,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         HandleDash();
         AimGunToMouse();
         dataDeletedCheck();
+        checkLowHealth();
     }
 
     IEnumerator playStep()
@@ -676,6 +677,18 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.tier1Max = Mathf.Clamp(Gamemanager.instance.tier1Max, 1, 100);
 
         Gamemanager.instance.tier1Min = 0;
+    }
+
+    void checkLowHealth()
+    {
+        if (hp <= 4)
+        {
+            Gamemanager.instance.lowHealthOn();
+        }
+        else
+        {
+            Gamemanager.instance.lowHealthOff();
+        }
     }
 
     public void hpLevelUp0()
