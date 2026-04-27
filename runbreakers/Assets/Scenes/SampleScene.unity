@@ -312,11 +312,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2581293260161630203, guid: 3b98a52ed3d7afc43ba1f7557e4cb96f, type: 3}
   m_PrefabInstance: {fileID: 363463192}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &389564480 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,17 +563,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &890328661 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6019354873768063797, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &960150123
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,10 +719,10 @@ MonoBehaviour:
     currentCollectionCount: 0
     isCompleted: 0
     isFailed: 0
-  questNameText: {fileID: 1623038930}
-  questObjectiveText: {fileID: 890328661}
-  questTimerText: {fileID: 1891135227}
-  questDistanceText: {fileID: 1842348406}
+  questNameText: {fileID: 0}
+  questObjectiveText: {fileID: 0}
+  questTimerText: {fileID: 0}
+  questDistanceText: {fileID: 0}
   rewardPopupPanel: {fileID: 1585052630}
   rewardPopupText: {fileID: 1279466537}
   rewardPopupDuration: 3
@@ -1081,7 +1065,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1279466536}
-  m_Father: {fileID: 389564480}
+  m_Father: {fileID: 4873680239988490323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1126,17 +1110,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585052630}
   m_CullTransparentMesh: 1
---- !u!114 &1623038930 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1445820583919571420, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1670455477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1301,7 +1274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: characterCastSpeed
-      value: 0.5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5673501338943175816, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: characterAttackPower
@@ -1312,17 +1285,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5226e0729747e4faa19be920a59757, type: 3}
---- !u!114 &1842348406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1174048823174866570, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1856168051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,17 +1350,6 @@ MonoBehaviour:
     isCompleted: 0
     isFailed: 0
   startsQuestOnPlayerEnter: 1
---- !u!114 &1891135227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3664712796900295790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
-  m_PrefabInstance: {fileID: 4873680239988490322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &652700693779075283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9073890691366558983, guid: 3f1ea26995360f7418d8bd29e8642457, type: 3}
@@ -1985,11 +1936,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4003472627761267891, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 9038435026857088790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1585052631}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+--- !u!224 &4873680239988490323 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9038435026857088790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6744986102225056731
 PrefabInstance:
   m_ObjectHideFlags: 0
