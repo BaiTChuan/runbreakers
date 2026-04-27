@@ -22,6 +22,8 @@ public class DestructableObject : MonoBehaviour, IDamage
 
    // [SerializeField] bool isChest = false;
 
+   // [SerializeField] bool isChest = false;
+
 
 
     public void takeDamage(int amount)

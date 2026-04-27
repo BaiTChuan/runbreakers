@@ -155,9 +155,8 @@ MonoBehaviour:
     m_Bits: 64
   hp: 10
   speed: 8
-  sprintMod: 2
   characterAttackPower: 1
-  characterArmor: 10
+  characterArmor: 5
   characterLuck: 1
   characterCastSpeed: 1.2
   revive: 0
@@ -183,8 +182,13 @@ MonoBehaviour:
   - {fileID: 2792995171105596977, guid: 98a12bb7de4836e4eae7702426808691, type: 3}
   - {fileID: 3798548851274251527, guid: e13e5e4bdabd37240bc46049b744ed8a, type: 3}
   - {fileID: 4063681330322023600, guid: d416d8d2a212f2348a97988f3745f2e5, type: 3}
+  fusedExplosiveChainPrefab: {fileID: 2847788749912742935, guid: 392ccfe8287559547bbfa05ca5dd693b, type: 3}
   castPivot: {fileID: 3678133820879839460}
   castPos: {fileID: 7057992571251399988}
+  clLevel: 1
+  dashSpeed: 50
+  dashDuration: 0.15
+  dashCooldown: 3
   beingHitEffect: {fileID: 8567528641623525608}
   currentXP: 0
   currentLevel: 1
