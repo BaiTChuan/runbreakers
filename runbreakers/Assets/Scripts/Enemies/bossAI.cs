@@ -8,7 +8,7 @@ public class bossAI : MonoBehaviour, IDamage
 {
     [Header("---- Movement ----")]
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float stopDistance = 10f;
+    [SerializeField] float stopDistance = 15f;
 
     [Header("---- Boss Stats ----")]
     [SerializeField] int maxHP = 1000;
@@ -18,6 +18,10 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("---- Main Attack ----")]
     [SerializeField] Spell spellToCast;
     [SerializeField] Transform shootPoint;
+    [SerializeField] float projectileSpeed = 15f;        // match the actual speed of Mage_Boss_Projectile
+    [Range(0f, 1.2f)]
+    [SerializeField] float leadAmount = 0.9f;            // 0 = no lead, 1 = perfect prediction
+    [SerializeField] float velocitySmoothingTime = 0.15f; // higher = smoother but more sluggish lead
 
     [Header("---- Stage 1 ----")]
     [SerializeField] float shootRateStage1 = 2f;
@@ -67,33 +71,31 @@ public class bossAI : MonoBehaviour, IDamage
     int stage2TriggerHP;
     int stage3TriggerHP;
     bool bossHpBarActive = false;
-
     float shootTimer;
     float novaTimer;
     float addSpawnTimer;
-
     bool isInvulnerable;
     bool isTransitioning;
-    //bool isAttacking;
 
     NavMeshAgent agent;
     Animator anim;
+
+    // ---- Player velocity tracking (used for projectile lead) ----
+    Vector3 lastPlayerPos;
+    Vector3 estimatedPlayerVelocity;
+    bool playerPosTrackingInitialized;
 
     void Start()
     {
         currentHP = maxHP;
         currentStage = 1;
-
         stage2TriggerHP = Mathf.RoundToInt(maxHP * 0.66f);
         stage3TriggerHP = Mathf.RoundToInt(maxHP * 0.33f);
-
         shootTimer = 0f;
         novaTimer = 0f;
         addSpawnTimer = 0f;
-
         isInvulnerable = false;
         isTransitioning = false;
-        //isAttacking = false;
 
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
@@ -114,7 +116,6 @@ public class bossAI : MonoBehaviour, IDamage
             bossHPBar = Gamemanager.instance.GetBossHPBar();
             bossCurrentHP = Gamemanager.instance.GetBossCurrentHPBar();
             bossCurrentHPText = Gamemanager.instance.GetBossHPText();
-
             if (bossHPBar != null)
                 bossHPBar.SetActive(false);
         }
@@ -133,19 +134,33 @@ public class bossAI : MonoBehaviour, IDamage
 
         updateBossBar();
 
-        Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
-        direction.y = 0f;
+        // ---- Track player velocity from position changes, smoothed to remove frame jitter ----
+        Transform playerT = Gamemanager.instance.player.transform;
+        if (!playerPosTrackingInitialized)
+        {
+            lastPlayerPos = playerT.position;
+            playerPosTrackingInitialized = true;
+        }
+        if (Time.deltaTime > 0f)
+        {
+            Vector3 rawVelocity = (playerT.position - lastPlayerPos) / Time.deltaTime;
+            // Exponential smoothing: heavily weighted toward recent average
+            float t = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.0001f, velocitySmoothingTime));
+            estimatedPlayerVelocity = Vector3.Lerp(estimatedPlayerVelocity, rawVelocity, t);
+        }
+        lastPlayerPos = playerT.position;
 
-        if (direction != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(direction);
+        // ---- Rotation: face the ACTUAL player (stable, no jitter from prediction noise) ----
+        Vector3 toPlayer = playerT.position - transform.position;
+        toPlayer.y = 0f;
+        if (toPlayer != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(toPlayer);
 
         if (isTransitioning)
         {
             agent.isStopped = true;
-
             if (anim != null)
                 anim.SetBool("IsWalking", false);
-
             return;
         }
 
@@ -153,24 +168,26 @@ public class bossAI : MonoBehaviour, IDamage
         novaTimer += Time.deltaTime;
         addSpawnTimer += Time.deltaTime;
 
-        float distance = direction.magnitude;
+        float distance = toPlayer.magnitude;
 
         if (distance > stopDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(Gamemanager.instance.player.transform.position);
-
+            agent.SetDestination(playerT.position);
             if (anim != null)
                 anim.SetBool("IsWalking", agent.velocity.magnitude > 0.1f);
         }
         else
         {
             agent.isStopped = true;
-
             if (anim != null)
                 anim.SetBool("IsWalking", false);
 
-            tryShoot(direction);
+            // Aim direction uses PREDICTED position so projectiles lead the player,
+            // even though the boss body is facing the actual player.
+            Vector3 aimDir = getPredictedPlayerPosition() - shootPoint.position;
+            aimDir.y = 0f;
+            tryShoot(aimDir);
         }
 
         if (currentStage == 3)
@@ -178,6 +195,21 @@ public class bossAI : MonoBehaviour, IDamage
             tryNovaAttack();
             tryStage3SpawnAdds();
         }
+    }
+
+    Vector3 getPredictedPlayerPosition()
+    {
+        Transform playerT = Gamemanager.instance.player.transform;
+        Vector3 playerPos = playerT.position;
+
+        Vector3 fromPos = shootPoint != null ? shootPoint.position : transform.position;
+        float distance = Vector3.Distance(fromPos, playerPos);
+        float timeToHit = distance / Mathf.Max(0.01f, projectileSpeed);
+
+        // Flatten velocity so we don't aim into the floor or sky
+        Vector3 flatVel = new Vector3(estimatedPlayerVelocity.x, 0f, estimatedPlayerVelocity.z);
+
+        return playerPos + flatVel * timeToHit * leadAmount;
     }
 
     void tryShoot(Vector3 direction)
