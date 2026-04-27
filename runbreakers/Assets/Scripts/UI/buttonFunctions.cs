@@ -155,4 +155,9 @@ public class buttonFunctions : MonoBehaviour
     {
         mainMenuManager.instance.onClick();
     }
+
+    public void onClickLevel()
+    {
+        Gamemanager.instance.onClick();
+    }
 }

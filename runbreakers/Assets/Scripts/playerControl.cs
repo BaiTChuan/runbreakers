@@ -412,6 +412,18 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         }
     }
 
+    public void updateStatDisplay()
+    {
+        Gamemanager.instance.pauseHpText.text = hpOriginal.ToString("F0");
+        Gamemanager.instance.pauseSpeedText.text = speedOriginal.ToString("F0");
+        Gamemanager.instance.pauseDamageText.text = damageOriginal.ToString("F0");
+        Gamemanager.instance.pauseLuckText.text = luckOriginal.ToString("F0");
+        Gamemanager.instance.pauseArmorText.text = armorOriginal.ToString("F0");
+        Gamemanager.instance.pauseCastSpeedText.text = castSpeedOriginal.ToString("F0");
+        Gamemanager.instance.pauseReviveText.text = reviveOriginal.ToString("F0");
+        Gamemanager.instance.pauseRerollText.text = rerollOriginal.ToString("F0");
+    }
+
     public void getBuff(buffStats buff)
     {
         if (buff.id == 0)
