@@ -251,10 +251,7 @@ public class questManager : MonoBehaviour
         Vector3 playerPosition = Gamemanager.instance.player.transform.position;
         int spawned = 0;
         int attempts = 0;
-
-        int spawnCount = currentQuest.requiredCollectionCount + 5;
-
-        while (spawned < spawnCount && attempts < 30)
+        while (spawned < currentQuest.requiredCollectionCount && attempts < 30)
         {
             attempts++;
             Vector2 randomCircle = Random.insideUnitCircle.normalized * currentQuest.spawnDistanceFromPlayer;

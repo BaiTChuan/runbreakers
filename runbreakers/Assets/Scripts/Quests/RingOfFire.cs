@@ -23,7 +23,7 @@ public class RingOfFire : MonoBehaviour
 
         playerInside = false;
 
-        if (questManager.instance != null && questManager.instance.IsQuestActive())
+        if (!playerInside && questManager.instance != null && questManager.instance.IsQuestActive())
             questManager.instance.FailCurrentQuest();
         
     }
