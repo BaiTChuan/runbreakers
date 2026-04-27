@@ -59,7 +59,7 @@ public class DestructableObjectsManager : MonoBehaviour
     {
         if (spawnPoints.Count == 0)
         {
-            Debug.LogWarning("No spawn points generated" + spawnPoints.Count);
+           // Debug.LogWarning("No spawn points generated" + spawnPoints.Count);
             return;
         }
 

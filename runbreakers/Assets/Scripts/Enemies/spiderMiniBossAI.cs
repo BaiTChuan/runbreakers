@@ -54,6 +54,9 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
+    [Header("---- Chest Drop ----")]
+    [SerializeField] GameObject chestPrefab;
+
     enum AttackType { None, Bite, Web }
     AttackType currentAttack;
 
@@ -337,6 +340,10 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
         if (anim != null)
             anim.SetTrigger("Death");
+
+        if (chestPrefab != null)
+            Instantiate(chestPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
 
         dropLoot();
         giveRewards();
