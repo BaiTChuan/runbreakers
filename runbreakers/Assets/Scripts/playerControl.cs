@@ -527,7 +527,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         {
             Player_Spell currentSpell = spells[currentSpellIndex];
 
-            if (currentSpell is ChainLightningSpell clSpell)
+            /*if (currentSpell is ChainLightningSpell clSpell)
             {
                 if (clLevel >= clMaxLevel) return;
 
@@ -557,7 +557,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
                     }
                 }
             }
-            else
+            else*/
             {
                 currentSpell.AddXp(amount);
             }
