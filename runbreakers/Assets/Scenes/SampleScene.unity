@@ -719,10 +719,10 @@ MonoBehaviour:
     currentCollectionCount: 0
     isCompleted: 0
     isFailed: 0
-  questNameText: {fileID: 0}
-  questObjectiveText: {fileID: 0}
-  questTimerText: {fileID: 0}
-  questDistanceText: {fileID: 0}
+  questNameText: {fileID: 4873680239988490323}
+  questObjectiveText: {fileID: 4873680239988490324}
+  questTimerText: {fileID: 4873680239988490325}
+  questDistanceText: {fileID: 4873680239988490326}
   rewardPopupPanel: {fileID: 1585052630}
   rewardPopupText: {fileID: 1279466537}
   rewardPopupDuration: 3
@@ -966,6 +966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1880292618244440545, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1936333181587599066, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1399,10 +1403,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92618100844251529, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: luckImg
+      value: 
+      objectReference: {fileID: 21300000, guid: a046a3651c6ee0c42919e4557706ba12, type: 3}
+    - target: {fileID: 92618100844251529, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: armorImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 158a09fb1a734844187d11f476081a5e, type: 3}
+    - target: {fileID: 92618100844251529, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: castSpeedImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 681ae0c0694f186499881f678e4cff29, type: 3}
+    - target: {fileID: 574273225095228610, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4175160086938826759, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5244982595440488712, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: luckImg
+      value: 
+      objectReference: {fileID: 21300000, guid: a046a3651c6ee0c42919e4557706ba12, type: 3}
+    - target: {fileID: 5244982595440488712, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: armorImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 158a09fb1a734844187d11f476081a5e, type: 3}
+    - target: {fileID: 5244982595440488712, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: castSpeedImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 681ae0c0694f186499881f678e4cff29, type: 3}
+    - target: {fileID: 7861471352100930718, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: luckImg
+      value: 
+      objectReference: {fileID: 21300000, guid: a046a3651c6ee0c42919e4557706ba12, type: 3}
+    - target: {fileID: 7861471352100930718, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: armorImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 158a09fb1a734844187d11f476081a5e, type: 3}
+    - target: {fileID: 7861471352100930718, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+      propertyPath: castSpeedImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 681ae0c0694f186499881f678e4cff29, type: 3}
     - target: {fileID: 9038435026857088790, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1488,6 +1532,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+--- !u!114 &4873680239988490323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3249780232072063608, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &4873680239988490324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6285267798952868424, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &4873680239988490325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2208474060964397284, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &4873680239988490326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1685542920538686153, guid: bcb4e27f2ab48634693f1327dc5dc30b, type: 3}
+  m_PrefabInstance: {fileID: 4873680239988490322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &6744986102225056731
 PrefabInstance:
   m_ObjectHideFlags: 0
