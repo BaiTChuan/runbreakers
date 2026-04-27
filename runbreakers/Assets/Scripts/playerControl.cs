@@ -44,7 +44,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     [Header("----- Spells ------")]
     [SerializeField] private List<Player_Spell> spellPrefabs = new List<Player_Spell>();
-    [SerializeField] private ExplosiveChainSpell fusedExplosiveChainPrefab; // Prefab for the fused spell
+    [SerializeField] private ExplosiveChainSpell fusedExplosiveChainPrefab;
     private List<Player_Spell> spells = new List<Player_Spell>();
     [SerializeField] private Transform castPivot;
     [SerializeField] private Transform castPos;
@@ -544,7 +544,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
                         clSpell.IncreaseBounces();
                     }
 
-                    CheckForSpellFusion(); // Check for fusion after CL levels up
+                    CheckForSpellFusion();
 
                     if (clLevel >= clMaxLevel)
                     {

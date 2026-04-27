@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.96472645, y: 1, z: 2.9325585}
-  m_Center: {x: 2.0743604, y: 0, z: -1.0657883}
+  m_Size: {x: 3.187767, y: 7.2142267, z: 2.6093478}
+  m_Center: {x: 0.06441283, y: 3.1071134, z: 2.5800443}
 --- !u!114 &4141453945118374835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +91,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.160532, y: 3.5066147, z: 4.510316}
-  m_Center: {x: 0.005458832, y: 1.2533071, z: 0.48335004}
+  m_Size: {x: 3.286768, y: 6.9954834, z: 2.4474049}
+  m_Center: {x: 0.068576336, y: 2.9977417, z: 3.2184496}
 --- !u!65 &5617936381208262513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.83354, y: 14.482971, z: 1.4784169}
-  m_Center: {x: -3.022007, y: -6.7414856, z: 1.1874063}
+  m_Size: {x: 2.871686, y: 7.6656394, z: 1.8645172}
+  m_Center: {x: -0.106205225, y: 2.682029, z: 3.4131775}
 --- !u!1 &5807235371305061013
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +180,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 2, z: 6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.4120984, y: 8.122987, z: 3.6483078}
+  m_Center: {x: 0.21642852, y: 3.0614934, z: 2.9840422}
 --- !u!195 &254672973154845268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -217,20 +217,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 5
-  stopDistance: 10
+  stopDistance: 15
   maxHP: 1000
   xpValue: 10
   armorPercent: 0.5
   spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
   shootPoint: {fileID: 5831215383274805143}
   shootRateStage1: 2
-  projectileCountStage1: 5
+  projectileCountStage1: 6
   spreadAngleStage1: 30
   shootRateStage2: 1.5
-  projectileCountStage2: 7
+  projectileCountStage2: 8
   spreadAngleStage2: 40
   shootRateStage3: 1.2
-  projectileCountStage3: 9
+  projectileCountStage3: 10
   spreadAngleStage3: 50
   transitionLength: 25
   healRate: 15
@@ -5109,7 +5109,7 @@ Transform:
   m_GameObject: {fileID: 8626060420313101540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5125,15 +5125,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalPosition.x

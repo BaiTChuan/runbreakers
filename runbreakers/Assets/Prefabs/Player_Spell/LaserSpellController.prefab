@@ -46,6 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserSpell
   CastSpeed: 0.6
   Damage: 3
+  castSounds:
+  - {fileID: 8300000, guid: a759b777617505748b82eeb25e0c0503, type: 3}
+  - {fileID: 8300000, guid: 11580d9a10f10d848865a1c9055f6999, type: 3}
+  castVolume: 0.5
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000

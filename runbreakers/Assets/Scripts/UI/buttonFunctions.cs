@@ -41,6 +41,12 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.instance.menuActive = mainMenuManager.instance.settings;
     }
 
+    public void tutorial()
+    {
+        mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;
+        mainMenuManager.instance.menuActive = mainMenuManager.instance.tutorialMenu;
+    }
+
     public void credits()
     {
         mainMenuManager.instance.prevMenu = mainMenuManager.instance.menuActive;

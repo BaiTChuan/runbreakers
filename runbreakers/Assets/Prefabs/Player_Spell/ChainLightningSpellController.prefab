@@ -164,6 +164,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningSpell
   CastSpeed: 0.6
   Damage: 5
+  castSounds:
+  - {fileID: 8300000, guid: d574d75c384607046b29ddb3a3aa1ced, type: 3}
+  castVolume: 0.5
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000

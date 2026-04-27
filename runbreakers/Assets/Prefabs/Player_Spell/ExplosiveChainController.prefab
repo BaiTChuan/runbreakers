@@ -169,6 +169,7 @@ MonoBehaviour:
   currentLevel: 1
   currentXp: 0
   xpPerLevel: 140000001e000000280000003c00000032000000
+  maxLevel: 6
   lightningBoltPrefab: {fileID: 8049927496035906746, guid: 0ab88dfd201ab7e4998c55e795a2cf2a, type: 3}
   projectileSpeed: 75
   maxBounces: 5

@@ -26,6 +26,8 @@ public class ChainLightningSpell : Player_Spell
 
     public override void Cast(Transform castPos, Vector3 direction)
     {
+        PlayCastSound();
+
         GameObject bolt = Instantiate(lightningBoltPrefab, castPos.position, Quaternion.LookRotation(direction));
         bolt.GetComponent<Rigidbody>().linearVelocity = direction * projectileSpeed;
 
@@ -114,7 +116,7 @@ public class ChainLightningSpell : Player_Spell
         if (!float.IsFinite(start.x) || !float.IsFinite(start.y) || !float.IsFinite(start.z) ||
             !float.IsFinite(end.x) || !float.IsFinite(end.y) || !float.IsFinite(end.z))
         {
-            yield break; // Exit if any coordinate is not a finite number
+            yield break;
         }
 
         if (start == end) yield break;
