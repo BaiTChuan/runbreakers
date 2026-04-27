@@ -371,7 +371,7 @@ public class bossAI : MonoBehaviour, IDamage
                 xp.AddXP(xpValue);
         }
 
-        if (enemySpawner.instance != null)
+        if (enemySpawner.instance != null) {
             enemySpawner.instance.setBossDefeated();
 
         Destroy(gameObject, 3f);
