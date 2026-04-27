@@ -725,6 +725,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 850840697}
+    - target: {fileID: 2049456319493817953, guid: 8edaeeb6687dfc74a80d95a0668b6ea9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2144000474522063000, guid: 8edaeeb6687dfc74a80d95a0668b6ea9, type: 3}
+      propertyPath: m_text
+      value: "Frank \nCorey\nBaichuan \nJose\n\nUI Click Retro by SoundShelfStudio\r\nThaleah_PixelFont
+        by Thaleah\r\nAnimated Spider by Shadocks\r\nhttps://quaternius.com/packs/ultimatemonsters.html\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 3001598625911678077, guid: 8edaeeb6687dfc74a80d95a0668b6ea9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
