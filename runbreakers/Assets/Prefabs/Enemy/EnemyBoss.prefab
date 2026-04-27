@@ -180,8 +180,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.3086274, y: 7.7199755, z: 3.6483078}
-  m_Center: {x: 0.2716807, y: 2.8599877, z: 2.9840422}
+  m_Size: {x: 7.4120984, y: 8.122987, z: 3.6483078}
+  m_Center: {x: 0.21642852, y: 3.0614934, z: 2.9840422}
 --- !u!195 &254672973154845268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bossAI
   moveSpeed: 5
-  stopDistance: 10
+  stopDistance: 15
   maxHP: 1000
   xpValue: 10
   armorPercent: 0.5

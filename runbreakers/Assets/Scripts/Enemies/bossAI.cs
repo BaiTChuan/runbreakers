@@ -74,7 +74,7 @@ public class bossAI : MonoBehaviour, IDamage
 
     bool isInvulnerable;
     bool isTransitioning;
-    bool isAttacking;
+    //bool isAttacking;
 
     NavMeshAgent agent;
     Animator anim;
@@ -93,7 +93,7 @@ public class bossAI : MonoBehaviour, IDamage
 
         isInvulnerable = false;
         isTransitioning = false;
-        isAttacking = false;
+        //isAttacking = false;
 
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();

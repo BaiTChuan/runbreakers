@@ -1025,7 +1025,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1880292618244440545, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936333181587599066, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_Name
@@ -1069,6 +1069,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304841413680316636, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344814753274858064, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Height
+      value: 3.5126972
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344814753274858064, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Radius
+      value: 1.0104927
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344814753274858064, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Center.x
+      value: 0.01647959
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344814753274858064, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Center.y
+      value: -0.15773857
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344814753274858064, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Center.z
+      value: 0.019735593
+      objectReference: {fileID: 0}
+    - target: {fileID: 6495072460119834831, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: MinDistance
+      value: 0.91696846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678417432417938909, guid: aa5226e0729747e4faa19be920a59757, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
