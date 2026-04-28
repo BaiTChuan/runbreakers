@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &95378736248219004
 Transform:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   eggSpawnRate: 8
   baseEggsPerSpawn: 1
   beingHitEffect: {fileID: 1257283882453406374}
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 2395997325674116077, guid: 4803c621b9a929349be9991977ddd476, type: 3}
 --- !u!1 &2131843543909459173
 GameObject:
   m_ObjectHideFlags: 0
