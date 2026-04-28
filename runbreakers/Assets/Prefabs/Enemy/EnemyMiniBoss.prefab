@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &95378736248219004
 Transform:
   m_ObjectHideFlags: 0
@@ -116,6 +116,9 @@ MonoBehaviour:
   webShootRate: 3
   webProjectileCount: 6
   webSpreadAngle: 50
+  webProjectileSpeed: 18
+  leadAmount: 0.85
+  velocitySmoothingTime: 0.15
   biteDamage: 5
   biteRange: 2.5
   biteRadius: 3
