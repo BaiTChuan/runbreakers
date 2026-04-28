@@ -5013,7 +5013,7 @@ MonoBehaviour:
   stopDistance: 11
   retreatDistance: 8
   retreatDistanceAmount: 6
-  spellToCast: {fileID: 6572500034545387202, guid: b6a55fb5e17675d489f0ff0a070cf6e3, type: 3}
+  projectilePrefab: {fileID: 7638296601705467309, guid: f57c629cbfd9ebb4cbadb288c1c33edd, type: 3}
   shootPoint: {fileID: 6188351913714510705}
   shootRate: 2
   maxHP: 20

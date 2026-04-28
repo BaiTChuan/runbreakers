@@ -16,12 +16,12 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float armorPercent = 0.5f;
 
     [Header("---- Main Attack ----")]
-    [SerializeField] Spell spellToCast;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform shootPoint;
-    [SerializeField] float projectileSpeed = 15f;        // match the actual speed of Mage_Boss_Projectile
+    [SerializeField] float projectileSpeed = 15f;
     [Range(0f, 1.2f)]
-    [SerializeField] float leadAmount = 0.9f;            // 0 = no lead, 1 = perfect prediction
-    [SerializeField] float velocitySmoothingTime = 0.15f; // higher = smoother but more sluggish lead
+    [SerializeField] float leadAmount = 0.9f;
+    [SerializeField] float velocitySmoothingTime = 0.15f;
 
     [Header("---- Stage 1 ----")]
     [SerializeField] float shootRateStage1 = 2f;
@@ -83,7 +83,6 @@ public class bossAI : MonoBehaviour, IDamage
     NavMeshAgent agent;
     Animator anim;
 
-    // ---- Player velocity tracking (used for projectile lead) ----
     Vector3 lastPlayerPos;
     Vector3 estimatedPlayerVelocity;
     bool playerPosTrackingInitialized;
@@ -137,7 +136,6 @@ public class bossAI : MonoBehaviour, IDamage
 
         updateBossBar();
 
-        // ---- Track player velocity from position changes, smoothed to remove frame jitter ----
         Transform playerT = Gamemanager.instance.player.transform;
         if (!playerPosTrackingInitialized)
         {
@@ -147,13 +145,11 @@ public class bossAI : MonoBehaviour, IDamage
         if (Time.deltaTime > 0f)
         {
             Vector3 rawVelocity = (playerT.position - lastPlayerPos) / Time.deltaTime;
-            // Exponential smoothing: heavily weighted toward recent average
             float t = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.0001f, velocitySmoothingTime));
             estimatedPlayerVelocity = Vector3.Lerp(estimatedPlayerVelocity, rawVelocity, t);
         }
         lastPlayerPos = playerT.position;
 
-        // ---- Rotation: face the ACTUAL player (stable, no jitter from prediction noise) ----
         Vector3 toPlayer = playerT.position - transform.position;
         toPlayer.y = 0f;
         if (toPlayer != Vector3.zero)
@@ -162,8 +158,7 @@ public class bossAI : MonoBehaviour, IDamage
         if (isTransitioning)
         {
             agent.isStopped = true;
-            if (anim != null)
-                anim.SetBool("IsWalking", false);
+            if (anim != null) anim.SetBool("IsWalking", false);
             return;
         }
 
@@ -183,11 +178,8 @@ public class bossAI : MonoBehaviour, IDamage
         else
         {
             agent.isStopped = true;
-            if (anim != null)
-                anim.SetBool("IsWalking", false);
+            if (anim != null) anim.SetBool("IsWalking", false);
 
-            // Aim direction uses PREDICTED position so projectiles lead the player,
-            // even though the boss body is facing the actual player.
             Vector3 aimDir = getPredictedPlayerPosition() - shootPoint.position;
             aimDir.y = 0f;
             tryShoot(aimDir);
@@ -209,23 +201,18 @@ public class bossAI : MonoBehaviour, IDamage
         float distance = Vector3.Distance(fromPos, playerPos);
         float timeToHit = distance / Mathf.Max(0.01f, projectileSpeed);
 
-        // Flatten velocity so we don't aim into the floor or sky
         Vector3 flatVel = new Vector3(estimatedPlayerVelocity.x, 0f, estimatedPlayerVelocity.z);
-
         return playerPos + flatVel * timeToHit * leadAmount;
     }
 
     void tryShoot(Vector3 direction)
     {
-        if (spellToCast == null || shootPoint == null) return;
-
-        float currentShootRate = getShootRate();
-        if (shootTimer < currentShootRate) return;
+        if (projectilePrefab == null || shootPoint == null) return;
+        if (shootTimer < getShootRate()) return;
 
         shootTimer = 0f;
 
-        if (anim != null)
-            anim.SetTrigger("Attack");
+        if (anim != null) anim.SetTrigger("Attack");
 
         int currentProjectileCount = getProjectileCount();
         float currentSpreadAngle = getSpreadAngle();
@@ -249,13 +236,12 @@ public class bossAI : MonoBehaviour, IDamage
 
     void tryNovaAttack()
     {
-        if (spellToCast == null || shootPoint == null) return;
+        if (projectilePrefab == null || shootPoint == null) return;
         if (novaTimer < novaAttackRate) return;
 
         novaTimer = 0f;
 
-        if (anim != null)
-            anim.SetTrigger("NovaAttack");
+        if (anim != null) anim.SetTrigger("NovaAttack");
 
         float angleStep = 360f / novaProjectileCount;
 
@@ -279,12 +265,10 @@ public class bossAI : MonoBehaviour, IDamage
     void spawnProjectile(Vector3 direction)
     {
         Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z).normalized;
-        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(flatDirection));
-
-        Collider myCollider = GetComponent<Collider>();
-        Collider spellCollider = spellInstance.GetComponent<Collider>();
-        if (myCollider != null && spellCollider != null)
-            Physics.IgnoreCollision(myCollider, spellCollider);
+        GameObject projectileInstance = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(flatDirection));
+        enemyProjectile proj = projectileInstance.GetComponent<enemyProjectile>();
+        if (proj != null)
+            proj.SetDirection(flatDirection);
     }
 
     float getShootRate()
@@ -312,15 +296,13 @@ public class bossAI : MonoBehaviour, IDamage
     {
         if (isInvulnerable) return;
 
-        if (beingHitEffect != null)
-            beingHitEffect.Play();
+        if (beingHitEffect != null) beingHitEffect.Play();
 
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
         currentHP -= finalDamage;
 
-        if (anim != null)
-            anim.SetTrigger("HitReact");
+        if (anim != null) anim.SetTrigger("HitReact");
 
         if (currentStage == 1 && currentHP <= stage2TriggerHP)
         {
@@ -336,8 +318,7 @@ public class bossAI : MonoBehaviour, IDamage
             return;
         }
 
-        if (currentHP <= 0)
-            die();
+        if (currentHP <= 0) die();
     }
 
     IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
@@ -345,11 +326,8 @@ public class bossAI : MonoBehaviour, IDamage
         isTransitioning = true;
         isInvulnerable = true;
 
-        if (forceField != null)
-            forceField.SetActive(true);
-
-        if (anim != null)
-            anim.SetTrigger("Transition");
+        if (forceField != null) forceField.SetActive(true);
+        if (anim != null) anim.SetTrigger("Transition");
 
         shootTimer = 0f;
         novaTimer = 0f;
@@ -380,8 +358,7 @@ public class bossAI : MonoBehaviour, IDamage
             yield return null;
         }
 
-        if (forceField != null)
-            forceField.SetActive(false);
+        if (forceField != null) forceField.SetActive(false);
 
         currentStage = nextStage;
         isInvulnerable = false;
@@ -390,32 +367,24 @@ public class bossAI : MonoBehaviour, IDamage
 
     void die()
     {
-        if (forceField != null)
-            forceField.SetActive(false);
-
-        if (bossHPBar != null)
-            bossHPBar.SetActive(false);
-
-        if (anim != null)
-            anim.SetTrigger("Death");
+        if (forceField != null) forceField.SetActive(false);
+        if (bossHPBar != null) bossHPBar.SetActive(false);
+        if (anim != null) anim.SetTrigger("Death");
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
-            if (xp != null)
-                xp.AddXP(xpValue);
+            if (xp != null) xp.AddXP(xpValue);
         }
 
         if (enemySpawner.instance != null)
             enemySpawner.instance.setBossDefeated();
 
-    
         if (chestPrefab != null)
         {
             Instantiate(chestPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        
 
         Destroy(gameObject, 3f);
     }

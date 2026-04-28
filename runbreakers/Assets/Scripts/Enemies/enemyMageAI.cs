@@ -10,7 +10,7 @@ public class enemyMageAI : MonoBehaviour, IDamage
     [SerializeField] float retreatDistanceAmount = 4f;
 
     [Header("---- Attack ----")]
-    [SerializeField] Spell spellToCast;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootRate = 2f;
 
@@ -96,30 +96,23 @@ public class enemyMageAI : MonoBehaviour, IDamage
         }
 
         if (direction != Vector3.zero)
-        {
             transform.rotation = Quaternion.LookRotation(direction);
-        }
     }
 
     void tryShoot(Vector3 direction)
     {
-        if (spellToCast == null || shootPoint == null)
-            return;
-
-        if (shootTimer < shootRate)
-            return;
+        if (projectilePrefab == null || shootPoint == null) return;
+        if (shootTimer < shootRate) return;
 
         shootTimer = 0f;
 
         if (anim != null) anim.SetTrigger("Attack");
 
         direction = direction.normalized;
-        GameObject spellInstance = Instantiate(spellToCast.gameObject, shootPoint.position, Quaternion.LookRotation(direction));
-
-        Collider myCollider = GetComponent<Collider>();
-        Collider spellCollider = spellInstance.GetComponent<Collider>();
-        if (myCollider != null && spellCollider != null)
-            Physics.IgnoreCollision(myCollider, spellCollider);
+        GameObject projectileInstance = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(direction));
+        enemyProjectile proj = projectileInstance.GetComponent<enemyProjectile>();
+        if (proj != null)
+            proj.SetDirection(direction);
 
         transform.rotation = Quaternion.LookRotation(direction);
     }
@@ -129,7 +122,6 @@ public class enemyMageAI : MonoBehaviour, IDamage
         if (isDead) return;
 
         if (beingHitEffect != null) beingHitEffect.Play();
-
         if (anim != null) anim.SetTrigger("HitReact");
 
         currentHP -= amount;
@@ -162,7 +154,6 @@ public class enemyMageAI : MonoBehaviour, IDamage
 
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
-            // Drop spell XP pickup
             if (spellXPDropPrefab != null)
             {
                 GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
