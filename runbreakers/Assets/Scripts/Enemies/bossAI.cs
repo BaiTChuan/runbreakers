@@ -61,11 +61,6 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
-    [Header("---- Boss HP Bar ----")]
-    [SerializeField] GameObject bossHPBar;
-    public Image bossCurrentHP;
-    [SerializeField] TMP_Text bossCurrentHPText;
-
     [Header("---- Chest Drop ----")]
     [SerializeField] GameObject chestPrefab;
 
@@ -82,6 +77,10 @@ public class bossAI : MonoBehaviour, IDamage
 
     NavMeshAgent agent;
     Animator anim;
+
+    GameObject bossHPBar;
+    Image bossCurrentHP;
+    TMP_Text bossCurrentHPText;
 
     Vector3 lastPlayerPos;
     Vector3 estimatedPlayerVelocity;
@@ -321,49 +320,56 @@ public class bossAI : MonoBehaviour, IDamage
         if (currentHP <= 0) die();
     }
 
-    IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
+IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
+{
+    isTransitioning = true;
+    isInvulnerable = true;
+
+    if (forceField != null) forceField.SetActive(true);
+    if (anim != null) anim.SetTrigger("Transition");
+
+    shootTimer = 0f;
+    novaTimer = 0f;
+    addSpawnTimer = 0f;
+
+    float timer = 0f;
+    float spawnTimer = 0f;
+    float healAccumulator = 0f;
+
+    while (timer < transitionLength)
     {
-        isTransitioning = true;
-        isInvulnerable = true;
+        timer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
 
-        if (forceField != null) forceField.SetActive(true);
-        if (anim != null) anim.SetTrigger("Transition");
-
-        shootTimer = 0f;
-        novaTimer = 0f;
-        addSpawnTimer = 0f;
-
-        float timer = 0f;
-        float spawnTimer = 0f;
-
-        while (timer < transitionLength)
+        if (currentHP < healTargetHP)
         {
-            timer += Time.deltaTime;
-            spawnTimer += Time.deltaTime;
-
-            if (currentHP < healTargetHP)
+            healAccumulator += healRate * Time.deltaTime;
+            if (healAccumulator >= 1f)
             {
-                currentHP += Mathf.RoundToInt(healRate * Time.deltaTime);
+                int healAmount = Mathf.FloorToInt(healAccumulator);
+                currentHP += healAmount;
+                healAccumulator -= healAmount;
                 if (currentHP > healTargetHP)
                     currentHP = healTargetHP;
             }
-
-            if (spawnTimer >= transitionSpawnRate)
-            {
-                spawnTimer = 0f;
-                if (enemySpawner.instance != null)
-                    enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
-            }
-
-            yield return null;
         }
 
-        if (forceField != null) forceField.SetActive(false);
+        if (spawnTimer >= transitionSpawnRate)
+        {
+            spawnTimer = 0f;
+            if (enemySpawner.instance != null)
+                enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
+        }
 
-        currentStage = nextStage;
-        isInvulnerable = false;
-        isTransitioning = false;
+        yield return null;
     }
+
+    if (forceField != null) forceField.SetActive(false);
+
+    currentStage = nextStage;
+    isInvulnerable = false;
+    isTransitioning = false;
+}
 
     void die()
     {
