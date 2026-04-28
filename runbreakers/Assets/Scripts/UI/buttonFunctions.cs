@@ -26,6 +26,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void startMenuScene()
     {
+        if (backgroundMusic.instance != null)
+        {
+            backgroundMusic.instance.StopMusic();
+        }
         SceneManager.LoadScene(menuScene);
     }
 

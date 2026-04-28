@@ -19,8 +19,8 @@ public class Gamemanager : MonoBehaviour
 
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text hpText;
-    [SerializeField] TMP_Text ammoCurText;
-    [SerializeField] TMP_Text ammoMaxText;
+    [SerializeField] TMP_Text curSpellNameText;
+    [SerializeField] TMP_Text curSpellLevelText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
@@ -36,15 +36,12 @@ public class Gamemanager : MonoBehaviour
 
     [Header("----- Audio ------")]
     public AudioClip click;
-
     public AudioSource audioSource;
 
     [Header("----- LevelUp ------")]
     public bool isLevelUp = false;
-
     public int rerollChance = 0;
     int rerollOriginal;
-
     public int rerollLimit;
     public bool isRerolled = false;
     public bool rolling = false;
@@ -65,6 +62,11 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject bossHPBar;
     [SerializeField] Image bossCurrentHPBar;
     [SerializeField] TMP_Text bossHPText;
+
+    [Header("----- Mini Boss UI ------")]
+    [SerializeField] GameObject miniBossHPBar;
+    [SerializeField] Image miniBossCurrentHPBar;
+    [SerializeField] TMP_Text miniBossHPText;
 
     [Header("----- Wave Transition ------")]
     [SerializeField] float waveTransitionTime = 2f;
@@ -118,38 +120,25 @@ public class Gamemanager : MonoBehaviour
         Time.timeScale = 1f;
         menuActive = null;
 
-        if (menuPause != null)
-            menuPause.SetActive(false);
-
-        if (menuWin != null)
-            menuWin.SetActive(false);
-
-        if (menuLose != null)
-            menuLose.SetActive(false);
-
-        if (levelUpMenu != null)
-            levelUpMenu.SetActive(false);
-
-        if (bossHPBar != null)
-            bossHPBar.SetActive(false);
+        if (menuPause != null) menuPause.SetActive(false);
+        if (menuWin != null) menuWin.SetActive(false);
+        if (menuLose != null) menuLose.SetActive(false);
+        if (levelUpMenu != null) levelUpMenu.SetActive(false);
+        if (bossHPBar != null) bossHPBar.SetActive(false);
+        if (miniBossHPBar != null) miniBossHPBar.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         if (waveTransitionText != null)
-        {
             waveTransitionText.gameObject.SetActive(false);
-        }
 
         if (waveTimerText != null)
-        {
             waveTimerText.text = "";
-        }
     }
 
     void Update()
     {
-        
         if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause"))
         {
             if (menuActive == null)
@@ -193,47 +182,29 @@ public class Gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
-
-        if (gameGoalCount < 0)
-        {
-            gameGoalCount = 0;
-        }
-
+        if (gameGoalCount < 0) gameGoalCount = 0;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
     }
 
     public void setGameGoal(int amount)
     {
         gameGoalCount = amount;
-
-        if (gameGoalCount < 0)
-        {
-            gameGoalCount = 0;
-        }
-
+        if (gameGoalCount < 0) gameGoalCount = 0;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
     }
 
     public void setWaveCount(int currentWave, int totalWaves)
     {
         if (waveCountText != null)
-        {
             waveCountText.text = currentWave + "/" + totalWaves;
-        }
     }
 
     public void updateWaveTimer(float timeLeft)
     {
-        if (waveTimerText == null)
-            return;
+        if (waveTimerText == null) return;
 
         int secondsLeft = Mathf.CeilToInt(timeLeft);
-
-        if (secondsLeft < 0)
-        {
-            secondsLeft = 0;
-        }
-
+        if (secondsLeft < 0) secondsLeft = 0;
         waveTimerText.text = "Time: " + secondsLeft;
     }
 
@@ -244,8 +215,7 @@ public class Gamemanager : MonoBehaviour
 
     IEnumerator waveTransition(int waveNum)
     {
-        if (waveTransitionText == null)
-            yield break;
+        if (waveTransitionText == null) yield break;
 
         waveTransitionText.gameObject.SetActive(true);
         waveTransitionText.text = "Wave " + waveNum;
@@ -256,16 +226,12 @@ public class Gamemanager : MonoBehaviour
     public void setBossText()
     {
         if (waveCountText != null)
-        {
             waveCountText.text = "BOSS WAVE";
-        }
 
         backgroundMusic.instance.PlayBossMusic();
 
         if (waveTimerText != null)
-        {
             waveTimerText.text = "";
-        }
     }
 
     public void showBossChallenge()
@@ -281,11 +247,8 @@ public class Gamemanager : MonoBehaviour
     public void destroyAllEnemies()
     {
         GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
-
         foreach (GameObject obj in objectsToDestroy)
-        {
             Destroy(obj);
-        }
     }
 
     #region LevelUpFunctions
@@ -299,11 +262,8 @@ public class Gamemanager : MonoBehaviour
         menuActive = levelUpMenu;
         menuActive.SetActive(true);
 
-
         if (playerScript.GetCurrentLevel() == 3)
-        {
             sprintMsg.gameObject.SetActive(true);
-        }
 
         statePause();
         setLevelText();
@@ -340,7 +300,7 @@ public class Gamemanager : MonoBehaviour
 
     public void lowHealthOn()
     {
-       lowHealth.gameObject.SetActive(true);
+        lowHealth.gameObject.SetActive(true);
     }
 
     public void lowHealthOff()
@@ -357,6 +317,7 @@ public class Gamemanager : MonoBehaviour
             audioSource.Play();
         }
     }
+
     public void showWin()
     {
         statePause();
@@ -375,14 +336,39 @@ public class Gamemanager : MonoBehaviour
     {
         return bossHPBar;
     }
-
-    public Image GetBossCurrentHPBar()
+    public Image GetBossCurrentHPBar() 
     {
         return bossCurrentHPBar;
     }
-
     public TMP_Text GetBossHPText()
     {
         return bossHPText;
+    }
+
+    public GameObject GetMiniBossHPBar()
+    {
+        return miniBossHPBar;
+    }
+    public Image GetMiniBossCurrentHPBar()
+    {
+        return miniBossCurrentHPBar;
+    }
+    public TMP_Text GetMiniBossHPText()
+    {
+        return miniBossHPText;
+    }
+
+    public void setSpellNameText(string name)
+    {
+        if (curSpellNameText != null)
+            curSpellNameText.text = name;
+    }
+
+    public void setSpellLevelText(int level)
+    {
+       if (curSpellLevelText != null)
+        {
+            curSpellLevelText.text = "LV." + level;
+        }
     }
 }

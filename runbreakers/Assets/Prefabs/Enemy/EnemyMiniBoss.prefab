@@ -116,6 +116,9 @@ MonoBehaviour:
   webShootRate: 3
   webProjectileCount: 6
   webSpreadAngle: 50
+  webProjectileSpeed: 18
+  leadAmount: 0.85
+  velocitySmoothingTime: 0.15
   biteDamage: 5
   biteRange: 2.5
   biteRadius: 3
@@ -123,16 +126,12 @@ MonoBehaviour:
   poisonTickDamage: 1
   poisonDuration: 4
   poisonTickRate: 1
-  sweepDamage: 1
-  sweepRange: 10
-  sweepRadius: 6
-  sweepAngle: 160
-  sweepRate: 1.25
   broodEggPrefab: {fileID: 1028259705953765684, guid: c2ff3d6b98f279145ae2de7d95a30dbe, type: 3}
   eggSpawnPoint: {fileID: 6941076106651365290}
   eggSpawnRate: 8
   baseEggsPerSpawn: 1
   beingHitEffect: {fileID: 1257283882453406374}
+  chestPrefab: {fileID: 2395997325674116077, guid: 4803c621b9a929349be9991977ddd476, type: 3}
 --- !u!1 &2131843543909459173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,6 +5208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: model
       objectReference: {fileID: 0}
+    - target: {fileID: 2410570265434229790, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2bcd1f48ccbfc14e8999e274233eae2, type: 2}
     - target: {fileID: 5866666021909216657, guid: e7492ea2d84ed30499984bdfe9226778, type: 3}
       propertyPath: m_Controller
       value: 

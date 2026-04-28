@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
     private float explosionRadius;
     private int explosionDamage;
     private float returnDelay;
+    private List<AudioClip> explosionSounds = new List<AudioClip>();
+    private float explosionVolume = 1.0f;
 
     private int damage;
     private List<Collider> hitTargets = new List<Collider>();
@@ -38,11 +40,13 @@ public class Projectile : MonoBehaviour
         behavior = ProjectileBehavior.StopOnHit;
     }
 
-    public void SetExplosion(float radius, int newExplosionDamage)
+    public void SetExplosion(float radius, int newExplosionDamage, List<AudioClip> sounds, float volume)
     {
         canExplode = true;
         explosionRadius = radius;
         explosionDamage = newExplosionDamage;
+        explosionSounds = sounds;
+        explosionVolume = volume;
     }
 
     public void SetBehavior(ProjectileBehavior newBehavior, float delay = 0)
@@ -76,18 +80,17 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         
         GameObject hitObject = other.gameObject;
 
         if (hitObject.CompareTag("Enemy"))
         {
-            HandleDamage(other);
+            if (HandleDamage(other)) return;
         }
 
         if (hitObject.CompareTag("Destructables"))
         {
-            HandleDamage(other);
+            if (HandleDamage(other)) return;
         }
 
         switch (behavior)
@@ -129,9 +132,9 @@ public class Projectile : MonoBehaviour
         hitTargets.Clear();
     }
 
-    private void HandleDamage(Collider targetCollider)
+    private bool HandleDamage(Collider targetCollider)
     {
-        if (targetCollider == null || hitTargets.Contains(targetCollider)) return;
+        if (targetCollider == null || hitTargets.Contains(targetCollider)) return false;
 
         IDamage damageable = targetCollider.GetComponent<IDamage>();
         if (damageable != null)
@@ -143,13 +146,16 @@ public class Projectile : MonoBehaviour
             {
                 chainSource.InitiateBounces(transform.position, targetCollider.transform, damage);
                 Destroy(gameObject);
+                return true;
             }
             else if (explosiveChainSource != null)
             {
                 explosiveChainSource.InitiateBouncesAndExplosions(transform.position, targetCollider.transform, damage);
                 Destroy(gameObject);
+                return true;
             }
         }
+        return false;
     }
 
     private void Explode()
@@ -158,6 +164,12 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(explosionVFX, transform.position, Quaternion.identity);
         }
+
+        if (explosionSounds != null && explosionSounds.Count > 0)
+        {
+            AudioSource.PlayClipAtPoint(explosionSounds[Random.Range(0, explosionSounds.Count)], transform.position, explosionVolume);
+        }
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (var hitCollider in hitColliders)
         {
