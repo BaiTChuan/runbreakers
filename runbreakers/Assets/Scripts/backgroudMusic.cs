@@ -53,4 +53,9 @@ public class backgroundMusic : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
 }
