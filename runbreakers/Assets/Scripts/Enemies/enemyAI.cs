@@ -119,7 +119,7 @@ public class enemyAI : MonoBehaviour, IDamage
             SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
             if (spellXPPickup != null)
             {
-                spellXPPickup.xpAmount = xpValue;
+                spellXPPickup.xpAmount = xpValue + 3;
             }
         }
 

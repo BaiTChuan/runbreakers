@@ -450,6 +450,32 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 850840697}
+    - target: {fileID: 2745310650327091427, guid: 8edaeeb6687dfc74a80d95a0668b6ea9, type: 3}
+      propertyPath: m_text
+      value: 'Purgatory is a rogue-like gmae. Let me introduce you with some basic
+        info about this game.
+
+        In this game, you can level up your character
+        by killing enemies and level up your spells by picking up spells XP dropped
+        from enemie to unlock incredible power of that kind of spell.
+
+        For
+        spells, you can change between fireball, chainlightning, and laser by using
+        scroll-wheel, and when one spell reach to lv.6, it will upgrade to next version.
+        When you have lv.6 fireball and lv.6 chainlightning, they will automatically
+        combined into a lv.99 lengendary spell - chain explosion.
+
+        Also,
+        you can unlock a dashing skill when your character reaches lv.3!
+
+        In
+        the game, your goal is to kill enemies, level up and survive to the end.
+        There will be random quests poping up, and you need to find them as soon
+        as possible. You can also collect gold by destroy boxes in the game.
+
+        With
+        gold, you can purchase permanent upgrade from shop in the main menu.'
+      objectReference: {fileID: 0}
     - target: {fileID: 3709571782488298127, guid: 8edaeeb6687dfc74a80d95a0668b6ea9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 999.0162

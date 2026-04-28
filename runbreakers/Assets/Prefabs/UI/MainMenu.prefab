@@ -7096,6 +7096,9 @@ MonoBehaviour:
     and lv.6 chainlightning, they will automatically combined into a lv.99 lengendary
     spell - chain explosion.
 
+    Also, you can unlock a dashing skill when your
+    character reaches lv.3!
+
     In the game, your goal is to kill enemies, level
     up and survive to the end. There will be random quests poping up, and you need
     to find them as soon as possible. You can also collect gold by destroy boxes
@@ -10949,8 +10952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 88}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.0010986328, y: 42.2733}
+  m_SizeDelta: {x: 783, y: 141.4533}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7084207557583489248
 CanvasRenderer:
@@ -10980,7 +10983,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Frank \nCorey\nBaichuan \nJose\n"
+  m_text: "Frank \nCorey\nBaichuan \nJose\n\nAssets used:\r\n\r\n\r\nUI Click Retro
+    by SoundShelfStudio\r\nThaleah_PixelFont by Thaleah\r\nAnimated Spider by Shadocks\r\nFireball
+    | energy sphere by dabori\r\nCobwebs Asset Pack by Em Marshall\r\nUltimate monster
+    pack by quaternius\r\n\r\nLow Poly Trim Sheet Asset Collection pack by Oiva Kahri\r\nGhost
+    character free by Sigmoid Button Assets\r\nHand Painted Textures: Stone Tiles
+    by Little Sweet Daemon\r\n25+ Free Stylized Textures - Grass, Ground, Floors,
+    Walls & More by GameBuffs\r\nLow Poly Chest Animated by EK Studio\r\nSimple Modular
+    Castle Assets by Bublik\r\nAncient Clay Jug Ornate Ceramic Vase by GVOZDY\r\n\r\nSFX_MAGIC_FIREBALL_001.wav
+    by JoelAudio\r\nFireball Cast 3 by LiamG_SFX\r\nFireball Explosion.wav by HighPixel\r\nFireball
+    by NearTheAtmoshphere\r\nlaser one-shot #1.wav by djfroyd\r\nLaser5.wav by mparsons99\r\nspell_lightning_c
+    by ZeltBolt\r\nSharp Explosion 4 (of 5) by Rudmer_Rotteveel\r\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11007,8 +11020,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

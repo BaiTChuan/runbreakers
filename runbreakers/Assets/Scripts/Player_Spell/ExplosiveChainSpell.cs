@@ -35,6 +35,8 @@ public class ExplosiveChainSpell : Player_Spell
 
     public override void Cast(Transform castPos, Vector3 direction)
     {
+        PlayCastSound();
+
         GameObject bolt = Instantiate(lightningBoltPrefab, castPos.position, Quaternion.LookRotation(direction));
         bolt.GetComponent<Rigidbody>().linearVelocity = direction * projectileSpeed;
 
