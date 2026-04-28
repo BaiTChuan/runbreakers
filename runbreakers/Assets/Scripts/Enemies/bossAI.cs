@@ -66,6 +66,9 @@ public class bossAI : MonoBehaviour, IDamage
     public Image bossCurrentHP;
     [SerializeField] TMP_Text bossCurrentHPText;
 
+    [Header("---- Chest Drop ----")]
+    [SerializeField] GameObject chestPrefab;
+
     int currentHP;
     int currentStage;
     int stage2TriggerHP;
@@ -405,6 +408,14 @@ public class bossAI : MonoBehaviour, IDamage
 
         if (enemySpawner.instance != null)
             enemySpawner.instance.setBossDefeated();
+
+    
+        if (chestPrefab != null)
+        {
+            Instantiate(chestPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        
 
         Destroy(gameObject, 3f);
     }

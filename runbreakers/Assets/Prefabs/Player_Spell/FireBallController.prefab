@@ -46,10 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireballSpell
   CastSpeed: 0.6
   Damage: 10
+  castSounds:
+  - {fileID: 8300000, guid: 80b562e446df24d4db4ea45b2ba332c7, type: 3}
+  - {fileID: 8300000, guid: e49fa93e8de45cf4a947e9c89be2d51b, type: 3}
+  castVolume: 0.3
   currentLevel: 1
   currentXp: 0
-  xpPerLevel: 140000001e000000280000003c00000032000000
+  xpPerLevel: 14000000140000001e0000001e00000032000000
   fireballPrefab: {fileID: 917169439227872443, guid: e242b0fb54f6cb842ab9ad77d1eaf9c4, type: 3}
   projectileSpeed: 15
   explosionRadius: 3
+  explosionSounds:
+  - {fileID: 8300000, guid: 005cf35f1032186468afbb22aaf9fe1d, type: 3}
+  - {fileID: 8300000, guid: a46eab0ac008945499da7b58bd4c1ca1, type: 3}
+  explosionVolume: 1
   explosionDamageModifier: 0.8
