@@ -166,7 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveChainSpell
   CastSpeed: 0.6
   Damage: 10
-  castSounds: []
+  castSounds:
+  - {fileID: 8300000, guid: 5fc06aa9b093f09419af7326c4c1e5f3, type: 3}
   castVolume: 1
   currentLevel: 1
   currentXp: 0
@@ -177,6 +178,9 @@ MonoBehaviour:
   bounceRange: 12
   explosionRadius: 3
   explosionDamageFalloff: 0.21
+  explosionSounds:
+  - {fileID: 8300000, guid: 09784376331299244b4c12b9e6407e87, type: 3}
+  explosionVolume: 1
   explosionVFX: {fileID: 558864851438764635, guid: 8e78de8009c764a45b7110a35aa556f7, type: 3}
   lineDuration: 0.1
   enemyLayer:
