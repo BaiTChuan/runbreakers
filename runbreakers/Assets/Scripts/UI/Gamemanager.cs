@@ -19,8 +19,8 @@ public class Gamemanager : MonoBehaviour
 
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text hpText;
-    [SerializeField] TMP_Text ammoCurText;
-    [SerializeField] TMP_Text ammoMaxText;
+    [SerializeField] TMP_Text curSpellNameText;
+    [SerializeField] TMP_Text curSpellLevelText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTransitionText;
     [SerializeField] TMP_Text waveTimerText;
@@ -356,5 +356,19 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text GetMiniBossHPText()
     {
         return miniBossHPText;
+    }
+
+    public void setSpellNameText(string name)
+    {
+        if (curSpellNameText != null)
+            curSpellNameText.text = name;
+    }
+
+    public void setSpellLevelText(int level)
+    {
+       if (curSpellLevelText != null)
+        {
+            curSpellLevelText.text = "LV." + level;
+        }
     }
 }

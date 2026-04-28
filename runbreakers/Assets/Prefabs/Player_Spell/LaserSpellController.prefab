@@ -52,6 +52,6 @@ MonoBehaviour:
   castVolume: 0.5
   currentLevel: 1
   currentXp: 0
-  xpPerLevel: 14000000140000001e0000001e00000032000000
+  xpPerLevel: 0a0000001400000014000000140000001e000000
   laserBulletPrefab: {fileID: 6993960146132888396, guid: c49d60ed348243c4ea148f713a8415d6, type: 3}
   projectileSpeed: 100

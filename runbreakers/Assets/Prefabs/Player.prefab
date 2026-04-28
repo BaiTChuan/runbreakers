@@ -317,10 +317,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.0104927
+  m_Height: 3.5126972
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.01647959, y: -0.15773857, z: 0.019735593}
 --- !u!82 &6495072460119834831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.91696846
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

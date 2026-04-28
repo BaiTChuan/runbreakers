@@ -18,6 +18,8 @@ public class ExplosiveChainSpell : Player_Spell
     [SerializeField] [Range(0f, 1f)] private float explosionDamageFalloff = 0.5f;
 
     [Header("Visuals")]
+    [SerializeField] private List<AudioClip> explosionSounds;
+    [SerializeField] [Range(0f, 1f)] private float explosionVolume = 1.0f;
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private float lineDuration = 0.1f;
     [SerializeField] private LayerMask enemyLayer;
@@ -89,7 +91,17 @@ public class ExplosiveChainSpell : Player_Spell
                 hitEnemies.Add(nextTarget);
                 damageable.takeDamage(nextDamage);
                 Explode(nextTarget.position, nextDamage);
-                yield return StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
+                StartCoroutine(Bounce(currentTargetPosition, nextTarget, hitEnemies, bouncesLeft - 1, nextDamage));
+            }
+        }
+        else if (bouncesLeft > 0)
+        {
+            IDamage damageable = currentTarget.GetComponent<IDamage>();
+            if (damageable != null)
+            {
+                damageable.takeDamage(currentDamage);
+                Explode(currentTarget.position, currentDamage);
+                StartCoroutine(Bounce(currentTarget.position, currentTarget, hitEnemies, bouncesLeft - 1, currentDamage));
             }
         }
     }
@@ -99,6 +111,11 @@ public class ExplosiveChainSpell : Player_Spell
         if (explosionVFX != null)
         {
             Instantiate(explosionVFX, position, Quaternion.identity);
+        }
+
+        if (explosionSounds.Count > 0)
+        {
+            AudioSource.PlayClipAtPoint(explosionSounds[Random.Range(0, explosionSounds.Count)], position, explosionVolume);
         }
 
         int explosionDamage = Mathf.RoundToInt(damage * (1 - explosionDamageFalloff));

@@ -199,6 +199,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         AimGunToMouse();
         dataDeletedCheck();
         checkLowHealth();
+        updateSpellText();
     }
 
     IEnumerator playStep()
@@ -789,4 +790,47 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         characterLuck += luckStatIncrease + luckStatTier3;
     }
     #endregion
+
+    void updateSpellText ()
+    {
+        string text;
+        int level;
+
+        if (spells[currentSpellIndex] is ChainLightningSpell)
+        {
+            text = "Chain Lightning";
+            level = clLevel;
+
+            Gamemanager.instance.setSpellNameText(text);
+            Gamemanager.instance.setSpellLevelText(level);
+        } 
+        else if (spells[currentSpellIndex] is FireballSpell)
+        {
+            text = "Fireball";
+            level = spells[currentSpellIndex].CurrentLevel;
+
+            Gamemanager.instance.setSpellNameText(text);
+            Gamemanager.instance.setSpellLevelText(level);
+        }
+        else if (spells[currentSpellIndex] is ExplosiveChainSpell)
+         {
+             text = "Explosive Chain";
+             level = 99;
+
+            Gamemanager.instance.setSpellNameText(text);
+            Gamemanager.instance.setSpellLevelText(level);
+        }
+        else if (spells[currentSpellIndex] is LaserSpell)
+        {
+            text = "Laser";
+            level = spells[currentSpellIndex].CurrentLevel;
+
+            Gamemanager.instance.setSpellNameText(text);
+            Gamemanager.instance.setSpellLevelText(level);
+        }
+        else
+        {
+            text = "Unknown Spell";
+        }
+    }
 }

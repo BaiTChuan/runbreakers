@@ -166,18 +166,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveChainSpell
   CastSpeed: 0.6
   Damage: 10
+  castSounds: []
+  castVolume: 1
   currentLevel: 1
   currentXp: 0
-  xpPerLevel: 140000001e000000280000003c00000032000000
-  maxLevel: 6
+  xpPerLevel: 0a00000014000000140000001400000064000000
   lightningBoltPrefab: {fileID: 8049927496035906746, guid: 0ab88dfd201ab7e4998c55e795a2cf2a, type: 3}
   projectileSpeed: 75
   maxBounces: 5
   bounceRange: 12
   explosionRadius: 3
-  explosionDamageFalloff: 0.5
+  explosionDamageFalloff: 0.21
   explosionVFX: {fileID: 558864851438764635, guid: 8e78de8009c764a45b7110a35aa556f7, type: 3}
   lineDuration: 0.1
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
