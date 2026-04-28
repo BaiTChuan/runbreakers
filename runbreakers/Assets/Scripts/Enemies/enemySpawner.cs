@@ -118,8 +118,13 @@ public class enemySpawner : MonoBehaviour
 
     void updateWaveTimer()
     {
-        waveTimer -= Time.deltaTime;
+        // This pauses the wave timer during mini-boss quest
+        if (questManager.instance != null && questManager.instance.IsMiniBossQuestActive())
+        {
+            return;
+        }
 
+        waveTimer -= Time.deltaTime;
         if (waveTimer <= 0f)
         {
             waveTimer = 0f;
@@ -133,11 +138,16 @@ public class enemySpawner : MonoBehaviour
 
     void handleWaveSpawning()
     {
+        // This pauses the wave spawning during mini-boss quest
+        if (questManager.instance != null && questManager.instance.IsMiniBossQuestActive())
+        {
+            return;
+        }
+
         if (currentAliveBudget >= currentWaveBudget)
             return;
 
         spawnTimer += Time.deltaTime;
-
         if (spawnTimer >= currentSpawnRate)
         {
             spawn();

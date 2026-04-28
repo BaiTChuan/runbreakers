@@ -23,7 +23,8 @@ public class door : MonoBehaviour
     {
         if (other.CompareTag("Player") && bossAlive == false)
         {
-            model.SetActive(false);
+            if (model != null)
+                model.SetActive(false);
         }
     }
 
@@ -31,7 +32,8 @@ public class door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            model.SetActive(true);
+            if (model != null)
+                model.SetActive(true);
         }
     }
 }

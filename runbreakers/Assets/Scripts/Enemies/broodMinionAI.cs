@@ -8,23 +8,26 @@ public class broodMinionAI : MonoBehaviour, IDamage
     [SerializeField] Vector3 shortestDist = Vector3.zero;
 
     [Header("---- Enemy Stats ----")]
-    [SerializeField] int maxHP = 1;
     [SerializeField] int xpValue = 1;
     [SerializeField] int goalValue = 1;
-    [SerializeField] float armorPercent = 0f;
+
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
     NavMeshAgent agent;
-    int currentHP;
+    Animator anim;
     bool hasHitPlayer;
+    bool isDead;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentHP = maxHP;
+        anim = GetComponentInChildren<Animator>();
         hasHitPlayer = false;
+        isDead = false;
 
         if (agent != null)
         {
@@ -40,56 +43,73 @@ public class broodMinionAI : MonoBehaviour, IDamage
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
-        if (hasHitPlayer)
+        if (hasHitPlayer || isDead)
             return;
 
         agent.SetDestination(Gamemanager.instance.player.transform.position - shortestDist);
+
+        if (anim != null)
+            anim.SetBool("IsRunning", agent.velocity.magnitude > 0.1f);
     }
 
     public void takeDamage(int amount)
     {
+        if (isDead) return;
+
         if (beingHitEffect != null)
-        {
             beingHitEffect.Play();
-        }
 
-        int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
-        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
-
-        currentHP -= finalDamage;
-
-        if (currentHP <= 0)
-        {
-            die();
-        }
+        die();
     }
 
     public void hitPlayerAndDie()
     {
-        if (hasHitPlayer)
-            return;
-
+        if (hasHitPlayer || isDead) return;
         hasHitPlayer = true;
         die();
     }
 
     void die()
     {
+        if (isDead) return;
+        isDead = true;
+
+        if (agent != null)
+            agent.enabled = false;
+
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        if (anim != null)
+            anim.SetTrigger("Death");
+
+        dropLoot();
+        giveRewards();
+
+        Destroy(gameObject, 2f);
+    }
+
+    void dropLoot()
+    {
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+                spellXPPickup.xpAmount = xpValue;
+        }
+    }
+
+    void giveRewards()
+    {
         if (Gamemanager.instance != null && Gamemanager.instance.player != null)
         {
             playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
-
             if (xp != null)
-            {
                 xp.AddXP(xpValue);
-            }
         }
 
         if (enemySpawner.instance != null)
-        {
             enemySpawner.instance.enemyDefeated(goalValue);
-        }
-
-        Destroy(gameObject);
     }
 }

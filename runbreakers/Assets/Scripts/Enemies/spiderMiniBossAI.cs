@@ -1,6 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class spiderMiniBossAI : MonoBehaviour, IDamage
 {
@@ -15,12 +17,19 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [SerializeField] int goalValue = 5;
     [SerializeField] float armorPercent = 0.3f;
 
+    [Header("---- Drops ----")]
+    [SerializeField] GameObject spellXPDropPrefab;
+
     [Header("---- Web Attack ----")]
     [SerializeField] GameObject webProjectilePrefab;
     [SerializeField] Transform shootPoint;
     [SerializeField] float webShootRate = 3f;
     [SerializeField] int webProjectileCount = 3;
     [SerializeField] float webSpreadAngle = 14f;
+    [SerializeField] float webProjectileSpeed = 18f;
+    [Range(0f, 1.2f)]
+    [SerializeField] float leadAmount = 0.85f;
+    [SerializeField] float velocitySmoothingTime = 0.15f;
 
     [Header("---- Bite Attack ----")]
     [SerializeField] int biteDamage = 5;
@@ -33,13 +42,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [SerializeField] float poisonDuration = 4f;
     [SerializeField] float poisonTickRate = 1f;
 
-    [Header("---- Sweep Attack ----")]
-    [SerializeField] int sweepDamage = 1;
-    [SerializeField] float sweepRange = 5f;
-    [SerializeField] float sweepRadius = 4f;
-    [SerializeField] float sweepAngle = 160f;
-    [SerializeField] float sweepRate = 1.25f;
-
     [Header("---- Egg Summon ----")]
     [SerializeField] GameObject broodEggPrefab;
     [SerializeField] Transform eggSpawnPoint;
@@ -49,20 +51,39 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
 
+    [Header("---- Chest Drop ----")]
+    [SerializeField] GameObject chestPrefab;
+
+    enum AttackType { None, Bite, Web }
+    AttackType currentAttack;
+
     NavMeshAgent agent;
+    Animator anim;
     int currentHP;
+    int maxHPScaled;
     int eggsPerSpawn;
+    bool isDead;
+    bool isAttacking;
+    Vector3 lastWebDirection;
+
+    GameObject miniBossHPBar;
+    Image miniBossCurrentHP;
+    TMP_Text miniBossHPText;
+    bool hpBarActive = false;
+
+    Vector3 lastPlayerPos;
+    Vector3 estimatedPlayerVelocity;
+    bool playerPosTrackingInitialized;
 
     float webTimer;
     float biteTimer;
-    float sweepTimer;
     float eggTimer;
-
     bool playerPoisoned;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
 
         int startingHP = maxHP;
         eggsPerSpawn = baseEggsPerSpawn;
@@ -70,17 +91,17 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         if (questManager.instance != null && questManager.instance.IsCurrentQuestTarget("SpiderMiniBoss"))
         {
             float hpMultiplier = questManager.instance.GetScaledTargetHealthMultiplier();
-            int extraEnemies = questManager.instance.GetScaledExtraEnemyCount();
-
             startingHP = Mathf.RoundToInt(maxHP * hpMultiplier);
-            eggsPerSpawn = baseEggsPerSpawn + extraEnemies;
         }
 
         currentHP = startingHP;
+        maxHPScaled = startingHP;
+        isDead = false;
+        isAttacking = false;
+        currentAttack = AttackType.None;
 
         webTimer = 0f;
         biteTimer = 0f;
-        sweepTimer = 0f;
         eggTimer = 0f;
         playerPoisoned = false;
 
@@ -91,78 +112,122 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
             agent.updateRotation = true;
             agent.updateUpAxis = true;
         }
+
+        if (Gamemanager.instance != null)
+        {
+            miniBossHPBar = Gamemanager.instance.GetMiniBossHPBar();
+            miniBossCurrentHP = Gamemanager.instance.GetMiniBossCurrentHPBar();
+            miniBossHPText = Gamemanager.instance.GetMiniBossHPText();
+            if (miniBossHPBar != null)
+                miniBossHPBar.SetActive(false);
+        }
     }
 
     void Update()
     {
+        if (isDead) return;
+        if (isAttacking) return;
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
+        if (!hpBarActive && miniBossHPBar != null)
+        {
+            miniBossHPBar.SetActive(true);
+            hpBarActive = true;
+        }
+
+        updateMiniBossBar();
+
+        Transform playerT = Gamemanager.instance.player.transform;
+        if (!playerPosTrackingInitialized)
+        {
+            lastPlayerPos = playerT.position;
+            playerPosTrackingInitialized = true;
+        }
+        if (Time.deltaTime > 0f)
+        {
+            Vector3 rawVelocity = (playerT.position - lastPlayerPos) / Time.deltaTime;
+            float t = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.0001f, velocitySmoothingTime));
+            estimatedPlayerVelocity = Vector3.Lerp(estimatedPlayerVelocity, rawVelocity, t);
+        }
+        lastPlayerPos = playerT.position;
+
         webTimer += Time.deltaTime;
         biteTimer += Time.deltaTime;
-        sweepTimer += Time.deltaTime;
         eggTimer += Time.deltaTime;
 
-        Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
+        Vector3 direction = playerT.position - transform.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
 
         if (direction != Vector3.zero)
-        {
             transform.rotation = Quaternion.LookRotation(direction);
-        }
 
         if (distance > stopDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(Gamemanager.instance.player.transform.position);
+            agent.SetDestination(playerT.position);
         }
         else
         {
             agent.isStopped = true;
         }
 
+        if (anim != null)
+            anim.SetBool("IsWalking", agent.velocity.magnitude > 0.1f);
+
         if (distance <= biteRange)
-        {
             tryBite();
-        }
-        else if (distance <= sweepRange)
-        {
-            trySweep();
-        }
         else if (distance <= webAttackDistance)
         {
-            tryWebShot(direction);
+            Vector3 predictedDir = getPredictedPlayerPosition() - (shootPoint != null ? shootPoint.position : transform.position);
+            predictedDir.y = 0f;
+            tryWebShot(predictedDir);
         }
 
         trySpawnEggs();
     }
 
+    Vector3 getPredictedPlayerPosition()
+    {
+        Transform playerT = Gamemanager.instance.player.transform;
+        Vector3 playerPos = playerT.position;
+
+        Vector3 fromPos = shootPoint != null ? shootPoint.position : transform.position;
+        float distance = Vector3.Distance(fromPos, playerPos);
+        float timeToHit = distance / Mathf.Max(0.01f, webProjectileSpeed);
+
+        Vector3 flatVel = new Vector3(estimatedPlayerVelocity.x, 0f, estimatedPlayerVelocity.z);
+        return playerPos + flatVel * timeToHit * leadAmount;
+    }
+
+    void updateMiniBossBar()
+    {
+        if (miniBossCurrentHP != null)
+            miniBossCurrentHP.fillAmount = (float)currentHP / maxHPScaled;
+
+        if (miniBossHPText != null)
+            miniBossHPText.SetText(currentHP.ToString("F0"));
+    }
+
     void tryWebShot(Vector3 direction)
     {
-        if (webProjectilePrefab == null || shootPoint == null)
-            return;
-
-        if (webTimer < webShootRate)
-            return;
+        if (webProjectilePrefab == null || shootPoint == null) return;
+        if (webTimer < webShootRate) return;
 
         webTimer = 0f;
+        isAttacking = true;
+        currentAttack = AttackType.Web;
+        lastWebDirection = direction;
 
-        if (webProjectileCount <= 1)
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        if (anim != null)
         {
-            spawnWebProjectile(direction.normalized);
-            return;
-        }
-
-        float angleStep = webSpreadAngle / (webProjectileCount - 1);
-        float startAngle = -webSpreadAngle / 2f;
-
-        for (int i = 0; i < webProjectileCount; i++)
-        {
-            float currentAngle = startAngle + (angleStep * i);
-            Vector3 shootDirection = Quaternion.Euler(0f, currentAngle, 0f) * direction.normalized;
-            spawnWebProjectile(shootDirection);
+            anim.SetBool("IsWalking", false);
+            anim.SetTrigger("WebAttack");
         }
     }
 
@@ -174,148 +239,109 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         Collider[] projectileColliders = projectileInstance.GetComponentsInChildren<Collider>(true);
 
         foreach (Collider myCol in myColliders)
-        {
             foreach (Collider projectileCol in projectileColliders)
-            {
                 if (myCol != null && projectileCol != null)
-                {
                     Physics.IgnoreCollision(myCol, projectileCol, true);
-                }
-            }
-        }
 
         spiderWebProjectile webScript = projectileInstance.GetComponent<spiderWebProjectile>();
-
         if (webScript != null)
-        {
             webScript.SetDirection(direction);
-        }
     }
 
     void tryBite()
     {
-        if (biteTimer < biteRate)
-            return;
-
+        if (biteTimer < biteRate) return;
         biteTimer = 0f;
+        isAttacking = true;
+        currentAttack = AttackType.Bite;
+
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
+        if (anim != null)
+        {
+            anim.SetBool("IsWalking", false);
+            anim.SetTrigger("Bite");
+        }
+    }
+
+    public void doBiteDamage()
+    {
+        if (currentAttack != AttackType.Bite) return;
 
         Vector3 biteCenter = transform.position + (transform.forward * biteRange * 0.5f);
         Collider[] hits = Physics.OverlapSphere(biteCenter, biteRadius);
 
         foreach (Collider hit in hits)
         {
-            if (hit == null || hit.isTrigger)
-                continue;
-
-            if (!hit.CompareTag("Player"))
-                continue;
+            if (hit == null || hit.isTrigger) continue;
+            if (!hit.CompareTag("Player")) continue;
 
             IDamage dmg = hit.GetComponentInParent<IDamage>();
-
             if (dmg != null)
             {
-                Debug.Log("Spider Bite Hit");
                 dmg.takeDamage(biteDamage);
-
                 if (!playerPoisoned)
-                {
                     StartCoroutine(applyPoison(dmg));
-                }
-
                 break;
             }
+        }
+    }
+
+    public void doWebAttack()
+    {
+        if (currentAttack != AttackType.Web) return;
+
+        Vector3 direction = lastWebDirection.normalized;
+        if (direction == Vector3.zero) return;
+
+        if (webProjectileCount <= 1)
+        {
+            spawnWebProjectile(direction);
+            return;
+        }
+
+        float angleStep = webSpreadAngle / (webProjectileCount - 1);
+        float startAngle = -webSpreadAngle / 2f;
+
+        for (int i = 0; i < webProjectileCount; i++)
+        {
+            float currentAngle = startAngle + (angleStep * i);
+            Vector3 shootDirection = Quaternion.Euler(0f, currentAngle, 0f) * direction;
+            spawnWebProjectile(shootDirection);
         }
     }
 
     IEnumerator applyPoison(IDamage dmg)
     {
         playerPoisoned = true;
-
         float timer = 0f;
 
         while (timer < poisonDuration)
         {
             yield return new WaitForSeconds(poisonTickRate);
-
             if (dmg != null)
-            {
                 dmg.takeDamage(poisonTickDamage);
-            }
-
             timer += poisonTickRate;
         }
 
         playerPoisoned = false;
     }
 
-    void trySweep()
-    {
-        if (sweepTimer < sweepRate)
-            return;
-
-        sweepTimer = 0f;
-
-        Collider[] hits = Physics.OverlapSphere(transform.position, sweepRadius);
-
-        foreach (Collider hit in hits)
-        {
-            if (hit == null || hit.isTrigger)
-                continue;
-
-            if (!hit.CompareTag("Player"))
-                continue;
-
-            Vector3 directionToTarget = hit.transform.position - transform.position;
-            directionToTarget.y = 0f;
-
-            float distanceToTarget = directionToTarget.magnitude;
-
-            if (distanceToTarget > sweepRange)
-                continue;
-
-            float angleToTarget = Vector3.Angle(transform.forward, directionToTarget.normalized);
-
-            if (angleToTarget <= sweepAngle * 0.5f)
-            {
-                IDamage dmg = hit.GetComponentInParent<IDamage>();
-
-                if (dmg != null)
-                {
-                    Debug.Log("Spider Sweep Hit");
-                    dmg.takeDamage(sweepDamage);
-                    break;
-                }
-            }
-        }
-    }
-
     void trySpawnEggs()
     {
-        if (broodEggPrefab == null)
-            return;
-
-        if (eggTimer < eggSpawnRate)
-            return;
-
+        if (broodEggPrefab == null) return;
+        if (eggTimer < eggSpawnRate) return;
         eggTimer = 0f;
 
-        Vector3 baseSpawnPosition;
-
-        if (eggSpawnPoint != null)
-        {
-            baseSpawnPosition = eggSpawnPoint.position;
-        }
-        else
-        {
-            baseSpawnPosition = transform.position - (transform.forward * 1.5f);
-        }
+        Vector3 baseSpawnPosition = eggSpawnPoint != null
+            ? eggSpawnPoint.position
+            : transform.position - (transform.forward * 1.5f);
 
         for (int i = 0; i < eggsPerSpawn; i++)
         {
             Vector3 spawnOffset = new Vector3(Random.Range(-0.75f, 0.75f), 0f, Random.Range(-0.75f, 0.75f));
-            Vector3 finalSpawnPosition = baseSpawnPosition + spawnOffset;
-
-            GameObject egg = Instantiate(broodEggPrefab, finalSpawnPosition, Quaternion.identity);
+            GameObject egg = Instantiate(broodEggPrefab, baseSpawnPosition + spawnOffset, Quaternion.identity);
             ignoreSpawnCollision(egg);
         }
     }
@@ -326,58 +352,82 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         Collider[] spawnedColliders = spawnedObject.GetComponentsInChildren<Collider>();
 
         foreach (Collider myCol in myColliders)
-        {
             foreach (Collider spawnedCol in spawnedColliders)
-            {
                 if (myCol != null && spawnedCol != null)
-                {
                     Physics.IgnoreCollision(myCol, spawnedCol);
-                }
-            }
-        }
     }
 
     public void takeDamage(int amount)
     {
+        if (isDead) return;
+
         if (beingHitEffect != null)
-        {
             beingHitEffect.Play();
-        }
 
         int totalDamage = amount + Gamemanager.instance.playerScript.damageBuff;
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
-
         currentHP -= finalDamage;
 
         if (currentHP <= 0)
-        {
             die();
-        }
+    }
+
+    public void endAttack()
+    {
+        isAttacking = false;
+        currentAttack = AttackType.None;
     }
 
     void die()
     {
-        if (Gamemanager.instance != null && Gamemanager.instance.player != null)
-        {
-            playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+        if (isDead) return;
+        isDead = true;
 
-            if (xp != null)
-            {
-                xp.AddXP(xpValue);
-            }
+        if (miniBossHPBar != null)
+            miniBossHPBar.SetActive(false);
+
+        if (agent != null)
+            agent.enabled = false;
+
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        if (anim != null)
+            anim.SetTrigger("Death");
+
+        if (chestPrefab != null)
+            Instantiate(chestPrefab, transform.position, Quaternion.identity);
+
+        dropLoot();
+        giveRewards();
+
+        Destroy(gameObject, 2f);
+    }
+
+    void dropLoot()
+    {
+        if (spellXPDropPrefab != null)
+        {
+            GameObject spellXPInstance = Instantiate(spellXPDropPrefab, transform.position, Quaternion.identity);
+            SpellXPPickup spellXPPickup = spellXPInstance.GetComponent<SpellXPPickup>();
+            if (spellXPPickup != null)
+                spellXPPickup.xpAmount = xpValue;
         }
+    }
+
+    void giveRewards()
+    {
+        if (Gamemanager.instance == null || Gamemanager.instance.player == null) return;
+
+        playerControl xp = Gamemanager.instance.player.GetComponent<playerControl>();
+        if (xp != null)
+            xp.AddXP(xpValue);
 
         if (enemySpawner.instance != null)
-        {
             enemySpawner.instance.enemyDefeated(goalValue);
-        }
 
         if (questManager.instance != null)
-        {
             questManager.instance.ReportTargetDefeated("SpiderMiniBoss");
-        }
-
-        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()
@@ -385,15 +435,5 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         Gizmos.color = Color.red;
         Vector3 biteCenter = transform.position + (transform.forward * biteRange * 0.5f);
         Gizmos.DrawWireSphere(biteCenter, biteRadius);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sweepRadius);
-
-        Vector3 leftBoundary = Quaternion.Euler(0f, -sweepAngle * 0.5f, 0f) * transform.forward * sweepRange;
-        Vector3 rightBoundary = Quaternion.Euler(0f, sweepAngle * 0.5f, 0f) * transform.forward * sweepRange;
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
     }
 }

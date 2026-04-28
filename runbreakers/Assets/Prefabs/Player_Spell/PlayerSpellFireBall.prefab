@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   lifeTime: 2
+  explosionVFX: {fileID: 558864851438764635, guid: 1cc391b9bc4e57f4c8f1d7f7522902ac, type: 3}
 --- !u!198 &845850457249376595
 ParticleSystem:
   m_ObjectHideFlags: 0

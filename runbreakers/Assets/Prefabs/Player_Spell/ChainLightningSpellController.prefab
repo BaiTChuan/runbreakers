@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4114481723686675337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.40381, y: -0, z: -15.76736}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -90,8 +90,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.013677811
-        value: 0.11650464
+        time: 0
+        value: 0.083171815
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -99,8 +99,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.44984803
-        value: 0.29773462
+        time: 0.2808722
+        value: 0.22440088
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -164,10 +164,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningSpell
   CastSpeed: 0.6
   Damage: 5
+  castSounds:
+  - {fileID: 8300000, guid: d574d75c384607046b29ddb3a3aa1ced, type: 3}
+  castVolume: 0.3
   currentLevel: 1
   currentXp: 0
-  xpToNextLevel: 100
-  xpMultiplier: 1.5
+  xpPerLevel: 14000000140000001e0000001e00000032000000
   lightningBoltPrefab: {fileID: 8049927496035906746, guid: c41dc833ba273d54a9b7a0ba5f7eb8ee, type: 3}
   projectileSpeed: 75
   maxBounces: 3

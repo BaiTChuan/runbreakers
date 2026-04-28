@@ -13,7 +13,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [Header("----- Stats ------")]
     [Range(1, 30)][SerializeField] int hp;
     [Range(1, 10)][SerializeField] float speed;
-    [Range(2, 6)][SerializeField] int sprintMod;
     [SerializeField] public int characterAttackPower;
     [SerializeField] int characterArmor;
     [SerializeField] int characterLuck;
@@ -45,10 +44,22 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     [Header("----- Spells ------")]
     [SerializeField] private List<Player_Spell> spellPrefabs = new List<Player_Spell>();
+    [SerializeField] private ExplosiveChainSpell fusedExplosiveChainPrefab;
     private List<Player_Spell> spells = new List<Player_Spell>();
     [SerializeField] private Transform castPivot;
     [SerializeField] private Transform castPos;
     private int currentSpellIndex = 0;
+
+    public int clLevel = 1;
+    private int clCurrentXp = 0;
+    private int[] clXpPerLevel = { 20, 30, 40, 60, 50 };
+    private int clMaxLevel = 6;
+
+    [Header("----- Dash Stats ------")]
+    [SerializeField] private float dashSpeed = 50f;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashCooldown = 3f;
+    private float dashTimer;
 
     [Header("---- Hit Effect ----")]
     [SerializeField] ParticleSystem beingHitEffect;
@@ -119,13 +130,20 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void Awake()
     {
-        // Instantiate personal copies of spells for this gameplay session
         spells = new List<Player_Spell>();
         foreach (var spellPrefab in spellPrefabs)
         {
             Player_Spell newSpell = Instantiate(spellPrefab, transform);
             spells.Add(newSpell);
         }
+    }
+
+    IEnumerator Dash()
+    {
+        float originalSpeed = speed;
+        speed = dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        speed = originalSpeed;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -177,9 +195,10 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     void Update()
     {
         movement();
-        sprint();
+        HandleDash();
         AimGunToMouse();
         dataDeletedCheck();
+        checkLowHealth();
     }
 
     IEnumerator playStep()
@@ -264,16 +283,6 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             CastSpell();
         }
 
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (spells.Count > 0 && spells[currentSpellIndex] != null)
-            {
-                spells[currentSpellIndex].AddXp(50);
-                Debug.Log("Added 50 XP to " + spells[currentSpellIndex].name);
-            }
-        }
-
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelInput != 0)
         {
@@ -318,20 +327,14 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
             StartCoroutine(playStep());
     }
 
-    void sprint()
+    void HandleDash()
     {
-        if (currentLevel >= 3)
+        dashTimer += Time.deltaTime;
+
+        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer >= dashCooldown)
         {
-            if (Input.GetButtonDown("Sprint"))
-            {
-                speed *= sprintMod;
-                isSprinting = true;
-            }
-            else if (Input.GetButtonUp("Sprint"))
-            {
-                speed /= sprintMod;
-                isSprinting = false;
-            }
+            dashTimer = 0f;
+            StartCoroutine(Dash());
         }
     }
 
@@ -408,6 +411,18 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         {
             Gamemanager.instance.damageBuffBar.fillAmount = (damageBuffDuration - damageBuffTimer) / damageBuffDuration;
         }
+    }
+
+    public void updateStatDisplay()
+    {
+        Gamemanager.instance.pauseHpText.text = hpOriginal.ToString("F0");
+        Gamemanager.instance.pauseSpeedText.text = speedOriginal.ToString("F0");
+        Gamemanager.instance.pauseDamageText.text = damageOriginal.ToString("F0");
+        Gamemanager.instance.pauseLuckText.text = luckOriginal.ToString("F0");
+        Gamemanager.instance.pauseArmorText.text = armorOriginal.ToString("F0");
+        Gamemanager.instance.pauseCastSpeedText.text = castSpeedOriginal.ToString("F0");
+        Gamemanager.instance.pauseReviveText.text = reviveOriginal.ToString("F0");
+        Gamemanager.instance.pauseRerollText.text = rerollOriginal.ToString("F0");
     }
 
     public void getBuff(buffStats buff)
@@ -506,10 +521,90 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
        // GoldUI.instance.UpdateGold(Gamemanager.instance.gold);
     }
 
+    public void getSpellXP(int amount)
+    {
+        if (spells.Count > 0 && currentSpellIndex >= 0 && currentSpellIndex < spells.Count && spells[currentSpellIndex] != null)
+        {
+            Player_Spell currentSpell = spells[currentSpellIndex];
+
+            if (currentSpell is ChainLightningSpell clSpell)
+            {
+                if (clLevel >= clMaxLevel) return;
+
+                clCurrentXp += amount;
+
+                int xpToNextLevel = clXpPerLevel[clLevel - 1];
+                while (clCurrentXp >= xpToNextLevel)
+                {
+                    clCurrentXp -= xpToNextLevel;
+                    clLevel++;
+
+                    if (clLevel == 3 || clLevel == 5)
+                    {
+                        clSpell.IncreaseBounces();
+                    }
+
+                    CheckForSpellFusion();
+
+                    if (clLevel >= clMaxLevel)
+                    {
+                        clCurrentXp = 0;
+                        break;
+                    }
+                    else
+                    {
+                        xpToNextLevel = clXpPerLevel[clLevel - 1];
+                    }
+                }
+            }
+            else
+            {
+                currentSpell.AddXp(amount);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(string.Format("[XP Pickup] Failed to give XP. Index: {0}, Spell Count: {1}", currentSpellIndex, spells.Count));
+        }
+    }
+
     public int GetCurrentXP()
     {
         return currentXP;
     }
+
+    public void CheckForSpellFusion()
+    {
+        Player_Spell fireball = null;
+        Player_Spell chainLightning = null;
+
+        foreach (var spell in spells)
+        {
+            if (spell is FireballSpell && spell.CurrentLevel >= 6)
+            {
+                fireball = spell;
+            }
+            else if (spell is ChainLightningSpell && clLevel >= 6)
+            {
+                chainLightning = spell;
+            }
+        }
+
+        if (fireball != null && chainLightning != null)
+        {
+            Debug.Log("<color=magenta>SPELL FUSION! Fireball and Chain Lightning have merged into Explosive Chain!</color>");
+
+            spells.Remove(fireball);
+            spells.Remove(chainLightning);
+            Destroy(fireball.gameObject);
+            Destroy(chainLightning.gameObject);
+
+            ExplosiveChainSpell fusedSpell = Instantiate(fusedExplosiveChainPrefab, transform);
+            spells.Add(fusedSpell);
+            currentSpellIndex = spells.IndexOf(fusedSpell);
+        }
+    }
+
 
     public int GetCurrentLevel()
     {
@@ -548,19 +643,53 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void dataDeletedCheck()
     {
-        if (mainMenuManager.instance.dataDeleted == true)
+        if (mainMenuManager.instance != null)
         {
-            hpOriginal = hpBase;
-            hp = hpOriginal;
-            speedOriginal = speedBase;
-            speed = speedOriginal;
-            damageOriginal = damageBase;
-            characterAttackPower = damageOriginal;
-            castSpeedOriginal = castSpeedBase;
+            if (mainMenuManager.instance.dataDeleted == true)
+            {
+                hpOriginal = hpBase;
+                hp = hpOriginal;
+                speedOriginal = speedBase;
+                speed = speedOriginal;
+                damageOriginal = damageBase;
+                characterAttackPower = damageOriginal;
+                castSpeedOriginal = castSpeedBase;
+            }
         }
     }
 
     #region LevelUpFunctionss
+
+    public void calculateLuck()
+    {
+        Gamemanager.instance.tier3Max = 100;
+
+        Gamemanager.instance.tier3Min = 95 - characterLuck;
+        Gamemanager.instance.tier3Min = Mathf.Clamp(Gamemanager.instance.tier3Min, 4, 100);
+
+        Gamemanager.instance.tier2Max = Gamemanager.instance.tier3Min - 1;
+        Gamemanager.instance.tier2Max = Mathf.Clamp(Gamemanager.instance.tier2Max, 3, 100);
+
+        Gamemanager.instance.tier2Min = (Gamemanager.instance.tier2Max - 20) - (characterLuck * 2);
+        Gamemanager.instance.tier2Min = Mathf.Clamp(Gamemanager.instance.tier2Min, 2, 100);
+
+        Gamemanager.instance.tier1Max = Gamemanager.instance.tier2Min - 1;
+        Gamemanager.instance.tier1Max = Mathf.Clamp(Gamemanager.instance.tier1Max, 1, 100);
+
+        Gamemanager.instance.tier1Min = 0;
+    }
+
+    void checkLowHealth()
+    {
+        if (hp <= 4)
+        {
+            Gamemanager.instance.lowHealthOn();
+        }
+        else
+        {
+            Gamemanager.instance.lowHealthOff();
+        }
+    }
 
     public void hpLevelUp0()
     {

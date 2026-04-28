@@ -25,14 +25,20 @@ public class questPoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!startsQuestOnPlayerEnter)
-            return;
-
         if (!other.CompareTag("Player"))
             return;
 
         if (questManager.instance != null)
         {
+            if (gameObject.name.Contains("MiniBoss") || (questData != null && questData.questType == QuestType.DefeatMiniBoss))
+            {
+                questManager.instance.StartMiniBossFight(this);
+                return;
+            }
+
+            if (!startsQuestOnPlayerEnter)
+                return;
+
             questManager.instance.ReportReachedQuestPoint(this);
         }
     }

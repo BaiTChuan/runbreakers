@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   lifeTime: 2
+  explosionVFX: {fileID: 0}
 --- !u!54 &1521099288870823151
 Rigidbody:
   m_ObjectHideFlags: 0

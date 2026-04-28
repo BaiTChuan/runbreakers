@@ -48,17 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::questPoint
   questData:
-    questID: 0
+    questID: 1
     questName: Hold the Ring
     objectiveText: 'Survive in the zone, leave and you''ll fail!
 
 '
     questType: 3
     targetID: 
-    spawnedTargetPrefab: {fileID: 0}
+    spawnedTargetPrefab: {fileID: 1392482887135833162}
     spawnDistanceFromPlayer: 8
-    rewardXP: 0
-    rewardGold: 0
+    rewardXP: 10
+    rewardGold: 15
     travelTimeLimit: 60
     objectiveTimeLimit: 30
     requiredCollectionCount: 5
@@ -82,7 +82,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c937c919e2348429630c9b3027fd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingOfFire
-  targetID: RingOfFire
 --- !u!65 &7206272593258083186
 BoxCollider:
   m_ObjectHideFlags: 0
