@@ -496,63 +496,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1001 &606344390
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5807235371305061013, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_Name
-      value: EnemyBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -32.25692
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955722764328703952, guid: 27680334b517be744bc857835d274333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 27680334b517be744bc857835d274333, type: 3}
 --- !u!1001 &706411161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1082,7 +1025,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1880292618244440545, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1936333181587599066, guid: aa5226e0729747e4faa19be920a59757, type: 3}
       propertyPath: m_Name
@@ -1426,6 +1369,10 @@ PrefabInstance:
     - target: {fileID: 6393227439426158139, guid: 3f1ea26995360f7418d8bd29e8642457, type: 3}
       propertyPath: m_Name
       value: EnemyLootGob
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393227439426158139, guid: 3f1ea26995360f7418d8bd29e8642457, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9073890691366558983, guid: 3f1ea26995360f7418d8bd29e8642457, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1853,6 +1800,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69811293}
     m_Modifications:
+    - target: {fileID: 6734948857756020864, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6828646014251631607, guid: 9b2234b2278b25345afde78f63b92a4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.27
@@ -2188,4 +2139,3 @@ SceneRoots:
   - {fileID: 1350310676}
   - {fileID: 2120576302}
   - {fileID: 211857628}
-  - {fileID: 606344390}
