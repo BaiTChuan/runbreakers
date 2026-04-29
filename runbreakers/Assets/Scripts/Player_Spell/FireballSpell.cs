@@ -1,15 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FireballSpell : Player_Spell
 {
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private float projectileSpeed;
-
+    [SerializeField] private float projectileSpeed = 50f;
     [SerializeField] private float explosionRadius = 4f;
+
+    [Header("Audio")]
+    [SerializeField] private List<AudioClip> explosionSounds = new List<AudioClip>();
+    [SerializeField, Range(0f, 1f)] private float explosionVolume = 1.0f;
     [SerializeField, Range(0f, 1f)] private float explosionDamageModifier = 0.5f;
 
     public override void Cast(Transform castPos, Vector3 direction)
     {
+        PlayCastSound();
+
         GameObject fireball = Instantiate(fireballPrefab, castPos.position, Quaternion.LookRotation(direction));
         fireball.GetComponent<Rigidbody>().linearVelocity = direction * projectileSpeed;
 
@@ -23,7 +29,7 @@ public class FireballSpell : Player_Spell
             if (currentLevel >= 6)
             {
                 int explosionDamage = Mathf.RoundToInt(totalDamage * explosionDamageModifier);
-                projectile.SetExplosion(explosionRadius, explosionDamage);
+                projectile.SetExplosion(explosionRadius, explosionDamage, explosionSounds, explosionVolume);
             }
         }
     }

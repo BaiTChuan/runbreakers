@@ -15,6 +15,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
+        if (backgroundMusic.instance != null)
+        {
+            backgroundMusic.instance.PlayNormalMusic();
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -26,6 +30,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void startMenuScene()
     {
+        if (backgroundMusic.instance != null)
+        {
+            backgroundMusic.instance.StopMusic();
+        }
         SceneManager.LoadScene(menuScene);
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2732057072613713952}
   - component: {fileID: 7876422835223668690}
+  - component: {fileID: 3590388651782400620}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -49,4 +50,167 @@ MonoBehaviour:
   permanentShop: {fileID: 0}
   settings: {fileID: 0}
   startScreen: {fileID: 0}
+  tutorialMenu: {fileID: 0}
   prevMenu: {fileID: 0}
+  goldCur: {fileID: 0}
+  click: {fileID: 8300000, guid: ee66adaa3f9d0d8438754541352b1288, type: 3}
+  audioSource: {fileID: 3590388651782400620}
+  healthCur: {fileID: 0}
+  healthMax: {fileID: 0}
+  healthCostText: {fileID: 0}
+  healthCost: 50
+  healthLevelStat: 4
+  damageCur: {fileID: 0}
+  damageMax: {fileID: 0}
+  damageCostText: {fileID: 0}
+  damageCost: 50
+  damageLevelStat: 2
+  speedCur: {fileID: 0}
+  speedMax: {fileID: 0}
+  speedCostText: {fileID: 0}
+  speedCost: 50
+  speedLevelStat: 1
+  luckCur: {fileID: 0}
+  luckMax: {fileID: 0}
+  luckCostText: {fileID: 0}
+  luckCost: 250
+  luckLevelStat: 2
+  armorCur: {fileID: 0}
+  armorMax: {fileID: 0}
+  armorCostText: {fileID: 0}
+  armorCost: 100
+  armorLevelStat: 1
+  castSpeedCur: {fileID: 0}
+  castSpeedMax: {fileID: 0}
+  castSpeedCostText: {fileID: 0}
+  castSpeedCost: 250
+  castSpeedLevelStat: 0.05
+  reviveCur: {fileID: 0}
+  reviveMax: {fileID: 0}
+  reviveCostText: {fileID: 0}
+  reviveCost: 1000
+  reviveLevelStat: 1
+  rerollCur: {fileID: 0}
+  rerollMax: {fileID: 0}
+  rerollCostText: {fileID: 0}
+  rerollCost: 500
+  rerollLevelStat: 1
+  healthUp: {fileID: 0}
+  healthUp2: {fileID: 0}
+  healthUp3: {fileID: 0}
+  speedUp: {fileID: 0}
+  speedUp2: {fileID: 0}
+  speedUp3: {fileID: 0}
+  damageUp: {fileID: 0}
+  damageUp2: {fileID: 0}
+  damageUp3: {fileID: 0}
+  castSpeedUp: {fileID: 0}
+  castSpeedUp2: {fileID: 0}
+  castSpeedUp3: {fileID: 0}
+  armorUp: {fileID: 0}
+  armorUp2: {fileID: 0}
+  armorUp3: {fileID: 0}
+  reviveUp: {fileID: 0}
+  rerollUp: {fileID: 0}
+  rerollUp2: {fileID: 0}
+  luckUp: {fileID: 0}
+  luckUp2: {fileID: 0}
+  luckUp3: {fileID: 0}
+  dataDeleted: 0
+--- !u!82 &3590388651782400620
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846227919395932090}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 2302867234711416026, guid: 705b49fb0b1aadd49956ad0aa5db6759, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

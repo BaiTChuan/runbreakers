@@ -5053,7 +5053,7 @@ MonoBehaviour:
   spawnRate: 4
   minionsPerSpawn: 2
   damageCollider: {fileID: 7786265087972815886}
-  beingHitEffect: {fileID: 8784546273803440222}
+  beingHitEffect: {fileID: 0}
 --- !u!1001 &2430616208146806290
 PrefabInstance:
   m_ObjectHideFlags: 0

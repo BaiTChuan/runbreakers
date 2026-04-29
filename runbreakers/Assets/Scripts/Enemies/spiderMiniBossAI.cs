@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class spiderMiniBossAI : MonoBehaviour, IDamage
 {
@@ -24,6 +26,10 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [SerializeField] float webShootRate = 3f;
     [SerializeField] int webProjectileCount = 3;
     [SerializeField] float webSpreadAngle = 14f;
+    [SerializeField] float webProjectileSpeed = 18f;
+    [Range(0f, 1.2f)]
+    [SerializeField] float leadAmount = 0.85f;
+    [SerializeField] float velocitySmoothingTime = 0.15f;
 
     [Header("---- Bite Attack ----")]
     [SerializeField] int biteDamage = 5;
@@ -35,15 +41,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     [SerializeField] int poisonTickDamage = 1;
     [SerializeField] float poisonDuration = 4f;
     [SerializeField] float poisonTickRate = 1f;
-
-    // Sweep attack disabled for initial release. no animation available.
-    // Re-enable when sweep animation is added for full Steam release.
-    //[Header("---- Sweep Attack (Disabled) ----")]
-    //[SerializeField] int sweepDamage = 1;
-    //[SerializeField] float sweepRange = 5f;
-    //[SerializeField] float sweepRadius = 4f;
-    //[SerializeField] float sweepAngle = 160f;
-    //[SerializeField] float sweepRate = 1.25f;
 
     [Header("---- Egg Summon ----")]
     [SerializeField] GameObject broodEggPrefab;
@@ -63,16 +60,24 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     NavMeshAgent agent;
     Animator anim;
     int currentHP;
+    int maxHPScaled;
     int eggsPerSpawn;
     bool isDead;
     bool isAttacking;
     Vector3 lastWebDirection;
 
+    GameObject miniBossHPBar;
+    Image miniBossCurrentHP;
+    TMP_Text miniBossHPText;
+    bool hpBarActive = false;
+
+    Vector3 lastPlayerPos;
+    Vector3 estimatedPlayerVelocity;
+    bool playerPosTrackingInitialized;
+
     float webTimer;
     float biteTimer;
-    // float sweepTimer; // Disabled. no sweep animation available yet.
     float eggTimer;
-
     bool playerPoisoned;
 
     void Start()
@@ -90,13 +95,13 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         }
 
         currentHP = startingHP;
+        maxHPScaled = startingHP;
         isDead = false;
         isAttacking = false;
         currentAttack = AttackType.None;
 
         webTimer = 0f;
         biteTimer = 0f;
-        // sweepTimer = 0f; // Disabled. no sweep animation available yet.
         eggTimer = 0f;
         playerPoisoned = false;
 
@@ -107,6 +112,15 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
             agent.updateRotation = true;
             agent.updateUpAxis = true;
         }
+
+        if (Gamemanager.instance != null)
+        {
+            miniBossHPBar = Gamemanager.instance.GetMiniBossHPBar();
+            miniBossCurrentHP = Gamemanager.instance.GetMiniBossCurrentHPBar();
+            miniBossHPText = Gamemanager.instance.GetMiniBossHPText();
+            if (miniBossHPBar != null)
+                miniBossHPBar.SetActive(false);
+        }
     }
 
     void Update()
@@ -116,12 +130,33 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
+        if (!hpBarActive && miniBossHPBar != null)
+        {
+            miniBossHPBar.SetActive(true);
+            hpBarActive = true;
+        }
+
+        updateMiniBossBar();
+
+        Transform playerT = Gamemanager.instance.player.transform;
+        if (!playerPosTrackingInitialized)
+        {
+            lastPlayerPos = playerT.position;
+            playerPosTrackingInitialized = true;
+        }
+        if (Time.deltaTime > 0f)
+        {
+            Vector3 rawVelocity = (playerT.position - lastPlayerPos) / Time.deltaTime;
+            float t = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.0001f, velocitySmoothingTime));
+            estimatedPlayerVelocity = Vector3.Lerp(estimatedPlayerVelocity, rawVelocity, t);
+        }
+        lastPlayerPos = playerT.position;
+
         webTimer += Time.deltaTime;
         biteTimer += Time.deltaTime;
-        // sweepTimer += Time.deltaTime; // Disabled. no sweep animation available yet.
         eggTimer += Time.deltaTime;
 
-        Vector3 direction = Gamemanager.instance.player.transform.position - transform.position;
+        Vector3 direction = playerT.position - transform.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
@@ -132,7 +167,7 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         if (distance > stopDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(Gamemanager.instance.player.transform.position);
+            agent.SetDestination(playerT.position);
         }
         else
         {
@@ -144,13 +179,36 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
         if (distance <= biteRange)
             tryBite();
-        // Sweep attack disabled. no animation available yet.
-        // else if (distance <= sweepRange)
-        //     trySweep();
         else if (distance <= webAttackDistance)
-            tryWebShot(direction);
+        {
+            Vector3 predictedDir = getPredictedPlayerPosition() - (shootPoint != null ? shootPoint.position : transform.position);
+            predictedDir.y = 0f;
+            tryWebShot(predictedDir);
+        }
 
         trySpawnEggs();
+    }
+
+    Vector3 getPredictedPlayerPosition()
+    {
+        Transform playerT = Gamemanager.instance.player.transform;
+        Vector3 playerPos = playerT.position;
+
+        Vector3 fromPos = shootPoint != null ? shootPoint.position : transform.position;
+        float distance = Vector3.Distance(fromPos, playerPos);
+        float timeToHit = distance / Mathf.Max(0.01f, webProjectileSpeed);
+
+        Vector3 flatVel = new Vector3(estimatedPlayerVelocity.x, 0f, estimatedPlayerVelocity.z);
+        return playerPos + flatVel * timeToHit * leadAmount;
+    }
+
+    void updateMiniBossBar()
+    {
+        if (miniBossCurrentHP != null)
+            miniBossCurrentHP.fillAmount = (float)currentHP / maxHPScaled;
+
+        if (miniBossHPText != null)
+            miniBossHPText.SetText(currentHP.ToString("F0"));
     }
 
     void tryWebShot(Vector3 direction)
@@ -207,7 +265,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         }
     }
 
-    // Called by Animation Event at the hit frame of the bite animation
     public void doBiteDamage()
     {
         if (currentAttack != AttackType.Bite) return;
@@ -231,7 +288,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         }
     }
 
-    // Called by Animation Event at the frame the web is released
     public void doWebAttack()
     {
         if (currentAttack != AttackType.Web) return;
@@ -271,9 +327,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
         playerPoisoned = false;
     }
-
-    // Sweep attack disabled — no animation available yet. Re-enable for Steam release.
-    // void trySweep() { ... }
 
     void trySpawnEggs()
     {
@@ -315,12 +368,10 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(totalDamage * (1f - armorPercent)));
         currentHP -= finalDamage;
 
-        // HitReact disabled — no hit reaction animation available yet. Re-enable for Steam release.
-        // if (anim != null) anim.SetTrigger("HitReact");
-
         if (currentHP <= 0)
             die();
     }
+
     public void endAttack()
     {
         isAttacking = false;
@@ -331,6 +382,9 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
     {
         if (isDead) return;
         isDead = true;
+
+        if (miniBossHPBar != null)
+            miniBossHPBar.SetActive(false);
 
         if (agent != null)
             agent.enabled = false;
@@ -343,7 +397,6 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
 
         if (chestPrefab != null)
             Instantiate(chestPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
 
         dropLoot();
         giveRewards();
@@ -382,16 +435,5 @@ public class spiderMiniBossAI : MonoBehaviour, IDamage
         Gizmos.color = Color.red;
         Vector3 biteCenter = transform.position + (transform.forward * biteRange * 0.5f);
         Gizmos.DrawWireSphere(biteCenter, biteRadius);
-
-        // Sweep gizmos disabled — no sweep animation available yet.
-        // Gizmos.color = Color.yellow;
-        // Gizmos.DrawWireSphere(transform.position, sweepRadius);
-        //
-        // Vector3 leftBoundary = Quaternion.Euler(0f, -sweepAngle * 0.5f, 0f) * transform.forward * sweepRange;
-        // Vector3 rightBoundary = Quaternion.Euler(0f, sweepAngle * 0.5f, 0f) * transform.forward * sweepRange;
-        //
-        // Gizmos.color = Color.cyan;
-        // Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
-        // Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
     }
 }

@@ -1,10 +1,18 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using System.Collections.Generic;
 
 public abstract class Player_Spell : MonoBehaviour
 {
+    [Header("Spell Stats")]
     [SerializeField] public float CastSpeed;
     [SerializeField] public int Damage;
 
+    [Header("Audio")]
+    [SerializeField] protected List<AudioClip> castSounds = new List<AudioClip>();
+    [SerializeField, Range(0f, 1f)] protected float castVolume = 1.0f;
+
+    [Header("XP & Leveling")]
     [SerializeField] protected int currentLevel = 1;
     [SerializeField] private int currentXp = 0;
 
@@ -61,5 +69,18 @@ public abstract class Player_Spell : MonoBehaviour
     protected virtual void OnLevelUp()
     {
 
+    }
+
+    protected void PlayCastSound()
+    {
+        if (castSounds.Count > 0)
+        {
+            AudioSource audioSource = GetComponentInParent<AudioSource>();
+            if (audioSource != null)
+            {
+                AudioClip clip = castSounds[Random.Range(0, castSounds.Count)];
+                audioSource.PlayOneShot(clip, castVolume);
+            }
+        }
     }
 }
