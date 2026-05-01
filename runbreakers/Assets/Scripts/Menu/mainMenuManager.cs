@@ -17,6 +17,8 @@ public class mainMenuManager : MonoBehaviour
     public GameObject tutorialMenu;
     public GameObject prevMenu;
 
+    public GameObject exitButton;
+
     public GameObject confirmDeleteMenu;
 
     [SerializeField] TMP_Text goldCur;
@@ -139,14 +141,19 @@ public class mainMenuManager : MonoBehaviour
     public static int reviveP = 0;
     public static int rerollP = 0;
 
-    public static float masterVol = 1;
-    public static float sfxVol = 1;
-    public static float musicVol = 1;
+    public static float masterVol = 0.5f;
+    public static float sfxVol = 0.5f;
+    public static float musicVol = 0.5f;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         instance = this;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            exitButton.SetActive(false);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
