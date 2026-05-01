@@ -137,6 +137,10 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.pReviveLevel = 0;
         mainMenuManager.pRerollLevel = 0;
 
+        mainMenuManager.masterVol = 0.5f;
+        mainMenuManager.sfxVol = 0.5f;
+        mainMenuManager.musicVol = 0.5f;
+
         mainMenuManager.instance.dataDeleted = true;
 
         mainMenuManager.instance.confirmDeleteMenu.SetActive(false);
