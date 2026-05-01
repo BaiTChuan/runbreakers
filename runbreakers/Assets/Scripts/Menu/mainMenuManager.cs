@@ -17,6 +17,8 @@ public class mainMenuManager : MonoBehaviour
     public GameObject tutorialMenu;
     public GameObject prevMenu;
 
+    public GameObject confirmDeleteMenu;
+
     [SerializeField] TMP_Text goldCur;
 
     public AudioClip click;
