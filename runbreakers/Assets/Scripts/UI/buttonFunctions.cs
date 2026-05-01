@@ -96,6 +96,23 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    public void deleteMenu()
+    {
+        if (mainMenuManager.instance != null && mainMenuManager.instance.menuActive == mainMenuManager.instance.settings)
+        {
+            mainMenuManager.instance.confirmDeleteMenu.SetActive(true);
+        }
+    }
+
+    public void cancelDelete()
+    {
+        if (mainMenuManager.instance != null && mainMenuManager.instance.menuActive == mainMenuManager.instance.settings)
+        {
+            mainMenuManager.instance.confirmDeleteMenu.SetActive(false);
+            settings();
+        }
+    }
+
     public void deleteData()
     {
         PlayerPrefs.DeleteAll();
@@ -121,6 +138,8 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.pRerollLevel = 0;
 
         mainMenuManager.instance.dataDeleted = true;
+
+        mainMenuManager.instance.confirmDeleteMenu.SetActive(false);
     }
 
     public void back()
