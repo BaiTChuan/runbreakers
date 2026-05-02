@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 7799000531508890588}
   - component: {fileID: 8200697391679915766}
   - component: {fileID: 8105583421933553540}
-  - component: {fileID: 5423432969480623620}
-  m_Layer: 15
+  - component: {fileID: 6838691276755756504}
+  m_Layer: 7
   m_Name: Destructable
-  m_TagString: Enemy
+  m_TagString: Destructables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.397
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -234,7 +234,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5423432969480623620
+--- !u!54 &6838691276755756504
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,7 +242,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484591810506955851}
   serializedVersion: 5
-  m_Mass: 1000
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -256,8 +256,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
