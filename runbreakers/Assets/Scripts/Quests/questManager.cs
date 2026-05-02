@@ -395,6 +395,7 @@ public class questManager : MonoBehaviour
         if (!questActive || currentQuest == null) return;
 
         currentQuest.isFailed = true;
+        currentQuest.isCompleted = true;
         questActive = false;
         objectiveStarted = false;
 
