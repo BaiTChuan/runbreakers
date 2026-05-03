@@ -19,6 +19,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float characterCastSpeed;
     [SerializeField] int revive;
 
+    [Header("----- Damage Lock ------")]
+    [SerializeField] float damageImmunityDuration = 0.3f;
+
     [Header("----- LevelUp Stats ------")]
     [Range(1, 10)][SerializeField] int hpStatIncrease;
     [Range(1, 10)][SerializeField] float speedStatIncrease;
@@ -76,6 +79,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float stepVol;
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] float hurtVol;
+    [SerializeField] AudioClip[] audSwitchSpell;
+    [SerializeField] float switchSpellVol;
 
     float castTimer;
 
@@ -123,6 +128,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     bool isPlayingStep;
     bool isSprinting;
+
+    bool isImmuneToDamage;
+    float damageImmunityTimer;
 
     Vector3 playerVel;
 
@@ -194,6 +202,15 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     // Update is called once per frame
     void Update()
     {
+        if (isImmuneToDamage)
+        {
+            damageImmunityTimer -= Time.deltaTime;
+            if (damageImmunityTimer <= 0)
+            {
+                isImmuneToDamage = false;
+            }
+        }
+
         movement();
         HandleDash();
         AimGunToMouse();
@@ -287,6 +304,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelInput != 0)
         {
+            aud.pitch = 1.5f;
+            aud.PlayOneShot(audSwitchSpell[Random.Range(0, audSwitchSpell.Length)], switchSpellVol);
+            aud.pitch = 1f;
             if (scrollWheelInput > 0)
             {
                 currentSpellIndex++;
@@ -330,19 +350,36 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void HandleDash()
     {
-        dashTimer += Time.deltaTime;
-
-        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer >= dashCooldown)
+        if (dashTimer > 0)
         {
-            dashTimer = 0f;
+            dashTimer -= Time.deltaTime;
+        }
+
+        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer <= 0)
+        {
+            dashTimer = dashCooldown;
             StartCoroutine(Dash());
         }
     }
 
+    public float GetDashCooldownFill()
+    {
+        if (dashCooldown <= 0)
+        {
+            return 0;
+        }
+        return dashTimer / dashCooldown;
+    }
+
     public void takeDamage(int amount)
     {
+        if (isImmuneToDamage) return;
+
         hp -= (amount * (1-characterArmor/100));
         updatePlayerUI();
+
+        isImmuneToDamage = true;
+        damageImmunityTimer = damageImmunityDuration;
 
         if (beingHitEffect != null)
         {
