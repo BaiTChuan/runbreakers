@@ -80,6 +80,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        Debug.Log("Projectile hit: " + other.gameObject.name + " | Tag: " + other.tag);
         
         GameObject hitObject = other.gameObject;
 
@@ -139,24 +141,35 @@ public class Projectile : MonoBehaviour
         IDamage damageable = targetCollider.GetComponent<IDamage>();
         if (damageable != null)
         {
+            Debug.Log("Dealing " + damage + " damage to " + targetCollider.gameObject.name);
             damageable.takeDamage(damage);
             hitTargets.Add(targetCollider);
+        }
+        else
+        {
+            Debug.Log("NO IDamage found on " + targetCollider.gameObject.name);
 
-            if (chainSource != null)
-            {
-                chainSource.InitiateBounces(transform.position, targetCollider.transform, damage);
-                Destroy(gameObject);
-                return true;
-            }
-            else if (explosiveChainSource != null)
-            {
-                explosiveChainSource.InitiateBouncesAndExplosions(transform.position, targetCollider.transform, damage);
-                Destroy(gameObject);
-                return true;
-            }
+        }
+
+        {
+    
+
+        if (chainSource != null)
+        {
+            chainSource.InitiateBounces(transform.position, targetCollider.transform, damage);
+            Destroy(gameObject);
+            return true;
+        }
+        else if (explosiveChainSource != null)
+        {
+            explosiveChainSource.InitiateBouncesAndExplosions(transform.position, targetCollider.transform, damage);
+            Destroy(gameObject);
+            return true;
+        }
         }
         return false;
     }
+
 
     private void Explode()
     {

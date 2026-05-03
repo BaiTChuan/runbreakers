@@ -74,6 +74,7 @@ public class bossAI : MonoBehaviour, IDamage
     float addSpawnTimer;
     bool isInvulnerable;
     bool isTransitioning;
+    bool isActive;
 
     NavMeshAgent agent;
     Animator anim;
@@ -97,6 +98,7 @@ public class bossAI : MonoBehaviour, IDamage
         addSpawnTimer = 0f;
         isInvulnerable = false;
         isTransitioning = false;
+        isActive = false;
 
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
@@ -124,6 +126,8 @@ public class bossAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        if (!isActive) return;
+
         if (Gamemanager.instance == null || Gamemanager.instance.player == null || agent == null)
             return;
 
@@ -320,59 +324,62 @@ public class bossAI : MonoBehaviour, IDamage
         if (currentHP <= 0) die();
     }
 
-IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
-{
-    isTransitioning = true;
-    isInvulnerable = true;
-
-    if (forceField != null) forceField.SetActive(true);
-    if (anim != null) anim.SetTrigger("Transition");
-
-    shootTimer = 0f;
-    novaTimer = 0f;
-    addSpawnTimer = 0f;
-
-    float timer = 0f;
-    float spawnTimer = 0f;
-    float healAccumulator = 0f;
-
-    while (timer < transitionLength)
+    IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawnCount)
     {
-        timer += Time.deltaTime;
-        spawnTimer += Time.deltaTime;
+        isTransitioning = true;
+        isInvulnerable = true;
 
-        if (currentHP < healTargetHP)
+        if (forceField != null) forceField.SetActive(true);
+        if (anim != null) anim.SetTrigger("Transition");
+
+        shootTimer = 0f;
+        novaTimer = 0f;
+        addSpawnTimer = 0f;
+
+        float timer = 0f;
+        float spawnTimer = 0f;
+        float healAccumulator = 0f;
+
+        while (timer < transitionLength)
         {
-            healAccumulator += healRate * Time.deltaTime;
-            if (healAccumulator >= 1f)
+            timer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;
+
+            if (currentHP < healTargetHP)
             {
-                int healAmount = Mathf.FloorToInt(healAccumulator);
-                currentHP += healAmount;
-                healAccumulator -= healAmount;
-                if (currentHP > healTargetHP)
-                    currentHP = healTargetHP;
+                healAccumulator += healRate * Time.deltaTime;
+                if (healAccumulator >= 1f)
+                {
+                    int healAmount = Mathf.FloorToInt(healAccumulator);
+                    currentHP += healAmount;
+                    healAccumulator -= healAmount;
+                    if (currentHP > healTargetHP)
+                        currentHP = healTargetHP;
+                }
             }
+
+            if (spawnTimer >= transitionSpawnRate)
+            {
+                spawnTimer = 0f;
+                if (enemySpawner.instance != null)
+                    enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
+            }
+
+            yield return null;
         }
 
-        if (spawnTimer >= transitionSpawnRate)
-        {
-            spawnTimer = 0f;
-            if (enemySpawner.instance != null)
-                enemySpawner.instance.spawnBossAdds(transitionSpawnCount, transform.position);
-        }
+        if (forceField != null) forceField.SetActive(false);
 
-        yield return null;
+        currentStage = nextStage;
+        isInvulnerable = false;
+        isTransitioning = false;
     }
-
-    if (forceField != null) forceField.SetActive(false);
-
-    currentStage = nextStage;
-    isInvulnerable = false;
-    isTransitioning = false;
-}
 
     void die()
     {
+        if (bossRoomManager.instance != null)
+            bossRoomManager.instance.OnBossDefeated();
+
         if (forceField != null) forceField.SetActive(false);
         if (bossHPBar != null) bossHPBar.SetActive(false);
         if (anim != null) anim.SetTrigger("Death");
@@ -402,5 +409,10 @@ IEnumerator stageTransition(int nextStage, int healTargetHP, int transitionSpawn
 
         if (bossCurrentHPText != null)
             bossCurrentHPText.SetText(currentHP.ToString("F0"));
+    }
+
+    public void ActivateBoss()
+    {
+        isActive = true;
     }
 }

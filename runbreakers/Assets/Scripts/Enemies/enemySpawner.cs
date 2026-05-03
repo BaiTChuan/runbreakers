@@ -118,7 +118,6 @@ public class enemySpawner : MonoBehaviour
 
     void updateWaveTimer()
     {
-        // This pauses the wave timer during mini-boss quest
         if (questManager.instance != null && questManager.instance.IsMiniBossQuestActive())
         {
             return;
@@ -138,7 +137,6 @@ public class enemySpawner : MonoBehaviour
 
     void handleWaveSpawning()
     {
-        // This pauses the wave spawning during mini-boss quest
         if (questManager.instance != null && questManager.instance.IsMiniBossQuestActive())
         {
             return;
@@ -222,8 +220,6 @@ public class enemySpawner : MonoBehaviour
 
     bool trySpawnEnemy(GameObject objectToSpawn, Vector3 centerPos)
     {
-        Vector3 ranPos = Vector3.zero;
-
         for (int i = 0; i < 10; i++)
         {
             Vector3 randomDir = Random.insideUnitSphere;
@@ -231,7 +227,7 @@ public class enemySpawner : MonoBehaviour
             randomDir.Normalize();
 
             float randomDistance = Random.Range(minSpawnDistance, spawnDistance);
-            ranPos = centerPos + (randomDir * randomDistance);
+            Vector3 ranPos = centerPos + (randomDir * randomDistance);
 
             NavMeshHit hit;
 
@@ -240,6 +236,38 @@ public class enemySpawner : MonoBehaviour
                 float distanceFromCenter = Vector3.Distance(hit.position, centerPos);
 
                 if (distanceFromCenter >= minSpawnDistance)
+                {
+                    Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool trySpawnEnemyAwayFromPlayer(GameObject objectToSpawn, Vector3 centerPos)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 randomDir = Random.insideUnitSphere;
+            randomDir.y = 0f;
+            randomDir.Normalize();
+
+            float randomDistance = Random.Range(minSpawnDistance, spawnDistance);
+            Vector3 ranPos = centerPos + (randomDir * randomDistance);
+
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(ranPos, out hit, 2f, NavMesh.AllAreas))
+            {
+                float distanceFromCenter = Vector3.Distance(hit.position, centerPos);
+
+                float distanceFromPlayer = Gamemanager.instance != null && Gamemanager.instance.player != null
+                    ? Vector3.Distance(hit.position, Gamemanager.instance.player.transform.position)
+                    : 9999f;
+
+                if (distanceFromCenter >= minSpawnDistance && distanceFromPlayer >= minSpawnDistance)
                 {
                     Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
                     return true;
@@ -417,13 +445,20 @@ public class enemySpawner : MonoBehaviour
 
             if (addToSpawn != null)
             {
-                trySpawnEnemy(addToSpawn, centerPos);
+                trySpawnEnemyAwayFromPlayer(addToSpawn, centerPos);
             }
         }
     }
 
     void spawnBoss()
     {
+        if (bossRoomManager.instance != null)
+        {
+            bossSpawned = true;
+            bossRoomManager.instance.StartBossFight();
+            return;
+        }
+
         if (bossType == null)
         {
             Gamemanager.instance.showWin();

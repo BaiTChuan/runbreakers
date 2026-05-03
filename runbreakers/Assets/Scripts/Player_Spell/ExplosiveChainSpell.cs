@@ -77,7 +77,7 @@ public class ExplosiveChainSpell : Player_Spell
             if (!hitEnemies.Contains(potentialTarget.transform))
             {
                 float distance = Vector3.Distance(currentTargetPosition, potentialTarget.transform.position);
-                if (distance < closestDistance)
+                if (distance > 0 && distance < closestDistance)
                 {
                     closestDistance = distance;
                     nextTarget = potentialTarget.transform;
