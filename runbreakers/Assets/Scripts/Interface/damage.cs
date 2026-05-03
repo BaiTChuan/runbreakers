@@ -22,7 +22,6 @@ public class damage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Hit: " + other.gameObject.name + " | Tag: " + other.tag);
 
         if (other.isTrigger)
             return;
