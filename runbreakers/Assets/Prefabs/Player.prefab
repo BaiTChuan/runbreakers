@@ -214,6 +214,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aeb9c9e281692cf49b69e48e2e978562, type: 3}
   - {fileID: 8300000, guid: 0cfbd2638acef53489c627ef2d68bd1c, type: 3}
   hurtVol: 0.1
+  audSwitchSpell:
+  - {fileID: 8300000, guid: b73b91c3fd2c3224d95b7588d9d94c1c, type: 3}
+  switchSpellVol: 0.2
   damageOriginal: 0
   damageBuff: 0
 --- !u!143 &5360468614609636613

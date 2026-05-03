@@ -76,6 +76,8 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float stepVol;
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] float hurtVol;
+    [SerializeField] AudioClip[] audSwitchSpell;
+    [SerializeField] float switchSpellVol;
 
     float castTimer;
 
@@ -287,6 +289,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelInput != 0)
         {
+            aud.pitch = 1.5f;
+            aud.PlayOneShot(audSwitchSpell[Random.Range(0, audSwitchSpell.Length)], switchSpellVol);
+            aud.pitch = 1f;
             if (scrollWheelInput > 0)
             {
                 currentSpellIndex++;
