@@ -25,6 +25,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void startLevelScene()
     {
+        mainMenuManager.instance.backgroundAudio.loop = false;
+        mainMenuManager.instance.backgroundAudio.Stop();
         SceneManager.LoadScene(startButtonScene);
     }
 
