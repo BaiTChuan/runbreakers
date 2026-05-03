@@ -22,7 +22,10 @@ public class questManager : MonoBehaviour
     [SerializeField] GameObject rewardPopupPanel;
     [SerializeField] TMP_Text rewardPopupText;
     [SerializeField] float rewardPopupDuration = 3f;
+    [SerializeField] GameObject failPopupPanel;
+    [SerializeField] TMP_Text failPopupText;
     Coroutine rewardPopupCoroutine;
+    Coroutine failPopupCoroutine;
 
     [Header("---- Quest Timing ----")]
     [SerializeField] float timeBetweenQuests = 10f;
@@ -61,15 +64,15 @@ public class questManager : MonoBehaviour
         foreach (questPoint point in pointQuests)
         {
             if (point != null)
-            {
                 point.DeactivateQuestPoint();
-            }
         }
 
         if (rewardPopupPanel != null)
-        {
             rewardPopupPanel.SetActive(false);
-        }
+
+        if (failPopupPanel != null)
+            failPopupPanel.SetActive(false);
+
         clearQuestUI();
     }
 
@@ -82,9 +85,7 @@ public class questManager : MonoBehaviour
         {
             nextQuestTimer -= Time.deltaTime;
             if (nextQuestTimer <= 0f)
-            {
                 StartRandomQuest();
-            }
             return;
         }
 
@@ -92,13 +93,9 @@ public class questManager : MonoBehaviour
         if (currentQuestTimer <= 0f)
         {
             if (currentQuest != null && currentQuest.questType == QuestType.SurvivalZone && objectiveStarted)
-            {
                 CompleteCurrentQuest();
-            }
             else
-            {
                 FailCurrentQuest();
-            }
             return;
         }
 
@@ -114,17 +111,13 @@ public class questManager : MonoBehaviour
         foreach (questPoint point in pointQuests)
         {
             if (isValidPointQuest(point))
-            {
                 availablePointQuests.Add(point);
-            }
         }
 
         foreach (questData quest in spawnedTargetQuests)
         {
             if (isValidSpawnedQuest(quest))
-            {
                 availableSpawnedQuests.Add(quest);
-            }
         }
 
         int totalAvailable = availablePointQuests.Count + availableSpawnedQuests.Count;
@@ -136,9 +129,7 @@ public class questManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, totalAvailable);
         if (randomIndex < availablePointQuests.Count)
-        {
             StartPointQuest(availablePointQuests[randomIndex]);
-        }
         else
         {
             int spawnedIndex = randomIndex - availablePointQuests.Count;
@@ -210,17 +201,11 @@ public class questManager : MonoBehaviour
         updateQuestUI();
 
         if (quest.questType == QuestType.CollectItems)
-        {
             spawnCollectibleItemsNearPlayer();
-        }
         else if (quest.questType == QuestType.DefeatMiniBoss)
-        {
             spawnMiniBoss();
-        }
         else
-        {
             spawnQuestTargetNearPlayer();
-        }
     }
 
     void spawnQuestTargetNearPlayer()
@@ -235,9 +220,7 @@ public class questManager : MonoBehaviour
         NavMeshHit hit;
         Vector3 spawnPosition = spawnGuess;
         if (NavMesh.SamplePosition(spawnGuess, out hit, currentQuest.spawnDistanceFromPlayer + 5f, NavMesh.AllAreas))
-        {
             spawnPosition = hit.position;
-        }
 
         currentSpawnedQuestTarget = Instantiate(currentQuest.spawnedTargetPrefab, spawnPosition, Quaternion.identity);
         currentTrackedTarget = currentSpawnedQuestTarget.transform;
@@ -251,7 +234,6 @@ public class questManager : MonoBehaviour
         Vector3 playerPosition = Gamemanager.instance.player.transform.position;
         int spawned = 0;
         int attempts = 0;
-
         int spawnCount = currentQuest.requiredCollectionCount + 5;
 
         while (spawned < spawnCount && attempts < 30)
@@ -281,9 +263,7 @@ public class questManager : MonoBehaviour
         NavMeshHit hit;
         Vector3 spawnPosition = spawnGuess;
         if (NavMesh.SamplePosition(spawnGuess, out hit, currentQuest.spawnDistanceFromPlayer + 10f, NavMesh.AllAreas))
-        {
             spawnPosition = hit.position;
-        }
 
         currentSpawnedQuestTarget = Instantiate(currentQuest.spawnedTargetPrefab, spawnPosition, Quaternion.identity);
         currentTrackedTarget = currentSpawnedQuestTarget.transform;
@@ -305,9 +285,7 @@ public class questManager : MonoBehaviour
         }
 
         if (miniBossQuest == null && miniBossPoint != null && miniBossPoint.questData != null)
-        {
             miniBossQuest = miniBossPoint.questData;
-        }
 
         if (miniBossQuest == null)
         {
@@ -327,7 +305,6 @@ public class questManager : MonoBehaviour
         objectiveStarted = true;
 
         SpawnMiniBossAtPoint(miniBossPoint.transform.position);
-
         updateQuestUI();
 
         if (miniBossPoint != null)
@@ -342,9 +319,7 @@ public class questManager : MonoBehaviour
 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(spawnPos, out hit, 10f, NavMesh.AllAreas))
-        {
             spawnPos = hit.position;
-        }
 
         currentSpawnedQuestTarget = Instantiate(currentQuest.spawnedTargetPrefab, spawnPos, Quaternion.identity);
         currentTrackedTarget = currentSpawnedQuestTarget.transform;
@@ -381,9 +356,7 @@ public class questManager : MonoBehaviour
         completedQuestCount++;
 
         if (currentQuestPoint != null)
-        {
             currentQuestPoint.DeactivateQuestPoint();
-        }
 
         giveQuestRewards(currentQuest);
         Debug.Log("Quest Completed: " + currentQuest.questName);
@@ -400,14 +373,12 @@ public class questManager : MonoBehaviour
         objectiveStarted = false;
 
         if (currentQuestPoint != null)
-        {
             currentQuestPoint.DeactivateQuestPoint();
-        }
-        if (currentSpawnedQuestTarget != null)
-        {
-            Destroy(currentSpawnedQuestTarget);
-        }
 
+        if (currentSpawnedQuestTarget != null)
+            Destroy(currentSpawnedQuestTarget);
+
+        showFailPopup();
         Debug.Log("Quest Failed: " + currentQuest.questName);
         clearCurrentQuest();
     }
@@ -428,9 +399,7 @@ public class questManager : MonoBehaviour
         if (!objectiveStarted && currentQuestPoint != null) return;
 
         if (currentQuest.targetID == defeatedTargetID)
-        {
             CompleteCurrentQuest();
-        }
     }
 
     public void ReportItemCollected(string collectedTargetID)
@@ -443,9 +412,7 @@ public class questManager : MonoBehaviour
         currentQuest.currentCollectionCount++;
 
         if (currentQuest.currentCollectionCount >= currentQuest.requiredCollectionCount)
-        {
             CompleteCurrentQuest();
-        }
     }
 
     public void ReportReachedQuestPoint(questPoint point)
@@ -460,9 +427,7 @@ public class questManager : MonoBehaviour
         }
 
         if (currentQuest.questType == QuestType.ReachPoint)
-        {
             CompleteCurrentQuest();
-        }
     }
 
     public void RegisterSpawnedQuestTarget(Transform targetTransform, string targetID)
@@ -476,13 +441,10 @@ public class questManager : MonoBehaviour
     public void UnregisterSpawnedQuestTarget(Transform targetTransform)
     {
         if (currentTrackedTarget == targetTransform)
-        {
             currentTrackedTarget = null;
-        }
+
         if (currentSpawnedQuestTarget != null && currentSpawnedQuestTarget.transform == targetTransform)
-        {
             currentSpawnedQuestTarget = null;
-        }
     }
 
     void applyQuestDifficultyScaling(questData quest)
@@ -498,9 +460,8 @@ public class questManager : MonoBehaviour
         {
             playerControl player = Gamemanager.instance.player.GetComponent<playerControl>();
             if (player != null)
-            {
                 player.AddXP(quest.rewardXP);
-            }
+
             Gamemanager.instance.AddGold(quest.rewardGold);
         }
         showRewardPopup(quest.rewardGold, quest.rewardXP);
@@ -509,37 +470,56 @@ public class questManager : MonoBehaviour
 
     void showRewardPopup(int goldEarned, int xpEarned)
     {
-        if (rewardPopupPanel == null || rewardPopupText == null) return;
+        if (rewardPopupPanel == null) return;
 
-        rewardPopupText.text = "Mission Completed!\nYou earned: " + goldEarned + " Gold, " + xpEarned + " XP";
+        if (rewardPopupText != null)
+            rewardPopupText.text = "Mission Complete!\nRewards:\nGold: " + goldEarned + "   XP: " + xpEarned;
+
         rewardPopupPanel.SetActive(true);
 
         if (rewardPopupCoroutine != null)
-        {
             StopCoroutine(rewardPopupCoroutine);
-        }
+
         rewardPopupCoroutine = StartCoroutine(hideRewardPopupAfterDelay());
+    }
+
+    void showFailPopup()
+    {
+        if (failPopupPanel == null) return;
+
+        if (failPopupText != null)
+            failPopupText.text = "Mission Failed";
+
+        failPopupPanel.SetActive(true);
+
+        if (failPopupCoroutine != null)
+            StopCoroutine(failPopupCoroutine);
+
+        failPopupCoroutine = StartCoroutine(hideFailPopupAfterDelay());
     }
 
     IEnumerator hideRewardPopupAfterDelay()
     {
         yield return new WaitForSeconds(rewardPopupDuration);
         if (rewardPopupPanel != null)
-        {
             rewardPopupPanel.SetActive(false);
-        }
+    }
+
+    IEnumerator hideFailPopupAfterDelay()
+    {
+        yield return new WaitForSeconds(rewardPopupDuration);
+        if (failPopupPanel != null)
+            failPopupPanel.SetActive(false);
     }
 
     void updateQuestUI()
     {
         if (questNameText != null)
-        {
             questNameText.text = currentQuest.questName;
-        }
+
         if (questObjectiveText != null)
-        {
             questObjectiveText.text = currentQuest.objectiveText;
-        }
+
         updateQuestTimerUI();
         updateQuestDistanceUI();
     }
