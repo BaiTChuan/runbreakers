@@ -84,6 +84,7 @@ public class Gamemanager : MonoBehaviour
     public Image speedBuffBar;
     public Image speedDebuffBar;
     public Image damageBuffBar;
+    public Image dashCooldownImage;
     public GameObject damagePlayerFlash;
     public GameObject player;
     public playerControl playerScript;
@@ -126,6 +127,7 @@ public class Gamemanager : MonoBehaviour
         if (levelUpMenu != null) levelUpMenu.SetActive(false);
         if (bossHPBar != null) bossHPBar.SetActive(false);
         if (miniBossHPBar != null) miniBossHPBar.SetActive(false);
+        if (dashCooldownImage != null) dashCooldownImage.gameObject.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -152,6 +154,17 @@ public class Gamemanager : MonoBehaviour
             {
                 stateUnpause();
             }
+        }
+        UpdateDashUI();
+    }
+
+    void UpdateDashUI()
+    {
+        if (dashCooldownImage != null && playerScript != null)
+        {
+            float fillAmount = playerScript.GetDashCooldownFill();
+            dashCooldownImage.gameObject.SetActive(fillAmount > 0);
+            dashCooldownImage.fillAmount = fillAmount;
         }
     }
 

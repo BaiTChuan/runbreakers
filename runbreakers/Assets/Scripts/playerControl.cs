@@ -330,13 +330,25 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     void HandleDash()
     {
-        dashTimer += Time.deltaTime;
-
-        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer >= dashCooldown)
+        if (dashTimer > 0)
         {
-            dashTimer = 0f;
+            dashTimer -= Time.deltaTime;
+        }
+
+        if (currentLevel >= 3 && Input.GetButtonDown("Sprint") && dashTimer <= 0)
+        {
+            dashTimer = dashCooldown;
             StartCoroutine(Dash());
         }
+    }
+
+    public float GetDashCooldownFill()
+    {
+        if (dashCooldown <= 0)
+        {
+            return 0;
+        }
+        return dashTimer / dashCooldown;
     }
 
     public void takeDamage(int amount)
