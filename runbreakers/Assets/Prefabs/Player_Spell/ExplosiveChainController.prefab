@@ -171,7 +171,7 @@ MonoBehaviour:
   castVolume: 0.1
   currentLevel: 1
   currentXp: 0
-  xpPerLevel: 0a00000014000000140000001400000064000000
+  xpPerLevel: 060000000a000000100000001400000014000000
   lightningBoltPrefab: {fileID: 8049927496035906746, guid: 0ab88dfd201ab7e4998c55e795a2cf2a, type: 3}
   projectileSpeed: 75
   maxBounces: 5
