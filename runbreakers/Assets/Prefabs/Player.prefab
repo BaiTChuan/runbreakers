@@ -160,6 +160,7 @@ MonoBehaviour:
   characterLuck: 1
   characterCastSpeed: 1.2
   revive: 0
+  damageImmunityDuration: 0.3
   hpStatIncrease: 3
   speedStatIncrease: 1
   damageStatIncrease: 1

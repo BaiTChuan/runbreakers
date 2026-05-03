@@ -19,6 +19,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     [SerializeField] float characterCastSpeed;
     [SerializeField] int revive;
 
+    [Header("----- Damage Lock ------")]
+    [SerializeField] float damageImmunityDuration = 0.3f;
+
     [Header("----- LevelUp Stats ------")]
     [Range(1, 10)][SerializeField] int hpStatIncrease;
     [Range(1, 10)][SerializeField] float speedStatIncrease;
@@ -126,6 +129,9 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     bool isPlayingStep;
     bool isSprinting;
 
+    bool isImmuneToDamage;
+    float damageImmunityTimer;
+
     Vector3 playerVel;
 
     private Camera cam;
@@ -196,6 +202,15 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
     // Update is called once per frame
     void Update()
     {
+        if (isImmuneToDamage)
+        {
+            damageImmunityTimer -= Time.deltaTime;
+            if (damageImmunityTimer <= 0)
+            {
+                isImmuneToDamage = false;
+            }
+        }
+
         movement();
         HandleDash();
         AimGunToMouse();
@@ -358,8 +373,13 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
 
     public void takeDamage(int amount)
     {
+        if (isImmuneToDamage) return;
+
         hp -= (amount * (1-characterArmor/100));
         updatePlayerUI();
+
+        isImmuneToDamage = true;
+        damageImmunityTimer = damageImmunityDuration;
 
         if (beingHitEffect != null)
         {
