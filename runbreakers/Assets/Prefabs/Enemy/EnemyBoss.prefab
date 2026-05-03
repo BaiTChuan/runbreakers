@@ -361,9 +361,6 @@ MonoBehaviour:
   stage3SpawnCount: 2
   forceField: {fileID: 2434780054755578014}
   beingHitEffect: {fileID: 5778069205827782323}
-  bossHPBar: {fileID: 0}
-  bossCurrentHP: {fileID: 0}
-  bossCurrentHPText: {fileID: 0}
   chestPrefab: {fileID: 2395997325674116077, guid: 4803c621b9a929349be9991977ddd476, type: 3}
 --- !u!1 &6060774235767947771
 GameObject:
@@ -5242,15 +5239,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a54fdddbab56dd44383892764ae85c50, type: 3}
       propertyPath: m_LocalPosition.x
