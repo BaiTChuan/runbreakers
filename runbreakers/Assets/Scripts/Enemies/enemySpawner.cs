@@ -452,6 +452,13 @@ public class enemySpawner : MonoBehaviour
 
     void spawnBoss()
     {
+        if (bossRoomManager.instance != null)
+        {
+            bossSpawned = true;
+            bossRoomManager.instance.StartBossFight();
+            return;
+        }
+
         if (bossType == null)
         {
             Gamemanager.instance.showWin();
