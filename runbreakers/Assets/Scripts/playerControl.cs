@@ -458,7 +458,7 @@ public class playerControl : MonoBehaviour, IDamage, IPickup
         Gamemanager.instance.pauseDamageText.text = damageOriginal.ToString("F0");
         Gamemanager.instance.pauseLuckText.text = luckOriginal.ToString("F0");
         Gamemanager.instance.pauseArmorText.text = armorOriginal.ToString("F0");
-        Gamemanager.instance.pauseCastSpeedText.text = castSpeedOriginal.ToString("F0");
+        Gamemanager.instance.pauseCastSpeedText.text = Mathf.RoundToInt((1f - (castSpeedOriginal / castSpeedBase)) * 100f) + "%";
         Gamemanager.instance.pauseReviveText.text = reviveOriginal.ToString("F0");
         Gamemanager.instance.pauseRerollText.text = rerollOriginal.ToString("F0");
     }
