@@ -81,6 +81,9 @@ public class questManager : MonoBehaviour
         if (Gamemanager.instance == null || Gamemanager.instance.player == null)
             return;
 
+        if (Gamemanager.instance.bossSummoned)
+            return;
+
         if (!questActive)
         {
             nextQuestTimer -= Time.deltaTime;
@@ -377,6 +380,13 @@ public class questManager : MonoBehaviour
 
         if (currentSpawnedQuestTarget != null)
             Destroy(currentSpawnedQuestTarget);
+
+        if (Gamemanager.instance != null)
+        {
+            GameObject miniBossBar = Gamemanager.instance.GetMiniBossHPBar();
+            if (miniBossBar != null)
+                miniBossBar.SetActive(false);
+        }
 
         showFailPopup();
         Debug.Log("Quest Failed: " + currentQuest.questName);
