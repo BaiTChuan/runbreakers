@@ -24,8 +24,10 @@ public class mainMenuManager : MonoBehaviour
     [SerializeField] TMP_Text goldCur;
 
     public AudioClip click;
+    public AudioClip wind;
 
     public AudioSource audioSource;
+    public AudioSource backgroundAudio;
 
     [Header("----- HealthP ------")]
     [SerializeField] TMP_Text healthCur;
@@ -154,6 +156,10 @@ public class mainMenuManager : MonoBehaviour
         {
             exitButton.SetActive(false);
         }
+
+        backgroundAudio.clip = wind;
+        backgroundAudio.loop = true;
+        backgroundAudio.Play();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
